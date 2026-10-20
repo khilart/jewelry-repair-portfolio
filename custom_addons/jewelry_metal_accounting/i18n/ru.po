@@ -1,0 +1,873 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_metal_accounting
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-31 00:00+0000\n"
+"PO-Revision-Date: 2026-03-31 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_storage
+msgid "Jewelry Metal Storage"
+msgstr "Хранилище металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_storage__name
+msgid "Name"
+msgstr "Название"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_storage__code
+msgid "Code"
+msgstr "Код"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_storage__responsible_user_id
+msgid "Responsible"
+msgstr "Ответственный"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_storage__notes
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__notes
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__notes
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__notes
+msgid "Notes"
+msgstr "Заметки"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_document
+msgid "Jewelry Metal Document"
+msgstr "Документ учёта металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__name
+msgid "Document Number"
+msgstr "Номер документа"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__operation_type
+msgid "Operation Type"
+msgstr "Тип операции"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__operation_type__receipt
+msgid "Receipt"
+msgstr "Поступление"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__operation_type__transfer
+msgid "Transfer"
+msgstr "Перемещение"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__operation_type__writeoff
+msgid "Write-Off"
+msgstr "Списание"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__operation_type__remelt
+msgid "Remelt"
+msgstr "Переплавка"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__operation_type__mixed
+msgid "Mixed"
+msgstr "Смешанный"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document_line__operation_type__receipt
+msgid "Receipt"
+msgstr "Поступление"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document_line__operation_type__transfer
+msgid "Transfer"
+msgstr "Перемещение"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document_line__operation_type__writeoff
+msgid "Write-Off"
+msgstr "Списание"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document_line__operation_type__remelt
+msgid "Remelt"
+msgstr "Переплавка"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__state
+msgid "State"
+msgstr "Статус"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__state__posted
+msgid "Posted"
+msgstr "Проведён"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_document_form
+msgid "Fill From Source Storage"
+msgstr "Заполнить остатками склада-источника"
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "Only draft documents can be filled from source storage balances."
+msgstr "Заполнять остатками склада-источника можно только черновики документов."
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "Fill from source storage is only available for transfer, write-off and mixed documents."
+msgstr "Заполнение из склада-источника доступно только для документов перемещения, списания и смешанных."
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "Set a source storage before filling lines from balances."
+msgstr "Укажите склад-источник перед заполнением строк по остаткам."
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "No positive balances were found in the selected source storage on the document date."
+msgstr "На дату документа в выбранном складе-источнике не найдено положительных остатков."
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "The selected source storage has no non-zero balances on the document date."
+msgstr "На дату документа в выбранном складе-источнике нет ненулевых остатков."
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "Lines filled from source storage balances."
+msgstr "Строки заполнены остатками склада-источника."
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_document__state__cancel
+msgid "Cancelled"
+msgstr "Отменён"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__document_date
+msgid "Document Date"
+msgstr "Дата документа"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__partner_id
+msgid "Partner"
+msgstr "Контрагент"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__source_storage_id
+msgid "Source Storage"
+msgstr "Хранилище-источник"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__dest_storage_id
+msgid "Destination Storage"
+msgstr "Хранилище-получатель"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__source_ref
+msgid "Source Reference"
+msgstr "Источник"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__source_operation_id
+msgid "Source Operation"
+msgstr "Операция-источник"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__source_repair_order_id
+msgid "Repair Order"
+msgstr "Заказ ремонта"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__amount_total
+msgid "Total Amount"
+msgstr "Итоговая сумма"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__has_negative_balance_impact
+msgid "Has Negative Balance Impact"
+msgstr "Влечёт отрицательный баланс"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__line_ids
+msgid "Lines"
+msgstr "Строки"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__move_ids
+msgid "Moves"
+msgstr "Движения"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document__log_ids
+msgid "Audit Log"
+msgstr "Журнал аудита"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_document_line
+msgid "Jewelry Metal Document Line"
+msgstr "Строка документа учёта металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__alloy_id
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__alloy_id
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__alloy_id
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__metal_id
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__metal_id
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__metal_id
+msgid "Metal"
+msgstr "Металл"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__weight
+msgid "Weight (g)"
+msgstr "Вес (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__rate_datetime
+msgid "Rate Date"
+msgstr "Дата котировки"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__rate_price_per_gram
+msgid "Fine price(g)"
+msgstr "Цена чистого (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__amount
+msgid "Amount"
+msgstr "Сумма"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__output_alloy_id
+msgid "Output Alloy"
+msgstr "Сплав на выходе"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__output_weight
+msgid "Output Weight (g)"
+msgstr "Вес на выходе (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__loss_weight
+msgid "Loss (fine g)"
+msgstr "Потери (чистые г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__loss_amount
+msgid "Loss Amount"
+msgstr "Стоимость потерь"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__conversion_ratio
+msgid "Loss %"
+msgstr "Потери %"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__source_storage_balance
+msgid "Source Balance"
+msgstr "Баланс источника"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__source_storage_balance_after
+msgid "Source Balance After"
+msgstr "Баланс источника после"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__dest_storage_balance
+msgid "Destination Balance"
+msgstr "Баланс получателя"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_document_line__dest_storage_balance_after
+msgid "Destination Balance After"
+msgstr "Баланс получателя после"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_move
+msgid "Jewelry Metal Move"
+msgstr "Движение металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__document_date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__storage_id
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__storage_id
+msgid "Storage"
+msgstr "Хранилище"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__weight_in
+msgid "Weight In (g)"
+msgstr "Приход (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__weight_out
+msgid "Weight Out (g)"
+msgstr "Расход (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__signed_weight
+msgid "Turnover"
+msgstr "Оборот (±г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__purity
+msgid "Purity"
+msgstr "Проба"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__fine_in
+msgid "Fine In"
+msgstr "Приход чист. (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__fine_out
+msgid "Fine Out"
+msgstr "Расход чист. (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_move__fine_signed
+msgid "Fine Turnover"
+msgstr "Оборот чист. (±г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_move__state__posted
+msgid "Posted"
+msgstr "Проведено"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_move__state__cancel
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_move__operation_type__receipt
+msgid "Receipt"
+msgstr "Поступление"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_move__operation_type__transfer
+msgid "Transfer"
+msgstr "Перемещение"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_move__operation_type__writeoff
+msgid "Write-Off"
+msgstr "Списание"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_move__operation_type__remelt
+msgid "Remelt"
+msgstr "Переплавка"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_loss
+msgid "Jewelry Metal Loss Entry"
+msgstr "Запись потерь металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__name
+msgid "Reference"
+msgstr "Номер"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__loss_date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__weight_loss
+msgid "Loss Weight (g)"
+msgstr "Вес потерь (г)"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__source_operation_id
+msgid "Operation"
+msgstr "Операция"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__source_repair_order_id
+msgid "Repair Order"
+msgstr "Заказ ремонта"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_loss__source_material_line_id
+msgid "Material Line"
+msgstr "Строка материала"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.act_window,name:jewelry_metal_accounting.action_jewelry_metal_storage
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_storage
+msgid "Metal Storages"
+msgstr "Хранилища металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.act_window,name:jewelry_metal_accounting.action_jewelry_metal_document
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_document
+msgid "Metal Documents"
+msgstr "Документы учёта металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.act_window,name:jewelry_metal_accounting.action_jewelry_metal_move
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_move
+msgid "Movement Card"
+msgstr "Карточка движения"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.act_window,name:jewelry_metal_accounting.action_jewelry_metal_balance_report
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_balance_report
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_balance_pivot
+msgid "Current Balances"
+msgstr "Текущие остатки"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.act_window,name:jewelry_metal_accounting.action_jewelry_metal_loss
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_loss
+msgid "Loss Register"
+msgstr "Регистр потерь"
+
+#. module: jewelry_metal_accounting
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_accounting
+msgid "Metal Accounting"
+msgstr "Учёт металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_accounting_catalogs
+msgid "Metal Accounting Catalogs"
+msgstr "Справочники учёта металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_repair_executor__metal_storage_id
+msgid "Metal Storage"
+msgstr "Хранилище металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_repair_order_operation__executor_metal_storage_id
+msgid "Executor Metal Storage"
+msgstr "Хранилище исполнителя"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_repair_order_operation__metal_writeoff_document_ids
+msgid "Metal Write-Off Documents"
+msgstr "Документы списания металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_repair_order_operation__metal_loss_ids
+msgid "Metal Loss Entries"
+msgstr "Записи потерь металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_repair_material_line__metal_writeoff_document_id
+msgid "Metal Write-Off Document"
+msgstr "Документ списания металла"
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "Auto-created from completed operation %s"
+msgstr "Создано автоматически при завершении операции %s"
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "Set a metal storage on the operation executor before completing operations with stock-consuming metal materials."
+msgstr "Укажите хранилище металла у исполнителя операции перед завершением операций со списанием металла со склада."
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_document_form
+msgid "Post"
+msgstr "Провести"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_document_form
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_document_form
+msgid "Reset to Draft"
+msgstr "Вернуть в черновик"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_document_form
+msgid "Metal Write-Off Documents"
+msgstr "Документы списания"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_form
+msgid "Metal Loss Entry"
+msgstr "Запись потерь металла"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_search
+msgid "This Month"
+msgstr "Текущий месяц"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_search
+msgid "Storage"
+msgstr "Хранилище"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_search
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_search
+msgid "Metal"
+msgstr "Металл"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_search
+msgid "Repair Order"
+msgstr "Заказ ремонта"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_search
+msgid "Month"
+msgstr "Месяц"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_balance_pivot
+msgid "Balance"
+msgstr "Остаток"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_balance_pivot
+msgid "Balance (fine g)"
+msgstr "Остаток (чист. г)"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_balance_pivot
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_pivot
+msgid "Total Loss (g)"
+msgstr "Итого потери (г)"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_loss_form
+msgid "Source"
+msgstr "Источник"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_stock_statement_wizard
+msgid "Jewelry Metal Stock Statement Wizard"
+msgstr "Мастер ведомости по остаткам металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model,name:jewelry_metal_accounting.model_jewelry_metal_stock_statement_line
+msgid "Jewelry Metal Stock Statement Line"
+msgstr "Строка ведомости по остаткам металла"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.act_window,name:jewelry_metal_accounting.action_jewelry_metal_stock_statement_line
+#: model:ir.actions.report,name:jewelry_metal_accounting.action_report_metal_stock_statement
+#: model:ir.actions.server,name:jewelry_metal_accounting.action_jewelry_metal_stock_statement_server
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_stock_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_pivot
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_search
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.report_metal_stock_statement_document
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+msgid "Balances and Turnover"
+msgstr "Остатки и обороты за период"
+
+#. module: jewelry_metal_accounting
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+msgid "Balances and Turnover %s — %s"
+msgstr "Остатки и обороты за период %s — %s"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_form
+msgid "Statement Line"
+msgstr "Строка ведомости"
+
+#. module: jewelry_metal_accounting
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_metal_reports
+msgid "Reports"
+msgstr "Отчеты"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_stock_statement_wizard__period_preset
+msgid "Period Preset"
+msgstr "Период"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_stock_statement_wizard__period_preset__today
+msgid "Today"
+msgstr "Сегодня"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_stock_statement_wizard__period_preset__this_week
+msgid "This Week"
+msgstr "Текущая неделя"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_stock_statement_wizard__period_preset__this_month
+msgid "This Month"
+msgstr "Текущий месяц"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_stock_statement_wizard__period_preset__last_month
+msgid "Last Month"
+msgstr "Прошлый месяц"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_stock_statement_wizard__period_preset__this_year
+msgid "This Year"
+msgstr "Текущий год"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields.selection,name:jewelry_metal_accounting.selection__jewelry_metal_stock_statement_wizard__period_preset__custom
+msgid "Custom"
+msgstr "Произвольный"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_stock_statement_wizard__include_zero_lines
+msgid "Include Zero Lines"
+msgstr "Показывать нулевые строки"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+msgid "Build Statement"
+msgstr "Сформировать ведомость"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+msgid "Open Pivot"
+msgstr "Открыть сводную"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_form
+msgid "Parameters"
+msgstr "Параметры"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+msgid "Statement"
+msgstr "Ведомость"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+msgid "Parameters"
+msgstr "Параметры"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_stock_statement_line__opening_balance
+msgid "Opening Balance"
+msgstr "Остаток на начало"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_stock_statement_wizard__line_ids
+msgid "Statement Lines"
+msgstr "Строки ведомости"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_stock_statement_line__wizard_id
+msgid "Wizard"
+msgstr "Мастер"
+
+#. module: jewelry_metal_accounting
+#. odoo-python
+#: code:addons/jewelry_metal_accounting/models/metal_accounting.py:0
+#, python-format
+msgid "The start date must be earlier than or equal to the end date."
+msgstr "Дата начала должна быть меньше или равна дате окончания."
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_tree
+msgid "Total Opening"
+msgstr "Итого на начало"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_line_tree
+msgid "Total Closing"
+msgstr "Итого на конец"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+msgid "Moves"
+msgstr "Движения"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_stock_statement_wizard_form
+msgid "Show movements"
+msgstr "Показать движения"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_move_period_tree
+msgid "Metal Movements"
+msgstr "Движения металла"
+
+#. module: jewelry_metal_accounting
+#: model_terms:ir.ui.view,arch_db:jewelry_metal_accounting.view_jewelry_metal_move_period_tree
+msgid "Document"
+msgstr "Документ"
+
+#. module: jewelry_metal_accounting
+#: model:ir.actions.server,name:jewelry_metal_accounting.action_jewelry_master_metal_balance_server
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_master_metal_balance
+msgid "My Metal Balance"
+msgstr "Мой баланс металла"
+
+#. module: jewelry_metal_accounting
+msgid "Loss Type"
+msgstr "Тип потерь"
+
+#. module: jewelry_metal_accounting
+msgid "Material Loss"
+msgstr "Потери материала"
+
+#. module: jewelry_metal_accounting
+msgid "Recoverable Loss"
+msgstr "Возвратные потери"
+
+#. module: jewelry_metal_accounting
+msgid "Irrecoverable Loss"
+msgstr "Безвозвратные потери"
+
+#. module: jewelry_metal_accounting
+msgid "Calculate Metal"
+msgstr "Рассчитать металл"
+
+#. module: jewelry_metal_accounting
+msgid "Reset Calculation"
+msgstr "Сбросить расчёт"
+
+#. module: jewelry_metal_accounting
+msgid "Metal has already been calculated for this order. Reset first to recalculate."
+msgstr "Металл уже рассчитан для этого заказа. Сначала сбросьте расчёт."
+
+#. module: jewelry_metal_accounting
+msgid "Set an alloy on the order before calculating metal."
+msgstr "Укажите сплав в заказе перед расчётом металла."
+
+#. module: jewelry_metal_accounting
+msgid "Set the received weight before calculating metal."
+msgstr "Укажите вес при приёмке перед расчётом металла."
+
+#. module: jewelry_metal_accounting
+msgid "Operation '%s' has no metal storage set on its executor. Assign an executor with a metal storage first."
+msgstr "У операции '%s' не указано хранилище металла исполнителя. Сначала назначьте исполнителя с хранилищем металла."
+
+#. module: jewelry_metal_accounting
+msgid "Cannot determine metal storage for metal-added entry. Ensure operations have executors with metal storage."
+msgstr "Не удалось определить хранилище металла для записи о добавленном металле. Убедитесь, что у операций есть исполнители с хранилищем металла."
+
+#. module: jewelry_metal_accounting
+msgid "Metal added — auto-calculated from repair order %s"
+msgstr "Добавленный металл — авторасчёт из заказа %s"
+
+#. module: jewelry_metal_accounting
+msgid "Metal added during repair"
+msgstr "Металл добавлен при ремонте"
+
+#. module: jewelry_metal_accounting
+msgid "No default material product configured for alloy '%s' or its metal. Set it in the metal or alloy catalog before calculating."
+msgstr "Не задан материал по умолчанию для сплава '%s' и его металла. Укажите его в справочнике металлов или сплавов."
+
+#. module: jewelry_metal_accounting
+msgid "Metal was marked as added but the calculated amount is %.3f g — no writeoff document was created. Check the received/delivered weights."
+msgstr "Металл отмечен как добавленный, но расчётное количество составило %.3f г — документ списания не создан. Проверьте веса приёмки и выдачи."
+
+#. module: jewelry_metal_accounting
+msgid "Default Operation Type"
+msgstr "Тип операции по умолчанию"
+
+#. module: jewelry_metal_accounting
+msgid "Source Storage (Line)"
+msgstr "Склад источник (строка)"
+
+#. module: jewelry_metal_accounting
+msgid "Destination Storage (Line)"
+msgstr "Склад назначения (строка)"
+
+#. module: jewelry_metal_accounting
+msgid "Product"
+msgstr "Продукт"
+
+#. module: jewelry_metal_accounting
+msgid "Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_metal_accounting
+msgid "Receipt lines require a partner on the document."
+msgstr "Для строк прихода необходимо указать контрагента в документе."
+
+#. module: jewelry_metal_accounting
+msgid "Receipt lines require a destination storage."
+msgstr "Для строк прихода необходимо указать склад назначения."
+
+#. module: jewelry_metal_accounting
+msgid "Receipt lines require a rate datetime."
+msgstr "Для строк прихода необходимо указать дату котировки."
+
+#. module: jewelry_metal_accounting
+msgid "Transfer lines require source and destination storages."
+msgstr "Для строк перемещения необходимо указать склад источник и склад назначения."
+
+#. module: jewelry_metal_accounting
+msgid "Source and destination storages must be different for transfers."
+msgstr "Склад источник и склад назначения должны быть разными."
+
+#. module: jewelry_metal_accounting
+msgid "Write-off lines require a source storage."
+msgstr "Для строк списания необходимо указать склад источник."
+
+#. module: jewelry_metal_accounting
+msgid "Remelt lines require a source storage."
+msgstr "Для строк переплавки необходимо указать склад источник."
+
+#. module: jewelry_metal_accounting
+msgid "Remelt lines require a destination storage."
+msgstr "Для строк переплавки необходимо указать склад назначения."
+
+#. module: jewelry_metal_accounting
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_order_area_loss_analysis
+msgid "Area Loss Analysis"
+msgstr "Анализ потерь по зонам"
+
+#. module: jewelry_metal_accounting
+#: model:ir.model.fields,field_description:jewelry_metal_accounting.field_jewelry_metal_stock_statement_line__closing_balance_fine
+msgid "Closing Balance (fine g)"
+msgstr "Остаток закрытия (чистый металл, г)"

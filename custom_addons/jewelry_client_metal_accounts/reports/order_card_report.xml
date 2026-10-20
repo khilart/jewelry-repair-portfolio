@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Metal debited at billing lowers what the client pays; show it like the portal does. -->
+    <template id="report_jewelry_repair_order_card_document_metal"
+              inherit_id="jewelry_repair_base.report_jewelry_repair_order_card_document">
+
+        <xpath expr="//t[@name='order_card_amounts']" position="inside">
+            <t t-set="metal_billing_line" t-value="order.billing_batch_id.line_ids.filtered(lambda bl: bl.order_id == order)[:1]"/>
+            <t t-set="metal_reduction" t-value="metal_billing_line.metal_amount_reduction"/>
+            <t t-set="amount_before_metal" t-value="metal_billing_line.order_amount_total if metal_reduction else order.amount_total"/>
+            <t t-if="metal_reduction" t-set="amount_to_pay" t-value="metal_billing_line.effective_amount_total"/>
+        </xpath>
+
+        <xpath expr="//tr[@name='full_cost']" position="attributes">
+            <attribute name="t-if">amount_full != amount_before_metal</attribute>
+        </xpath>
+
+        <xpath expr="//tr[@name='to_pay']" position="before">
+            <t t-if="metal_reduction">
+                <tr>
+                    <td class="text-muted text-end pe-4">Order amount</td>
+                    <td class="text-end"><span t-esc="amount_before_metal" t-options="money"/></td>
+                </tr>
+                <tr>
+                    <td class="text-muted text-end pe-4">Paid with metal</td>
+                    <td class="text-end">− <span t-esc="metal_reduction" t-options="money"/></td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+</odoo>

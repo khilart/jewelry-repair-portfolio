@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_telegram" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.telegram</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Telegram Notifications" string="Telegram Notifications" name="jewelry_telegram_notify">
+
+                    <block title="Bot Configuration" name="telegram_bot_config">
+                        <setting string="Bot Token" help="Token from @BotFather. Keep it secret.">
+                            <div class="row">
+                                <field name="telegram_bot_token" password="True" class="col-8"/>
+                                <button name="action_test_telegram" type="object" string="Test" class="btn btn-secondary ms-2"/>
+                            </div>
+                        </setting>
+                        <setting string="Timezone" help="Timezone for dates in notifications.">
+                            <field name="telegram_timezone"/>
+                        </setting>
+                    </block>
+
+                    <block title="Notifications" name="telegram_notifications">
+                        <setting string="New operation assigned to master"
+                                 help="Notify the master when a new operation is ready to start.">
+                            <field name="telegram_notify_operation_assigned"/>
+                        </setting>
+                        <setting string="Morning digest of today's deadlines"
+                                 help="Send each master a summary of their orders due today at the scheduled time (default 10:30). Adjust the run time in Settings → Technical → Scheduled Actions.">
+                            <field name="telegram_notify_morning_digest"/>
+                        </setting>
+                        <setting string="Notify 1 hour before deadline"
+                                 help="Notify masters and managers 1 hour before the order deadline.">
+                            <field name="telegram_notify_deadline_approaching"/>
+                        </setting>
+                        <setting string="Order overdue"
+                                 help="Notify managers once per day when an order is past its deadline.">
+                            <field name="telegram_notify_order_overdue"/>
+                        </setting>
+                        <setting string="Order moved to Ready"
+                                 help="Notify managers when all operations are done and order awaits acceptance.">
+                            <field name="telegram_notify_order_ready"/>
+                        </setting>
+                        <setting string="Order ready for delivery"
+                                 help="Notify receptionists when manager has accepted the item.">
+                            <field name="telegram_notify_order_delivery_ready"/>
+                        </setting>
+                        <setting string="Remind master if idle during working hours"
+                                 help="Send a reminder if the master has operations ready to start but hasn't started anything for the configured period.">
+                            <field name="telegram_notify_master_inactivity"/>
+                            <div class="content-group mt8" invisible="not telegram_notify_master_inactivity">
+                                <div class="row mt4">
+                                    <span class="col-auto mt-1">Inactivity threshold (hours):</span>
+                                    <field name="telegram_inactivity_threshold_hours" class="col-2"/>
+                                </div>
+                                <div class="row mt4">
+                                    <span class="col-auto mt-1">Working hours:</span>
+                                    <field name="telegram_work_hours_start" class="col-2"/>
+                                    <span class="col-auto mt-1">to</span>
+                                    <field name="telegram_work_hours_end" class="col-2"/>
+                                </div>
+                                <div class="row mt4">
+                                    <span class="col-auto mt-1">Active days:</span>
+                                    <div class="col-auto d-flex gap-3">
+                                        <label for="telegram_inactivity_mon" class="me-1">Mon</label>
+                                        <field name="telegram_inactivity_mon" class="me-3"/>
+                                        <label for="telegram_inactivity_tue" class="me-1">Tue</label>
+                                        <field name="telegram_inactivity_tue" class="me-3"/>
+                                        <label for="telegram_inactivity_wed" class="me-1">Wed</label>
+                                        <field name="telegram_inactivity_wed" class="me-3"/>
+                                        <label for="telegram_inactivity_thu" class="me-1">Thu</label>
+                                        <field name="telegram_inactivity_thu" class="me-3"/>
+                                        <label for="telegram_inactivity_fri" class="me-1">Fri</label>
+                                        <field name="telegram_inactivity_fri" class="me-3"/>
+                                        <label for="telegram_inactivity_sat" class="me-1">Sat</label>
+                                        <field name="telegram_inactivity_sat" class="me-3"/>
+                                        <label for="telegram_inactivity_sun" class="me-1">Sun</label>
+                                        <field name="telegram_inactivity_sun"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Debug / Testing" name="telegram_debug">
+                        <setting string="Test Chat ID"
+                                 help="Telegram Chat ID to receive all test notifications. Find yours via @userinfobot.">
+                            <field name="telegram_test_chat_id" class="col-4"/>
+                        </setting>
+                        <setting string="Send test notifications">
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button name="action_test_morning_digest" type="object"
+                                        string="Morning Digest" class="btn btn-secondary"/>
+                                <button name="action_test_deadlines" type="object"
+                                        string="Deadlines &amp; Overdue" class="btn btn-secondary"/>
+                                <button name="action_test_master_inactivity" type="object"
+                                        string="Master Inactivity" class="btn btn-secondary"/>
+                            </div>
+                        </setting>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

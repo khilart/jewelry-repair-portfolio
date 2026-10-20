@@ -1,0 +1,438 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_repair_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260305\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-25 19:01+0000\n"
+"PO-Revision-Date: 2026-03-25 19:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "Add at least one repair order before confirming the delivery."
+msgstr "Добавьте хотя бы один заказ на ремонт перед подтверждением выдачи."
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid ""
+"All selected orders must belong to the same customer, be in Ready status, be"
+" accepted by the manager, and not be delivered yet."
+msgstr "Все выбранные заказы должны принадлежать одному клиенту, быть в статусе Готово, быть приняты руководителем и еще не выданы."
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "Cancel the confirmed delivery before resetting it to draft."
+msgstr "Отмените подтвержденную выдачу перед возвратом в черновик."
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields.selection,name:jewelry_repair_delivery.selection__jewelry_repair_delivery__state__cancel
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Confirm Delivery"
+msgstr "Подтвердить выдачу"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__partner_id
+msgid "Customer"
+msgstr "Клиент"
+
+#. module: jewelry_repair_delivery
+#: model:ir.actions.act_window,name:jewelry_repair_delivery.action_jewelry_repair_delivery
+#: model:ir.ui.menu,name:jewelry_repair_delivery.menu_jewelry_repair_deliveries
+msgid "Deliveries"
+msgstr "Выдачи"
+
+#. module: jewelry_repair_delivery
+#: model:ir.ui.menu,name:jewelry_repair_delivery.menu_jewelry_repair_payments
+msgid "Payments"
+msgstr "Оплаты"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__delivery_date
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_order__delivery_date
+msgid "Delivery Date"
+msgstr "Дата выдачи"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_order__delivery_id
+msgid "Delivery Document"
+msgstr "Документ выдачи"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__name
+msgid "Delivery Number"
+msgstr "Номер выдачи"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields.selection,name:jewelry_repair_delivery.selection__jewelry_repair_delivery__state__done
+msgid "Done"
+msgstr "Выполнено"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields.selection,name:jewelry_repair_delivery.selection__jewelry_repair_delivery__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__id
+msgid "ID"
+msgstr "ID"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Internal notes for the delivery"
+msgstr "Внутренние заметки по выдаче"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model,name:jewelry_repair_delivery.model_jewelry_repair_delivery
+msgid "Jewelry Repair Delivery"
+msgstr "Выдача заказа на ремонт"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model,name:jewelry_repair_delivery.model_jewelry_repair_order
+msgid "Jewelry Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление: автор"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__write_date
+msgid "Last Updated on"
+msgstr "Последнее обновление"
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "New"
+msgstr "Новый"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__notes
+msgid "Notes"
+msgstr "Заметки"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__order_count
+msgid "Order Count"
+msgstr "Количество заказов"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__order_ids
+msgid "Orders"
+msgstr "Заказы"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Repair Delivery"
+msgstr "Выдача ремонта"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Reset to Draft"
+msgstr "Вернуть в черновик"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__state
+msgid "State"
+msgstr "Статус"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Repair Delivery Act"
+msgstr "Акт выдачи заказов"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "No."
+msgstr "№"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "dated"
+msgstr "от"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Customer:"
+msgstr "Клиент:"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Orders"
+msgstr "Заказы"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Order No."
+msgstr "№ заказа"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Item"
+msgstr "Изделие"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Deadline"
+msgstr "Срок"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Amount"
+msgstr "Сумма"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Orders Total:"
+msgstr "Итого по заказам:"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Services"
+msgstr "Услуги"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Service"
+msgstr "Услуга"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Qty"
+msgstr "Кол-во"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Services Total:"
+msgstr "Итого услуги:"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Materials"
+msgstr "Материалы"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Material"
+msgstr "Материал"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Weight, g"
+msgstr "Вес, г"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Materials Total:"
+msgstr "Итого материалы:"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "TOTAL DUE:"
+msgstr "ИТОГО К ОПЛАТЕ:"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Notes:"
+msgstr "Примечания:"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Issued by: ____________________"
+msgstr "Выдал: ____________________"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "signature / name"
+msgstr "подпись / ФИО"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document
+msgid "Received by: ____________________"
+msgstr "Получил: ____________________"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_search
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_search
+msgid "Done"
+msgstr "Выполнено"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_search
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_search
+msgid "Customer"
+msgstr "Клиент"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_search
+msgid "Status"
+msgstr "Статус"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_search
+msgid "Group By"
+msgstr "Группировать по"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model,name:jewelry_repair_delivery.model_jewelry_repair_delivery_pending
+msgid "Pending Deliveries by Customer"
+msgstr "Ожидает выдачи"
+
+#. module: jewelry_repair_delivery
+#: model:ir.actions.act_window,name:jewelry_repair_delivery.action_jewelry_repair_delivery_pending
+#: model:ir.ui.menu,name:jewelry_repair_delivery.menu_jewelry_repair_delivery_pending
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_pending_tree
+msgid "Pending Deliveries"
+msgstr "Ожидает выдачи"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery_pending__ready_order_count
+msgid "Ready Orders"
+msgstr "Готовых заказов"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery_pending__earliest_deadline
+msgid "Earliest Deadline"
+msgstr "Ближайший дедлайн"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery_pending__ready_amount
+msgid "Amount"
+msgstr "Сумма"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_pending_tree
+msgid "Create Delivery"
+msgstr "Создать выдачу"
+
+#. module: jewelry_repair_delivery
+#: model:ir.ui.menu,name:jewelry_repair_delivery.menu_jewelry_repair_delivery_pending_payments
+msgid "Pending Deliveries"
+msgstr "Ожидает выдачи"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Print (Grouped)"
+msgstr "Печать (сводно)"
+
+#. module: jewelry_repair_delivery
+#: model:ir.actions.report,name:jewelry_repair_delivery.action_report_jewelry_repair_delivery_grouped
+msgid "Repair Delivery (Grouped)"
+msgstr "Выдача заказов (сводно)"
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.report_jewelry_repair_delivery_document_grouped
+msgid "Manufacture of New Item"
+msgstr "Изготовление нового изделия"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery__metal_price_per_gram
+msgid "Fine Metal Price per Gram"
+msgstr "Цена чистого металла за грамм"
+
+#. module: jewelry_repair_delivery
+#: model:ir.model.fields,help:jewelry_repair_delivery.field_jewelry_repair_delivery__metal_price_per_gram
+msgid ""
+"Price per gram of fine metal applied to the material lines of the selected "
+"orders."
+msgstr ""
+"Цена за грамм чистого металла, применяемая к строкам материалов выбранных "
+"заказов."
+
+#. module: jewelry_repair_delivery
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_delivery.view_jewelry_repair_delivery_form
+msgid "Recalculate Metal Price"
+msgstr "Пересчитать цену металла"
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "The metal price can be recalculated only while the delivery is a draft."
+msgstr "Пересчитать цену металла можно только в черновике выдачи."
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "Set the fine metal price per gram before recalculating."
+msgstr "Укажите цену чистого металла за грамм перед пересчётом."
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "Select at least one repair order before recalculating the metal price."
+msgstr "Выберите хотя бы один заказ перед пересчётом цены металла."
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#, python-format
+msgid "The selected orders have no metal material lines to update."
+msgstr "В выбранных заказах нет строк материалов из металла для обновления."
+
+#. module: jewelry_repair_delivery
+#. odoo-python
+#: code:addons/jewelry_repair_delivery/models/delivery.py:0
+#: model:ir.model.fields,field_description:jewelry_repair_delivery.field_jewelry_repair_delivery_line__delivery_id
+#, python-format
+msgid "Delivery"
+msgstr "Выдача"

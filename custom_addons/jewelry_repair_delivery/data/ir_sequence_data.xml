@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_jewelry_repair_delivery" model="ir.sequence">
+            <field name="name">Jewelry Repair Delivery</field>
+            <field name="code">jewelry.repair.delivery</field>
+            <field name="prefix">DL%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

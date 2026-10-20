@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_label" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.jewelry.label</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id"
+                   ref="jewelry_repair_base.res_config_settings_view_form_jewelry"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='jewelry_repair_base']" position="inside">
+                    <h2>Order Labels</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Label Size</span>
+                                <div class="text-muted">
+                                    Tape width and label length as loaded in the printer.
+                                    The gap is the unprinted space between labels on the roll.
+                                </div>
+                                <div class="content-group mt8">
+                                    <div class="row">
+                                        <label for="label_tape_width_mm" class="col-lg-5 o_light_label"/>
+                                        <field name="label_tape_width_mm"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="label_length_mm" class="col-lg-5 o_light_label"/>
+                                        <field name="label_length_mm"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="label_gap_mm" class="col-lg-5 o_light_label"/>
+                                        <field name="label_gap_mm"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Print Head</span>
+                                <div class="text-muted">
+                                    The printable width is narrower than the tape: the head
+                                    leaves an unprinted edge on both sides.
+                                </div>
+                                <div class="content-group mt8">
+                                    <div class="row">
+                                        <label for="label_print_width_mm" class="col-lg-5 o_light_label"/>
+                                        <field name="label_print_width_mm"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="label_dpi" class="col-lg-5 o_light_label"/>
+                                        <field name="label_dpi"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="label_density" class="col-lg-5 o_light_label"/>
+                                        <field name="label_density"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Printer</span>
+                                <div class="text-muted">
+                                    The printer is reached from the browser over a serial
+                                    port, so it is selected once per workstation and the
+                                    choice stays in that browser, not in the database.
+                                </div>
+                                <widget name="jewelry_label_printer_picker"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

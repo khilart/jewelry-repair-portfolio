@@ -1,0 +1,219 @@
+<odoo>
+    <!-- List -->
+    <record id="view_jewelry_expense_entry_list" model="ir.ui.view">
+        <field name="name">jewelry.expense.entry.list</field>
+        <field name="model">jewelry.expense.entry</field>
+        <field name="arch" type="xml">
+            <tree string="Expenses" decoration-muted="state == 'draft'">
+                <field name="date" />
+                <field name="name" />
+                <field name="account_id" string="Category"
+                    domain="[('account_type', '=', 'expense'), ('code', '=like', 'EXP%')]" />
+                <field name="partner_id" optional="show" />
+                <field name="payment_journal_id" string="Paid From" />
+                <field name="amount" widget="monetary" sum="Total" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="state" widget="badge"
+                    decoration-success="state == 'posted'" decoration-info="state == 'draft'"
+                    decoration-muted="state == 'cancelled'" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="view_jewelry_expense_entry_form" model="ir.ui.view">
+        <field name="name">jewelry.expense.entry.form</field>
+        <field name="model">jewelry.expense.entry</field>
+        <field name="arch" type="xml">
+            <form string="Expense">
+                <header>
+                    <button name="action_post" type="object" string="Post"
+                        class="btn-primary" invisible="state != 'draft'" />
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                        invisible="state not in ('posted', 'cancelled')" />
+                    <button name="action_cancel" type="object" string="Cancel"
+                        invisible="state != 'posted'"
+                        confirm="This will cancel the expense and its journal entry. Continue?" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted,cancelled" />
+                </header>
+                <sheet>
+                    <field name="move_id" invisible="1" />
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_move" type="object" class="oe_stat_button"
+                            icon="fa-book" invisible="not move_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Journal Entry</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date" readonly="state != 'draft'" />
+                            <field name="account_id" readonly="state != 'draft'"
+                                domain="[('account_type', '=', 'expense'), ('code', '=like', 'EXP%')]"
+                                options="{'no_create': True, 'no_open': True}" />
+                            <field name="amount" readonly="state != 'draft'" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="payment_journal_id" widget="radio"
+                                readonly="state != 'draft'" />
+                            <field name="partner_id" readonly="state != 'draft'" />
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="Note (optional)"
+                        readonly="state != 'draft'" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="view_jewelry_expense_entry_search" model="ir.ui.view">
+        <field name="name">jewelry.expense.entry.search</field>
+        <field name="model">jewelry.expense.entry</field>
+        <field name="arch" type="xml">
+            <search string="Expenses">
+                <field name="name" />
+                <field name="account_id" string="Category" />
+                <field name="partner_id" />
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]" />
+                <filter name="posted" string="Posted" domain="[('state', '=', 'posted')]" />
+                <separator />
+                <filter name="this_month" string="This Month"
+                    domain="[('date', '&gt;=', (context_today().strftime('%Y-%m-01')))]" />
+                <group expand="0" string="Group By">
+                    <filter name="group_category" string="Category"
+                        context="{'group_by': 'account_id'}" />
+                    <filter name="group_journal" string="Paid From"
+                        context="{'group_by': 'payment_journal_id'}" />
+                    <filter name="group_month" string="Month"
+                        context="{'group_by': 'date:month'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <!-- Server action so the predefined categories are guaranteed to exist before
+         the list opens (covers clean installs where the chart loads after install). -->
+    <record id="action_jewelry_expense_entry" model="ir.actions.server">
+        <field name="name">Expenses</field>
+        <field name="model_id" ref="model_jewelry_expense_entry" />
+        <field name="state">code</field>
+        <field name="code">
+model._ensure_expense_accounts()
+action = {
+    "type": "ir.actions.act_window",
+    "name": "Expenses",
+    "res_model": "jewelry.expense.entry",
+    "view_mode": "tree,form",
+    "context": {"search_default_this_month": 1},
+}
+        </field>
+    </record>
+
+    <record id="action_jewelry_expense_vendor_bills" model="ir.actions.act_window">
+        <field name="name">Vendor Bills</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('move_type', '=', 'in_invoice')]</field>
+        <field name="context">{'default_move_type': 'in_invoice'}</field>
+    </record>
+
+    <record id="view_jewelry_expense_category_list" model="ir.ui.view">
+        <field name="name">jewelry.expense.category.account.list</field>
+        <field name="model">account.account</field>
+        <field name="arch" type="xml">
+            <tree string="Expense Categories">
+                <field name="code" />
+                <field name="name" />
+                <field name="company_currency_id" column_invisible="1" />
+                <field name="current_debit" string="Debit" widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}" />
+                <field name="current_credit" string="Credit" widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}" />
+                <field name="current_balance" string="Balance" widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_jewelry_expense_category_form" model="ir.ui.view">
+        <field name="name">jewelry.expense.category.account.form</field>
+        <field name="model">account.account</field>
+        <field name="arch" type="xml">
+            <form string="Expense Category">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="account.action_move_line_select"
+                            type="action" icon="fa-bars">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="current_balance" />
+                                </span>
+                                <span class="o_stat_text">Balance</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <field name="code" placeholder="EXP520" />
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jewelry_expense_categories" model="ir.actions.act_window">
+        <field name="name">Expense Categories</field>
+        <field name="res_model">account.account</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('account_type', '=', 'expense'), ('code', '=like', 'EXP%')]</field>
+        <field name="context">{'default_account_type': 'expense', 'default_reconcile': False, 'expense_category_form': True}</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_jewelry_expense_category_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_jewelry_expense_category_form')})]" />
+    </record>
+
+    <!-- Menu -->
+    <menuitem
+        id="menu_jewelry_expenses_root"
+        name="Expenses"
+        parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+        sequence="40"
+        groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+    />
+    <menuitem
+        id="menu_jewelry_expense_entry"
+        name="Expenses"
+        parent="menu_jewelry_expenses_root"
+        action="action_jewelry_expense_entry"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_jewelry_expense_vendor_bills"
+        name="Vendor Bills"
+        parent="menu_jewelry_expenses_root"
+        action="action_jewelry_expense_vendor_bills"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_jewelry_expenses_config"
+        name="Configuration"
+        parent="menu_jewelry_expenses_root"
+        sequence="90"
+    />
+    <menuitem
+        id="menu_jewelry_expense_categories"
+        name="Expense Categories"
+        parent="menu_jewelry_expenses_config"
+        action="action_jewelry_expense_categories"
+        sequence="10"
+    />
+</odoo>

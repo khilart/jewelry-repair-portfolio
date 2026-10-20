@@ -1,0 +1,233 @@
+<odoo>
+    <data>
+
+        <record id="action_report_jewelry_customer_statement" model="ir.actions.report">
+            <field name="name">Customer Statement</field>
+            <field name="model">jewelry.repair.ar.statement</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_billing.report_jewelry_customer_statement</field>
+            <field name="report_file">jewelry_repair_billing.report_jewelry_customer_statement</field>
+            <field name="print_report_name">'Statement - %s' % (object.partner_id.name or '')</field>
+            <field name="paperformat_id" ref="paperformat_jewelry_billing"/>
+        </record>
+
+        <!-- Expects `rows` (the slice to render) and `currency` in the context. -->
+        <template id="report_statement_order_rows">
+            <tr t-foreach="rows" t-as="line">
+                <td><span t-esc="line['order_name']"/></td>
+                <td><span t-esc="line['item']"/></td>
+                <td class="text-end"><span t-esc="line['quantity']"/></td>
+                <td><span t-esc="line['delivery_date']"/></td>
+                <td><span t-esc="line['reference']"/></td>
+                <td class="text-end">
+                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % line['amount']"/>
+                </td>
+            </tr>
+        </template>
+
+        <template id="report_jewelry_customer_statement">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="statement">
+                    <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                        <div class="page">
+                            <t t-set="currency" t-value="statement.currency_id"/>
+
+                            <!-- Header -->
+                            <div class="mb-3">
+                                <div style="white-space:nowrap;">
+                                    <span class="h4">Statement of Outstanding Balance</span>
+                                </div>
+                                <div class="text-muted" style="font-size:0.85em;">
+                                    As of <span t-esc="statement.date.strftime('%d %b %Y')"/>
+                                </div>
+                            </div>
+
+                            <!-- Customer -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <strong>Customer:</strong>
+                                    <span class="ms-2"><span t-field="statement.partner_id"/></span>
+                                </div>
+                            </div>
+
+                            <!--
+                                Outstanding orders, grouped by status. This table opens the
+                                document and may span pages; see the page-break notes in
+                                billing_report.xml for how the chunks below work.
+                            -->
+                            <t t-set="groups" t-value="statement._get_statement_groups()"/>
+                            <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width:16%">Order No.</th>
+                                        <th>Item</th>
+                                        <th class="text-end" style="width:8%">Qty</th>
+                                        <th style="width:15%">Delivery Date</th>
+                                        <th style="width:18%">Document</th>
+                                        <th class="text-end" style="width:17%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <t t-foreach="groups" t-as="group">
+                                    <t t-set="lines" t-value="group['lines']"/>
+                                    <t t-set="split" t-value="len(lines) &gt; 6"/>
+                                    <!-- The group label travels with its first rows. -->
+                                    <tbody t-att-style="'page-break-inside:avoid;' + ('' if group_index == 0 else ' border-top:0;')">
+                                        <tr class="table-light">
+                                            <td colspan="6" class="fw-bold"><span t-esc="group['label']"/></td>
+                                        </tr>
+                                        <t t-set="rows" t-value="lines[:3] if split else lines"/>
+                                        <t t-call="jewelry_repair_billing.report_statement_order_rows"/>
+                                        <t t-if="not split">
+                                            <tr>
+                                                <td colspan="2" class="text-end fst-italic">Subtotal:</td>
+                                                <td class="text-end fst-italic"><span t-esc="group['quantity']"/></td>
+                                                <td colspan="2"/>
+                                                <td class="text-end fst-italic">
+                                                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % group['subtotal']"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                    <t t-if="split">
+                                        <tbody style="border-top:0;">
+                                            <t t-set="rows" t-value="lines[3:-3]"/>
+                                            <t t-call="jewelry_repair_billing.report_statement_order_rows"/>
+                                        </tbody>
+                                        <!-- The subtotal travels with the last rows of the group. -->
+                                        <tbody style="page-break-inside:avoid; border-top:0;">
+                                            <t t-set="rows" t-value="lines[-3:]"/>
+                                            <t t-call="jewelry_repair_billing.report_statement_order_rows"/>
+                                            <tr>
+                                                <td colspan="2" class="text-end fst-italic">Subtotal:</td>
+                                                <td class="text-end fst-italic"><span t-esc="group['quantity']"/></td>
+                                                <td colspan="2"/>
+                                                <td class="text-end fst-italic">
+                                                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % group['subtotal']"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </t>
+                                </t>
+                            </table>
+
+                            <!-- Services summary -->
+                            <t t-set="services" t-value="statement._get_statement_service_summary()"/>
+                            <t t-if="services">
+                                <t t-set="split" t-value="len(services) &gt; 6"/>
+                                <div class="mt-4" style="page-break-inside:avoid;">
+                                    <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th colspan="3" style="background:#fff; border:0; padding:10px 0 4px 0; font-size:1.45em; font-weight:600; text-align:left;">Services</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Service</th>
+                                                <th class="text-end" style="width:15%">Qty</th>
+                                                <th class="text-end" style="width:20%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <t t-if="split">
+                                            <tbody style="page-break-inside:avoid;">
+                                                <t t-set="rows" t-value="services[:3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_service_rows"/>
+                                            </tbody>
+                                            <tbody style="border-top:0;">
+                                                <t t-set="rows" t-value="services[3:-3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_service_rows"/>
+                                            </tbody>
+                                        </t>
+                                        <tbody t-att-style="'page-break-inside:avoid;' + (' border-top:0;' if split else '')">
+                                            <t t-set="rows" t-value="services[-3:] if split else services"/>
+                                            <t t-call="jewelry_repair_billing.report_billing_service_rows"/>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="2" class="text-end">Services Total:</td>
+                                                <td class="text-end">
+                                                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in services)"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                            <!-- Materials summary -->
+                            <t t-set="materials" t-value="statement._get_statement_material_summary()"/>
+                            <t t-if="materials">
+                                <t t-set="split" t-value="len(materials) &gt; 6"/>
+                                <div class="mt-4" style="page-break-inside:avoid;">
+                                    <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th colspan="5" style="background:#fff; border:0; padding:10px 0 4px 0; font-size:1.45em; font-weight:600; text-align:left;">Materials</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Material</th>
+                                                <th>Alloy</th>
+                                                <th class="text-end" style="width:12%">Qty</th>
+                                                <th class="text-end" style="width:13%">Weight</th>
+                                                <th class="text-end" style="width:18%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <t t-if="split">
+                                            <tbody style="page-break-inside:avoid;">
+                                                <t t-set="rows" t-value="materials[:3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_material_rows"/>
+                                            </tbody>
+                                            <tbody style="border-top:0;">
+                                                <t t-set="rows" t-value="materials[3:-3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_material_rows"/>
+                                            </tbody>
+                                        </t>
+                                        <tbody t-att-style="'page-break-inside:avoid;' + (' border-top:0;' if split else '')">
+                                            <t t-set="rows" t-value="materials[-3:] if split else materials"/>
+                                            <t t-call="jewelry_repair_billing.report_billing_material_rows"/>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="4" class="text-end">Materials Total:</td>
+                                                <td class="text-end">
+                                                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in materials)"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                            <!-- Totals -->
+                            <div style="width:100%; margin-top:16px; font-size:0.7em; page-break-inside:avoid;">
+                                <table style="float:right;">
+                                    <tr>
+                                        <td style="padding:2px 12px 2px 0; white-space:nowrap;">Total Qty:</td>
+                                        <td style="padding:2px 0; white-space:nowrap; text-align:right;">
+                                            <span t-esc="sum(g['quantity'] for g in groups)"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:2px 12px 2px 0; white-space:nowrap;">Orders Total:</td>
+                                        <td style="padding:2px 0; white-space:nowrap; text-align:right;">
+                                            <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % statement.amount_gross"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-if="statement.amount_payments">
+                                        <td style="padding:2px 12px 2px 0; white-space:nowrap;">Less payments received:</td>
+                                        <td style="padding:2px 0; white-space:nowrap; text-align:right;">
+                                            −<span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % statement.amount_payments"/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-top:2px solid #000;">
+                                        <td style="font-weight:700; padding:4px 12px 4px 0; white-space:nowrap;">TOTAL DUE:</td>
+                                        <td style="font-weight:700; padding:4px 0; white-space:nowrap; text-align:right;">
+                                            <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % statement.amount_due"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="clear:both;"/>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

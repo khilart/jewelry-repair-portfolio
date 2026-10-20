@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+            Minimalist internal layout.
+            Usage: <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                       your content here
+                   </t>
+            Provides: company name (left) + logo (right), thin separator, then page content.
+            No client address, no DIN5008, no external layout overhead.
+        -->
+        <template id="jewelry_layout_minimalist">
+            <t t-set="current_company" t-value="env.company"/>
+            <div t-att-class="'article o_standard_font o_company_%s_layout' % current_company.id">
+                <!-- Minimalist header: company name left, logo right -->
+                <table class="table-borderless w-100 mb-0" style="border-bottom:1px solid #dee2e6;">
+                    <tr>
+                        <td style="font-size:13px; font-weight:600; vertical-align:middle; padding:0 0 6px 0;">
+                            <t t-esc="current_company.name"/>
+                        </td>
+                        <td class="text-end" style="vertical-align:middle; padding:0 0 6px 0;">
+                            <img t-if="current_company.logo"
+                                 t-att-src="image_data_uri(current_company.logo)"
+                                 style="max-height:36px; max-width:140px;"/>
+                        </td>
+                    </tr>
+                </table>
+                <t t-out="0"/>
+            </div>
+            <div class="footer o_standard_font">
+                <div class="text-end text-muted" style="font-size:10px;">
+                    <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

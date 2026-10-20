@@ -1,0 +1,27 @@
+version: 1
+
+project:
+  name: Jewelry Repair System
+  description: Система учёта ювелирной мастерской на Odoo Community 17
+  stack: Odoo 17 Community, Python, PostgreSQL, Docker
+
+schema: spec-driven
+
+# Домены (openspec/specs/)
+# repair/              — заказы ремонта, операции, выдача, биллинг, печать, материалы
+# metal_accounting/    — учёт металла, движения, котировки, потери, расчёт
+# client_metal_accounts/ — клиентские металл-счета (лицевые счета по металлу)
+# gems/                — сертификаты и учёт камней
+# portal/              — клиентский портал
+# notifications/       — Telegram-уведомления
+# 3d_library/          — библиотека 3D-моделей
+
+context: |
+  Клиент: корпоративные заказчики (B2B), поток заказов ремонта изделий.
+  Ключевые роли: Приёмщик, Мастер, Руководитель.
+  Деплой: Docker Compose (Caddy + Odoo 17 + PostgreSQL).
+
+rules:
+  - Все строки в коде и XML пишутся на английском, перевод в i18n/ru.po
+  - Спека — контракт поведения, не план реализации
+  - Не смешивать: услуга ≠ операция; выдача ≠ биллинг ≠ инвойс

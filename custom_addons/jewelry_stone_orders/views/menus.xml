@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+
+        <menuitem id="menu_jewelry_stone_orders_section" name="Stones"
+            parent="jewelry_repair_base.menu_jewelry_repair_root" sequence="45"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+
+        <menuitem id="menu_jewelry_stone_orders" name="Stone Orders"
+            parent="menu_jewelry_stone_orders_section"
+            action="action_jewelry_stone_order" sequence="10"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+
+        <menuitem id="menu_jewelry_stone_returns" name="Returns"
+            parent="menu_jewelry_stone_orders_section"
+            action="action_jewelry_stone_return" sequence="20"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+
+        <menuitem id="menu_jewelry_stones_on_hand" name="Stones on Hand"
+            parent="menu_jewelry_stone_orders_section"
+            action="action_jewelry_stones_on_hand" sequence="30"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+
+        <menuitem id="menu_jewelry_stones_payable" name="Due to Suppliers"
+            parent="menu_jewelry_stone_orders_section"
+            action="action_jewelry_stones_payable" sequence="40"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+
+    </data>
+</odoo>

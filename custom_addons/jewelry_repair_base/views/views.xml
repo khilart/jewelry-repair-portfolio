@@ -1,0 +1,3021 @@
+<odoo>
+    <data>
+        <!-- Gem Type catalog -->
+        <record id="view_jewelry_gem_type_tree" model="ir.ui.view">
+            <field name="name">jewelry.gem.type.tree</field>
+            <field name="model">jewelry.gem.type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="product_id" string="Invoice Product" optional="show" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_gem_type_form" model="ir.ui.view">
+            <field name="name">jewelry.gem.type.form</field>
+            <field name="model">jewelry.gem.type</field>
+            <field name="arch" type="xml">
+                <form string="Gem Type">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="active" />
+                            <field name="product_id" string="Invoice Product" />
+                            <field name="parse_keywords"
+                                placeholder="diamond, бриллиант, lab grown diamond" />
+                        </group>
+                        <separator string="Setting Rules" />
+                        <field name="setting_rule_ids">
+                            <tree editable="bottom">
+                                <field name="weight_ct_from" string="Weight from (ct)" />
+                                <field name="weight_ct_to" string="Weight to (ct)"
+                                    help="0 = no upper limit" />
+                                <field name="service_product_id" string="Service" />
+                            </tree>
+                        </field>
+                        <separator string="Standard Sizes" />
+                        <button
+                            name="action_load_standard_round_brilliant_sizes"
+                            type="object"
+                            string="Load Standard Round Brilliant Sizes"
+                            class="btn-secondary mb-2"
+                        />
+                        <field name="standard_size_ids">
+                            <tree editable="bottom">
+                                <field name="cut_shape" />
+                                <field name="dim_1" string="Dim 1 (mm)" />
+                                <field name="dim_2" string="Dim 2 (mm)" />
+                                <field name="label" readonly="1" />
+                                <field name="weight_ct" />
+                                <field name="weight_g" readonly="1" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_gem_type" model="ir.actions.act_window">
+            <field name="name">Gem Types</field>
+            <field name="res_model">jewelry.gem.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Gem Certificate catalog -->
+        <record id="view_jewelry_gem_certificate_tree" model="ir.ui.view">
+            <field name="name">jewelry.gem.certificate.tree</field>
+            <field name="model">jewelry.gem.certificate</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Report No." />
+                    <field name="lab" />
+                    <field name="cert_date" />
+                    <field name="gem_type_id" />
+                    <field name="origin" />
+                    <field name="carat_weight" string="Carats" />
+                    <field name="color_grade" />
+                    <field name="clarity_grade" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_gem_certificate_form" model="ir.ui.view">
+            <field name="name">jewelry.gem.certificate.form</field>
+            <field name="model">jewelry.gem.certificate</field>
+            <field name="arch" type="xml">
+                <form string="Gem Certificate">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box" />
+
+                        <!-- Primary action: image upload + parse -->
+                        <div class="d-flex gap-4 mb-4">
+                            <div class="flex-shrink-0 d-flex flex-column align-items-center" style="width: 220px;">
+                                <field name="cert_image" widget="image"
+                                    options="{'size': [220, 330]}" />
+                                <div class="d-flex gap-2 mt-2 w-100" invisible="not cert_image">
+                                    <button name="action_parse_from_image"
+                                        type="object"
+                                        string="Parse from Image"
+                                        icon="fa-magic"
+                                        class="btn btn-primary flex-grow-1"
+                                        confirm="This will overwrite existing fields with data from the image. Continue?" />
+                                    <button name="action_view_image"
+                                        type="object"
+                                        string="View"
+                                        icon="fa-expand"
+                                        class="btn btn-secondary" />
+                                </div>
+                                <div class="text-muted text-center mt-2 small"
+                                    invisible="cert_image">
+                                    Upload certificate image —<br/>fields will fill automatically
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="oe_title">
+                                    <label for="name" string="Report Number" />
+                                    <h1><field name="name" placeholder="e.g. LG763615904" /></h1>
+                                </div>
+                                <group>
+                                    <field name="lab" />
+                                    <field name="lab_other"
+                                        invisible="lab != 'other'" />
+                                    <field name="cert_date" />
+                                    <field name="gem_type_id" />
+                                    <field name="origin" />
+                                    <field name="carat_weight" />
+                                    <field name="color_grade" />
+                                    <field name="clarity_grade" />
+                                    <field name="cut_grade" />
+                                </group>
+                            </div>
+                        </div>
+
+                        <!-- Secondary details -->
+                        <group string="Stone">
+                            <group>
+                                <field name="description" />
+                                <field name="shape_cut" />
+                                <field name="dim_1" />
+                                <field name="dim_2" />
+                                <field name="depth" />
+                            </group>
+                            <group string="Lab Grown" invisible="origin != 'lab_grown'">
+                                <field name="lab_grown_type" />
+                                <field name="type_classification" />
+                            </group>
+                        </group>
+                        <group string="Additional Grading">
+                            <group>
+                                <field name="polish" />
+                                <field name="symmetry" />
+                                <field name="fluorescence" />
+                            </group>
+                        </group>
+                        <separator string="Comments" />
+                        <field name="comments" nolabel="1" />
+                        <separator string="Used in Orders" />
+                        <field name="gem_line_ids" readonly="1">
+                            <tree>
+                                <field name="order_id" />
+                                <field name="gem_type_id" />
+                                <field name="quantity" />
+                                <field name="total_weight_ct" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_gem_certificate" model="ir.actions.act_window">
+            <field name="name">Certificates</field>
+            <field name="res_model">jewelry.gem.certificate</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_jewelry_repair_item_type_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.item.type.tree</field>
+            <field name="model">jewelry.repair.item.type</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_item_type_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.item.type.form</field>
+            <field name="model">jewelry.repair.item.type</field>
+            <field name="arch" type="xml">
+                <form string="Item Type">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="active" />
+                        </group>
+                        <separator string="Sizes" />
+                        <button
+                            name="action_load_standard_ring_sizes"
+                            type="object"
+                            string="Load Standard Ring Sizes"
+                            class="btn-secondary mb-2"
+                        />
+                        <field name="size_ids">
+                            <tree editable="bottom">
+                                <field name="sequence" widget="handle" />
+                                <field name="size_eu" string="EU Size" />
+                                <field name="size_ru" string="RU Size" />
+                                <field name="name" string="Display" readonly="1" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_operation_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.operation.tree</field>
+            <field name="model">jewelry.repair.operation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sequence" />
+                    <field name="name" />
+                    <field name="duration_value" />
+                    <field name="duration_unit" />
+                    <field name="duration_days" />
+                    <field name="default_executor_id" />
+                    <field name="default_user_id" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_operation_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.operation.form</field>
+            <field name="model">jewelry.repair.operation</field>
+            <field name="arch" type="xml">
+                <form string="Operation">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="sequence" />
+                            </group>
+                            <group>
+                                <field name="duration_value" />
+                                <field name="duration_unit" />
+                                <field name="duration_days" readonly="1" />
+                                <field name="default_executor_id" />
+                                <field name="default_user_id" />
+                                <field name="active" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="area_id" />
+                            <field name="is_gem_setting" />
+                        </group>
+                        <group string="Metal Loss Coefficients">
+                            <group>
+                                <field name="loss_recoverable_percent" />
+                                <field name="loss_irrecoverable_percent" />
+                            </group>
+                            <group>
+                                <field name="is_gem_setting" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_executor_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.executor.tree</field>
+            <field name="model">jewelry.repair.executor</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" />
+                    <field name="name" />
+                    <field name="user_id" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_executor_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.executor.form</field>
+            <field name="model">jewelry.repair.executor</field>
+            <field name="arch" type="xml">
+                <form string="Operation Executor">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="sequence" />
+                                <field name="name" />
+                                <field name="user_id" />
+                            </group>
+                            <group>
+                                <field name="manager_user_ids" widget="many2many_tags" />
+                                <field name="active" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.tree</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state == 'done'" decoration-info="state == 'in_progress'"
+                    decoration-muted="state == 'cancel'">
+                    <field name="order_state" invisible="1" />
+                    <field name="order_id" />
+                    <field name="sequence" />
+                    <field name="operation_id" />
+                    <field name="executor_id" />
+                    <field name="assigned_user_id" />
+                    <field name="accepted_by_user_id" />
+                    <field name="accepted_at" />
+                    <field name="planned_date" />
+                    <field name="estimated_duration_display" />
+                    <field name="started_at" />
+                    <field name="done_at" />
+                    <field name="state" />
+                    <button name="action_assign_to_me" type="object" string="Assign To Me"
+                        invisible="state == 'done' or state == 'cancel' or assigned_user_id" />
+                    <button name="action_accept_item" type="object" string="Accept Item"
+                        invisible="state != 'ready' or context.get('planning_board')" />
+                    <button name="action_start" type="object" string="Start"
+                        invisible="state != 'accepted' or context.get('planning_board')" />
+                    <button name="action_mark_done" type="object" string="Done"
+                        invisible="state not in ('accepted', 'in_progress') or context.get('planning_board')" />
+                    <button name="action_return_to_rework" type="object" string="Return to Rework"
+                        invisible="state != 'done' or order_state == 'delivered'" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_kanban" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.kanban</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="executor_id">
+                    <field name="order_id" />
+                    <field name="order_item_image" />
+                    <field name="order_item_type_id" />
+                    <field name="order_received_weight" />
+                    <field name="operation_id" />
+                    <field name="executor_id" />
+                    <field name="assigned_user_id" />
+                    <field name="accepted_by_user_id" />
+                    <field name="accepted_at" />
+                    <field name="planned_date" />
+                    <field name="estimated_duration_minutes" />
+                    <field name="estimated_duration_display" />
+                    <field name="state" />
+                    <field name="order_state" />
+                    <field name="next_order_operation_id" />
+                    <field name="next_assigned_user_id" />
+                    <field name="next_executor_id" />
+                    <field name="prev_order_operation_id" />
+                    <field name="prev_assigned_user_id" />
+                    <field name="prev_executor_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                t-att-style="'border-top: 3px solid ' + (record.state.raw_value === 'in_progress' ? '#0d6efd' : record.state.raw_value === 'accepted' ? '#ffc107' : record.state.raw_value === 'ready' ? '#198754' : '#adb5bd') + '; border-radius: 4px;'">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div
+                                        t-if="record.order_item_image.raw_value"
+                                        class="flex-shrink-0"
+                                        t-att-data-jr-order-image-id="record.order_id.raw_value"
+                                        style="cursor: zoom-in;"
+                                    >
+                                        <img
+                                            t-att-src="kanban_image('jewelry.repair.order', 'item_image', record.order_id.raw_value)"
+                                            alt="Item Photo"
+                                            class="rounded border"
+                                            style="width: 64px; height: 64px; object-fit: cover;"
+                                        />
+                                    </div>
+                                    <a type="object" name="action_open_kanban_form"
+                                        class="d-block flex-grow-1 text-reset text-decoration-none"
+                                        style="cursor: pointer;">
+                                        <div>
+                                            <div t-if="record.order_deadline_display.raw_value"
+                                                class="fw-bold mb-1">
+                                                <field name="order_deadline_display" />
+                                            </div>
+                                            <div t-if="record.order_partner_id.raw_value"
+                                                class="fw-bold mb-1">
+                                                <field name="order_partner_id" /> — <field
+                                                    name="order_id" />
+                                            </div>
+                                            <div t-if="record.order_item_type_id.raw_value"
+                                                class="text-muted mb-1">
+                                                <field name="order_item_type_id" />
+                                                <t t-if="record.order_received_weight.raw_value"> — <field
+                                                        name="order_received_weight" /> g</t>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="mt-1 px-2 py-1 rounded"
+                                    style="background:#f8f9fa; border-left:3px solid #6c757d;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="small text-muted">
+                                            <field name="state" />
+                                        </div>
+                                        <span t-if="record.estimated_duration_display.raw_value"
+                                            class="small text-muted">
+                                            <field name="estimated_duration_display" />
+                                        </span>
+                                    </div>
+                                    <div class="fw-bold">
+                                        <field name="operation_id" />
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div t-if="record.accepted_at.raw_value"
+                                            class="small text-muted">
+                                            <field name="accepted_at"
+                                                options='{"format": "dd MMM HH:mm"}' />
+                                        </div>
+                                        <button name="action_reassign_self" type="object"
+                                            class="btn btn-link btn-sm p-0 ms-auto text-secondary"
+                                            style="font-size:0.75em; white-space:nowrap;"
+                                            invisible="state in ('done', 'cancel')">Reassign</button>
+                                    </div>
+                                </div>
+                                <div t-if="record.prev_order_operation_id.raw_value"
+                                    class="mt-2 px-2 py-1 rounded"
+                                    style="background:#f5f5f5; border-left:3px solid #adb5bd;">
+                                    <div class="small text-muted">Previous step</div>
+                                    <div t-if="record.prev_assigned_user_id.raw_value"
+                                        class="fw-bold text-muted"> ← <field
+                                            name="prev_assigned_user_id" />
+                                    </div>
+                                    <div t-elif="record.prev_executor_id.raw_value"
+                                        class="fw-bold text-muted"> ← <field name="prev_executor_id" />
+                                    </div>
+                                    <div class="small text-muted">
+                                        <field name="prev_order_operation_id" />
+                                    </div>
+                                </div>
+                                <div t-if="record.next_order_operation_id.raw_value"
+                                    class="mt-2 px-2 py-1 rounded"
+                                    style="background:#e8f4fd; border-left:3px solid #0d6efd;">
+                                    <div class="small text-muted">Next step</div>
+                                    <div t-if="record.next_assigned_user_id.raw_value"
+                                        class="fw-bold"> → <field name="next_assigned_user_id" />
+                                    </div>
+                                    <div t-elif="record.next_executor_id.raw_value" class="fw-bold">
+                                        → <field name="next_executor_id" />
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="small text-muted">
+                                            <field name="next_order_operation_id" />
+                                        </div>
+                                        <button name="action_reassign_next" type="object"
+                                            class="btn btn-link btn-sm p-0 ms-auto text-primary"
+                                            style="font-size:0.75em; white-space:nowrap;">Reassign</button>
+                                    </div>
+                                </div>
+                                <div class="mt-2 d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <button name="action_assign_to_me" type="object"
+                                            class="btn btn-secondary btn-sm"
+                                            invisible="state == 'done' or state == 'cancel' or assigned_user_id">
+                                            Assign</button>
+                                        <button name="action_accept_item" type="object"
+                                            class="btn btn-secondary btn-sm"
+                                            invisible="state != 'ready' or context.get('planning_board')">
+                                            Accept</button>
+                                        <button name="action_start" type="object"
+                                            class="btn btn-primary btn-sm"
+                                            invisible="state != 'accepted' or context.get('planning_board')">
+                                            Start</button>
+                                        <button name="action_return_to_rework" type="object"
+                                            class="btn btn-secondary btn-sm"
+                                            invisible="state != 'done' or order_state == 'delivered'">
+                                            Rework</button>
+                                    </div>
+                                    <button name="action_mark_done" type="object"
+                                        class="btn btn-primary btn-sm"
+                                        invisible="state not in ('accepted', 'in_progress') or context.get('planning_board')">
+                                        Done</button>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_kanban_planned" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.kanban.planned</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="executor_id">
+                    <field name="order_id" />
+                    <field name="order_item_image" />
+                    <field name="order_item_type_id" />
+                    <field name="order_received_weight" />
+                    <field name="operation_id" />
+                    <field name="executor_id" />
+                    <field name="assigned_user_id" />
+                    <field name="accepted_by_user_id" />
+                    <field name="accepted_at" />
+                    <field name="planned_date" />
+                    <field name="estimated_duration_minutes" />
+                    <field name="estimated_duration_display" />
+                    <field name="state" />
+                    <field name="order_state" />
+                    <field name="next_order_operation_id" />
+                    <field name="next_assigned_user_id" />
+                    <field name="next_executor_id" />
+                    <field name="prev_order_operation_id" />
+                    <field name="prev_assigned_user_id" />
+                    <field name="prev_executor_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div
+                                t-att-style="'border-top: 3px solid ' + (record.state.raw_value === 'in_progress' ? '#0d6efd' : record.state.raw_value === 'accepted' ? '#ffc107' : record.state.raw_value === 'ready' ? '#198754' : '#adb5bd') + '; border-radius: 4px;'">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div
+                                        t-if="record.order_item_image.raw_value"
+                                        class="flex-shrink-0"
+                                        t-att-data-jr-order-image-id="record.order_id.raw_value"
+                                        style="cursor: zoom-in;"
+                                    >
+                                        <img
+                                            t-att-src="kanban_image('jewelry.repair.order', 'item_image', record.order_id.raw_value)"
+                                            alt="Item Photo"
+                                            class="rounded border"
+                                            style="width: 64px; height: 64px; object-fit: cover;"
+                                        />
+                                    </div>
+                                    <a type="object" name="action_open_kanban_form"
+                                        class="d-block flex-grow-1 text-reset text-decoration-none"
+                                        style="cursor: pointer;">
+                                        <div>
+                                            <div t-if="record.order_deadline_display.raw_value"
+                                                class="fw-bold mb-1">
+                                                <field name="order_deadline_display" />
+                                            </div>
+                                            <div t-if="record.order_partner_id.raw_value"
+                                                class="fw-bold mb-1">
+                                                <field name="order_partner_id" /> — <field
+                                                    name="order_id" />
+                                            </div>
+                                            <div t-if="record.order_item_type_id.raw_value"
+                                                class="text-muted mb-1">
+                                                <field name="order_item_type_id" />
+                                                <t t-if="record.order_received_weight.raw_value"> — <field
+                                                        name="order_received_weight" /> g</t>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="mt-1 px-2 py-1 rounded"
+                                    style="background:#f8f9fa; border-left:3px solid #6c757d;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="small text-muted">
+                                            <field name="state" />
+                                        </div>
+                                        <span t-if="record.estimated_duration_display.raw_value"
+                                            class="small text-muted">
+                                            <field name="estimated_duration_display" />
+                                        </span>
+                                    </div>
+                                    <div class="fw-bold">
+                                        <field name="operation_id" />
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div t-if="record.accepted_at.raw_value"
+                                            class="small text-muted">
+                                            <field name="accepted_at"
+                                                options='{"format": "dd MMM HH:mm"}' />
+                                        </div>
+                                        <button name="action_reassign_self" type="object"
+                                            class="btn btn-link btn-sm p-0 ms-auto text-secondary"
+                                            style="font-size:0.75em; white-space:nowrap;"
+                                            invisible="state in ('done', 'cancel')">Reassign</button>
+                                    </div>
+                                </div>
+                                <div t-if="record.prev_order_operation_id.raw_value"
+                                    class="mt-2 px-2 py-1 rounded"
+                                    style="background:#f5f5f5; border-left:3px solid #adb5bd;">
+                                    <div class="small text-muted">Previous step</div>
+                                    <div t-if="record.prev_assigned_user_id.raw_value"
+                                        class="fw-bold text-muted"> ← <field
+                                            name="prev_assigned_user_id" />
+                                    </div>
+                                    <div t-elif="record.prev_executor_id.raw_value"
+                                        class="fw-bold text-muted"> ← <field name="prev_executor_id" />
+                                    </div>
+                                    <div class="small text-muted">
+                                        <field name="prev_order_operation_id" />
+                                    </div>
+                                </div>
+                                <div t-if="record.next_order_operation_id.raw_value"
+                                    class="mt-2 px-2 py-1 rounded"
+                                    style="background:#e8f4fd; border-left:3px solid #0d6efd;">
+                                    <div class="small text-muted">Next step</div>
+                                    <div t-if="record.next_assigned_user_id.raw_value"
+                                        class="fw-bold"> → <field name="next_assigned_user_id" />
+                                    </div>
+                                    <div t-elif="record.next_executor_id.raw_value" class="fw-bold">
+                                        → <field name="next_executor_id" />
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="small text-muted">
+                                            <field name="next_order_operation_id" />
+                                        </div>
+                                        <button name="action_reassign_next" type="object"
+                                            class="btn btn-link btn-sm p-0 ms-auto text-primary"
+                                            style="font-size:0.75em; white-space:nowrap;">Reassign</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_form_kanban" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.form.kanban</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <form string="Work Operation">
+                    <header>
+                        <button name="action_assign_to_me" type="object" string="Assign To Me"
+                            invisible="state == 'done' or state == 'cancel' or assigned_user_id" />
+                        <button name="action_accept_item" type="object" string="Accept Item"
+                            invisible="state != 'ready' or context.get('planning_board')" />
+                        <button name="action_start" type="object" string="Start" class="btn-primary"
+                            invisible="state != 'accepted' or context.get('planning_board')" />
+                        <button name="action_mark_done" type="object" string="Done"
+                            class="btn-primary"
+                            invisible="state not in ('accepted', 'in_progress') or context.get('planning_board')" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="pending,ready,accepted,in_progress,done" />
+                    </header>
+                    <sheet class="jr_operation_task_sheet">
+                        <field name="assigned_user_id" invisible="1" />
+                        <field name="state" invisible="1" />
+                        <field name="order_state" invisible="1" />
+                        <div class="jr_operation_task_deadline">
+                            <strong>
+                                <field name="order_deadline_display" readonly="1" nolabel="1" />
+                            </strong>
+                        </div>
+                        <div class="jr_operation_task_layout">
+                            <div class="jr_operation_task_media">
+                                <field
+                                    name="order_item_image"
+                                    widget="image"
+                                    readonly="1"
+                                    nolabel="1"
+                                    class="jr_operation_task_image"
+                                    options="{'size': [768, 768]}"
+                                />
+                                <div class="mt-1 text-end" invisible="not order_item_image">
+                                    <button name="action_open_item_image" type="object"
+                                        string="Open Photo" class="btn btn-link p-0" />
+                                </div>
+                                <div class="jr_operation_task_order_ref">
+                                    <div class="jr_operation_task_value fw-bold">
+                                        <field name="order_partner_id" readonly="1" nolabel="1" /> — <field
+                                            name="order_id" readonly="1" nolabel="1"
+                                            options="{'no_open': True}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="jr_operation_task_content">
+                                <div class="jr_operation_task_header">
+                                    <h1 class="jr_operation_task_title">
+                                        <field name="operation_id" readonly="1" nolabel="1" />
+                                    </h1>
+                                </div>
+
+                                <div class="jr_operation_task_meta">
+                                    <div class="jr_operation_task_meta_card">
+                                        <span class="jr_operation_task_label">Deadline</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="order_deadline_date" readonly="1"
+                                                nolabel="1" />
+                                        </div>
+                                    </div>
+                                    <div class="jr_operation_task_meta_card">
+                                        <span class="jr_operation_task_label">ETA</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="estimated_duration_display" readonly="1"
+                                                nolabel="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="jr_operation_task_card">
+                                    <div class="jr_operation_task_card_title">Item</div>
+                                    <div class="jr_operation_task_info_row">
+                                        <span class="jr_operation_task_label">Type</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="order_item_type_id" readonly="1"
+                                                nolabel="1" />
+                                        </div>
+                                    </div>
+                                    <div class="jr_operation_task_info_row"
+                                        invisible="not order_alloy_id">
+                                        <span class="jr_operation_task_label">Alloy</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="order_alloy_id" readonly="1" nolabel="1" />
+                                        </div>
+                                    </div>
+                                    <div class="jr_operation_task_info_row"
+                                        invisible="not order_item_size_id">
+                                        <span class="jr_operation_task_label">Size</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="order_item_size_id" readonly="1"
+                                                nolabel="1" />
+                                        </div>
+                                    </div>
+                                    <div invisible="not order_description" class="mt-2">
+                                        <span class="jr_operation_task_label">Notes</span>
+                                        <field name="order_description" readonly="1" nolabel="1" />
+                                    </div>
+                                </div>
+
+                                <div class="jr_operation_task_card">
+                                    <div class="jr_operation_task_card_title">Services</div>
+                                    <field name="service_line_ids" readonly="1" nolabel="1" />
+                                </div>
+
+                                <div class="jr_operation_task_card">
+                                    <div class="jr_operation_task_card_title">Next Step</div>
+                                    <div class="jr_operation_task_info_row">
+                                        <span class="jr_operation_task_label">Next Operation</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="next_order_operation_id" readonly="1"
+                                                nolabel="1" />
+                                        </div>
+                                    </div>
+                                    <div class="jr_operation_task_info_row">
+                                        <span class="jr_operation_task_label">Next Executor</span>
+                                        <div class="jr_operation_task_value">
+                                            <field name="next_executor_id" readonly="1" nolabel="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="jr_operation_task_card">
+                                    <field name="metal_was_added" nolabel="1" />
+                                    <label for="metal_was_added" />
+                                </div>
+
+                                <div class="jr_operation_task_card">
+                                    <div class="jr_operation_task_card_title">Materials</div>
+                                    <field
+                                        name="material_line_ids"
+                                        nolabel="1"
+                                        context="{'default_order_id': order_id, 'default_order_operation_id': id, 'default_alloy_id': order_id.alloy_id}"
+                                    >
+                                        <tree editable="bottom">
+                                            <field name="order_id" column_invisible="1" />
+                                            <field name="currency_id" column_invisible="1" />
+                                            <field name="product_id"
+                                                context="{'default_repair_material_ok': True}" />
+                                            <field name="weight" />
+                                            <field name="quantity" />
+                                            <field name="alloy_id" />
+                                            <field name="uom_id" optional="hide" />
+                                        </tree>
+                                    </field>
+                                </div>
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.form</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <form string="Repair Order Operation">
+                    <header>
+                        <button name="action_assign_to_me" type="object" string="Assign To Me"
+                            invisible="state == 'done' or state == 'cancel' or assigned_user_id" />
+                        <button name="action_set_ready" type="object" string="Mark Ready"
+                            invisible="state != 'pending'" />
+                        <button name="action_accept_item" type="object" string="Accept Item"
+                            invisible="state != 'ready' or context.get('planning_board')" />
+                        <button name="action_start" type="object" string="Start" class="btn-primary"
+                            invisible="state != 'accepted' or context.get('planning_board')" />
+                        <button name="action_mark_done" type="object" string="Done"
+                            class="btn-primary"
+                            invisible="state not in ('accepted', 'in_progress') or context.get('planning_board')" />
+                        <button name="action_return_to_rework" type="object"
+                            string="Return to Rework"
+                            invisible="state != 'done' or order_state == 'delivered'" />
+                        <button name="action_reset_to_pending" type="object"
+                            string="Reset To Pending" invisible="state == 'pending'" />
+                        <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state == 'cancel' or state == 'done'" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="pending,ready,accepted,in_progress,done" />
+                    </header>
+                    <sheet>
+                        <field name="order_state" invisible="1" />
+                        <group>
+                            <group>
+                                <field name="order_id" />
+                                <field name="operation_id" />
+                                <field name="executor_id" />
+                                <field name="assigned_user_id" />
+                                <field name="accepted_by_user_id" readonly="1" />
+                                <field name="accepted_at" readonly="1" />
+                                <field name="planned_date" />
+                                <field name="sequence" />
+                            </group>
+                            <group>
+                                <field name="estimated_duration_display" readonly="1" />
+                                <field name="started_at" readonly="1" />
+                                <field name="done_at" readonly="1" />
+                                <field name="next_order_operation_id" readonly="1" />
+                                <field name="metal_was_added" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="service_line_ids" widget="many2many_tags" readonly="1" />
+                        </group>
+                        <group>
+                            <field
+                                name="material_line_ids"
+                                context="{'default_order_id': order_id, 'default_order_operation_id': id, 'default_alloy_id': order_id.alloy_id}"
+                            >
+                                <tree editable="bottom">
+                                    <field name="order_id" column_invisible="1" />
+                                    <field name="currency_id" column_invisible="1" />
+                                    <field name="sequence" widget="handle" />
+                                    <field name="product_id"
+                                        context="{'default_repair_material_ok': True}" />
+                                    <field name="alloy_id" />
+                                    <field name="quantity" />
+                                    <field name="uom_id" />
+                                    <field name="weight" />
+                                    <field name="price_unit" widget="monetary"
+                                        options="{'currency_field': 'currency_id'}" />
+                                    <field name="subtotal" readonly="1" widget="monetary"
+                                        options="{'currency_field': 'currency_id'}" />
+                                    <field name="include_in_invoice" />
+                                    <field name="consume_from_stock" />
+                                    <field name="description" />
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="notes" placeholder="Execution notes for the team" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_search" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.search</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <search>
+                    <searchpanel>
+                        <field name="state" select="multi" />
+                        <field name="executor_id" select="multi" />
+                        <field name="assigned_user_id" select="multi" />
+                        <field name="operation_id" select="multi" />
+                    </searchpanel>
+                    <field name="order_id" />
+                    <field name="operation_id" />
+                    <field name="executor_id" />
+                    <field name="assigned_user_id" />
+                    <field name="planned_date" />
+                    <filter name="filter_planned_date" string="Planned Date" date="planned_date" />
+                    <filter name="filter_ready" string="Ready" domain="[('state', '=', 'ready')]" />
+                    <filter name="filter_accepted" string="Accepted"
+                        domain="[('state', '=', 'accepted')]" />
+                    <filter name="filter_in_progress" string="In Progress"
+                        domain="[('state', '=', 'in_progress')]" />
+                    <filter name="filter_my_operations" string="My Operations"
+                        domain="[('assigned_user_id', '=', uid)]" />
+                    <filter name="filter_today" string="Today"
+                        domain="[('planned_date', '=', context_today().strftime('%%Y-%%m-%%d'))]" />
+                    <filter name="filter_tomorrow" string="Tomorrow"
+                        domain="[('planned_date', '=', (context_today() + relativedelta(days=1)).strftime('%%Y-%%m-%%d'))]" />
+                    <filter name="filter_no_planned_date" string="No Planned Date"
+                        domain="[('planned_date', '=', False)]" />
+                    <filter name="filter_overdue" string="Overdue"
+                        domain="[('planned_date', '&lt;', context_today().strftime('%%Y-%%m-%%d')), ('state', 'not in', ['done', 'cancel'])]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_operation" string="Operation Type"
+                            context="{'group_by': 'operation_id'}" />
+                        <filter name="group_by_executor" string="Planned Executor"
+                            context="{'group_by': 'executor_id'}" />
+                        <filter name="group_by_assigned_user" string="Assignee"
+                            context="{'group_by': 'assigned_user_id'}" />
+                        <filter name="group_by_state" string="State" context="{'group_by': 'state'}" />
+                        <filter name="group_by_planned_date" string="Planned Date"
+                            context="{'group_by': 'planned_date'}" />
+                        <filter name="group_by_order" string="Order"
+                            context="{'group_by': 'order_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_product_template_form_jewelry_repair" model="ir.ui.view">
+            <field name="name">product.template.form.jewelry.repair</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page name="jewelry_repair" string="Jewelry Repair">
+                        <group>
+                            <group string="Services">
+                                <field name="repair_service_ok" />
+                                <field name="repair_operation_id" invisible="not repair_service_ok"
+                                    options="{'no_create_edit': False}" />
+                                <field name="sequence" invisible="not repair_service_ok"
+                                    string="Priority (lower = first)" />
+                                <field name="gem_pricing_type" invisible="not repair_service_ok"
+                                    widget="radio" />
+                            </group>
+                            <group string="Materials">
+                                <field name="repair_material_ok" />
+                                <field name="repair_material_requires_weight"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_default_invoice"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_default_consume"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_return_loss_percent"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_nonreturn_loss_percent"
+                                    invisible="not repair_material_ok" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_template_tree_jewelry_repair" model="ir.ui.view">
+            <field name="name">product.template.tree.jewelry.repair</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='categ_id']" position="after">
+                    <field name="repair_service_ok" optional="show" />
+                    <field name="sequence" optional="show" string="Priority" />
+                    <field name="repair_operation_id" optional="show" />
+                    <field name="repair_material_ok" optional="show" />
+                    <field name="repair_material_requires_weight" optional="hide" />
+                    <field name="repair_material_return_loss_percent" optional="hide" />
+                    <field name="repair_material_nonreturn_loss_percent" optional="hide" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_product_form_jewelry_repair" model="ir.ui.view">
+            <field name="name">product.product.form.jewelry.repair</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_information']" position="after">
+                    <page name="jewelry_repair" string="Jewelry Repair">
+                        <group>
+                            <group string="Services">
+                                <field name="repair_service_ok" />
+                                <field name="repair_operation_id" invisible="not repair_service_ok"
+                                    options="{'no_create_edit': False}" />
+                                <field name="gem_pricing_type" invisible="not repair_service_ok"
+                                    widget="radio" />
+                            </group>
+                            <group string="Materials">
+                                <field name="repair_material_ok" />
+                                <field name="repair_material_requires_weight"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_default_invoice"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_default_consume"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_return_loss_percent"
+                                    invisible="not repair_material_ok" />
+                                <field name="repair_material_nonreturn_loss_percent"
+                                    invisible="not repair_material_ok" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_list" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.tree</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <tree
+                    decoration-muted="state == 'draft'"
+                    decoration-info="state == 'in_progress'"
+                    decoration-success="state == 'ready'"
+                    decoration-danger="deadline_date &lt; current_date and state not in ('ready', 'delivered', 'cancel')"
+                >
+                    <field name="item_image" widget="image" string="Photo" readonly="1"
+                        options="{'size': [56, 99]}" />
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="item_type_id" />
+                    <field name="quantity" />
+                    <field name="next_holder_user_id" />
+                    <field name="received_weight" />
+                    <field name="delivered_weight" />
+                    <field name="currency_id" column_invisible="1" />
+                    <field name="amount_total" />
+                    <field name="deadline_date" />
+                    <field name="state" />
+                    <field name="current_holder_user_id" />
+                    <field name="current_location_type" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_search" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.search</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="item_type_id" />
+                    <field name="current_holder_user_id" />
+                    <field name="alloy_id" />
+                    <field name="certificate_numbers" string="Certificate No." />
+                    <filter name="filter_active_custody" string="In Custody"
+                        domain="[('state', 'not in', ('delivered', 'cancel'))]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_holder" string="Current Holder"
+                            context="{'group_by': 'current_holder_user_id'}" />
+                        <filter name="group_by_location" string="Location"
+                            context="{'group_by': 'current_location_type'}" />
+                        <filter name="group_by_alloy" string="Alloy"
+                            context="{'group_by': 'alloy_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_pivot" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.pivot</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <pivot string="Custody Report">
+                    <field name="current_holder_user_id" type="row" />
+                    <field name="current_location_type" type="col" />
+                    <field name="quantity" type="measure" />
+                    <field name="received_weight" type="measure" />
+                    <field name="fine_weight_received" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_calendar" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.calendar</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <calendar string="Repair Orders" date_start="deadline_date" color="state"
+                    event_limit="5" quick_create="0">
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="item_type_id" />
+                    <field name="quantity" />
+                    <field name="state" />
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.form</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <form string="Repair Order">
+                    <header>
+                        <button special="save" string="Save" class="btn-primary" />
+                        <button name="action_start" type="object" string="Start" class="btn-primary"
+                            invisible="state != 'draft'" />
+                        <button name="action_mark_ready" type="object" string="Mark Ready"
+                            class="btn-primary" invisible="state != 'in_progress'" />
+                        <button name="action_accept_ready_item" type="object"
+                            string="Accept Ready Item" class="btn-primary"
+                            invisible="state != 'ready' or ready_accepted_by_manager"
+                            groups="jewelry_repair_base.group_jewelry_repair_manager,base.group_system" />
+                        <button name="action_print_order" type="object" string="Print"
+                            class="btn-secondary" />
+                        <button name="action_print_order_card" type="object" string="Order Card"
+                            class="btn-secondary" />
+                        <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state == 'cancel'" />
+                        <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state == 'draft'" />
+                        <button name="action_generate_operations" type="object"
+                            string="Generate Operations" class="btn-secondary" />
+                        <button name="action_auto_assign_operations" type="object"
+                            string="Auto Assign Operations" class="btn-secondary"
+                            invisible="not order_operation_ids" />
+                        <button name="action_open_amendment" type="object"
+                            string="Unlock for Editing" class="btn-secondary"
+                            invisible="state != 'delivered' or amendment_open"
+                            groups="jewelry_repair_base.group_jewelry_repair_manager,base.group_system" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,in_progress,ready,delivered" />
+                    </header>
+                    <sheet>
+                        <field name="currency_id" invisible="1" />
+                        <field name="weight_tracking_enabled" invisible="1" />
+                        <field name="amendment_open" invisible="1" />
+                        <div class="alert alert-warning" role="alert"
+                            invisible="not amendment_open">
+                            <strong>Unlocked for editing.</strong>
+                            <field name="amendment_reason" readonly="1" nolabel="1" class="oe_inline" />
+                            —
+                            <field name="amendment_user_id" readonly="1" nolabel="1" class="oe_inline" />,
+                            <field name="amendment_at" readonly="1" nolabel="1" class="oe_inline" />
+                        </div>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_open_service_products"
+                                class="oe_stat_button" icon="fa-wrench">
+                                <field name="service_product_count" widget="statinfo"
+                                    string="Repair Services" />
+                            </button>
+                            <button type="object" name="action_open_operation_catalog"
+                                class="oe_stat_button" icon="fa-cogs">
+                                <field name="operation_catalog_count" widget="statinfo"
+                                    string="Operations" />
+                            </button>
+                            <button type="object" name="action_open_order_operations"
+                                class="oe_stat_button" icon="fa-tasks">
+                                <field name="work_operation_count" widget="statinfo"
+                                    string="Work Ops" />
+                            </button>
+                        </div>
+                        <div class="jr_order_photo_mobile" invisible="not item_image">
+                            <div class="jr_order_item_image">
+                                <field
+                                    name="item_image"
+                                    widget="image"
+                                    class="oe_avatar"
+                                    options="{'size': [420, 420]}"
+                                />
+                            </div>
+                            <div class="jr_order_photo_mobile_button" invisible="not item_image">
+                                <button
+                                    name="action_open_item_image"
+                                    type="object"
+                                    string="Open Photo"
+                                    class="btn btn-link p-0"
+                                />
+                            </div>
+                        </div>
+                        <div class="jr_order_header_flex">
+                            <div class="jr_order_header_fields">
+                            <group>
+                                <group>
+                                    <field name="name" readonly="1" />
+                                    <field name="partner_id" context="{'default_customer_rank': 1}" />
+                                    <field name="item_type_id" />
+                                    <field name="item_size_id" />
+                                    <field name="deadline_date" />
+                                    <field name="alloy_id" />
+                                    <field name="description"
+                                        placeholder="Describe the item and requested work" />
+                                    <field name="quantity" />
+                                </group>
+                                <group>
+                                    <field name="active" />
+                                    <field name="received_date" />
+                                    <label for="metal_rate_at" />
+                                    <div class="o_row">
+                                        <field name="metal_rate_at" />
+                                        <button
+                                            name="action_open_apply_metal_rate_wizard"
+                                            type="object"
+                                            string=""
+                                            icon="fa-refresh"
+                                            title="Apply the order metal rate datetime to all material lines and recalculate them."
+                                            class="btn-link p-0 ms-2"
+                                            invisible="not material_line_ids"
+                                        />
+                                    </div>
+                                    <field name="new_product_manufacturing" />
+                                    <field name="earliest_ready_date" readonly="1" />
+                                    <field name="total_duration_display" readonly="1"
+                                        class="fw-bold fs-3" />
+                                    <field name="amount_total" readonly="1" widget="monetary"
+                                        class="fw-bold fs-3" options="{'currency_field': 'currency_id'}" />
+                                </group>
+                            </group>
+                            <group>
+                            <group>
+                                <field name="received_weight" />
+                                <field name="external_doc_number" />
+                            </group>
+                            <group>
+                                <field name="delivered_weight" />
+                                <label for="metal_delivered_weight" />
+                                <div class="d-flex gap-3 align-items-baseline"
+                                    invisible="not gem_weight_total_g">
+                                    <field name="metal_delivered_weight" readonly="1" nolabel="1" />
+                                    <span class="text-muted">Gem:</span>
+                                    <field name="gem_weight_total_g" readonly="1" nolabel="1" />
+                                </div>
+                            </group>
+                        </group>
+                        <group invisible="not deadline_warning">
+                            <field name="deadline_warning" readonly="1" />
+                        </group>
+                            </div>
+                            <div class="jr_order_photo_desktop" invisible="not item_image">
+                                <div class="jr_order_item_image">
+                                    <field
+                                        name="item_image"
+                                        widget="image"
+                                        class="oe_avatar"
+                                        options="{'size': [320, 360]}"
+                                    />
+                                </div>
+                                <div class="jr_order_photo_desktop_button mt-1"
+                                    invisible="not item_image">
+                                    <button
+                                        name="action_open_item_image"
+                                        type="object"
+                                        string="Open Photo"
+                                        class="btn btn-link p-0"
+                                    />
+                                </div>
+                            </div>
+                            <div class="jr_order_photo_upload" invisible="item_image">
+                                <field name="item_image_upload" />
+                            </div>
+                        </div>
+                        <notebook>
+                            <page string="Services">
+                                <field name="service_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle" />
+                                        <field name="product_id"
+                                            context="{'default_repair_service_ok': True}" />
+                                        <field name="batch_quantity" column_invisible="1" />
+                                        <field name="quantity" string="Qty / Item" />
+                                        <field name="total_quantity" string="Total Qty" readonly="1"
+                                            optional="show" />
+                                        <field name="price_unit" />
+                                        <field name="subtotal" readonly="1" sum="Total" />
+                                        <field name="name" />
+                                        <field name="operation_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Materials">
+                                <field name="material_line_ids"
+                                    context="{'default_order_id': id, 'default_alloy_id': alloy_id}">
+                                    <tree editable="bottom">
+                                        <field name="order_id" column_invisible="1" />
+                                        <field name="currency_id" column_invisible="1" />
+                                        <field name="sequence" widget="handle" />
+                                        <field name="product_id"
+                                            context="{'default_repair_material_ok': True}" />
+                                        <field name="alloy_id" />
+                                        <field name="order_operation_id" optional="show" />
+                                        <field name="weight" sum="Total Weight" />
+                                        <field name="subtotal_editable" column_invisible="1" />
+                                        <field name="subtotal" widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                            sum="Total"
+                                            readonly="not subtotal_editable" />
+                                        <field name="include_in_invoice" />
+                                        <field name="consume_from_stock" />
+                                        <field name="return_to_storage" />
+                                        <field name="rate_datetime" widget="datetime" />
+                                        <field name="description" />
+                                        <field name="rate_manual" column_invisible="1" />
+                                        <field name="rate_price_per_gram" optional="show"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}" />
+                                        <field name="quantity" sum="Total Qty" optional="hide" />
+                                        <field name="weight_loss" readonly="1"
+                                            sum="Total Loss Weight" optional="hide" />
+                                        <field name="price_unit" widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                            optional="hide" />
+                                        <field name="uom_id" optional="hide" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Stones">
+                                <div class="d-flex gap-2 mb-2">
+                                    <button
+                                        name="action_open_cert_parse_wizard"
+                                        type="object"
+                                        string="Add from Certificate"
+                                        icon="fa-camera"
+                                        class="btn-primary" />
+                                    <button
+                                        name="action_generate_setting_services"
+                                        type="object"
+                                        string="Generate Setting Services"
+                                        class="btn-secondary"
+                                        invisible="not gem_line_ids" />
+                                </div>
+                                <field name="gem_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="gem_type_id" />
+                                        <field name="origin" optional="show" />
+                                        <field name="certificate_id" optional="show"
+                                            options="{'no_create': True}" />
+                                        <button name="action_open_cert_parse_wizard"
+                                            type="object"
+                                            icon="fa-camera"
+                                            title="Parse certificate from photo"
+                                            class="btn-secondary btn-sm" />
+                                        <field name="cut_shape" />
+                                        <field name="standard_size_id"
+                                            domain="[('gem_type_id', '=', gem_type_id), ('cut_shape', '=', cut_shape)]"
+                                            options="{'no_create': True}"
+                                        />
+                                        <field name="quantity" sum="Total Qty" />
+                                        <field name="weight_ct" />
+                                        <field name="total_weight_ct" sum="Total (ct)" />
+                                        <field name="total_weight_g" readonly="1" sum="Total (g)" />
+                                        <field name="currency_id" column_invisible="1" />
+                                        <field name="price_per_ct" widget="monetary" optional="show" />
+                                        <field name="subtotal" readonly="1" widget="monetary"
+                                            sum="Total" optional="show" />
+                                        <field name="include_in_invoice" />
+                                        <field name="product_id" optional="hide" string="Invoice Product" />
+                                        <field name="price_unit" widget="monetary" optional="hide" />
+                                    </tree>
+                                </field>
+                                <group>
+                                    <field name="gem_weight_total_g" readonly="1"
+                                        string="Total Gem Weight (g)" />
+                                    <field name="received_with_gems_g" readonly="1" />
+                                </group>
+                            </page>
+                            <page string="Operations">
+                                <field name="order_operation_ids" context="{'default_order_id': id}">
+                                    <tree decoration-success="state == 'done'"
+                                        decoration-info="state == 'in_progress'"
+                                        decoration-muted="state == 'cancel'" create="false"
+                                        delete="false" editable="bottom">
+                                        <field name="sequence" widget="handle" readonly="1" />
+                                        <field name="name" column_invisible="1" />
+                                        <field name="operation_id" readonly="1" />
+                                        <field name="weight_before" string="Weight Before (g)" />
+                                        <field name="executor_id" string="Planned Executor" />
+                                        <field name="assigned_user_id" column_invisible="1" />
+                                        <field name="accepted_by_user_id" column_invisible="1" />
+                                        <field name="accepted_at" column_invisible="1" />
+                                        <field name="planned_date" readonly="1" />
+                                        <field name="estimated_duration_display" readonly="1" />
+                                        <field name="started_at" readonly="1" />
+                                        <field name="done_at" readonly="1" />
+                                        <field name="state" readonly="1" />
+                                        <field name="service_line_ids" widget="many2many_tags"
+                                            readonly="1" />
+                                        <button name="action_assign_to_me" type="object"
+                                            string="Assign To Me"
+                                            invisible="state == 'done' or state == 'cancel' or assigned_user_id" />
+                                        <button name="action_accept_item" type="object"
+                                            string="Accept Item" invisible="state != 'ready'" />
+                                        <button name="action_start" type="object" string="Start"
+                                            invisible="state != 'accepted'" />
+                                        <button name="action_mark_done" type="object" string="Done"
+                                            invisible="state not in ('accepted', 'in_progress')" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Additional Info" name="additional_info">
+                                <group>
+                                    <group string="External Reference">
+                                        <field name="external_doc_number" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="metal_id" readonly="1" />
+                                        <field name="weight_delta" readonly="1" />
+                                        <field name="fine_weight_received" readonly="1" />
+                                        <field name="fine_weight_delivered" readonly="1" />
+                                        <field name="total_metal_loss_percent" readonly="1"
+                                            invisible="not weight_tracking_enabled" />
+                                    </group>
+                                    <group>
+                                        <field name="current_holder_user_id" readonly="1" />
+                                        <field name="current_location_type" readonly="1" />
+                                        <field name="last_move_at" readonly="1" />
+                                        <field name="ready_accepted_by_manager" readonly="1" />
+                                        <field name="ready_accepted_at" readonly="1" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Metal Loss by Area"
+                                invisible="not weight_tracking_enabled">
+                                <field name="area_loss_ids" readonly="1">
+                                    <tree>
+                                        <field name="area_id" />
+                                        <field name="weight_in" />
+                                        <field name="weight_out" />
+                                        <field name="loss" sum="Total" />
+                                        <field name="loss_percent" string="Loss %" sum="Total" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Costs" name="costs">
+                                <field name="service_line_ids" nolabel="1"
+                                    context="{'tree_view_ref': 'jewelry_repair_base.view_jewelry_repair_service_line_costs_tree'}" />
+                            </page>
+                            <page string="Photos" name="photos">
+                                <field name="photo_count" invisible="1" />
+                                <field name="photo_ids" nolabel="1" mode="kanban"
+                                    context="{'default_kind': 'progress'}" />
+                            </page>
+                        </notebook>
+                        <group>
+                            <field name="notes" placeholder="Internal notes for the team" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" />
+                        <field name="message_ids" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- ── Order photos: a tile per shot, click opens it full size ─── -->
+
+        <record id="view_jewelry_repair_photo_kanban" model="ir.ui.view">
+            <field name="name">jewelry.repair.photo.kanban</field>
+            <field name="model">jewelry.repair.photo</field>
+            <field name="arch" type="xml">
+                <kanban default_order="sequence,id" quick_create="false">
+                    <field name="id" />
+                    <field name="kind" />
+                    <field name="caption" />
+                    <field name="sequence" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill p-0"
+                                style="width: 190px;">
+                                <div class="o_kanban_image_fill_left"
+                                    t-attf-style="background-image: url('#{kanban_image('jewelry.repair.photo', 'image_256', record.id.raw_value)}'); height: 150px; background-size: cover; background-position: center;" />
+                                <div class="p-2">
+                                    <span class="badge text-bg-secondary">
+                                        <field name="kind" />
+                                    </span>
+                                    <div class="text-muted small text-truncate mt-1"
+                                        t-if="record.caption.raw_value">
+                                        <field name="caption" />
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_photo_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.photo.form</field>
+            <field name="model">jewelry.repair.photo</field>
+            <field name="arch" type="xml">
+                <form string="Photo">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="kind" />
+                                <field name="caption" placeholder="What is on the photo" />
+                                <field name="sequence" />
+                            </group>
+                        </group>
+                        <field name="image" widget="image" nolabel="1"
+                            options="{'size': [640, 720]}" />
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.tree</field>
+            <field name="model">jewelry.metal</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="kitco_exchange_fee_per_oz" optional="show" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.form</field>
+            <field name="model">jewelry.metal</field>
+            <field name="arch" type="xml">
+                <form string="Metal">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="active" />
+                            </group>
+                            <group>
+                                <field name="default_material_product_id" />
+                                <field name="kitco_exchange_fee_per_oz" />
+                            </group>
+                        </group>
+                        <separator string="Alloys" />
+                        <field name="alloy_ids">
+                            <tree editable="bottom">
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="purity" />
+                                <field name="default_material_product_id" />
+                                <field name="active" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_alloy_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.alloy.tree</field>
+            <field name="model">jewelry.metal.alloy</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="metal_id" />
+                    <field name="purity" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_alloy_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.alloy.form</field>
+            <field name="model">jewelry.metal.alloy</field>
+            <field name="arch" type="xml">
+                <form string="Metal Alloy">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="metal_id" />
+                            </group>
+                            <group>
+                                <field name="purity" />
+                                <field name="active" />
+                                <field name="default_material_product_id" />
+                                <field name="effective_material_product_id" readonly="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_rate_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.rate.tree</field>
+            <field name="model">jewelry.metal.rate</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" default_order="effective_at desc">
+                    <field name="effective_at" />
+                    <field name="metal_id" />
+                    <field name="price_per_gram" />
+                    <field name="price_18k" readonly="1" optional="show" />
+                    <field name="price_14k" readonly="1" optional="show" />
+                    <field name="price_9k" readonly="1" optional="show" />
+                    <field name="currency_id" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_rate_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.rate.form</field>
+            <field name="model">jewelry.metal.rate</field>
+            <field name="arch" type="xml">
+                <form string="Metal Rate">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="metal_id" />
+                                <field name="effective_at" />
+                                <field name="price_per_gram" />
+                            </group>
+                            <group>
+                                <field name="currency_id" />
+                                <field name="company_id" groups="base.group_multi_company" />
+                                <field name="active" />
+                            </group>
+                        </group>
+                        <group string="Informational Prices per Gram">
+                            <group>
+                                <field name="price_18k" readonly="1" />
+                                <field name="price_14k" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="price_9k" readonly="1" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_apply_metal_rate_wizard_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.apply.metal.rate.wizard.form</field>
+            <field name="model">jewelry.repair.apply.metal.rate.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Apply Metal Rate Datetime">
+                    <group>
+                        <field name="order_id" />
+                        <field name="metal_rate_at" />
+                        <field name="material_line_count" />
+                    </group>
+                    <div class="text-muted">
+                        Apply the order metal rate datetime to all material lines and recalculate
+                        their pricing?
+                    </div>
+                    <footer>
+                        <button name="action_confirm" type="object" string="Apply"
+                            class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Overdue orders report -->
+        <record id="view_jewelry_repair_order_overdue_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.overdue.tree</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <tree string="Overdue Orders" decoration-danger="1">
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="item_type_id" />
+                    <field name="quantity" />
+                    <field name="current_holder_user_id" />
+                    <field name="deadline_date" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_overdue_orders_server" model="ir.actions.server">
+            <field name="name">Overdue Orders</field>
+            <field name="model_id" ref="model_jewelry_repair_order" />
+            <field name="state">code</field>
+            <field name="code"><![CDATA[
+action = {
+    'type': 'ir.actions.act_window',
+    'name': 'Overdue Orders',
+    'res_model': 'jewelry.repair.order',
+    'view_mode': 'tree,form',
+    'views': [(env.ref('jewelry_repair_base.view_jewelry_repair_order_overdue_tree').id, 'tree'), (False, 'form')],
+    'domain': [
+        ('deadline_date', '<', datetime.datetime.now()),
+        ('state', 'not in', ('ready', 'delivered', 'cancel')),
+    ],
+    'context': {'create': False},
+}
+            ]]></field>
+        </record>
+
+        <!-- Workload report views -->
+        <record id="view_jewelry_repair_workload_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.workload.tree</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <tree string="Master Workload"
+                    decoration-danger="is_overdue"
+                    decoration-success="state == 'done'"
+                    decoration-muted="state == 'cancel'">
+                    <field name="is_overdue" column_invisible="1" />
+                    <field name="order_id" optional="show" />
+                    <field name="operation_id" />
+                    <field name="assigned_user_id" />
+                    <field name="state" />
+                    <field name="order_deadline_date" string="Deadline" />
+                    <field name="accepted_at" optional="hide" />
+                    <field name="started_at" optional="hide" />
+                    <field name="done_at" optional="hide" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_workload_graph" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.workload.graph</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="arch" type="xml">
+                <graph string="Master Workload" type="bar" stacked="1">
+                    <field name="assigned_user_id" type="row" />
+                    <field name="state" type="col" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_workload" model="ir.actions.act_window">
+            <field name="name">Master Workload</field>
+            <field name="res_model">jewelry.repair.order.operation</field>
+            <field name="view_mode">graph,tree</field>
+            <field name="views">[(ref('view_jewelry_repair_workload_graph'), 'graph'),
+                (ref('view_jewelry_repair_workload_tree'), 'tree')]</field>
+            <field name="domain">[('state', 'not in', ('cancel',)), ('order_state', 'not in',
+                ('cancel',))]</field>
+            <field name="context">{'group_by': ['assigned_user_id', 'state']}</field>
+            <field name="search_view_id" ref="view_jewelry_repair_order_operation_search" />
+        </record>
+
+        <record id="action_jewelry_repair_order" model="ir.actions.act_window">
+            <field name="name">Orders</field>
+            <field name="res_model">jewelry.repair.order</field>
+            <field name="view_mode">tree,calendar,form</field>
+            <field name="view_id" ref="view_jewelry_repair_order_list" />
+            <field name="search_view_id" ref="view_jewelry_repair_order_search" />
+        </record>
+
+        <record id="action_jewelry_repair_item_type" model="ir.actions.act_window">
+            <field name="name">Item Types</field>
+            <field name="res_model">jewelry.repair.item.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_jewelry_repair_operation" model="ir.actions.act_window">
+            <field name="name">Operations</field>
+            <field name="res_model">jewelry.repair.operation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Work Areas -->
+        <record id="view_jewelry_work_area_tree" model="ir.ui.view">
+            <field name="name">jewelry.work.area.tree</field>
+            <field name="model">jewelry.work.area</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" />
+                    <field name="is_casting" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_jewelry_work_area" model="ir.actions.act_window">
+            <field name="name">Work Areas</field>
+            <field name="res_model">jewelry.work.area</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record id="action_jewelry_repair_executor" model="ir.actions.act_window">
+            <field name="name">Operation Executors</field>
+            <field name="res_model">jewelry.repair.executor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_jewelry_repair_order_operation" model="ir.actions.act_window">
+            <field name="name">Planned Operations</field>
+            <field name="res_model">jewelry.repair.order.operation</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="view_jewelry_repair_order_operation_kanban_planned" />
+            <field name="search_view_id" ref="view_jewelry_repair_order_operation_search" />
+            <field name="domain">[('state', 'not in', ('done', 'cancel')), ('order_id.state', 'not in', ('delivered', 'cancel'))]</field>
+            <field name="context">{'group_by': 'executor_id', 'planning_board': True}</field>
+        </record>
+
+        <record id="action_jewelry_repair_order_operation_master" model="ir.actions.act_window">
+            <field name="name">Work Operations</field>
+            <field name="res_model">jewelry.repair.order.operation</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_jewelry_repair_order_operation_search" />
+            <field name="domain">[('assigned_user_id', '=', uid), ('state', 'in', ('pending',
+                'ready', 'accepted', 'in_progress')), ('order_id.delivery_id', '=', False),
+                ('order_id.billing_batch_id', '=', False), ('order_id.state', 'not in',
+                ('delivered', 'cancel'))]</field>
+            <field name="context">{'group_by': 'operation_id', 'work_board': True}</field>
+        </record>
+
+        <record id="action_jewelry_repair_my_order_operation" model="ir.actions.act_window">
+            <field name="name">Completed Operations</field>
+            <field name="res_model">jewelry.repair.order.operation</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="view_jewelry_repair_order_operation_search" />
+            <field name="domain">[('state', '=', 'done'), ('assigned_user_id', '=', uid),
+                ('order_id.state', '!=', 'cancel')]</field>
+            <field name="context">{'group_by': 'executor_id', 'completed_board': True}</field>
+        </record>
+
+        <record id="action_jewelry_repair_completed_operations_server" model="ir.actions.server">
+            <field name="name">Completed Operations</field>
+            <field name="model_id" ref="model_jewelry_repair_order_operation" />
+            <field name="state">code</field>
+            <field name="code">action = model.action_open_completed_operations_menu()</field>
+        </record>
+
+        <record id="view_jewelry_repair_service_product_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.service.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="false" delete="false" string="Repair Service Products">
+                    <field name="sequence" widget="handle" />
+                    <field name="name" readonly="1" />
+                    <field name="repair_operation_id" readonly="1" />
+                    <field name="list_price" string="Price" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_service_products" model="ir.actions.act_window">
+            <field name="name">Repair Service Products</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_jewelry_repair_service_product_tree" />
+            <field name="domain">[('repair_service_ok', '=', True)]</field>
+            <field name="context">{'default_repair_service_ok': True}</field>
+        </record>
+
+        <record id="action_jewelry_metal" model="ir.actions.act_window">
+            <field name="name">Metals</field>
+            <field name="res_model">jewelry.metal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_jewelry_metal_alloy" model="ir.actions.act_window">
+            <field name="name">Metal Alloys</field>
+            <field name="res_model">jewelry.metal.alloy</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_jewelry_metal_rate" model="ir.actions.act_window">
+            <field name="name">Metal Rates</field>
+            <field name="res_model">jewelry.metal.rate</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_jewelry_repair_custody_report" model="ir.actions.act_window">
+            <field name="name">Custody Report</field>
+            <field name="res_model">jewelry.repair.order</field>
+            <field name="view_mode">pivot,tree</field>
+            <field name="domain">[('state', 'not in', ('delivered', 'cancel'))]</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_root"
+            name="Jewelry Production"
+            sequence="10"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+
+        <menuitem
+            id="menu_jewelry_master_root"
+            name="My Work"
+            sequence="10"
+            action="action_jewelry_repair_order_operation_master"
+            groups="jewelry_repair_base.group_jewelry_repair_master"
+        />
+        <menuitem
+            id="menu_jewelry_master_operations"
+            name="My Operations"
+            parent="menu_jewelry_master_root"
+            action="action_jewelry_repair_order_operation_master"
+            sequence="10"
+            groups="jewelry_repair_base.group_jewelry_repair_master"
+        />
+        <menuitem
+            id="menu_jewelry_master_completed"
+            name="Completed Operations"
+            parent="menu_jewelry_master_root"
+            action="action_jewelry_repair_completed_operations_server"
+            sequence="20"
+            groups="jewelry_repair_base.group_jewelry_repair_master"
+        />
+        <menuitem
+            id="menu_jewelry_repair_orders"
+            name="Orders"
+            parent="menu_jewelry_repair_root"
+            action="action_jewelry_repair_order"
+            sequence="10"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+        <menuitem
+            id="menu_jewelry_repair_work_operations"
+            name="Planned Operations"
+            parent="menu_jewelry_repair_root"
+            action="action_jewelry_repair_order_operation"
+            sequence="20"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+        <!-- Orders section hidden temporarily
+        <menuitem id="menu_jewelry_repair_orders_section" name="Orders" parent="menu_jewelry_repair_root"
+        sequence="30"
+        groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"/>
+        <menuitem
+            id="menu_jewelry_repair_orders_section_all"
+            name="Repair Orders"
+            parent="menu_jewelry_repair_orders_section"
+            action="action_jewelry_repair_order"
+            sequence="10"
+        groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+        -->
+        <menuitem id="menu_jewelry_repair_production" name="Production"
+            parent="menu_jewelry_repair_root" sequence="40"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+        <menuitem
+            id="menu_jewelry_repair_production_planned_operations"
+            name="Planned Operations"
+            parent="menu_jewelry_repair_production"
+            action="action_jewelry_repair_order_operation"
+            sequence="10"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+        <menuitem
+            id="menu_jewelry_repair_work_operations_master"
+            name="My Operations"
+            parent="menu_jewelry_repair_production"
+            action="action_jewelry_repair_order_operation_master"
+            sequence="20"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+        <menuitem
+            id="menu_jewelry_repair_my_operations"
+            name="Completed Operations"
+            parent="menu_jewelry_repair_production"
+            action="action_jewelry_repair_completed_operations_server"
+            sequence="30"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+        <menuitem id="menu_jewelry_repair_reports" name="Reports" parent="menu_jewelry_repair_root"
+            sequence="60"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+        <menuitem
+            id="menu_jewelry_repair_custody_report"
+            name="Custody Report"
+            parent="menu_jewelry_repair_reports"
+            action="action_jewelry_repair_custody_report"
+            sequence="10"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+        <menuitem
+            id="menu_jewelry_repair_workload"
+            name="Master Workload"
+            parent="menu_jewelry_repair_reports"
+            action="action_jewelry_repair_workload"
+            sequence="20"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+        <menuitem
+            id="menu_jewelry_repair_overdue"
+            name="Overdue Orders"
+            parent="menu_jewelry_repair_reports"
+            action="action_jewelry_repair_overdue_orders_server"
+            sequence="30"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+        <menuitem id="menu_jewelry_repair_catalogs" name="Catalogs"
+            parent="menu_jewelry_repair_root" sequence="70"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system" />
+        <menuitem
+            id="menu_jewelry_repair_item_types"
+            name="Item Types"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_repair_item_type"
+            sequence="10"
+        />
+        <menuitem
+            id="menu_jewelry_repair_operations"
+            name="Operations"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_repair_operation"
+            sequence="20"
+        />
+        <menuitem
+            id="menu_jewelry_work_area"
+            name="Work Areas"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_work_area"
+            sequence="21"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+        <menuitem
+            id="menu_jewelry_repair_executors"
+            name="Operation Executors"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_repair_executor"
+            sequence="22"
+        />
+        <menuitem
+            id="menu_jewelry_metal"
+            name="Metals"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_metal"
+            sequence="25"
+        />
+        <menuitem
+            id="menu_jewelry_gem_type"
+            name="Gem Types"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_gem_type"
+            sequence="27"
+        />
+        <menuitem
+            id="menu_jewelry_gem_certificate"
+            name="Certificates"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_gem_certificate"
+            sequence="28"
+        />
+        <menuitem
+            id="menu_jewelry_metal_alloy"
+            name="Metal Alloys"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_metal_alloy"
+            sequence="26"
+        />
+        <menuitem
+            id="menu_jewelry_metal_rate"
+            name="Metal Rates"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_metal_rate"
+            sequence="27"
+        />
+        <menuitem
+            id="menu_jewelry_repair_service_products"
+            name="Repair Service Products"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_repair_service_products"
+            sequence="30"
+        />
+        <!-- Client Prices -->
+        <record id="view_jewelry_repair_client_price_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.client.price.tree</field>
+            <field name="model">jewelry.repair.client.price</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" string="Client Prices">
+                    <field name="partner_id" />
+                    <field name="product_id" />
+                    <field name="base_price" readonly="1" />
+                    <field name="discount_percent" />
+                    <field name="custom_price" />
+                    <field name="final_price" readonly="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_client_price_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.client.price.form</field>
+            <field name="model">jewelry.repair.client.price</field>
+            <field name="arch" type="xml">
+                <form string="Client Price">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id" />
+                                <field name="product_id" />
+                            </group>
+                            <group>
+                                <field name="base_price" readonly="1" />
+                                <field name="discount_percent"
+                                    help="Positive = discount (e.g. 10 → −10%). Negative = markup (e.g. −10 → +10%)." />
+                                <field name="custom_price"
+                                    help="If filled (greater than 0), overrides base price and discount." />
+                                <field name="final_price" readonly="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_client_price" model="ir.actions.act_window">
+            <field name="name">Client Prices</field>
+            <field name="res_model">jewelry.repair.client.price</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_client_prices"
+            name="Client Prices"
+            parent="menu_jewelry_repair_catalogs"
+            action="action_jewelry_repair_client_price"
+            sequence="35"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+
+        <record id="view_jewelry_repair_amendment_wizard_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.amendment.wizard.form</field>
+            <field name="model">jewelry.repair.amendment.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Unlock for Editing">
+                    <sheet>
+                        <field name="document_summary" invisible="1" />
+                        <div class="alert alert-warning" role="alert"
+                            invisible="not document_summary">
+                            <p>The following documents will be cancelled, in this order:</p>
+                            <strong>
+                                <field name="document_summary" readonly="1" nolabel="1" />
+                            </strong>
+                        </div>
+                        <p invisible="document_summary"> This order is not billed yet, so no
+                            document will be cancelled. </p>
+                        <field name="payment_warning" invisible="1" />
+                        <div class="alert alert-danger" role="alert"
+                            invisible="not payment_warning">
+                            <field name="payment_warning" readonly="1" nolabel="1" />
+                        </div>
+                        <group>
+                            <field name="order_id" readonly="1" />
+                            <field name="reason"
+                                placeholder="Why does this delivered order need to be changed?" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_confirm" type="object" string="Unlock for Editing"
+                            class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_force_ready_wizard_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.force.ready.wizard.form</field>
+            <field name="model">jewelry.repair.force.ready.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Uncompleted Operations">
+                    <sheet>
+                        <p> There are <strong>
+                                <field name="pending_count" readonly="1" nolabel="1" />
+                            </strong>
+                            uncompleted operation(s). Do you want to mark them all as done and set
+                            the order as ready? </p>
+                    </sheet>
+                    <footer>
+                        <button name="action_confirm" type="object" string="Mark All Done"
+                            class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_weight_discrepancy_wizard_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.weight.discrepancy.wizard.form</field>
+            <field name="model">jewelry.repair.weight.discrepancy.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Weight Discrepancy">
+                    <sheet>
+                        <div class="alert alert-warning" role="alert">
+                            <field name="message" readonly="1" nolabel="1" />
+                        </div>
+                        <p>Do you want to accept the item anyway?</p>
+                    </sheet>
+                    <footer>
+                        <button name="action_confirm" type="object" string="Accept Anyway"
+                            class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Service line list view for drill-down -->
+        <record id="view_jewelry_repair_service_line_list_drilldown" model="ir.ui.view">
+            <field name="name">jewelry.repair.service.line.list.drilldown</field>
+            <field name="model">jewelry.repair.service.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" default_order="order_id desc">
+                    <field name="order_id" string="Order" />
+                    <field name="order_partner_id" string="Client" />
+                    <field name="name" string="Service" />
+                    <field name="total_quantity" string="Qty" />
+                    <field name="subtotal" sum="Total" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Material line list view for drill-down -->
+        <record id="view_jewelry_repair_material_line_list_drilldown" model="ir.ui.view">
+            <field name="name">jewelry.repair.material.line.list.drilldown</field>
+            <field name="model">jewelry.repair.material.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" default_order="order_id desc">
+                    <field name="order_id" string="Order" />
+                    <field name="order_partner_id" string="Client" />
+                    <field name="product_id" string="Material" />
+                    <field name="alloy_id" string="Alloy" />
+                    <field name="quantity" />
+                    <field name="weight" string="Weight (g)" />
+                    <field name="subtotal" widget="monetary" sum="Total" />
+                    <field name="currency_id" column_invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- KPI Client Line Form -->
+        <record id="view_jewelry_repair_kpi_client_line_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.kpi.client.line.form</field>
+            <field name="model">jewelry.repair.kpi.client.line</field>
+            <field name="arch" type="xml">
+                <form string="Client Breakdown" create="false" edit="false" delete="false">
+                    <sheet>
+                        <field name="currency_id" invisible="1" />
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="fw-bold fs-5">
+                                    <field name="partner_name" nolabel="1" />
+                                </div>
+                            </div>
+                            <div class="col-3 text-end text-muted">
+                                <label for="order_count" />
+                                <br />
+                                <field name="order_count" nolabel="1" />
+                            </div>
+                            <div class="col-3 text-end">
+                                <label for="amount" />
+                                <br />
+                                <field name="amount" widget="monetary" nolabel="1" />
+                            </div>
+                        </div>
+                        <div class="fw-semibold text-dark mb-1">Services</div>
+                        <field name="service_ids" readonly="1">
+                            <tree>
+                                <field name="service_name" string="Service" />
+                                <field name="quantity" string="Qty" />
+                                <field name="order_count" string="Orders" />
+                                <field name="amount" widget="monetary" sum="Total" />
+                                <field name="currency_id" column_invisible="1" />
+                            </tree>
+                        </field>
+                        <div class="fw-semibold text-dark mt-3 mb-1">Materials</div>
+                        <field name="material_ids" readonly="1">
+                            <tree>
+                                <field name="alloy_name" string="Alloy / Material" />
+                                <field name="quantity" string="Weight (g)" />
+                                <field name="order_count" string="Orders" />
+                                <field name="amount" widget="monetary" sum="Total" />
+                                <field name="currency_id" column_invisible="1" />
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- KPI Dashboard -->
+        <record id="view_jewelry_repair_kpi_dashboard_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.kpi.dashboard.form</field>
+            <field name="model">jewelry.repair.kpi.dashboard</field>
+            <field name="arch" type="xml">
+                <form string="Financial Dashboard" create="false" edit="false" delete="false">
+                    <header>
+                        <button name="action_print_dashboard" type="object"
+                            string="Print PDF" class="btn-primary" />
+                    </header>
+                    <sheet>
+                        <field name="display_name" invisible="1" />
+                        <field name="currency_id" invisible="1" />
+                        <!-- Row 1: Pipeline status -->
+                        <div class="row g-3 mb-1">
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_waiting" type="object"
+                                    class="btn btn-light border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i
+                                            class="fa fa-hourglass-half fa-2x text-secondary flex-shrink-0"
+                                            title="Waiting" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="waiting_amount" widget="monetary"
+                                                    nolabel="1" />
+                                            </div>
+                                            <div class="text-muted small mb-1">
+                                                <field name="waiting_count" nolabel="1" /> orders </div>
+                                            <label for="waiting_amount"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_in_progress" type="object"
+                                    class="btn btn-light border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-cogs fa-2x text-warning flex-shrink-0"
+                                            title="In Progress" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="in_progress_amount" widget="monetary"
+                                                    nolabel="1" />
+                                            </div>
+                                            <div class="text-muted small mb-1">
+                                                <field name="in_progress_count" nolabel="1" />
+                                                orders </div>
+                                            <label for="in_progress_amount"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_ready" type="object"
+                                    class="btn btn-light border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-gift fa-2x text-success flex-shrink-0"
+                                            title="Ready for Delivery" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="ready_amount" widget="monetary"
+                                                    nolabel="1" />
+                                            </div>
+                                            <div class="text-muted small mb-1">
+                                                <field name="ready_count" nolabel="1" /> orders </div>
+                                            <label for="ready_amount"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 2: This month revenue -->
+                        <div class="row g-3 mb-1 mt-2">
+                            <div class="col-12">
+                                <div class="text-muted small ps-1 mb-1 fw-semibold text-uppercase">
+                                    <label for="revenue_month_count" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_services_month" type="object"
+                                    class="btn border rounded-3 w-100 p-4 text-start h-100 jr_kpi_card_services">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-wrench fa-2x text-primary flex-shrink-0"
+                                            title="Services This Month" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="revenue_month_services"
+                                                    widget="monetary" nolabel="1" />
+                                            </div>
+                                            <label for="revenue_month_services"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_materials_month" type="object"
+                                    class="btn border rounded-3 w-100 p-4 text-start h-100 jr_kpi_card_materials">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-cube fa-2x text-info flex-shrink-0"
+                                            title="Materials This Month" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="revenue_month_materials"
+                                                    widget="monetary" nolabel="1" />
+                                            </div>
+                                            <label for="revenue_month_materials"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_delivered_month" type="object"
+                                    class="btn btn-success border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-check-circle fa-2x text-white flex-shrink-0"
+                                            title="Total This Month" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1 text-white">
+                                                <field name="paid_month" widget="monetary" nolabel="1" />
+                                                <span class="text-white-50 mx-1">/</span>
+                                                <field name="revenue_month" widget="monetary" nolabel="1" />
+                                            </div>
+                                            <div class="small text-white-50 mb-1">
+                                                <field name="revenue_month_count" nolabel="1" />
+                                                orders</div>
+                                            <div class="small text-white-50">
+                                                <label for="paid_month" class="me-1" /> /
+                                                <label for="revenue_month" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Row 3: Last month revenue -->
+                        <div class="row g-3 mb-3 mt-2">
+                            <div class="col-12">
+                                <div class="text-muted small ps-1 mb-1 fw-semibold text-uppercase">
+                                    <label for="revenue_prev_month_count" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_services_prev_month" type="object"
+                                    class="btn btn-light border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-wrench fa-2x text-primary flex-shrink-0"
+                                            title="Services Last Month" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="revenue_prev_month_services"
+                                                    widget="monetary" nolabel="1" />
+                                            </div>
+                                            <label for="revenue_prev_month_services"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_materials_prev_month" type="object"
+                                    class="btn btn-light border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-cube fa-2x text-info flex-shrink-0"
+                                            title="Materials Last Month" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="revenue_prev_month_materials"
+                                                    widget="monetary" nolabel="1" />
+                                            </div>
+                                            <label for="revenue_prev_month_materials"
+                                                class="text-dark fw-semibold mb-0" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <button name="action_view_delivered_prev_month" type="object"
+                                    class="btn btn-light border rounded-3 w-100 p-4 text-start h-100">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <i class="fa fa-calendar fa-2x text-secondary flex-shrink-0"
+                                            title="Total Last Month" />
+                                        <div class="w-100">
+                                            <div class="h3 fw-bold mb-1">
+                                                <field name="paid_prev_month" widget="monetary" nolabel="1" />
+                                                <span class="text-muted mx-1">/</span>
+                                                <field name="revenue_prev_month" widget="monetary" nolabel="1" />
+                                            </div>
+                                            <div class="text-muted small mb-1">
+                                                <field name="revenue_prev_month_count" nolabel="1" />
+                                                orders</div>
+                                            <div class="small text-muted">
+                                                <label for="paid_prev_month" class="me-1" /> /
+                                                <label for="revenue_prev_month" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Breakdown: This Month -->
+                        <div class="row g-3 mt-2">
+                            <div class="col-12 col-md-6">
+                                <div class="fw-semibold text-dark mb-2">
+                                    <label for="service_month_ids" />
+                                </div>
+                                <field name="service_month_ids" readonly="1">
+                                    <tree>
+                                        <field name="service_name" />
+                                        <field name="quantity" />
+                                        <field name="order_count" string="Orders" />
+                                        <field name="amount" widget="monetary" sum="Total" />
+                                        <field name="outsource_cost" widget="monetary" sum="Total Outsource" />
+                                        <field name="currency_id" column_invisible="1" />
+                                        <button name="action_view_service_lines" type="object"
+                                            icon="fa-search" title="Show orders" />
+                                    </tree>
+                                </field>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="fw-semibold text-dark mb-2">
+                                    <label for="material_month_ids" />
+                                </div>
+                                <field name="material_month_ids" readonly="1">
+                                    <tree>
+                                        <field name="alloy_name" />
+                                        <field name="quantity" />
+                                        <field name="order_count" string="Orders" />
+                                        <field name="amount" widget="monetary" sum="Total" />
+                                        <field name="currency_id" column_invisible="1" />
+                                        <button name="action_view_material_lines" type="object"
+                                            icon="fa-search" title="Show orders" />
+                                    </tree>
+                                </field>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3">
+                            <div class="col-12">
+                                <div class="fw-semibold text-dark mb-2">
+                                    <label for="client_month_ids" />
+                                </div>
+                                <field name="client_month_ids" readonly="1">
+                                    <tree open_form_view="True">
+                                        <field name="partner_name" />
+                                        <field name="order_count" string="Orders" />
+                                        <field name="amount" widget="monetary" sum="Total" />
+                                        <field name="currency_id" column_invisible="1" />
+                                    </tree>
+                                </field>
+                            </div>
+                        </div>
+                        <!-- Breakdown: Last Month -->
+                        <div class="row g-3 mt-3">
+                            <div class="col-12 col-md-6">
+                                <div class="fw-semibold text-dark mb-2">
+                                    <label for="service_prev_ids" />
+                                </div>
+                                <field name="service_prev_ids" readonly="1">
+                                    <tree>
+                                        <field name="service_name" />
+                                        <field name="quantity" />
+                                        <field name="order_count" string="Orders" />
+                                        <field name="amount" widget="monetary" sum="Total" />
+                                        <field name="outsource_cost" widget="monetary" sum="Total Outsource" />
+                                        <field name="currency_id" column_invisible="1" />
+                                        <button name="action_view_service_lines" type="object"
+                                            icon="fa-search" title="Show orders" />
+                                    </tree>
+                                </field>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="fw-semibold text-dark mb-2">
+                                    <label for="material_prev_ids" />
+                                </div>
+                                <field name="material_prev_ids" readonly="1">
+                                    <tree>
+                                        <field name="alloy_name" />
+                                        <field name="quantity" />
+                                        <field name="order_count" string="Orders" />
+                                        <field name="amount" widget="monetary" sum="Total" />
+                                        <field name="currency_id" column_invisible="1" />
+                                        <button name="action_view_material_lines" type="object"
+                                            icon="fa-search" title="Show orders" />
+                                    </tree>
+                                </field>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3">
+                            <div class="col-12">
+                                <div class="fw-semibold text-dark mb-2">
+                                    <label for="client_prev_ids" />
+                                </div>
+                                <field name="client_prev_ids" readonly="1">
+                                    <tree open_form_view="True">
+                                        <field name="partner_name" />
+                                        <field name="order_count" string="Orders" />
+                                        <field name="amount" widget="monetary" sum="Total" />
+                                        <field name="currency_id" column_invisible="1" />
+                                    </tree>
+                                </field>
+                            </div>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_reassign_next_operation_wizard_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.reassign.next.wizard.form</field>
+            <field name="model">jewelry.repair.reassign.next.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Reassign Next Operation">
+                    <sheet>
+                        <field name="operation_id" invisible="1" />
+                        <field name="new_executor_id" widget="radio" nolabel="1" required="1" />
+                    </sheet>
+                    <footer>
+                        <button name="action_reassign" type="object" string="Confirm"
+                            class="btn-primary" />
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_kpi_dashboard" model="ir.actions.server">
+            <field name="name">Financial Dashboard</field>
+            <field name="model_id" ref="model_jewelry_repair_order" />
+            <field name="binding_model_id" ref="model_jewelry_repair_order" />
+            <field name="state">code</field>
+            <field name="code">action = env["jewelry.repair.kpi.dashboard"].action_open_dashboard()</field>
+        </record>
+
+        <record id="action_jewelry_repair_kpi_dashboard_home" model="ir.actions.server">
+            <field name="name">Financial Dashboard (Home)</field>
+            <field name="model_id" ref="model_jewelry_repair_kpi_dashboard" />
+            <field name="state">code</field>
+            <field name="code">action = env["jewelry.repair.kpi.dashboard"].action_open_dashboard()</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_kpi_dashboard"
+            name="Financial Dashboard"
+            parent="menu_jewelry_repair_reports"
+            action="action_jewelry_repair_kpi_dashboard"
+            sequence="5"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+
+        <!-- ── Service Lines Costs (Costs tab on the order form) ───────── -->
+
+        <record id="view_jewelry_repair_service_line_costs_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.service.line.costs.tree</field>
+            <field name="model">jewelry.repair.service.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="1" delete="1">
+                    <field name="sequence" widget="handle" />
+                    <field name="product_id" readonly="1" />
+                    <field name="name" readonly="1" />
+                    <field name="total_quantity" string="Total Qty" readonly="1" />
+                    <field name="subtotal" string="Revenue" readonly="1" sum="Total Revenue" />
+                    <field name="outsource_cost" sum="Total Outsource Cost" />
+                    <field name="base_price" readonly="1" />
+                    <field name="base_amount" readonly="1" sum="Total Base" />
+                    <field name="margin" readonly="1" sum="Total Margin" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- ── Service Lines Report ──────────────────────────────────── -->
+
+        <record id="view_jewelry_repair_service_line_report_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.service.line.report.tree</field>
+            <field name="model">jewelry.repair.service.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false" default_order="order_id desc">
+                    <field name="order_id" string="Order" />
+                    <button name="action_open_order" type="object" icon="fa-external-link" title="Open Order" class="btn-link"/>
+                    <field name="order_partner_id" string="Client" />
+                    <field name="product_id" string="Service" />
+                    <field name="name" string="Description" optional="hide" />
+                    <field name="quantity" string="Qty" sum="Total Qty" />
+                    <field name="price_unit" string="Price" />
+                    <field name="subtotal" string="Subtotal" sum="Total" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_service_line_report_search" model="ir.ui.view">
+            <field name="name">jewelry.repair.service.line.report.search</field>
+            <field name="model">jewelry.repair.service.line</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="product_id" string="Service" />
+                    <field name="order_partner_id" string="Client" />
+                    <field name="order_id" string="Order" />
+                    <separator/>
+                    <filter name="filter_new_manufacturing"
+                        string="New Product Manufacturing"
+                        domain="[('order_id.new_product_manufacturing', '=', True)]" />
+                    <filter name="filter_repair"
+                        string="Repair"
+                        domain="[('order_id.new_product_manufacturing', '=', False)]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_partner" string="Client"
+                            context="{'group_by': 'order_partner_id'}" />
+                        <filter name="group_product" string="Service"
+                            context="{'group_by': 'product_id'}" />
+                        <filter name="group_order" string="Order"
+                            context="{'group_by': 'order_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_service_line_report" model="ir.actions.act_window">
+            <field name="name">Services</field>
+            <field name="res_model">jewelry.repair.service.line</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_jewelry_repair_service_line_report_tree" />
+            <field name="search_view_id" ref="view_jewelry_repair_service_line_report_search" />
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_service_line_report"
+            name="Services"
+            parent="menu_jewelry_repair_reports"
+            action="action_jewelry_repair_service_line_report"
+            sequence="35"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+
+        <!-- ── Area Loss Analysis ─────────────────────────────────────── -->
+
+        <record id="view_jewelry_order_area_loss_form" model="ir.ui.view">
+            <field name="name">jewelry.order.area.loss.form</field>
+            <field name="model">jewelry.order.area.loss</field>
+            <field name="arch" type="xml">
+                <form create="false" delete="false">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_order" type="object"
+                                    class="oe_stat_button" icon="fa-wrench">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Open Repair Order</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="order_id" />
+                            <field name="area_id" />
+                            <field name="weight_in" />
+                            <field name="weight_out" />
+                            <field name="loss" />
+                            <field name="loss_percent" string="Loss %" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_area_loss_tree" model="ir.ui.view">
+            <field name="name">jewelry.order.area.loss.tree</field>
+            <field name="model">jewelry.order.area.loss</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_received_date" />
+                    <field name="order_partner_id" />
+                    <field name="order_id" />
+                    <field name="area_id" />
+                    <field name="weight_in" />
+                    <field name="weight_out" />
+                    <field name="loss" />
+                    <field name="loss_percent" string="Loss %" />
+                    <button name="action_open_order" type="object"
+                            icon="fa-external-link" title="Open Order"
+                            class="btn-link" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_area_loss_pivot" model="ir.ui.view">
+            <field name="name">jewelry.order.area.loss.pivot</field>
+            <field name="model">jewelry.order.area.loss</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="area_id" type="row" />
+                    <field name="order_received_date" type="col" interval="month" />
+                    <field name="weight_in" type="measure" />
+                    <field name="loss" type="measure" />
+                    <field name="loss_percent" type="measure" string="Loss %" operator="avg" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_area_loss_graph" model="ir.ui.view">
+            <field name="name">jewelry.order.area.loss.graph</field>
+            <field name="model">jewelry.order.area.loss</field>
+            <field name="arch" type="xml">
+                <graph type="bar" stacked="0">
+                    <field name="area_id" type="row" />
+                    <field name="loss" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_area_loss_search" model="ir.ui.view">
+            <field name="name">jewelry.order.area.loss.search</field>
+            <field name="model">jewelry.order.area.loss</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="order_partner_id" string="Client" />
+                    <field name="area_id" />
+                    <field name="order_id" />
+                    <filter name="this_month" string="This Month"
+                        domain="[('order_received_date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')),
+                                 ('order_received_date', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]" />
+                    <filter name="last_month" string="Last Month"
+                        domain="[('order_received_date', '&gt;=', (context_today() + relativedelta(months=-1, day=1)).strftime('%Y-%m-%d')),
+                                 ('order_received_date', '&lt;', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]" />
+                    <filter name="negative_loss" string="Negative Loss"
+                        domain="[('loss', '&gt;', 0)]" />
+                    <separator />
+                    <group expand="1" string="Group By">
+                        <filter name="group_area" string="Area" context="{'group_by': 'area_id'}" />
+                        <filter name="group_partner" string="Client"
+                            context="{'group_by': 'order_partner_id'}" />
+                        <filter name="group_month" string="Month"
+                            context="{'group_by': 'order_received_date:month'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_jewelry_order_area_loss_analysis" model="ir.actions.act_window">
+            <field name="name">Area Loss Analysis</field>
+            <field name="res_model">jewelry.order.area.loss</field>
+            <field name="view_mode">pivot,graph,tree,form</field>
+            <field name="search_view_id" ref="view_jewelry_order_area_loss_search" />
+            <field name="context">{'search_default_group_area': 1}</field>
+        </record>
+
+        <record id="area_loss_action_view_pivot" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_area_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_area_loss_pivot"/>
+            <field name="view_mode">pivot</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="area_loss_action_view_graph" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_area_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_area_loss_graph"/>
+            <field name="view_mode">graph</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="area_loss_action_view_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_area_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_area_loss_tree"/>
+            <field name="view_mode">tree</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="area_loss_action_view_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_area_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_area_loss_form"/>
+            <field name="view_mode">form</field>
+            <field name="sequence">4</field>
+        </record>
+
+
+        <!-- ── Client Loss Analysis ───────────────────────────────────── -->
+
+        <record id="view_jewelry_order_client_loss_form" model="ir.ui.view">
+            <field name="name">jewelry.order.client.loss.form</field>
+            <field name="model">jewelry.order.client.loss</field>
+            <field name="arch" type="xml">
+                <form create="false" delete="false">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_order" type="object"
+                                    class="oe_stat_button" icon="fa-wrench">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Open Repair Order</span>
+                                </div>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="order_id" />
+                            <field name="partner_id" />
+                            <field name="item_type_id" />
+                            <field name="new_product_manufacturing" />
+                            <field name="received_date" />
+                            <field name="received_weight" />
+                            <field name="metal_delivered_weight" />
+                            <field name="added_weight" />
+                            <field name="invoiced_weight" />
+                            <field name="returned_weight" />
+                            <field name="loss" />
+                            <field name="loss_percent" string="Loss %" />
+                            <field name="loss_sign" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_client_loss_tree" model="ir.ui.view">
+            <field name="name">jewelry.order.client.loss.tree</field>
+            <field name="model">jewelry.order.client.loss</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="received_date" />
+                    <field name="partner_id" />
+                    <field name="item_type_id" />
+                    <field name="new_product_manufacturing" />
+                    <field name="order_id" />
+                    <field name="received_weight" />
+                    <field name="metal_delivered_weight" />
+                    <field name="added_weight" />
+                    <field name="invoiced_weight" />
+                    <field name="returned_weight" />
+                    <field name="loss" />
+                    <field name="loss_percent" string="Loss %" />
+                    <field name="loss_sign" optional="hide" />
+                    <button name="action_open_order" type="object"
+                            icon="fa-external-link" title="Open Order"
+                            class="btn-link" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_client_loss_pivot" model="ir.ui.view">
+            <field name="name">jewelry.order.client.loss.pivot</field>
+            <field name="model">jewelry.order.client.loss</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="new_product_manufacturing" type="row" />
+                    <field name="partner_id" type="row" />
+                    <field name="item_type_id" type="col" />
+                    <field name="received_weight" type="measure" />
+                    <field name="metal_delivered_weight" type="measure" />
+                    <field name="added_weight" type="measure" />
+                    <field name="invoiced_weight" type="measure" />
+                    <field name="returned_weight" type="measure" />
+                    <field name="loss" type="measure" />
+                    <field name="loss_percent" type="measure" string="Loss %" operator="avg" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_client_loss_graph" model="ir.ui.view">
+            <field name="name">jewelry.order.client.loss.graph</field>
+            <field name="model">jewelry.order.client.loss</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="partner_id" type="row" />
+                    <field name="loss" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_jewelry_order_client_loss_search" model="ir.ui.view">
+            <field name="name">jewelry.order.client.loss.search</field>
+            <field name="model">jewelry.order.client.loss</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id" string="Client" />
+                    <field name="item_type_id" />
+                    <field name="order_id" />
+                    <filter name="this_month" string="This Month"
+                        domain="[('received_date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')),
+                                 ('received_date', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]" />
+                    <filter name="last_month" string="Last Month"
+                        domain="[('received_date', '&gt;=', (context_today() + relativedelta(months=-1, day=1)).strftime('%Y-%m-%d')),
+                                 ('received_date', '&lt;', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]" />
+                    <filter name="positive_loss" string="Loss"
+                        domain="[('loss_sign', '=', 'loss')]" />
+                    <filter name="negative_loss" string="Negative Loss"
+                        domain="[('loss_sign', '=', 'gain')]" />
+                    <filter name="invalid_data" string="Invalid Data"
+                        domain="[('loss_sign', '=', 'invalid')]" />
+                    <filter name="new_product" string="New Product Manufacturing"
+                        domain="[('new_product_manufacturing', '=', True)]" />
+                    <separator />
+                    <group expand="1" string="Group By">
+                        <filter name="group_partner" string="Client"
+                            context="{'group_by': 'partner_id'}" />
+                        <filter name="group_item_type" string="Item Type"
+                            context="{'group_by': 'item_type_id'}" />
+                        <filter name="group_new_product" string="New Product Manufacturing"
+                            context="{'group_by': 'new_product_manufacturing'}" />
+                        <filter name="group_loss_sign" string="Loss Sign"
+                            context="{'group_by': 'loss_sign'}" />
+                        <filter name="group_month" string="Month"
+                            context="{'group_by': 'received_date:month'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_jewelry_order_client_loss_analysis" model="ir.actions.act_window">
+            <field name="name">Client Loss Analysis</field>
+            <field name="res_model">jewelry.order.client.loss</field>
+            <field name="view_mode">pivot,graph,tree,form</field>
+            <field name="search_view_id" ref="view_jewelry_order_client_loss_search" />
+            <field name="context">{'search_default_group_partner': 1}</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_order_client_loss_analysis"
+            name="Client Loss Analysis"
+            parent="base.menu_custom"
+            action="action_jewelry_order_client_loss_analysis"
+            sequence="100"
+            groups="base.group_system"
+        />
+
+        <record id="client_loss_action_view_pivot" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_client_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_client_loss_pivot"/>
+            <field name="view_mode">pivot</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="client_loss_action_view_graph" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_client_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_client_loss_graph"/>
+            <field name="view_mode">graph</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="client_loss_action_view_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_client_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_client_loss_tree"/>
+            <field name="view_mode">tree</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="client_loss_action_view_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="action_jewelry_order_client_loss_analysis"/>
+            <field name="view_id" ref="view_jewelry_order_client_loss_form"/>
+            <field name="view_mode">form</field>
+            <field name="sequence">4</field>
+        </record>
+
+    </data>
+</odoo>

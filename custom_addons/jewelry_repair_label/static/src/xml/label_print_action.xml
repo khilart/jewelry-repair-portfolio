@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="jewelry_repair_label.PrintAction">
+        <div class="p-3">
+            <div class="mb-3 text-center">
+                <img t-att-src="imageUrl" alt="Label preview"
+                     class="border rounded"
+                     style="image-rendering: pixelated; width: 264px; height: 96px;"/>
+            </div>
+
+            <div t-if="!supported" class="alert alert-warning" role="alert">
+                This browser cannot talk to the printer. Use Chrome or Edge over
+                https, or download the file and print it by hand.
+            </div>
+
+            <div t-if="state.message"
+                 t-att-class="state.failed ? 'alert alert-danger' : 'alert alert-info'"
+                 role="alert">
+                <t t-esc="state.message"/>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a t-att-href="streamUrl" class="btn btn-secondary">Download .tspl</a>
+                <button class="btn btn-primary" t-if="supported"
+                        t-att-disabled="state.busy"
+                        t-on-click="onPrint">Print</button>
+            </div>
+        </div>
+    </t>
+
+</templates>

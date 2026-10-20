@@ -1,0 +1,22 @@
+{
+    "name": "Jewelry Repair Billing",
+    "version": "17.0.1.0.0",
+    "summary": "Billing batches for delivered jewelry repair orders",
+    "license": "LGPL-3",
+    "depends": ["jewelry_repair_delivery", "account", "mail"],
+    "data": [
+        "security/ir.model.access.csv",
+        "security/ir.rules.xml",
+        "data/ir_sequence_data.xml",
+        "reports/billing_report.xml",
+        "reports/customer_statement_report.xml",
+        "reports/cash_bank_statement_report.xml",
+        "views/billing_views.xml",
+        "views/ar_statement_views.xml",
+        "views/balance_adjustment_views.xml",
+        "views/account_move_line_actions.xml",
+        "views/cash_bank_statement_views.xml",
+    ],
+    "installable": True,
+    "application": False,
+}

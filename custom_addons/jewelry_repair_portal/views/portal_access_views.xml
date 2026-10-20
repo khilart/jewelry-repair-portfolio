@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+        <record id="view_jewelry_portal_access_list" model="ir.ui.view">
+            <field name="name">jewelry.portal.access.list</field>
+            <field name="model">jewelry.portal.access</field>
+            <field name="arch" type="xml">
+                <tree string="Portal Client Access" editable="bottom">
+                    <field name="user_id"/>
+                    <field name="partner_id"/>
+                    <field name="show_operations"/>
+                    <field name="collapse_new_product_services"/>
+                    <field name="show_uninvoiced_gems"/>
+                    <field name="show_delivery_weights"/>
+                    <field name="show_payment_statement"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_portal_access_form" model="ir.ui.view">
+            <field name="name">jewelry.portal.access.form</field>
+            <field name="model">jewelry.portal.access</field>
+            <field name="arch" type="xml">
+                <form string="Portal Client Access">
+                    <sheet>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="partner_id"/>
+                            <field name="show_operations"/>
+                            <field name="collapse_new_product_services"/>
+                            <field name="show_uninvoiced_gems"/>
+                            <field name="show_delivery_weights"/>
+                            <field name="show_payment_statement"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_portal_access" model="ir.actions.act_window">
+            <field name="name">Portal Client Access</field>
+            <field name="res_model">jewelry.portal.access</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_portal_access"
+            name="Portal Access"
+            parent="jewelry_repair_base.menu_jewelry_repair_catalogs"
+            action="action_jewelry_portal_access"
+            sequence="90"
+            groups="jewelry_repair_base.group_jewelry_repair_manager"/>
+
+    </data>
+</odoo>

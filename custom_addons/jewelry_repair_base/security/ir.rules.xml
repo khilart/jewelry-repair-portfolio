@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Remove previously created director write-blocking rules (replaced by write() override) -->
+        <delete model="ir.rule" search="[('name', 'like', 'Director:')]"/>
+    </data>
+    <!-- TODO: restrict repair order visibility for masters
+         Masters currently have full read access to repair orders (prices, billing, client info).
+         Desired: masters should not see commercial data (service prices, billing amounts).
+         Blocked by: operation form pulls item_image, description, deadline, state from order via
+         non-stored related fields — blocking order access breaks the operation form entirely.
+         Options to implement later:
+           A) store=True on order_item_image, order_description, order_deadline_date, order_state
+              + stored related fields for delivery_id/billing_batch_id in delivery/billing modules
+              + ir.rule with domain [('id', '=', 0)] for masters on jewelry.repair.order
+           B) keep read access, hide price/billing fields on order form view using groups attribute
+    -->
+</odoo>

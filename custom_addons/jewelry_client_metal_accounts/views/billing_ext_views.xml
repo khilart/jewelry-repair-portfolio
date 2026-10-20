@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <record id="view_billing_batch_form_client_metal" model="ir.ui.view">
+            <field name="name">jewelry.repair.billing.batch.form.client.metal</field>
+            <field name="model">jewelry.repair.billing.batch</field>
+            <field name="inherit_id" ref="jewelry_repair_billing.view_jewelry_repair_billing_batch_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Add client metal account to the right group in the header -->
+                <xpath expr="//group/group[field[@name='date_from']]" position="inside">
+                    <field name="client_metal_account_id"
+                        options="{'no_create': True}"
+                        invisible="not partner_id"/>
+                    <field name="client_metal_account_balance"
+                        readonly="1"
+                        invisible="not client_metal_account_id"
+                        class="fw-bold"/>
+                </xpath>
+
+                <!-- Add metal columns to the billing lines tree (draft state) -->
+                <xpath expr="//field[@name='line_ids']//tree//field[@name='order_amount_total']" position="after">
+                    <field name="total_pricing_fine"
+                        string="Metal (fine g)"
+                        readonly="1"
+                        optional="show"
+                        invisible="total_pricing_fine == 0"/>
+                    <field name="total_debit_fine_max"
+                        string="Max Debit (fine g)"
+                        readonly="1"
+                        optional="hide"
+                        invisible="total_pricing_fine == 0"/>
+                    <field name="client_metal_debit_fine"
+                        string="Debit from Account (fine g)"
+                        optional="show"
+                        invisible="total_pricing_fine == 0"/>
+                    <field name="effective_amount_total"
+                        string="Effective Total"
+                        readonly="1"
+                        optional="show"
+                        invisible="client_metal_debit_fine == 0"/>
+                    <button name="action_fill_metal"
+                        type="object"
+                        string="Metal"
+                        title="Cover metal cost only"
+                        icon="fa-circle-o"
+                        optional="show"
+                        invisible="total_pricing_fine == 0 or parent.state != 'draft'"/>
+                    <button name="action_fill_full"
+                        type="object"
+                        string="Full"
+                        title="Cover full order amount"
+                        icon="fa-circle"
+                        optional="show"
+                        invisible="total_pricing_fine == 0 or parent.state != 'draft'"/>
+                </xpath>
+
+                <!-- Fill-all metal buttons above the lines table -->
+                <xpath expr="//field[@name='line_ids']" position="before">
+                    <div class="d-flex gap-2 mb-2" invisible="state != 'draft' or not client_metal_account_id">
+                        <button name="action_fill_all_metal" type="object" string="Cover Metal for Selected"
+                                class="btn btn-sm btn-secondary"/>
+                        <button name="action_fill_all_full" type="object" string="Cover Full for Selected"
+                                class="btn btn-sm btn-secondary"/>
+                    </div>
+                </xpath>
+
+                <!-- Metal weight totals for selected lines (below the table) -->
+                <xpath expr="//field[@name='order_ids']" position="before">
+                    <group invisible="total_metal_fine_selected == 0">
+                        <group string="Metal Totals (selected)">
+                            <field name="total_metal_fine_selected" readonly="1"/>
+                            <field name="total_debit_fine_selected" readonly="1"
+                                invisible="total_debit_fine_selected == 0"/>
+                        </group>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

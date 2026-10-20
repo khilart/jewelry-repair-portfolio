@@ -1,0 +1,1464 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_repair_billing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260324\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-02 09:38+0000\n"
+"PO-Revision-Date: 2026-09-02 09:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.report,print_report_name:jewelry_repair_billing.action_report_jewelry_repair_billing
+msgid "'Billing - %s' % (object.name or '')"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.report,print_report_name:jewelry_repair_billing.action_report_cash_bank_statement
+msgid "'Cash & Bank %s — %s' % (object.date_from, object.date_to)"
+msgstr "'Касса и банк %s — %s' % (object.date_from, object.date_to)"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.report,print_report_name:jewelry_repair_billing.action_report_jewelry_customer_statement
+msgid "'Statement - %s' % (object.partner_id.name or '')"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid ""
+".\n"
+"                                Suggested period starts from the next day."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "<span class=\"h4\">Billing Act</span>"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+msgid "<span class=\"h4\">Statement of Outstanding Balance</span>"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid ""
+"<span invisible=\"last_billing_date_to or not partner_id\">\n"
+"                                No previous billing batches for this customer.\n"
+"                            </span>"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "<strong>Customer:</strong>"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "<strong>Notes:</strong>"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_account_account
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__account_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__account_id
+msgid "Account"
+msgstr "Аккаунт"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_account_move_line__counterpart_account_id
+msgid "Account of the largest other line of the same journal entry."
+msgstr "Счёт самой крупной из остальных строк той же проводки."
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_ar_report
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_ar_report
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report
+msgid "Accounts Receivable"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_ar_summary
+msgid "Accounts Receivable Summary by Customer"
+msgstr "Сводка дебиторки по клиентам"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "Add at least one delivered order before confirming the billing batch."
+msgstr ""
+"Добавьте хотя бы один выданный заказ перед подтверждением пакета биллинга."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__advance_amount
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Advance (Credit)"
+msgstr "Авансы (кредит)"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Alloy"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__amount
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Amount"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__unbilled_amount
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+msgid "Amount to Bill"
+msgstr "Сумма к выставлению"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "An invoice is already linked to this billing batch."
+msgstr "Счет уже привязан к этому пакету биллинга."
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+msgid "As of"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Balance"
+msgstr "Остаток"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_move_line__running_balance
+msgid "Balance After"
+msgstr "Остаток после"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_account_move_line__running_balance
+msgid ""
+"Balance of the account after this line, over all posted lines in date order,"
+" whatever filters are applied to the list."
+msgstr "Остаток счёта после этой строки: все проведённые строки по порядку дат, независимо от фильтров списка."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__account_line_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+msgid "Balances"
+msgstr "Остатки"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Batch"
+msgstr "Пакет"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__name
+msgid "Batch Number"
+msgstr "Номер пакета"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_delivery__billing_status__billed
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_delivery_search_billing
+msgid "Billed"
+msgstr "Забиллировано"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_ar_statement_line__source__billed
+msgid "Billed, not invoiced"
+msgstr "Выставлено в акт, без счёта"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_delivery__billing_status
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_billing_batches
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_delivery_search_billing
+msgid "Billing"
+msgstr "Биллинг"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.report,name:jewelry_repair_billing.action_report_jewelry_repair_billing
+msgid "Billing Act"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__batch_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__batch_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_order__billing_batch_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Billing Batch"
+msgstr "Пакет биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_billing_batch
+msgid "Billing Batches"
+msgstr "Пакеты биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_order__billing_date
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Billing Date"
+msgstr "Дата биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__line_ids
+msgid "Billing Lines"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__line_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+msgid "Breakdown"
+msgstr "Расшифровка"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+msgid "Build Statement"
+msgstr "Сформировать ведомость"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "Cancel the confirmed billing batch before resetting it to draft."
+msgstr "Отмените подтвержденный пакет биллинга перед возвратом в черновик."
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "Cancel the linked invoice before cancelling the billing batch."
+msgstr "Отмените связанный счет перед отменой пакета биллинга."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_billing_batch__state__cancel
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_journal_balance
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_journal_balance
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+msgid "Cash & Bank"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/cash_bank_statement.py:0
+#, python-format
+msgid "Cash & Bank %s"
+msgstr "Касса и банк %s"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/cash_bank_statement.py:0
+#: model:ir.actions.report,name:jewelry_repair_billing.action_report_cash_bank_statement
+#: model:ir.actions.server,name:jewelry_repair_billing.action_jewelry_cash_bank_statement_server
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_cash_bank_statement
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_cash_bank_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+#, python-format
+msgid "Cash & Bank Statement"
+msgstr "Ведомость по кассе и банку"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_cash_bank_statement_account
+msgid "Cash & Bank Statement Balance"
+msgstr "Остаток по счёту в ведомости кассы и банка"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_cash_bank_statement_line
+msgid "Cash & Bank Statement Breakdown Line"
+msgstr "Строка расшифровки ведомости кассы и банка"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+msgid "Cash &amp; Bank Statement"
+msgstr "Ведомость по кассе и банку"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+msgid "Certificate No."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Clear"
+msgstr "Очистить"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Clear Selection"
+msgstr "Снять выбор"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Close"
+msgstr "Закрыть"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__closing_balance
+msgid "Closing"
+msgstr "На конец"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+msgid "Closing balance"
+msgstr "Исходящий остаток"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+msgid "Code"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__company_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_client_balance_adjustment__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Confirm Billing"
+msgstr "Подтвердить биллинг"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "Confirm the billing batch before creating an invoice."
+msgstr "Подтвердите пакет биллинга перед созданием счета."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_repair_ar_summary__pending_invoice_amount
+msgid "Confirmed billing batches without an invoice yet"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_move_line__counterpart_account_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__counterpart_account_id
+msgid "Counterpart"
+msgstr "Корр. счёт"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+msgid "Create Batch"
+msgstr "Создать биллинг"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Create Invoice"
+msgstr "Создать счет"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+msgid "Credit"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__currency_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_account__current_credit
+msgid "Current Credit"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_account__current_debit
+msgid "Current Debit"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_cash_bank_statement__period_preset__custom
+msgid "Custom"
+msgstr "Произвольный"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__partner_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__partner_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__partner_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__partner_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+msgid "Customer"
+msgstr "Клиент"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_ar_summary
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_ar_summary
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Customer Balances"
+msgstr "Задолженность клиентов"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_ar_statement
+msgid "Customer Outstanding Statement"
+msgstr "Выписка по задолженности клиента"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_ar_statement_line
+msgid "Customer Outstanding Statement Line"
+msgstr "Строка выписки по задолженности"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/cash_bank_statement.py:0
+#, python-format
+msgid "Customer payments"
+msgstr "Оплаты клиентов"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/ar_statement.py:0
+#: code:addons/jewelry_repair_billing/models/ar_statement.py:0
+#: code:addons/jewelry_repair_billing/models/ar_summary.py:0
+#: model:ir.actions.report,name:jewelry_repair_billing.action_report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#, python-format
+msgid "Customer Statement"
+msgstr "Выписка по задолженности"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__date_from
+msgid "Date From"
+msgstr "Дата с"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__date_to
+msgid "Date To"
+msgstr "Дата по"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+msgid "Debit"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_repair_ar_summary__unbilled_amount
+msgid "Delivered orders not yet included in any billing batch"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__order_delivery_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__order_delivery_date
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Delivery Date"
+msgstr "Дата выдачи"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Details"
+msgstr "Детализация"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__reference
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Document"
+msgstr "Документ"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_billing_batch__state__done
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Done"
+msgstr "Выполнено"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_billing_batch__state__draft
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.constraint,message:jewelry_repair_billing.constraint_jewelry_repair_billing_line_billing_line_order_unique
+msgid "Each order can appear only once in a billing batch."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__entry_count
+msgid "Entries"
+msgstr "Проводок"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Entry"
+msgstr "Проводка"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__date_from
+msgid "From"
+msgstr "С"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Group By"
+msgstr "Группировать по"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__inflow
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__inflow
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "In"
+msgstr "Приход"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__selected
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__selected
+msgid "Include"
+msgstr "Включить"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Internal notes for the billing batch"
+msgstr "Внутренние заметки по пакету биллинга"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__invoice_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__invoice_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_tree
+#, python-format
+msgid "Invoice"
+msgstr "Счет"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__invoice_payment_state
+msgid "Invoice Payment"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__invoice_reference
+msgid "Invoice Reference"
+msgstr "Ссылка на счет"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__invoiced_unpaid_amount
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Invoiced Unpaid"
+msgstr "Выставлено, не оплачено"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_ar_statement_line__source__invoiced
+msgid "Invoiced, unpaid"
+msgstr "В счёте, не оплачено"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_customer_invoice
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_customer_invoices
+msgid "Invoices"
+msgstr "Счета"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Issued by: ____________________"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__name
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+msgid "Item"
+msgstr "Статья"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__order_item_type_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__order_item_type_id
+msgid "Item Type"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_billing_batch
+msgid "Jewelry Repair Billing Batch"
+msgstr "Пакет биллинга ювелирного ремонта"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_billing_line
+msgid "Jewelry Repair Billing Line"
+msgstr "Строка биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_delivery
+msgid "Jewelry Repair Delivery"
+msgstr "Выдача заказа на ремонт"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_order
+msgid "Jewelry Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__last_billing_date_to
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+msgid "Last Billed To"
+msgstr "Последний биллинг до"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__last_billing_date_to
+msgid "Last Billing Period End"
+msgstr "Конец последнего периода биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_cash_bank_statement__period_preset__last_month
+msgid "Last Month"
+msgstr "Прошлый месяц"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление: автор"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__write_date
+msgid "Last Updated on"
+msgstr "Последнее обновление"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Last billing period ended on"
+msgstr "Последний биллинг завершился"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+msgid "Less payments received:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Material"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Materials"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Materials Total:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__move_line_ids
+msgid "Move Line"
+msgstr "Строки проводок"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_journal_balance_tree
+msgid "Movements"
+msgstr "Движения"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "New"
+msgstr "Новый"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "No Invoice"
+msgstr "Без счёта"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "No invoice is linked to this billing batch yet."
+msgstr "К этому пакету биллинга еще не привязан счет."
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/ar_summary.py:0
+#, python-format
+msgid "No outstanding items found for this customer."
+msgstr "У этого клиента нет задолженности."
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "No."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_delivery__billing_status__not_billed
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_delivery_search_billing
+msgid "Not Billed"
+msgstr "Не забиллировано"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__notes
+msgid "Notes"
+msgstr "Заметки"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Open Entry"
+msgstr "Открыть проводку"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Open Invoice"
+msgstr "Открыть счет"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__opening_balance
+msgid "Opening"
+msgstr "На начало"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/balance_statement.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#, python-format
+msgid "Order"
+msgstr "Заказ"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__order_count
+msgid "Order Count"
+msgstr "Количество заказов"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__order_name
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__order_name
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Order No."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__order_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Orders"
+msgstr "Заказы"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__amount_gross
+msgid "Orders Total"
+msgstr "Сумма заказов"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Orders Total:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/cash_bank_statement.py:0
+#, python-format
+msgid "Other"
+msgstr "Прочее"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__outflow
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__outflow
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Out"
+msgstr "Расход"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+msgid "Outstanding"
+msgstr "Ожидает оплаты"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__line_ids
+msgid "Outstanding Items"
+msgstr "Позиции задолженности"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Outstanding items"
+msgstr "Позиции задолженности"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__payment_applied
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_order__payment_status__paid
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Paid"
+msgstr "Оплачено"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_order__payment_status__partial
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Partially Paid"
+msgstr "Частично оплачено"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/balance_statement.py:0
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_order__payment_status
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_tree
+#, python-format
+msgid "Payment"
+msgstr "Оплата"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_customer_payments
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_customer_payments
+msgid "Payments"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__amount_payments
+msgid "Payments Received"
+msgstr "Получено оплат"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_repair_billing_pending
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_billing_pending
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_repair_billing_pending_main
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+msgid "Pending Billing"
+msgstr "Ожидает биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_repair_billing_pending
+msgid "Pending Billing by Customer"
+msgstr ""
+"Ожидает биллингаСледующие заказы не соответствуют клиенту или расчётному периоду:\n"
+"%s"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__pending_invoice_amount
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Pending Invoice"
+msgstr "Ожидает счёта"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__period_preset
+msgid "Period Preset"
+msgstr "Период"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+msgid "Period:"
+msgstr "Период:"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_repair_ar_summary__invoiced_unpaid_amount
+msgid "Posted invoices with outstanding balance"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Print"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+msgid "Print PDF"
+msgstr "Печать PDF"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Print Statement"
+msgstr "Печать выписки"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__order_quantity
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Qty"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Received by: ____________________"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.server,name:jewelry_repair_billing.action_reconcile_move_lines
+msgid "Reconcile"
+msgstr "Сверить"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__order_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__order_id
+msgid "Repair Order"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Reset to Draft"
+msgstr "Вернуть в черновик"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Select All"
+msgstr "Выбрать все"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/ar_statement.py:0
+#, python-format
+msgid "Select at least one item to print the statement."
+msgstr "Выберите хотя бы одну позицию для печати выписки."
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "Select by Period"
+msgstr "Выбрать за период"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Service"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Services"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Services Total:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"Set an income account on the material product or its category before "
+"creating the invoice."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"Set an income account on the service product or its category before creating"
+" the invoice."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"Set an income account on the stone product or its category before creating "
+"the invoice."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "Set the period dates before selecting orders by period."
+msgstr "Укажите даты периода перед выбором заказов за период."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__state
+msgid "State"
+msgstr "Статус"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__statement_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_account__statement_id
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement_line__statement_id
+msgid "Statement"
+msgstr "Выписка"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__date
+msgid "Statement Date"
+msgstr "Дата выписки"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement_line__source
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Status"
+msgstr "Статус"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+msgid "Subtotal:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/cash_bank_statement.py:0
+#, python-format
+msgid "The start date must be earlier than or equal to the end date."
+msgstr "Дата начала должна быть меньше или равна дате окончания."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_cash_bank_statement__period_preset__this_week
+msgid "This Week"
+msgstr "Текущая неделя"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_cash_bank_statement__period_preset__this_year
+msgid "This Year"
+msgstr "Текущий год"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_cash_bank_statement__date_to
+msgid "To"
+msgstr "По"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_cash_bank_statement__period_preset__today
+msgid "Today"
+msgstr "Сегодня"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+msgid "Total Closing"
+msgstr "Итого на конец"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "TOTAL DUE:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid "The billing batch does not contain any orders."
+msgstr "Пакет биллинга не содержит заказов."
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"The following orders are already included in another billing batch:\n"
+"%s"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"The following orders do not match the customer or are not in delivered state:\n"
+"%s"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"There are no service or material lines to invoice in the selected billing "
+"batch."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_cash_bank_statement__period_preset__this_month
+msgid "This Month"
+msgstr "Текущий месяц"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_line__order_amount_total
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+msgid "Total"
+msgstr "Итого"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__amount_total
+msgid "Total Amount"
+msgstr "Общая сумма"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_statement__amount_due
+msgid "Total Due"
+msgstr "К оплате"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Total In"
+msgstr "Итого приход"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+msgid "Total Opening"
+msgstr "Итого на начало"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Total Out"
+msgstr "Итого расход"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__total_outstanding
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+msgid "Total Outstanding"
+msgstr "Итого к получению"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+msgid "Total Qty"
+msgstr "Всего кол-во"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+msgid "Total Qty:"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_ar_summary__unbilled_amount
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_ar_statement_line__source__unbilled
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_order__payment_status__unbilled
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_summary_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Unbilled"
+msgstr "Не выставлено"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_pending__unbilled_order_count
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_pending_tree
+msgid "Unbilled Orders"
+msgstr "Заказов без биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_repair_order__payment_status__unpaid
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_report_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_search_billing
+msgid "Unpaid"
+msgstr "Не оплачено"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_repair_ar_summary__advance_amount
+msgid ""
+"Unreconciled customer prepayments and credit notes available for future "
+"invoices"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/cash_bank_statement.py:0
+#, python-format
+msgid "Vendor payments"
+msgstr "Оплаты поставщикам"
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_ar_statement_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+msgid "View Order"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_customer_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "Weight"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"You cannot cancel a delivery that already contains billed orders. Cancel the"
+" billing batch first."
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_jewelry_repair_billing_document
+msgid "signature / name"
+msgstr ""
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_form_billing
+msgid ""
+"<strong>Rebuild pending.</strong> This order was rolled back from billing\n"
+"                        batch"
+msgstr "<strong>Ожидает пересборки.</strong> Заказ откачен из биллинга"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_order__amendment_billing_batch_id
+msgid "Billing Batch To Rebuild"
+msgstr "Биллинг к пересборке"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_repair_order__amendment_billing_batch_id
+msgid "Billing batch rolled back to unlock this order, waiting to be rebuilt."
+msgstr "Биллинг, откаченный для правки этого заказа; ожидает пересборки."
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#, python-format
+msgid ""
+"Invoice %s is paid. Cancelling it removes the reconciliation, and the "
+"payment stays unallocated until you match it against the new invoice."
+msgstr ""
+"Счёт %s оплачен. При отмене сверка с платежом снимется, и платёж останется "
+"неразнесённым, пока вы не привяжете его к новому счёту."
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_order_form_billing
+msgid ""
+"— confirm it again and create a new invoice once the order is corrected."
+msgstr ""
+"— после исправления заказа подтвердите его заново и создайте новый счёт."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__amendment_order_ids
+msgid "Orders Being Corrected"
+msgstr "Заказы в правке"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_repair_billing_batch__rebuild_pending
+msgid ""
+"This batch was rolled back to correct an order and has not been confirmed "
+"again."
+msgstr "Биллинг откачен для правки заказа и ещё не подтверждён заново."
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__rebuild_pending
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_search
+msgid "Waiting For Rebuild"
+msgstr "Ожидает пересборки"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_repair_billing_batch__delivery_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_repair_billing_batch_form
+#, python-format
+msgid "Deliveries"
+msgstr "Выдачи"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/billing.py:0
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_bank_statement_line__jewelry_billing_batch_ids
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_move__jewelry_billing_batch_ids
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_account_payment__jewelry_billing_batch_ids
+#, python-format
+msgid "Repair Billing"
+msgstr "Биллинг ремонта"
+
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/balance_statement.py:0
+#, python-format
+msgid ""
+"%s already has an opening balance. Cancel the existing one before entering "
+"another."
+msgstr "У клиента %s уже есть входящий остаток. Отмените существующий, прежде чем вводить новый."
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_client_balance_adjustment_form
+msgid "Balance Adjustment"
+msgstr "Корректировка баланса"
+
+#. module: jewelry_repair_billing
+#: model:ir.actions.act_window,name:jewelry_repair_billing.action_jewelry_client_balance_adjustment
+#: model:ir.ui.menu,name:jewelry_repair_billing.menu_jewelry_client_balance_adjustment
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_client_balance_adjustment_tree
+msgid "Balance Adjustments"
+msgstr "Корректировки баланса"
+
+#. module: jewelry_repair_billing
+#: model:ir.model,name:jewelry_repair_billing.model_jewelry_client_balance_adjustment
+msgid "Client Balance Adjustment"
+msgstr "Корректировка баланса клиента"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_client_balance_adjustment__type__opening
+msgid "Opening Balance"
+msgstr "Входящий остаток"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/balance_statement.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.report_cash_bank_statement_document
+#, python-format
+msgid "Opening balance"
+msgstr "Входящий остаток"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_client_balance_adjustment__type__correction
+msgid "Correction"
+msgstr "Корректировка"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_client_balance_adjustment__type__write_off
+msgid "Write-off"
+msgstr "Списание"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields.selection,name:jewelry_repair_billing.selection__jewelry_client_balance_adjustment__state__posted
+msgid "Posted"
+msgstr "Проведено"
+
+#. module: jewelry_repair_billing
+#. odoo-python
+#: code:addons/jewelry_repair_billing/models/balance_statement.py:0
+#, python-format
+msgid "Refund"
+msgstr "Возврат"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_client_balance_adjustment__type
+msgid "Type"
+msgstr "Тип"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_client_balance_adjustment__date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,field_description:jewelry_repair_billing.field_jewelry_client_balance_adjustment__label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_cash_movement_tree
+msgid "Description"
+msgstr "Описание"
+
+#. module: jewelry_repair_billing
+#: model:ir.model.fields,help:jewelry_repair_billing.field_jewelry_client_balance_adjustment__amount
+msgid "Positive increases what the customer owes, negative decreases it."
+msgstr "Положительная сумма увеличивает долг клиента, отрицательная — уменьшает."
+
+#. module: jewelry_repair_billing
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_billing.view_jewelry_client_balance_adjustment_form
+msgid "Reason shown to the customer in the statement"
+msgstr "Причина, которую клиент увидит в ведомости"

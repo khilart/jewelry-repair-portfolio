@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+
+        <record id="view_jewelry_client_balance_adjustment_tree" model="ir.ui.view">
+            <field name="name">jewelry.client.balance.adjustment.tree</field>
+            <field name="model">jewelry.client.balance.adjustment</field>
+            <field name="arch" type="xml">
+                <tree string="Balance Adjustments">
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="type"/>
+                    <field name="label"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_client_balance_adjustment_form" model="ir.ui.view">
+            <field name="name">jewelry.client.balance.adjustment.form</field>
+            <field name="model">jewelry.client.balance.adjustment</field>
+            <field name="arch" type="xml">
+                <form string="Balance Adjustment">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="date"/>
+                                <field name="type"/>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="label" placeholder="Reason shown to the customer in the statement"/>
+                        </group>
+                        <div class="text-muted">
+                            A positive amount increases what the customer owes, a negative one decreases it.
+                            The date of an opening balance is the start of the statement: orders delivered and
+                            payments received before it are not listed, because they are already part of it.
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_client_balance_adjustment" model="ir.actions.act_window">
+            <field name="name">Balance Adjustments</field>
+            <field name="res_model">jewelry.client.balance.adjustment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_client_balance_adjustment"
+            name="Balance Adjustments"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_client_balance_adjustment"
+            sequence="47"
+            groups="jewelry_repair_base.group_jewelry_repair_manager"
+        />
+
+    </data>
+</odoo>

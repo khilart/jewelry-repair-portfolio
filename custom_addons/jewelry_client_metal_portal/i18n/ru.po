@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_client_metal_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-31 14:52+0000\n"
+"PO-Revision-Date: 2026-08-31 14:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "<span class=\"text-muted me-2\">Balance, g fine:</span>"
+msgstr "<span class=\"text-muted me-2\">Остаток, г чистого:</span>"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_repair_detail_metal
+msgid "<span class=\"text-muted\">Order amount:</span>"
+msgstr "<span class=\"text-muted\">Сумма заказа:</span>"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_repair_detail_metal
+msgid "<span class=\"text-muted\">Paid with metal:</span>"
+msgstr "<span class=\"text-muted\">Оплачено металлом:</span>"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "Alloy Weight (g)"
+msgstr "Вес в сплаве (г)"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "Balance (g)"
+msgstr "Остаток (г)"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "Change (g)"
+msgstr "Изменение (г)"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "Fine (g)"
+msgstr "В чистоте (г)"
+
+#. module: jewelry_client_metal_portal
+#: model:ir.model.fields,help:jewelry_client_metal_portal.field_jewelry_portal_access__show_metal_account
+msgid ""
+"If enabled, the client will see a Metal Account tab with the statement of "
+"metal deposits and repair debits."
+msgstr ""
+"Если включено, клиент увидит вкладку «Металл-счёт» с выпиской по приходам "
+"металла и списаниям на заказы."
+
+#. module: jewelry_client_metal_portal
+#: model:ir.model,name:jewelry_client_metal_portal.model_jewelry_portal_access
+msgid "Jewelry Portal Client Access"
+msgstr "Доступ клиентов к порталу"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_my_repairs_metal
+msgid "Metal Account"
+msgstr "Металл-счёт"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "No metal account found."
+msgstr "Металл-счёт не найден."
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_my_repairs_metal
+msgid "No repair orders found."
+msgstr "Заказы не найдены."
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "No transactions yet."
+msgstr "Операций пока нет."
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "Operation"
+msgstr "Операция"
+
+#. module: jewelry_client_metal_portal
+#: model:ir.model.fields,field_description:jewelry_client_metal_portal.field_jewelry_portal_access__show_metal_account
+msgid "Show Metal Account"
+msgstr "Показывать металл-счёт"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "To Metal (g)"
+msgstr "В счёт металла (г)"
+
+#. module: jewelry_client_metal_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_portal.portal_metal_statement
+msgid "To Services (g)"
+msgstr "В счёт услуг (г)"

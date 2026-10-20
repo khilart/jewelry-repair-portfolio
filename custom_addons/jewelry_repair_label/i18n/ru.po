@@ -1,0 +1,260 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_repair_label
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260324\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-09 21:28+0000\n"
+"PO-Revision-Date: 2026-09-09 21:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid "<span class=\"o_form_label\">Label Size</span>"
+msgstr "<span class=\"o_form_label\">Размер этикетки</span>"
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid "<span class=\"o_form_label\">Print Head</span>"
+msgstr "<span class=\"o_form_label\">Печатающая головка</span>"
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid "<span class=\"o_form_label\">Printer</span>"
+msgstr "<span class=\"o_form_label\">Принтер</span>"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/printer_picker.xml:0
+#, python-format
+msgid "A printer is selected in this browser."
+msgstr "Принтер выбран в этом браузере."
+
+#. module: jewelry_repair_label
+#: model:ir.model,name:jewelry_repair_label.model_res_company
+msgid "Companies"
+msgstr "Компании"
+
+#. module: jewelry_repair_label
+#: model:ir.model,name:jewelry_repair_label.model_res_config_settings
+msgid "Config Settings"
+msgstr "Параметры конфигурации"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/label_print_action.xml:0
+#, python-format
+msgid "Download .tspl"
+msgstr "Скачать .tspl"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/printer_picker.xml:0
+#, python-format
+msgid "Forget"
+msgstr "Забыть"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_company__label_gap_mm
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_config_settings__label_gap_mm
+msgid ""
+"Gap between die-cut labels on the roll, used by the printer to find the next"
+" label. Set it to 0 for continuous tape: with a gap set, the printer keeps "
+"feeding blank tape looking for one that is not there."
+msgstr "Зазор между высеченными этикетками на рулоне — по нему принтер находит следующую. Для непрерывной ленты ставьте 0: с ненулевым зазором принтер будет гнать пустую ленту в поисках того, чего нет."
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_company__label_density
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_config_settings__label_density
+msgid "Heat setting of the print head, 1 to 15. Higher is darker."
+msgstr "Нагрев головки, от 1 до 15. Больше — темнее."
+
+#. module: jewelry_repair_label
+#: model:ir.model,name:jewelry_repair_label.model_jewelry_repair_order
+msgid "Jewelry Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_company__label_gap_mm
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_config_settings__label_gap_mm
+msgid "Label Gap (mm)"
+msgstr "Зазор между этикетками (мм)"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_company__label_length_mm
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_config_settings__label_length_mm
+msgid "Label Length (mm)"
+msgstr "Длина этикетки (мм)"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_company__label_tape_width_mm
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_config_settings__label_tape_width_mm
+msgid "Label Tape Width (mm)"
+msgstr "Ширина ленты (мм)"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/label_print_action.xml:0
+#, python-format
+msgid "Label preview"
+msgstr "Предпросмотр этикетки"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_company__label_length_mm
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_config_settings__label_length_mm
+msgid "Length of a single label along the feed direction."
+msgstr "Длина одной этикетки вдоль направления подачи."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/js/order_scan_list.js:0
+#, python-format
+msgid "No order found for %s."
+msgstr "Заказ %s не найден."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/printer_picker.xml:0
+#, python-format
+msgid "No printer selected in this browser yet."
+msgstr "Принтер в этом браузере ещё не выбран."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/js/printer_picker.js:0
+#, python-format
+msgid "No printer was selected."
+msgstr "Принтер не выбран."
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid "Order Labels"
+msgstr "Этикетки заказов"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_company__label_tape_width_mm
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_config_settings__label_tape_width_mm
+msgid "Physical width of the label tape. Goes into the SIZE command."
+msgstr "Физическая ширина ленты. Подставляется в команду SIZE."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/label_print_action.xml:0
+#, python-format
+msgid "Print"
+msgstr "Печать"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_company__label_density
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_config_settings__label_density
+msgid "Print Density"
+msgstr "Плотность печати"
+
+#. module: jewelry_repair_label
+#. odoo-python
+#: code:addons/jewelry_repair_label/models/repair_order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.view_jewelry_repair_order_form_label
+#, python-format
+msgid "Print Label"
+msgstr "Печать этикетки"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_company__label_dpi
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_config_settings__label_dpi
+msgid "Print head resolution. Used to convert millimetres into dots."
+msgstr "Разрешение головки. Используется для перевода миллиметров в точки."
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_company__label_print_width_mm
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_config_settings__label_print_width_mm
+msgid "Printable Width (mm)"
+msgstr "Печатная ширина (мм)"
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_company__label_dpi
+#: model:ir.model.fields,field_description:jewelry_repair_label.field_res_config_settings__label_dpi
+msgid "Printer Resolution (dpi)"
+msgstr "Разрешение принтера (dpi)"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/printer_picker.xml:0
+#, python-format
+msgid "Select Printer"
+msgstr "Выбрать принтер"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/js/label_print_action.js:0
+#, python-format
+msgid "Sending to the printer…"
+msgstr "Отправка на принтер…"
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/js/label_print_action.js:0
+#, python-format
+msgid "Sent. The label should come out now."
+msgstr "Отправлено. Этикетка должна выехать."
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid ""
+"Tape width and label length as loaded in the printer.\n"
+"                                    The gap is the unprinted space between labels on the roll."
+msgstr "Ширина ленты и длина этикетки — как заправлено в принтере. Зазор — непечатаемый промежуток между этикетками на рулоне."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/js/label_print_action.js:0
+#, python-format
+msgid "The label could not be built."
+msgstr "Не удалось сформировать этикетку."
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid ""
+"The printable width is narrower than the tape: the head\n"
+"                                    leaves an unprinted edge on both sides."
+msgstr "Печатная ширина уже ленты: головка оставляет непечатаемый край с обеих сторон."
+
+#. module: jewelry_repair_label
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_label.res_config_settings_view_form_label
+msgid ""
+"The printer is reached from the browser over a serial\n"
+"                                    port, so it is selected once per workstation and the\n"
+"                                    choice stays in that browser, not in the database."
+msgstr "Принтер доступен из браузера через последовательный порт, поэтому выбирается один раз на рабочем месте, и выбор остаётся в браузере, а не в базе."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/printer_picker.xml:0
+#, python-format
+msgid ""
+"This browser cannot talk to the printer. Chrome or Edge is needed,\n"
+"                and the page must be served over https."
+msgstr "Этот браузер не умеет работать с принтером. Нужен Chrome или Edge, и страница должна открываться по https."
+
+#. module: jewelry_repair_label
+#. odoo-javascript
+#: code:addons/jewelry_repair_label/static/src/xml/label_print_action.xml:0
+#, python-format
+msgid ""
+"This browser cannot talk to the printer. Use Chrome or Edge over\n"
+"                https, or download the file and print it by hand."
+msgstr "Этот браузер не умеет работать с принтером. Откройте Chrome или Edge по https либо скачайте файл и напечатайте вручную."
+
+#. module: jewelry_repair_label
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_company__label_print_width_mm
+#: model:ir.model.fields,help:jewelry_repair_label.field_res_config_settings__label_print_width_mm
+msgid ""
+"Width the print head actually covers. Smaller than the tape width, which "
+"leaves an unprinted edge on both sides."
+msgstr "Ширина, которую реально покрывает головка. Меньше ширины ленты — по краям остаётся непечатаемая полоса."

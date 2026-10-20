@@ -1,0 +1,572 @@
+<odoo>
+    <data>
+
+
+        <record id="view_jewelry_repair_billing_batch_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.billing.batch.tree</field>
+            <field name="model">jewelry.repair.billing.batch</field>
+            <field name="arch" type="xml">
+                <tree decoration-warning="state == 'done' and not invoice_id"
+                      decoration-muted="state == 'cancel'"
+                      decoration-danger="rebuild_pending">
+                    <field name="rebuild_pending" column_invisible="1"/>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="order_count"/>
+                    <field name="amount_total"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'draft'"
+                           decoration-success="state == 'done'"
+                           decoration-danger="state == 'cancel'"/>
+                    <field name="invoice_id" string="Invoice" optional="show"/>
+                    <field name="invoice_payment_state" widget="badge" string="Payment"
+                           optional="show"
+                           decoration-success="invoice_payment_state == 'paid'"
+                           decoration-warning="invoice_payment_state in ('partial', 'in_payment')"
+                           decoration-danger="invoice_payment_state == 'not_paid'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_billing_batch_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.billing.batch.form</field>
+            <field name="model">jewelry.repair.billing.batch</field>
+            <field name="arch" type="xml">
+                <form string="Billing Batch">
+                    <header>
+                        <button
+                            name="action_print_billing"
+                            type="object"
+                            string="Print"
+                            invisible="state != 'done'"
+                        />
+                        <button
+                            name="action_confirm"
+                            type="object"
+                            string="Confirm Billing"
+                            class="btn-primary"
+                            invisible="state != 'draft'"
+                        />
+                        <button
+                            name="action_create_invoice"
+                            type="object"
+                            string="Create Invoice"
+                            class="btn-primary"
+                            invisible="state != 'done' or invoice_id"
+                        />
+                        <button
+                            name="action_open_invoice"
+                            type="object"
+                            string="Open Invoice"
+                            invisible="not invoice_id"
+                        />
+                        <button
+                            name="action_cancel"
+                            type="object"
+                            string="Cancel"
+                            invisible="state == 'cancel'"
+                        />
+                        <button
+                            name="action_reset_to_draft"
+                            type="object"
+                            string="Reset to Draft"
+                            invisible="state != 'cancel'"
+                        />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_open_deliveries"
+                                class="oe_stat_button" icon="fa-truck"
+                                invisible="not delivery_count">
+                                <field name="delivery_count" widget="statinfo" string="Deliveries"/>
+                            </button>
+                            <button type="object" name="action_open_payments"
+                                class="oe_stat_button" icon="fa-credit-card"
+                                invisible="not payment_count"
+                                groups="account.group_account_readonly,account.group_account_invoice">
+                                <field name="payment_count" widget="statinfo" string="Payments"/>
+                            </button>
+                        </div>
+                        <div class="alert alert-info mb-3" role="alert"
+                             invisible="not partner_id or state != 'draft'">
+                            <span invisible="not last_billing_date_to">
+                                Last billing period ended on
+                                <field name="last_billing_date_to" readonly="1" nolabel="1" class="d-inline fw-bold"/>.
+                                Suggested period starts from the next day.
+                            </span>
+                            <span invisible="last_billing_date_to or not partner_id">
+                                No previous billing batches for this customer.
+                            </span>
+                        </div>
+                        <field name="last_billing_date_to" invisible="1"/>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="partner_id"/>
+                                <field name="invoice_id" readonly="state == 'done'"/>
+                                <field name="invoice_payment_state" readonly="1" widget="badge"/>
+                                <field name="invoice_reference"/>
+                            </group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="amount_total" readonly="1"/>
+                            </group>
+                        </group>
+                        <div class="d-flex gap-2 mb-2" invisible="state != 'draft'">
+                            <button name="action_select_all_orders" type="object" string="Select All" class="btn-secondary"/>
+                            <button name="action_select_by_period" type="object" string="Select by Period" class="btn-secondary"/>
+                            <button name="action_clear_selected_orders" type="object" string="Clear Selection" class="btn-secondary"/>
+                        </div>
+                        <field name="line_ids" nolabel="1" invisible="state == 'cancel'" readonly="state != 'draft'">
+                            <tree editable="bottom" create="0" delete="0">
+                                <field name="selected" column_invisible="parent.state != 'draft'"/>
+                                <field name="order_name" string="Order No." readonly="1"/>
+                                <button name="action_open_order" type="object" icon="fa-external-link" title="View Order" class="btn-link"/>
+                                <field name="order_item_type_id" string="Item" readonly="1" optional="show"/>
+                                <field name="order_delivery_date" string="Delivery Date" readonly="1"/>
+                                <field name="currency_id" column_invisible="1"/>
+                                <field name="order_amount_total" string="Total" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </tree>
+                        </field>
+                        <field name="order_ids" invisible="1"/>
+                        <group>
+                            <field name="notes" placeholder="Internal notes for the billing batch"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_form_billing" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.form.billing</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="billing_invoice_id" invisible="1"/>
+                    <button type="object" name="action_open_billing_batch"
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="not billing_batch_id">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Billing</span>
+                        </div>
+                    </button>
+                    <button type="object" name="action_open_billing_invoice"
+                        class="oe_stat_button" icon="fa-money"
+                        invisible="not billing_invoice_id"
+                        groups="account.group_account_readonly,account.group_account_invoice">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Invoice</span>
+                        </div>
+                    </button>
+                    <button type="object" name="action_open_payments"
+                        class="oe_stat_button" icon="fa-credit-card"
+                        invisible="not payment_count"
+                        groups="account.group_account_readonly,account.group_account_invoice">
+                        <field name="payment_count" widget="statinfo" string="Payments"/>
+                    </button>
+                </xpath>
+                <xpath expr="//page[@name='additional_info']/group/group[1]" position="inside">
+                    <field name="billing_date" readonly="1"/>
+                </xpath>
+                <xpath expr="//page[@name='additional_info']/group/group[2]" position="inside">
+                    <field name="billing_batch_id" readonly="1"/>
+                </xpath>
+                <xpath expr="//div[hasclass('alert')][field[@name='amendment_reason']]" position="after">
+                    <div class="alert alert-info" role="alert"
+                        invisible="not amendment_billing_batch_id">
+                        <strong>Rebuild pending.</strong> This order was rolled back from billing
+                        batch
+                        <field name="amendment_billing_batch_id" readonly="1" nolabel="1"
+                            class="oe_inline"/>
+                        — confirm it again and create a new invoice once the order is corrected.
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Add payment_status column to repair order list -->
+        <record id="view_jewelry_repair_order_list_billing" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.list.billing</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="payment_status" widget="badge"
+                           decoration-success="payment_status == 'paid'"
+                           decoration-warning="payment_status == 'partial'"
+                           decoration-danger="payment_status == 'unpaid'"
+                           decoration-muted="payment_status == 'unbilled'"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- AR Report: accounts receivable per client -->
+        <record id="view_jewelry_repair_ar_report" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.ar.report</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <tree
+                    create="0" edit="0" delete="0"
+                    default_group_by="partner_id"
+                    string="Accounts Receivable"
+                    decoration-danger="payment_status == 'unpaid'"
+                    decoration-warning="payment_status == 'partial'"
+                    decoration-success="payment_status == 'paid'"
+                    decoration-muted="payment_status == 'unbilled'"
+                >
+                    <field name="partner_id" invisible="1"/>
+                    <field name="name" string="Order"/>
+                    <field name="delivery_date"/>
+                    <field name="billing_date"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="amount_total" string="Amount" sum="Total"/>
+                    <field name="payment_status" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_ar_report_search" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.ar.report.search</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Order"/>
+                    <field name="partner_id"/>
+                    <field name="certificate_numbers" string="Certificate No."/>
+                    <separator/>
+                    <filter name="filter_unbilled" string="Unbilled" domain="[('payment_status', '=', 'unbilled')]"/>
+                    <filter name="filter_unpaid" string="Unpaid" domain="[('payment_status', '=', 'unpaid')]"/>
+                    <filter name="filter_partial" string="Partially Paid" domain="[('payment_status', '=', 'partial')]"/>
+                    <filter name="filter_paid" string="Paid" domain="[('payment_status', '=', 'paid')]"/>
+                    <separator/>
+                    <filter name="filter_not_settled" string="Outstanding"
+                        domain="[('payment_status', 'in', ['unbilled', 'unpaid', 'partial'])]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_billing_date" string="Billing Date" context="{'group_by': 'billing_date:month'}"/>
+                        <filter name="group_delivery_date" string="Delivery Date" context="{'group_by': 'delivery_date:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_ar_report" model="ir.actions.act_window">
+            <field name="name">Accounts Receivable</field>
+            <field name="res_model">jewelry.repair.order</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_jewelry_repair_ar_report"/>
+            <field name="search_view_id" ref="view_jewelry_repair_ar_report_search"/>
+            <field name="domain">[('state', '=', 'delivered')]</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_ar_report"
+            name="Accounts Receivable"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_ar_report"
+            sequence="40"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+
+        <!-- Back-link from the invoice to the billing batch it was built from -->
+        <record id="view_move_form_jewelry_billing" model="ir.ui.view">
+            <field name="name">account.move.form.jewelry.billing</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <field name="jewelry_billing_batch_count" invisible="1"/>
+                    <button type="object" name="action_open_jewelry_billing"
+                        class="oe_stat_button" icon="fa-wrench"
+                        invisible="not jewelry_billing_batch_count">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_text">Repair Billing</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_billing_batch_search" model="ir.ui.view">
+            <field name="name">jewelry.repair.billing.batch.search</field>
+            <field name="model">jewelry.repair.billing.batch</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Batch"/>
+                    <field name="partner_id"/>
+                    <separator/>
+                    <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                    <filter name="filter_done" string="Done" domain="[('state', '=', 'done')]"/>
+                    <filter name="filter_cancel" string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+                    <separator/>
+                    <filter name="filter_no_invoice" string="No Invoice" domain="[('invoice_id', '=', False), ('state', '=', 'done')]"/>
+                    <filter name="filter_rebuild_pending" string="Waiting For Rebuild" domain="[('rebuild_pending', '=', True)]"/>
+                    <separator/>
+                    <filter name="filter_this_month" string="This Month"
+                        domain="[('date_from', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')), ('date_to', '&lt;=', (context_today() + relativedelta(day=31)).strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                        <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_billing_batch" model="ir.actions.act_window">
+            <field name="name">Billing Batches</field>
+            <field name="res_model">jewelry.repair.billing.batch</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_jewelry_repair_billing_batch_search"/>
+        </record>
+
+        <record id="action_jewelry_repair_customer_invoice" model="ir.actions.act_window">
+            <field name="name">Invoices</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('move_type', '=', 'out_invoice')]</field>
+            <field name="context">{'default_move_type': 'out_invoice'}</field>
+        </record>
+
+        <!-- Extend delivery list view: add billing_status column -->
+        <record id="view_jewelry_repair_delivery_tree_billing" model="ir.ui.view">
+            <field name="name">jewelry.repair.delivery.tree.billing</field>
+            <field name="model">jewelry.repair.delivery</field>
+            <field name="inherit_id" ref="jewelry_repair_delivery.view_jewelry_repair_delivery_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="billing_status"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Extend delivery search view: add billing filters -->
+        <record id="view_jewelry_repair_delivery_search_billing" model="ir.ui.view">
+            <field name="name">jewelry.repair.delivery.search.billing</field>
+            <field name="model">jewelry.repair.delivery</field>
+            <field name="inherit_id" ref="jewelry_repair_delivery.view_jewelry_repair_delivery_search"/>
+            <field name="arch" type="xml">
+                <filter name="filter_cancel" position="after">
+                    <separator/>
+                    <filter name="filter_not_billed" string="Not Billed" domain="[('state', '=', 'done'), ('billing_status', '=', 'not_billed')]"/>
+                    <filter name="filter_billed" string="Billed" domain="[('billing_status', '=', 'billed')]"/>
+                </filter>
+                <filter name="group_state" position="after">
+                    <filter name="group_billing" string="Billing" context="{'group_by': 'billing_status'}"/>
+                </filter>
+            </field>
+        </record>
+
+        <!-- Extend main order search view: add payment_status filters and group by -->
+        <record id="view_jewelry_repair_order_search_billing" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.search.billing</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_search"/>
+            <field name="arch" type="xml">
+                <filter name="filter_active_custody" position="after">
+                    <separator/>
+                    <filter name="filter_payment_unbilled" string="Unbilled" domain="[('payment_status', '=', 'unbilled')]"/>
+                    <filter name="filter_payment_unpaid" string="Unpaid" domain="[('payment_status', '=', 'unpaid')]"/>
+                    <filter name="filter_payment_partial" string="Partially Paid" domain="[('payment_status', '=', 'partial')]"/>
+                    <filter name="filter_payment_paid" string="Paid" domain="[('payment_status', '=', 'paid')]"/>
+                </filter>
+                <filter name="group_by_alloy" position="after">
+                    <filter name="group_by_billing_batch" string="Billing Batch" context="{'group_by': 'billing_batch_id'}"/>
+                    <filter name="group_by_billing_date" string="Billing Date" context="{'group_by': 'billing_date:month'}"/>
+                    <filter name="group_by_delivery_date" string="Delivery Date" context="{'group_by': 'delivery_date:month'}"/>
+                </filter>
+            </field>
+        </record>
+
+        <!-- Pending Billing dashboard -->
+        <record id="view_jewelry_repair_billing_pending_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.billing.pending.tree</field>
+            <field name="model">jewelry.repair.billing.pending</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0" delete="0" string="Pending Billing">
+                    <field name="partner_id" string="Customer"/>
+                    <field name="last_billing_date_to" string="Last Billed To"/>
+                    <field name="unbilled_order_count" string="Unbilled Orders"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="unbilled_amount" string="Amount to Bill" widget="monetary"
+                           options="{'currency_field': 'currency_id'}" sum="Total"/>
+                    <button name="action_create_batch" type="object"
+                            string="Create Batch" icon="fa-plus" class="btn-primary"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_billing_pending" model="ir.actions.act_window">
+            <field name="name">Pending Billing</field>
+            <field name="res_model">jewelry.repair.billing.pending</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_jewelry_repair_billing_pending_tree"/>
+        </record>
+
+        <!-- Main menu shortcut -->
+        <menuitem
+            id="menu_jewelry_repair_billing_pending_main"
+            name="Pending Billing"
+            parent="jewelry_repair_base.menu_jewelry_repair_root"
+            action="action_jewelry_repair_billing_pending"
+            sequence="23"
+            groups="jewelry_repair_base.group_jewelry_repair_manager"
+        />
+        <!-- Payments section -->
+        <menuitem
+            id="menu_jewelry_repair_billing_pending"
+            name="Pending Billing"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_billing_pending"
+            sequence="15"
+            groups="jewelry_repair_base.group_jewelry_repair_manager"
+        />
+
+        <menuitem
+            id="menu_jewelry_repair_billing_batches"
+            name="Billing"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_billing_batch"
+            sequence="20"
+        />
+        <menuitem
+            id="menu_jewelry_repair_customer_invoices"
+            name="Invoices"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_customer_invoice"
+            sequence="30"
+        />
+
+        <record id="action_jewelry_repair_customer_payments" model="ir.actions.act_window">
+            <field name="name">Payments</field>
+            <field name="res_model">account.payment</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('payment_type', '=', 'inbound'), ('partner_type', '=', 'customer')]</field>
+            <field name="context">{'default_payment_type': 'inbound', 'default_partner_type': 'customer'}</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_customer_payments"
+            name="Payments"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_customer_payments"
+            sequence="35"
+        />
+
+        <record id="view_jewelry_repair_journal_balance_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.journal.balance.tree</field>
+            <field name="model">account.account</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0" delete="0" string="Cash &amp; Bank">
+                    <field name="code" string="Code"/>
+                    <field name="name" string="Account"/>
+                    <field name="company_currency_id" column_invisible="1"/>
+                    <field name="current_debit" string="Debit" widget="monetary"
+                           options="{'currency_field': 'company_currency_id'}"/>
+                    <field name="current_credit" string="Credit" widget="monetary"
+                           options="{'currency_field': 'company_currency_id'}"/>
+                    <field name="current_balance" string="Balance" widget="monetary"
+                           options="{'currency_field': 'company_currency_id'}"/>
+                    <button name="action_open_cash_movements" type="object" string="Movements"
+                            icon="fa-list" class="btn-link"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_journal_balance_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.journal.balance.form</field>
+            <field name="model">account.account</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0" delete="0" string="Cash &amp; Bank">
+                    <sheet>
+                        <group>
+                            <field name="code" string="Code" readonly="1"/>
+                            <field name="name" string="Account" readonly="1"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <field name="current_balance" string="Balance" widget="monetary"
+                                   options="{'currency_field': 'company_currency_id'}" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_journal_balance" model="ir.actions.act_window">
+            <field name="name">Cash &amp; Bank</field>
+            <field name="res_model">account.account</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('account_type', '=', 'asset_cash')]</field>
+        </record>
+
+        <record id="action_jewelry_repair_journal_balance_list_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_jewelry_repair_journal_balance_tree"/>
+            <field name="act_window_id" ref="action_jewelry_repair_journal_balance"/>
+        </record>
+
+        <record id="action_jewelry_repair_journal_balance_form_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_jewelry_repair_journal_balance_form"/>
+            <field name="act_window_id" ref="action_jewelry_repair_journal_balance"/>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_journal_balance"
+            name="Cash &amp; Bank"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_journal_balance"
+            sequence="38"
+        />
+
+        <!-- AR Summary: outstanding balance per customer -->
+        <record id="view_jewelry_repair_ar_summary_tree" model="ir.ui.view">
+            <field name="name">jewelry.repair.ar.summary.tree</field>
+            <field name="model">jewelry.repair.ar.summary</field>
+            <field name="arch" type="xml">
+                <tree create="0" edit="0" delete="0" string="Customer Balances">
+                    <button name="action_open_statement" type="object" string="Details"
+                            icon="fa-list-ul" title="Outstanding items" class="btn-link"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="unbilled_amount" string="Unbilled" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="pending_invoice_amount" string="Pending Invoice" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="invoiced_unpaid_amount" string="Invoiced Unpaid" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="advance_amount" string="Advance (Credit)" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="total_outstanding" string="Total Outstanding" widget="monetary"
+                           options="{'currency_field': 'currency_id'}" sum="Total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_jewelry_repair_ar_summary" model="ir.actions.act_window">
+            <field name="name">Customer Balances</field>
+            <field name="res_model">jewelry.repair.ar.summary</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_jewelry_repair_ar_summary_tree"/>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_repair_ar_summary"
+            name="Customer Balances"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_repair_ar_summary"
+            sequence="45"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director"
+        />
+    </data>
+</odoo>

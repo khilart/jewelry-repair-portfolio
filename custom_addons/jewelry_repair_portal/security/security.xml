@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <!-- Portal user access filtering is handled via _search override
+             in models/jewelry_portal_access.py (JewelryRepairOrderPortal).
+             No ir.rule needed: portal users only access the system
+             through /my/repairs routes where the controller applies
+             explicit partner_id domain. The _search override adds
+             ORM-level protection as defense-in-depth. -->
+    </data>
+</odoo>

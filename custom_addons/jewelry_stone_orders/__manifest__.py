@@ -1,0 +1,20 @@
+{
+    "name": "Jewelry Stone Orders",
+    "version": "17.0.1.0.0",
+    "summary": "Ordering stones from suppliers: request, shipment, receipt, returns",
+    "license": "LGPL-3",
+    "depends": ["jewelry_repair_base"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
+        "views/stone_order_views.xml",
+        "views/reject_wizard_views.xml",
+        "views/transfer_wizard_views.xml",
+        "views/stone_return_views.xml",
+        "views/repair_order_views.xml",
+        "views/res_partner_views.xml",
+        "views/menus.xml",
+    ],
+    "installable": True,
+    "application": False,
+}

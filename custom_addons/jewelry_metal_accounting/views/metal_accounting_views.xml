@@ -1,0 +1,903 @@
+<odoo>
+    <data>
+        <record id="view_jewelry_metal_storage_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.storage.tree</field>
+            <field name="model">jewelry.metal.storage</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="company_id" />
+                    <field name="responsible_user_id" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_storage_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.storage.form</field>
+            <field name="model">jewelry.metal.storage</field>
+            <field name="arch" type="xml">
+                <form string="Metal Storage">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="code" />
+                                <field name="company_id" />
+                            </group>
+                            <group>
+                                <field name="responsible_user_id" />
+                                <field name="active" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_executor_tree_metal_accounting" model="ir.ui.view">
+            <field name="name">jewelry.repair.executor.tree.metal.accounting</field>
+            <field name="model">jewelry.repair.executor</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_executor_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='user_id']" position="after">
+                    <field name="metal_storage_id" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_executor_form_metal_accounting" model="ir.ui.view">
+            <field name="name">jewelry.repair.executor.form.metal.accounting</field>
+            <field name="model">jewelry.repair.executor</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_executor_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[1]/field[@name='user_id']" position="after">
+                    <field name="metal_storage_id" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_form_metal_accounting" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.form.metal.accounting</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="inherit_id"
+                ref="jewelry_repair_base.view_jewelry_repair_order_operation_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[2]/field[@name='next_order_operation_id']"
+                    position="after">
+                    <field name="executor_metal_storage_id" readonly="1" />
+                    <field name="metal_writeoff_document_count" readonly="1" />
+                </xpath>
+                <xpath expr="//form/header/field[@name='state']" position="before">
+                    <button
+                        name="action_view_metal_writeoff_documents"
+                        type="object"
+                        string="Metal Write-Offs"
+                        class="btn-secondary"
+                        invisible="metal_writeoff_document_count == 0"
+                    />
+                </xpath>
+                <xpath
+                    expr="//form/sheet/group[field[@name='material_line_ids']]/field[@name='material_line_ids']/tree/field[@name='description']"
+                    position="after">
+                    <field name="metal_writeoff_document_id" readonly="1" optional="show" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_operation_form_kanban_metal_accounting"
+            model="ir.ui.view">
+            <field name="name">jewelry.repair.order.operation.form.kanban.metal.accounting</field>
+            <field name="model">jewelry.repair.order.operation</field>
+            <field name="inherit_id"
+                ref="jewelry_repair_base.view_jewelry_repair_order_operation_form_kanban" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='material_line_ids']/tree/field[@name='uom_id']"
+                    position="after">
+                    <field name="metal_writeoff_document_id" readonly="1" optional="show" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_repair_order_form_metal_accounting" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.form.metal.accounting</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_form" />
+            <field name="arch" type="xml">
+                <xpath
+                    expr="//notebook/page/field[@name='material_line_ids']/tree/field[@name='order_operation_id']"
+                    position="after">
+                    <field name="metal_writeoff_document_id" optional="hide" readonly="1" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_document_search" model="ir.ui.view">
+            <field name="name">jewelry.metal.document.search</field>
+            <field name="model">jewelry.metal.document</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="source_operation_id" />
+                    <field name="source_repair_order_id" />
+                    <field name="source_storage_id" />
+                    <field name="dest_storage_id" />
+                    <field name="source_ref" />
+                    <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]" />
+                    <filter name="filter_posted" string="Posted" domain="[('state', '=', 'posted')]" />
+                    <filter name="filter_cancel" string="Cancelled"
+                        domain="[('state', '=', 'cancel')]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_operation_type" string="Operation Type"
+                            context="{'group_by': 'operation_type'}" />
+                        <filter name="group_state" string="State" context="{'group_by': 'state'}" />
+                        <filter name="group_partner" string="Partner"
+                            context="{'group_by': 'partner_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_document_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.document.tree</field>
+            <field name="model">jewelry.metal.document</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="state == 'posted'" decoration-muted="state == 'cancel'"
+                    decoration-warning="has_negative_balance_impact">
+                    <field name="document_date" />
+                    <field name="name" />
+                    <field name="operation_type" />
+                    <field name="partner_id" />
+                    <field name="source_operation_id" />
+                    <field name="source_repair_order_id" />
+                    <field name="source_storage_id" />
+                    <field name="dest_storage_id" />
+                    <field name="source_ref" />
+                    <field name="line_count" />
+                    <field name="amount_total" />
+                    <field name="has_negative_balance_impact" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_document_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.document.form</field>
+            <field name="model">jewelry.metal.document</field>
+            <field name="arch" type="xml">
+                <form string="Metal Document">
+                    <header>
+                        <button
+                            name="action_fill_from_source_storage"
+                            type="object"
+                            string="Fill From Source Storage"
+                            class="btn-secondary"
+                            invisible="state != 'draft' or operation_type not in ('transfer', 'writeoff', 'mixed') or not source_storage_id"
+                        />
+                        <button name="action_post" type="object" string="Post" class="btn-primary"
+                            invisible="state != 'draft'" />
+                        <button name="action_cancel" type="object" string="Cancel"
+                            class="btn-secondary" invisible="state != 'posted'" />
+                        <button name="action_reset_to_draft" type="object" string="Reset To Draft"
+                            class="btn-secondary" invisible="state != 'cancel'" />
+                        <button name="action_view_moves" type="object" string="Moves"
+                            class="btn-secondary" invisible="not move_ids" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,posted,cancel" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="operation_type" readonly="state != 'draft'" />
+                                <field name="source_storage_id" readonly="state != 'draft'" />
+                                <field name="partner_id" readonly="state != 'draft'" />
+                                <field name="repair_order_id" readonly="1"
+                                    invisible="not repair_order_id" />
+                            </group>
+                            <group>
+                                <field name="document_date" readonly="state != 'draft'" />
+                                <field name="dest_storage_id" readonly="state != 'draft'" />
+                                <field name="amount_total" readonly="1" />
+                                <field name="has_negative_balance_impact" readonly="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids" readonly="state != 'draft'"
+                                    context="{'default_operation_type': operation_type if operation_type != 'mixed' else 'receipt', 'default_source_storage_id': source_storage_id, 'default_dest_storage_id': dest_storage_id}">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle" column_invisible="1" />
+                                        <field name="operation_type" />
+                                        <field name="alloy_id" />
+                                        <field name="weight" />
+                                        <field name="source_storage_id" optional="show"
+                                            column_invisible="parent.operation_type == 'receipt'" />
+                                        <field name="dest_storage_id" optional="show"
+                                            column_invisible="parent.operation_type == 'writeoff'" />
+                                        <field name="product_id" optional="show" />
+                                        <field name="rate_price_per_gram" optional="show"
+                                            column_invisible="parent.operation_type not in ('receipt', 'remelt', 'mixed', False)" />
+                                        <field name="amount"
+                                            column_invisible="parent.operation_type not in ('receipt', 'mixed', False)" />
+                                        <field name="output_alloy_id" optional="show"
+                                            column_invisible="parent.operation_type not in ('remelt', 'mixed', False)" />
+                                        <field name="output_weight" optional="show"
+                                            column_invisible="parent.operation_type not in ('remelt', 'mixed', False)" />
+                                        <field name="conversion_ratio" readonly="1" optional="show"
+                                            column_invisible="parent.operation_type not in ('remelt', 'mixed', False)" />
+                                        <field name="loss_weight" optional="show"
+                                            column_invisible="parent.operation_type not in ('remelt', 'mixed', False)" />
+                                        <field name="loss_amount" readonly="1"
+                                            column_invisible="parent.operation_type not in ('remelt', 'mixed', False)" />
+                                        <field name="source_storage_balance" readonly="1"
+                                            optional="hide"
+                                            column_invisible="parent.operation_type == 'receipt'" />
+                                        <field name="source_storage_balance_after" readonly="1"
+                                            optional="hide"
+                                            column_invisible="parent.operation_type == 'receipt'" />
+                                        <field name="dest_storage_balance" readonly="1"
+                                            optional="hide"
+                                            column_invisible="parent.operation_type == 'writeoff'" />
+                                        <field name="dest_storage_balance_after" readonly="1"
+                                            optional="hide"
+                                            column_invisible="parent.operation_type == 'writeoff'" />
+                                        <field name="rate_datetime" widget="datetime"
+                                            column_invisible="parent.operation_type not in ('receipt', 'remelt', 'mixed', False)" />
+                                        <field name="notes" optional="show" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Moves" invisible="not move_ids">
+                                <field name="move_ids" readonly="1">
+                                    <tree decoration-muted="state == 'cancel'">
+                                        <field name="document_date" />
+                                        <field name="operation_type" />
+                                        <field name="storage_id" />
+                                        <field name="alloy_id" />
+                                        <field name="weight_in" />
+                                        <field name="weight_out" />
+                                        <field name="signed_weight" />
+                                        <field name="source_ref" />
+                                        <field name="state" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="History" invisible="not log_ids">
+                                <field name="log_ids" readonly="1">
+                                    <tree>
+                                        <field name="event_datetime" />
+                                        <field name="event_type" />
+                                        <field name="user_id" />
+                                        <field name="message" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Other">
+                                <group string="Source Document">
+                                    <group>
+                                        <field name="source_operation_id"
+                                            readonly="state != 'draft'" />
+                                        <field name="source_repair_order_id" readonly="1" />
+                                        <field name="source_model" readonly="state != 'draft'" />
+                                    </group>
+                                    <group>
+                                        <field name="source_res_id" readonly="state != 'draft'" />
+                                        <field name="source_ref" readonly="state != 'draft'" />
+                                        <field name="line_count" readonly="1" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                        <group>
+                            <field name="notes" readonly="state != 'draft'" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_move_period_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.move.period.tree</field>
+            <field name="model">jewelry.metal.move</field>
+            <!-- Drill-down view for a single storage/alloy: never pick it as the default tree -->
+            <field name="priority">32</field>
+            <field name="arch" type="xml">
+                <tree string="Metal Movements" create="false" edit="false" delete="false"
+                    default_order="document_date, id">
+                    <field name="document_date" widget="datetime" />
+                    <field name="document_id" string="Document" />
+                    <field name="operation_type" />
+                    <field name="source_repair_order_id" optional="show" />
+                    <field name="source_operation_id" optional="hide" />
+                    <field name="weight_in" sum="Total In" />
+                    <field name="weight_out" sum="Total Out" />
+                    <field name="signed_weight" sum="Total Turnover" />
+                    <field name="fine_signed" sum="Total Fine Turnover" optional="hide" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_move_search" model="ir.ui.view">
+            <field name="name">jewelry.metal.move.search</field>
+            <field name="model">jewelry.metal.move</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="document_id" />
+                    <field name="source_operation_id" />
+                    <field name="source_repair_order_id" />
+                    <field name="storage_id" />
+                    <field name="alloy_id" />
+                    <field name="source_ref" />
+                    <filter name="filter_receipt" string="Receipt"
+                        domain="[('operation_type', '=', 'receipt')]" />
+                    <filter name="filter_transfer" string="Transfer"
+                        domain="[('operation_type', '=', 'transfer')]" />
+                    <filter name="filter_writeoff" string="Write-Off"
+                        domain="[('operation_type', '=', 'writeoff')]" />
+                    <filter name="filter_remelt" string="Remelt"
+                        domain="[('operation_type', '=', 'remelt')]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_storage" string="Storage"
+                            context="{'group_by': 'storage_id'}" />
+                        <filter name="group_alloy" string="Alloy" context="{'group_by': 'alloy_id'}" />
+                        <filter name="group_operation_type" string="Operation Type"
+                            context="{'group_by': 'operation_type'}" />
+                        <filter name="group_source_ref" string="Source Document"
+                            context="{'group_by': 'source_ref'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_move_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.move.tree</field>
+            <field name="model">jewelry.metal.move</field>
+            <field name="arch" type="xml">
+                <tree decoration-muted="state == 'cancel'">
+                    <field name="document_date" />
+                    <field name="document_id" />
+                    <field name="operation_type" />
+                    <field name="storage_id" />
+                    <field name="alloy_id" />
+                    <field name="source_repair_order_id" optional="show" />
+                    <field name="source_operation_id" optional="hide" />
+                    <field name="weight_in" sum="Total In" />
+                    <field name="weight_out" sum="Total Out" />
+                    <field name="signed_weight" sum="Total Turnover" />
+                    <field name="purity" optional="hide" />
+                    <field name="fine_in" sum="Total Fine In" optional="hide" />
+                    <field name="fine_out" sum="Total Fine Out" optional="hide" />
+                    <field name="fine_signed" sum="Total Fine Turnover" optional="show" />
+                    <field name="source_ref" optional="hide" />
+                    <field name="state" optional="hide" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_move_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.move.form</field>
+            <field name="model">jewelry.metal.move</field>
+            <field name="arch" type="xml">
+                <form string="Metal Move">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="document_id" readonly="1" />
+                                <field name="document_line_id" readonly="1" />
+                                <field name="document_date" readonly="1" />
+                                <field name="operation_type" readonly="1" />
+                                <field name="company_id" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="storage_id" readonly="1" />
+                                <field name="alloy_id" readonly="1" />
+                                <field name="weight_in" readonly="1" />
+                                <field name="weight_out" readonly="1" />
+                                <field name="signed_weight" readonly="1" />
+                                <field name="purity" readonly="1" />
+                                <field name="fine_in" readonly="1" />
+                                <field name="fine_out" readonly="1" />
+                                <field name="fine_signed" readonly="1" />
+                            </group>
+                        </group>
+                        <group string="Source Document">
+                            <group>
+                                <field name="source_operation_id" readonly="1" />
+                                <field name="source_repair_order_id" readonly="1" />
+                                <field name="source_model" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="source_res_id" readonly="1" />
+                                <field name="source_ref" readonly="1" />
+                                <field name="state" readonly="1" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" readonly="1" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_move_pivot" model="ir.ui.view">
+            <field name="name">jewelry.metal.move.pivot</field>
+            <field name="model">jewelry.metal.move</field>
+            <field name="arch" type="xml">
+                <pivot string="Metal Movement Card">
+                    <field name="storage_id" type="row" />
+                    <field name="alloy_id" type="row" />
+                    <field name="operation_type" type="col" />
+                    <field name="weight_in" type="measure" />
+                    <field name="weight_out" type="measure" />
+                    <field name="signed_weight" type="measure" />
+                    <field name="fine_signed" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_move_graph" model="ir.ui.view">
+            <field name="name">jewelry.metal.move.graph</field>
+            <field name="model">jewelry.metal.move</field>
+            <field name="arch" type="xml">
+                <graph string="Metal Movements" type="bar">
+                    <field name="storage_id" />
+                    <field name="signed_weight" type="measure" />
+                    <field name="alloy_id" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_balance_pivot" model="ir.ui.view">
+            <field name="name">jewelry.metal.balance.pivot</field>
+            <field name="model">jewelry.metal.move</field>
+            <field name="arch" type="xml">
+                <pivot string="Current Balances">
+                    <field name="storage_id" type="row" />
+                    <field name="alloy_id" type="row" />
+                    <field name="weight_in" type="measure" />
+                    <field name="weight_out" type="measure" />
+                    <field name="signed_weight" type="measure" string="Balance" />
+                    <field name="fine_in" type="measure" />
+                    <field name="fine_out" type="measure" />
+                    <field name="fine_signed" type="measure" string="Balance (fine g)" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="action_jewelry_metal_storage" model="ir.actions.act_window">
+            <field name="name">Metal Storages</field>
+            <field name="res_model">jewelry.metal.storage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_jewelry_metal_document" model="ir.actions.act_window">
+            <field name="name">Metal Documents</field>
+            <field name="res_model">jewelry.metal.document</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_jewelry_metal_document_search" />
+        </record>
+
+        <record id="action_jewelry_metal_move" model="ir.actions.act_window">
+            <field name="name">Metal Movement Card</field>
+            <field name="res_model">jewelry.metal.move</field>
+            <field name="view_mode">tree,pivot,graph,form</field>
+            <field name="domain">[('state', '=', 'posted')]</field>
+            <field name="search_view_id" ref="view_jewelry_metal_move_search" />
+        </record>
+
+        <record id="action_jewelry_metal_balance_report" model="ir.actions.act_window">
+            <field name="name">Current Balances</field>
+            <field name="res_model">jewelry.metal.move</field>
+            <field name="domain">[('state', '=', 'posted')]</field>
+            <field name="view_mode">pivot,tree</field>
+            <field name="view_id" ref="view_jewelry_metal_balance_pivot" />
+            <field name="search_view_id" ref="view_jewelry_metal_move_search" />
+        </record>
+
+        <record id="view_jewelry_metal_stock_statement_wizard_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.stock.statement.wizard.form</field>
+            <field name="model">jewelry.metal.stock.statement.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Balances and Turnover">
+                    <header>
+                        <button name="action_build_statement" type="object" string="Build Statement"
+                            class="btn-primary" />
+                        <button name="action_open_lines" type="object" string="Open Pivot"
+                            class="btn-secondary" invisible="not line_ids" />
+                        <button name="action_print_statement" type="object" string="Print PDF"
+                            class="btn-secondary" invisible="not line_ids" />
+                    </header>
+                    <sheet>
+                        <notebook>
+                            <page string="Parameters">
+                                <group>
+                                    <group>
+                                        <field name="period_preset" />
+                                        <field name="date_from" />
+                                        <field name="date_to" />
+                                    </group>
+                                    <group>
+                                        <field name="include_zero_lines" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="storage_ids" widget="many2many_tags" />
+                                    </group>
+                                    <group>
+                                        <field name="alloy_ids" widget="many2many_tags" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Statement" invisible="not line_ids">
+                                <field name="line_ids" readonly="1">
+                                    <tree string="Balances and Turnover" create="false" edit="false"
+                                        delete="false" default_order="storage_id, alloy_id">
+                                        <field name="storage_id" />
+                                        <field name="alloy_id" />
+                                        <field name="metal_id" />
+                                        <field name="opening_balance" sum="Total Opening" />
+                                        <field name="weight_in" sum="Total In" />
+                                        <field name="weight_out" sum="Total Out" />
+                                        <field name="closing_balance" sum="Total Closing" />
+                                        <field name="move_count" string="Moves" />
+                                        <button name="action_view_moves" type="object"
+                                            icon="fa-list" title="Show movements"
+                                            invisible="move_count == 0" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_stock_statement_line_search" model="ir.ui.view">
+            <field name="name">jewelry.metal.stock.statement.line.search</field>
+            <field name="model">jewelry.metal.stock.statement.line</field>
+            <field name="arch" type="xml">
+                <search string="Balances and Turnover">
+                    <field name="storage_id" />
+                    <field name="alloy_id" />
+                    <field name="metal_id" />
+                    <filter name="group_storage" string="Storage"
+                        context="{'group_by': 'storage_id'}" />
+                    <filter name="group_alloy" string="Alloy" context="{'group_by': 'alloy_id'}" />
+                    <filter name="group_metal" string="Metal" context="{'group_by': 'metal_id'}" />
+                </search>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_stock_statement_line_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.stock.statement.line.tree</field>
+            <field name="model">jewelry.metal.stock.statement.line</field>
+            <field name="arch" type="xml">
+                <tree string="Balances and Turnover" create="false" edit="false" delete="false"
+                    default_order="storage_id, alloy_id">
+                    <field name="storage_id" />
+                    <field name="alloy_id" />
+                    <field name="metal_id" />
+                    <field name="opening_balance" sum="Total Opening" />
+                    <field name="weight_in" sum="Total In" />
+                    <field name="weight_out" sum="Total Out" />
+                    <field name="closing_balance" sum="Total Closing" />
+                    <field name="closing_balance_fine" string="Closing (fine g)"
+                        sum="Total Closing Fine" optional="show" digits="[16,4]" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_stock_statement_line_pivot" model="ir.ui.view">
+            <field name="name">jewelry.metal.stock.statement.line.pivot</field>
+            <field name="model">jewelry.metal.stock.statement.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Balances and Turnover">
+                    <field name="storage_id" type="row" />
+                    <field name="alloy_id" type="row" />
+                    <field name="opening_balance" type="measure" />
+                    <field name="weight_in" type="measure" />
+                    <field name="weight_out" type="measure" />
+                    <field name="closing_balance" type="measure" />
+                    <field name="closing_balance_fine" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_stock_statement_line_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.stock.statement.line.form</field>
+            <field name="model">jewelry.metal.stock.statement.line</field>
+            <field name="arch" type="xml">
+                <form string="Statement Line" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="storage_id" />
+                                <field name="alloy_id" />
+                                <field name="metal_id" />
+                            </group>
+                            <group>
+                                <field name="opening_balance" />
+                                <field name="weight_in" />
+                                <field name="weight_out" />
+                                <field name="closing_balance" />
+                                <field name="closing_balance_fine" string="Closing (fine g)" />
+                            </group>
+                        </group>
+                        <group string="Parameters">
+                            <group>
+                                <field name="date_from" readonly="1" />
+                                <field name="date_to" readonly="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_metal_stock_statement_line" model="ir.actions.act_window">
+            <field name="name">Balances and Turnover</field>
+            <field name="res_model">jewelry.metal.stock.statement.line</field>
+            <field name="view_mode">tree,pivot,form</field>
+            <field name="search_view_id" ref="view_jewelry_metal_stock_statement_line_search" />
+        </record>
+
+        <record id="action_jewelry_metal_stock_statement_server" model="ir.actions.server">
+            <field name="name">Balances and Turnover</field>
+            <field name="model_id" ref="model_jewelry_metal_stock_statement_wizard" />
+            <field name="state">code</field>
+            <field name="code">
+                action=env["jewelry.metal.stock.statement.wizard"].action_open_statement()</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_metal_accounting"
+            name="Metal Accounting"
+            parent="jewelry_repair_base.menu_jewelry_repair_root"
+            sequence="50"
+            groups="jewelry_repair_base.group_jewelry_repair_receptionist,jewelry_repair_base.group_jewelry_repair_manager,base.group_system"
+        />
+        <menuitem
+            id="menu_jewelry_metal_document"
+            name="Metal Documents"
+            parent="menu_jewelry_metal_accounting"
+            action="action_jewelry_metal_document"
+            sequence="10"
+        />
+        <menuitem
+            id="menu_jewelry_metal_move"
+            name="Movement Card"
+            parent="menu_jewelry_metal_accounting"
+            action="action_jewelry_metal_move"
+            sequence="20"
+        />
+        <menuitem
+            id="menu_jewelry_metal_reports"
+            name="Reports"
+            parent="menu_jewelry_metal_accounting"
+            sequence="25"
+        />
+        <menuitem
+            id="menu_jewelry_metal_stock_statement"
+            name="Balances and Turnover"
+            parent="menu_jewelry_metal_reports"
+            action="action_jewelry_metal_stock_statement_server"
+            sequence="10"
+        />
+        <menuitem
+            id="menu_jewelry_metal_balance_report"
+            name="Current Balances"
+            parent="menu_jewelry_metal_reports"
+            action="action_jewelry_metal_balance_report"
+            sequence="20"
+        />
+        <menuitem
+            id="menu_jewelry_order_area_loss_analysis"
+            name="Area Loss Analysis"
+            parent="menu_jewelry_metal_reports"
+            action="jewelry_repair_base.action_jewelry_order_area_loss_analysis"
+            sequence="40"
+        />
+        <menuitem
+            id="menu_jewelry_metal_accounting_catalogs"
+            name="Metal Accounting Catalogs"
+            parent="jewelry_repair_base.menu_jewelry_repair_catalogs"
+            sequence="28"
+        />
+        <menuitem
+            id="menu_jewelry_metal_storage"
+            name="Metal Storages"
+            parent="menu_jewelry_metal_accounting_catalogs"
+            action="action_jewelry_metal_storage"
+            sequence="10"
+        />
+
+        <!-- Metal Loss Register -->
+
+        <record id="view_jewelry_metal_loss_tree" model="ir.ui.view">
+            <field name="name">jewelry.metal.loss.tree</field>
+            <field name="model">jewelry.metal.loss</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="loss_date" />
+                    <field name="loss_type" />
+                    <field name="storage_id" />
+                    <field name="alloy_id" />
+                    <field name="metal_id" />
+                    <field name="weight_loss" sum="Total Loss (g)" />
+                    <field name="source_repair_order_id" />
+                    <field name="source_operation_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_loss_form" model="ir.ui.view">
+            <field name="name">jewelry.metal.loss.form</field>
+            <field name="model">jewelry.metal.loss</field>
+            <field name="arch" type="xml">
+                <form string="Metal Loss Entry" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="loss_date" />
+                                <field name="loss_type" />
+                                <field name="company_id" />
+                            </group>
+                            <group>
+                                <field name="alloy_id" />
+                                <field name="metal_id" />
+                                <field name="weight_loss" />
+                                <field name="storage_id" />
+                            </group>
+                        </group>
+                        <group string="Source">
+                            <field name="source_repair_order_id" />
+                            <field name="source_operation_id" />
+                            <field name="source_material_line_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_loss_search" model="ir.ui.view">
+            <field name="name">jewelry.metal.loss.search</field>
+            <field name="model">jewelry.metal.loss</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="storage_id" />
+                    <field name="alloy_id" />
+                    <field name="metal_id" />
+                    <field name="source_repair_order_id" />
+                    <separator />
+                    <filter name="filter_recoverable" string="Recoverable"
+                        domain="[('loss_type', '=', 'recoverable')]" />
+                    <filter name="filter_irrecoverable" string="Irrecoverable"
+                        domain="[('loss_type', '=', 'irrecoverable')]" />
+                    <filter name="filter_material" string="Material"
+                        domain="[('loss_type', '=', 'material')]" />
+                    <separator />
+                    <filter name="filter_this_month" string="This Month"
+                        domain="[('loss_date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_loss_type" string="Loss Type"
+                            context="{'group_by': 'loss_type'}" />
+                        <filter name="group_storage" string="Storage"
+                            context="{'group_by': 'storage_id'}" />
+                        <filter name="group_alloy" string="Alloy" context="{'group_by': 'alloy_id'}" />
+                        <filter name="group_metal" string="Metal" context="{'group_by': 'metal_id'}" />
+                        <filter name="group_order" string="Repair Order"
+                            context="{'group_by': 'source_repair_order_id'}" />
+                        <filter name="group_month" string="Month"
+                            context="{'group_by': 'loss_date:month'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_jewelry_metal_loss_pivot" model="ir.ui.view">
+            <field name="name">jewelry.metal.loss.pivot</field>
+            <field name="model">jewelry.metal.loss</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="storage_id" type="row" />
+                    <field name="alloy_id" type="row" />
+                    <field name="loss_date" type="col" interval="month" />
+                    <field name="weight_loss" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <record id="action_jewelry_metal_loss" model="ir.actions.act_window">
+            <field name="name">Metal Loss Register</field>
+            <field name="res_model">jewelry.metal.loss</field>
+            <field name="view_mode">tree,pivot,form</field>
+            <field name="search_view_id" ref="view_jewelry_metal_loss_search" />
+        </record>
+
+        <menuitem
+            id="menu_jewelry_metal_loss"
+            name="Loss Register"
+            parent="menu_jewelry_metal_accounting"
+            action="action_jewelry_metal_loss"
+            sequence="35"
+        />
+
+        <!-- Master: metal balance for their own storage -->
+
+        <record id="action_jewelry_master_metal_balance_server" model="ir.actions.server">
+            <field name="name">My Metal Balance</field>
+            <field name="model_id" ref="model_jewelry_metal_move" />
+            <field name="state">code</field>
+            <field name="code"><![CDATA[
+executor = env['jewelry.repair.executor'].search([('user_id', '=', env.uid)], limit=1)
+storage = executor.metal_storage_id if executor else False
+domain = [('state', '=', 'posted')]
+name = 'Metal Balance'
+if storage:
+    domain.append(('storage_id', '=', storage.id))
+    name = storage.display_name
+action = {
+    'type': 'ir.actions.act_window',
+    'name': name,
+    'res_model': 'jewelry.metal.move',
+    'view_mode': 'pivot,tree',
+    'domain': domain,
+    'views': [
+        (env.ref('jewelry_metal_accounting.view_jewelry_metal_balance_pivot').id, 'pivot'),
+        (env.ref('jewelry_metal_accounting.view_jewelry_metal_move_tree').id, 'tree'),
+    ],
+}
+            ]]></field>
+        </record>
+
+        <record id="view_jewelry_repair_order_form_metal_accounting" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.form.metal.accounting</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_mark_ready']" position="after">
+                    <button name="action_sync_metal_documents" type="object"
+                        string="Sync Metal Documents" class="btn-secondary"
+                        invisible="state != 'ready'"
+                        groups="jewelry_repair_base.group_jewelry_repair_manager,base.group_system" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='material_line_ids']/tree/field[@name='consume_from_stock']"
+                    position="after">
+                    <field name="source_storage_id" optional="show"
+                        invisible="not consume_from_stock" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='material_line_ids']/tree/field[@name='return_to_storage']"
+                    position="after">
+                    <field name="return_storage_id" optional="show"
+                        invisible="not return_to_storage" />
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_master_metal_balance"
+            name="My Metal Balance"
+            parent="jewelry_repair_base.menu_jewelry_master_root"
+            action="action_jewelry_master_metal_balance_server"
+            sequence="30"
+            groups="jewelry_repair_base.group_jewelry_repair_master"
+        />
+    </data>
+</odoo>

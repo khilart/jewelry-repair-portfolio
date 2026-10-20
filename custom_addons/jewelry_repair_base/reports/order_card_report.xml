@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_jewelry_repair_order_card" model="ir.actions.report">
+        <field name="name">Order Card</field>
+        <field name="model">jewelry.repair.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jewelry_repair_base.report_jewelry_repair_order_card_document</field>
+        <field name="report_file">jewelry_repair_base.report_jewelry_repair_order_card_document</field>
+        <field name="binding_model_id" ref="model_jewelry_repair_order"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Order Card - %s' % (object.name or '')</field>
+        <field name="paperformat_id" ref="paperformat_jewelry_a4"/>
+    </record>
+
+    <template id="report_jewelry_repair_order_card_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="order">
+                <t t-set="company" t-value="env.company"/>
+                <t t-set="money" t-value="{'widget': 'monetary', 'display_currency': order.currency_id}"/>
+                <t t-set="invoice_materials" t-value="order.material_line_ids.filtered(lambda l: l.include_in_invoice)"/>
+                <t t-set="gems" t-value="order.gem_line_ids"/>
+                <t t-set="uninvoiced_gems_total" t-value="sum(gems.filtered(lambda g: not g.include_in_invoice).mapped('subtotal'))"/>
+                <t name="order_card_amounts">
+                    <t t-set="amount_to_pay" t-value="order.amount_total"/>
+                    <t t-set="amount_full" t-value="order.amount_total + uninvoiced_gems_total"/>
+                </t>
+                <div t-att-class="'article o_standard_font o_company_%s_layout' % company.id">
+                <div class="page o_order_card" style="font-size:0.85em;">
+                    <style>
+                        .o_order_card h6 { font-size: 0.95em; margin: 10px 0 4px 0; }
+                        .o_order_card .o_main_table { font-size: 0.8em; margin-bottom: 4px; }
+                        .o_order_card .o_main_table th, .o_order_card .o_main_table td { padding: 2px 4px; }
+                    </style>
+
+                    <table class="table-borderless w-100 mb-3" style="border-bottom:1px solid #dee2e6;">
+                        <tr>
+                            <td style="vertical-align:top; padding:0 0 6px 0;">
+                                <div class="h5 mb-1"><span t-field="company.name"/></div>
+                                <div t-if="company.street">
+                                    <span t-field="company.street"/><t t-if="company.street2">, <span t-field="company.street2"/></t>
+                                </div>
+                                <div t-if="company.city or company.zip or company.country_id">
+                                    <span t-if="company.city" t-field="company.city"/><t t-if="company.state_id">, <span t-field="company.state_id.name"/></t>
+                                    <t t-if="company.zip"> <span t-field="company.zip"/></t>
+                                    <t t-if="company.country_id"> <span t-field="company.country_id.name"/></t>
+                                </div>
+                                <div t-if="company.phone"><span t-field="company.phone"/></div>
+                                <div t-if="company.email"><span t-field="company.email"/></div>
+                            </td>
+                            <td class="text-end" style="vertical-align:top; width:35%; padding:0 0 6px 0;">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                     style="max-height:80px; max-width:100%;"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <t t-set="state_color" t-value="{'draft': '#6c757d', 'in_progress': '#0d6efd', 'ready': '#198754', 'delivered': '#212529'}.get(order.state, '#dc3545')"/>
+                    <div class="mb-3" style="border:1px solid #dee2e6; border-radius:6px; page-break-inside:avoid;">
+                        <table class="w-100" style="background:#f8f9fa; border-bottom:1px solid #dee2e6;">
+                            <tr>
+                                <td style="padding:8px 12px; vertical-align:middle;">
+                                    <span class="h5 mb-0 fw-bold" t-field="order.name"/>
+                                </td>
+                                <td class="text-end" style="padding:8px 12px; vertical-align:middle; white-space:nowrap;">
+                                    <span class="h5 mb-0 fw-bold" t-field="order.amount_total"/>
+                                    <span t-attf-style="margin-left:8px; padding:2px 8px; border-radius:4px; color:#fff; font-size:0.85em; background:#{state_color};">
+                                        <span t-field="order.state"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="w-100" style="table-layout:fixed;">
+                            <tr>
+                                <td t-if="order.item_image" style="width:38%; padding:10px; vertical-align:top;">
+                                    <img t-att-src="image_data_uri(order.item_image)" style="max-width:100%; max-height:230px; border-radius:6px;"/>
+                                </td>
+                                <td style="padding:10px; vertical-align:top;">
+                                    <table class="table-borderless">
+                                        <tr>
+                                            <td class="text-muted" style="padding:2px 24px 2px 0;">Client</td>
+                                            <td style="padding:2px 0;"><span t-field="order.partner_id.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted" style="padding:2px 24px 2px 0;">Item type</td>
+                                            <td style="padding:2px 0;"><span t-field="order.item_type_id.name"/></td>
+                                        </tr>
+                                        <tr t-if="order.description">
+                                            <td class="text-muted" style="padding:2px 24px 2px 0;">Description</td>
+                                            <td style="padding:2px 0;"><span t-field="order.description"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted" style="padding:2px 24px 2px 0;">Quantity</td>
+                                            <td style="padding:2px 0;"><span t-field="order.quantity"/></td>
+                                        </tr>
+                                        <tr t-if="order.deadline_date">
+                                            <td class="text-muted" style="padding:2px 24px 2px 0;">Deadline</td>
+                                            <td style="padding:2px 0;"><span t-field="order.deadline_date" t-options='{"widget": "date"}'/></td>
+                                        </tr>
+                                        <tr t-if="order.external_doc_number">
+                                            <td class="text-muted" style="padding:2px 24px 2px 0;">Ext. Doc #</td>
+                                            <td style="padding:2px 0;"><span t-field="order.external_doc_number"/></td>
+                                        </tr>
+                                    </table>
+
+                                    <t t-if="order.delivered_weight">
+                                        <div class="text-center" style="border-top:1px solid #dee2e6; margin-top:12px; padding-top:12px;">
+                                            <t t-if="order.alloy_id">
+                                                <span class="text-muted" style="font-size:0.85em;">Alloy</span>
+                                                <span class="fw-bold" style="margin-left:8px;" t-esc="order.alloy_id.display_name"/>
+                                            </t>
+                                        </div>
+                                        <table class="w-100 text-center" style="table-layout:fixed; margin-top:8px;">
+                                            <tr>
+                                                <td style="vertical-align:top;">
+                                                    <div class="text-muted" style="font-size:0.85em;">Item weight</div>
+                                                    <div class="fw-bold"><t t-esc="'%.3f' % order.delivered_weight"/> g</div>
+                                                </td>
+                                                <td style="vertical-align:top;">
+                                                    <div class="text-muted" style="font-size:0.85em;">Metal weight</div>
+                                                    <div class="fw-bold"><t t-esc="'%.3f' % order.metal_delivered_weight"/> g</div>
+                                                </td>
+                                                <td style="vertical-align:top;">
+                                                    <div class="text-muted" style="font-size:0.85em;">Gem weight</div>
+                                                    <div class="fw-bold"><t t-esc="'%.3f' % order.gem_weight_total_g"/> g</div>
+                                                    <div class="text-muted" style="font-size:0.85em;"><t t-esc="'%.2f' % (order.gem_weight_total_g / 0.2)"/> ct</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <t t-if="order.service_line_ids">
+                        <h6>Services</h6>
+                        <table class="table table-sm o_main_table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Service</th>
+                                    <th class="text-end">Qty</th>
+                                    <th class="text-end">Price</th>
+                                    <th class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="order.service_line_ids.sorted(key=lambda l: (l.sequence, l.id))" t-as="line">
+                                    <td><span t-esc="line.product_id.name"/></td>
+                                    <td class="text-end"><t t-esc="'%g' % line.total_quantity"/></td>
+                                    <td class="text-end"><span t-esc="line.price_unit" t-options="money"/></td>
+                                    <td class="text-end"><span t-esc="line.subtotal" t-options="money"/></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="fw-bold">
+                                    <td colspan="3" class="text-end">Total</td>
+                                    <td class="text-end"><span t-esc="sum(order.service_line_ids.mapped('subtotal'))" t-options="money"/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </t>
+
+                    <t t-if="invoice_materials">
+                        <h6>Materials</h6>
+                        <table class="table table-sm o_main_table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Alloy</th>
+                                    <th class="text-end">Weight (g)</th>
+                                    <th class="text-end">Price/g</th>
+                                    <th class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="invoice_materials" t-as="line">
+                                    <td><span t-esc="line.alloy_id.display_name if line.alloy_id else line.product_id.name"/></td>
+                                    <td class="text-end"><t t-esc="'%.3f' % (line.weight + line.weight_loss)"/></td>
+                                    <td class="text-end"><span t-esc="line.rate_price_per_gram * (line.alloy_id.purity if line.alloy_id else 1.0)" t-options="money"/></td>
+                                    <td class="text-end"><span t-esc="line.subtotal" t-options="money"/></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="fw-bold">
+                                    <td colspan="3" class="text-end">Total</td>
+                                    <td class="text-end"><span t-esc="sum(invoice_materials.mapped('subtotal'))" t-options="money"/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </t>
+
+                    <t t-if="gems">
+                        <h6>Gems</h6>
+                        <table class="table table-sm o_main_table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Gem Type</th>
+                                    <th>Certificate</th>
+                                    <th class="text-end">Qty</th>
+                                    <th class="text-end">Weight (ct)</th>
+                                    <th class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="gems" t-as="gem">
+                                    <td>
+                                        <span t-esc="gem.gem_type_id.name"/>
+                                        <span t-if="not gem.include_in_invoice" class="text-muted">(not billed)</span>
+                                    </td>
+                                    <td><t t-esc="gem.certificate_id.name or '—'"/></td>
+                                    <td class="text-end"><span t-esc="gem.quantity"/></td>
+                                    <td class="text-end"><t t-esc="'%.4f' % gem.total_weight_ct"/></td>
+                                    <td class="text-end"><span t-esc="gem.subtotal" t-options="money"/></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="fw-bold">
+                                    <td colspan="4" class="text-end">Total</td>
+                                    <td class="text-end"><span t-esc="sum(gems.mapped('subtotal'))" t-options="money"/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </t>
+
+                    <table name="order_card_totals" class="table table-sm table-borderless ms-auto mt-3" style="width:auto;">
+                        <tr name="full_cost" t-if="amount_full != amount_to_pay">
+                            <td class="text-muted text-end pe-4">Full product cost</td>
+                            <td class="text-end"><span t-esc="amount_full" t-options="money"/></td>
+                        </tr>
+                        <tr name="to_pay" class="fw-bold h5">
+                            <td class="text-end pe-4">To pay</td>
+                            <td class="text-end"><span t-esc="amount_to_pay" t-options="money"/></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="footer o_standard_font">
+                    <div class="text-end text-muted" style="font-size:10px;">
+                        <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

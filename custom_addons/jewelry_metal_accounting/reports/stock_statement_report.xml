@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_metal_stock_statement" model="ir.actions.report">
+        <field name="name">Balances and Turnover</field>
+        <field name="model">jewelry.metal.stock.statement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jewelry_metal_accounting.report_metal_stock_statement_document</field>
+        <field name="report_file">jewelry_metal_accounting.report_metal_stock_statement_document</field>
+        <field name="print_report_name">'Balances and Turnover %s — %s' % (object.date_from, object.date_to)</field>
+        <field name="binding_model_id" ref="model_jewelry_metal_stock_statement_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_metal_stock_statement_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="wizard">
+                <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+
+                    <!-- Title + period -->
+                    <div style="margin-top: 16px; margin-bottom: 20px;">
+                        <div style="font-size: 16px; font-weight: 700; color: #2f2b25;">
+                            Balances and Turnover
+                        </div>
+                        <div style="font-size: 12px; color: #7a746a; margin-top: 4px;">
+                            Period:
+                            <t t-esc="wizard.date_from.strftime('%d.%m.%Y')"/>
+                            —
+                            <t t-esc="wizard.date_to.strftime('%d.%m.%Y')"/>
+                            <t t-if="wizard.storage_ids">
+                                &amp;nbsp;·&amp;nbsp; Storages:
+                                <t t-esc="', '.join(wizard.storage_ids.mapped('name'))"/>
+                            </t>
+                            <t t-if="wizard.alloy_ids">
+                                &amp;nbsp;·&amp;nbsp; Alloys:
+                                <t t-esc="', '.join(wizard.alloy_ids.mapped('name'))"/>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Statement table -->
+                    <table class="table table-sm table-bordered" style="font-size: 11px; width: 100%;">
+                        <thead>
+                            <tr style="background: #f5f0ea;">
+                                <th style="width: 28%;">Storage</th>
+                                <th style="width: 22%;">Alloy</th>
+                                <th class="text-end" style="width: 12%;">Opening</th>
+                                <th class="text-end" style="width: 12%;">In</th>
+                                <th class="text-end" style="width: 12%;">Out</th>
+                                <th class="text-end" style="width: 14%;">Closing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="current_storage" t-value="None"/>
+                            <t t-foreach="wizard.line_ids" t-as="line">
+                                <!-- Storage group header -->
+                                <t t-if="line.storage_id != current_storage">
+                                    <t t-set="current_storage" t-value="line.storage_id"/>
+                                    <tr style="background: #faf7f3;">
+                                        <td colspan="6" style="font-weight: 600; font-size: 11px; padding: 6px 8px; color: #2f2b25;">
+                                            <t t-esc="line.storage_id.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td></td>
+                                    <td><t t-esc="line.alloy_id.name"/></td>
+                                    <td class="text-end">
+                                        <t t-if="line.opening_balance != 0.0">
+                                            <t t-esc="'%.3f' % line.opening_balance"/>
+                                        </t>
+                                        <t t-else="">—</t>
+                                    </td>
+                                    <td class="text-end">
+                                        <t t-if="line.weight_in != 0.0">
+                                            <t t-esc="'%.3f' % line.weight_in"/>
+                                        </t>
+                                        <t t-else="">—</t>
+                                    </td>
+                                    <td class="text-end">
+                                        <t t-if="line.weight_out != 0.0">
+                                            <t t-esc="'%.3f' % line.weight_out"/>
+                                        </t>
+                                        <t t-else="">—</t>
+                                    </td>
+                                    <td class="text-end" style="font-weight: 600;">
+                                        <t t-esc="'%.3f' % line.closing_balance"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <!-- Totals row -->
+                        <tfoot>
+                            <tr style="background: #f5f0ea; font-weight: 700;">
+                                <td colspan="2">Total</td>
+                                <td class="text-end">
+                                    <t t-esc="'%.3f' % sum(wizard.line_ids.mapped('opening_balance'))"/>
+                                </td>
+                                <td class="text-end">
+                                    <t t-esc="'%.3f' % sum(wizard.line_ids.mapped('weight_in'))"/>
+                                </td>
+                                <td class="text-end">
+                                    <t t-esc="'%.3f' % sum(wizard.line_ids.mapped('weight_out'))"/>
+                                </td>
+                                <td class="text-end">
+                                    <t t-esc="'%.3f' % sum(wizard.line_ids.mapped('closing_balance'))"/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <!-- Units note -->
+                    <div style="font-size: 10px; color: #7a746a; margin-top: 8px;">
+                        All weights in grams (g).
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

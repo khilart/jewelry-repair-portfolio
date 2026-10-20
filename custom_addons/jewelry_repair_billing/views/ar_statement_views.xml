@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+
+        <record id="view_jewelry_repair_ar_statement_form" model="ir.ui.view">
+            <field name="name">jewelry.repair.ar.statement.form</field>
+            <field name="model">jewelry.repair.ar.statement</field>
+            <field name="arch" type="xml">
+                <form string="Customer Statement">
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <div class="mb-2">
+                        <button name="action_select_all" type="object" string="Select All" class="btn-secondary"/>
+                        <button name="action_clear_selection" type="object" string="Clear" class="btn-secondary ms-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <tree editable="bottom" create="0" delete="0">
+                            <field name="selected"/>
+                            <field name="order_name" string="Order No." readonly="1"/>
+                            <button name="action_open_order" type="object" icon="fa-external-link"
+                                    title="View Order" class="btn-link" invisible="not order_id"/>
+                            <field name="order_id" column_invisible="1"/>
+                            <field name="order_item_type_id" string="Item" readonly="1"/>
+                            <field name="order_quantity" string="Qty" readonly="1" sum="Total Qty"/>
+                            <field name="order_delivery_date" string="Delivery Date" readonly="1"/>
+                            <field name="source" string="Status" readonly="1"/>
+                            <field name="reference" string="Document" readonly="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="amount" string="Amount" readonly="1" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}" sum="Total"/>
+                            <field name="payment_applied" string="Paid" readonly="1" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}" optional="show"/>
+                        </tree>
+                    </field>
+                    <group class="oe_subtotal_footer">
+                        <field name="amount_gross" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_payments" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="amount_due" class="oe_subtotal_footer_separator" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <footer>
+                        <button name="action_print_statement" type="object" string="Print Statement"
+                                class="btn-primary"/>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

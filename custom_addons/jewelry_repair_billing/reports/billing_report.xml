@@ -1,0 +1,262 @@
+<odoo>
+    <data>
+
+        <record id="paperformat_jewelry_billing" model="report.paperformat">
+            <field name="name">Jewelry Billing A4</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">15</field>
+            <field name="margin_right">10</field>
+            <field name="dpi">70</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+        </record>
+
+        <record id="action_report_jewelry_repair_billing" model="ir.actions.report">
+            <field name="name">Billing Act</field>
+            <field name="model">jewelry.repair.billing.batch</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_billing.report_jewelry_repair_billing_document</field>
+            <field name="report_file">jewelry_repair_billing.report_jewelry_repair_billing_document</field>
+            <field name="print_report_name">'Billing - %s' % (object.name or '')</field>
+            <field name="paperformat_id" ref="paperformat_jewelry_billing"/>
+        </record>
+
+        <!--
+            Page-break handling in these reports:
+            * totals live in <tbody>, never in <tfoot> — wkhtmltopdf repeats a
+              <tfoot> on every page, which printed the total twice;
+            * a long table body is split into chunks so that the first rows and
+              the last rows + total row each sit in a `page-break-inside: avoid`
+              <tbody> and cannot be separated from what they belong to;
+            * the summary tables are wrapped in an avoiding <div> so their heading
+              is never left alone at the bottom of a page (`avoid` on a <tbody>
+              does not hold the repeating <thead> back).
+
+            Row fragments below are shared by the billing act and the customer
+            statement; each expects `rows` (the slice to render) and `currency`
+            in the context, so a body can be chunked without duplicating markup.
+        -->
+        <template id="report_billing_order_rows">
+            <tr t-foreach="rows" t-as="order">
+                <td><span t-field="order.name"/></td>
+                <td><span t-field="order.item_type_id"/></td>
+                <td class="text-end"><span t-field="order.quantity"/></td>
+                <td><span t-field="order.delivery_date" t-options='{"widget": "date"}'/></td>
+                <td class="text-end"><span t-field="order.amount_total"/></td>
+            </tr>
+        </template>
+
+        <template id="report_billing_service_rows">
+            <tr t-foreach="rows" t-as="line">
+                <td><span t-esc="line['name']"/></td>
+                <td class="text-end"><span t-esc="'%.2f' % line['quantity']"/></td>
+                <td class="text-end">
+                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % line['subtotal']"/>
+                </td>
+            </tr>
+        </template>
+
+        <template id="report_billing_material_rows">
+            <tr t-foreach="rows" t-as="line">
+                <td><span t-esc="line['name']"/></td>
+                <td><span t-esc="line['alloy_name']"/></td>
+                <td class="text-end"><span t-esc="'%.2f' % line['quantity']"/></td>
+                <td class="text-end"><span t-esc="'%.3f' % line['weight']"/></td>
+                <td class="text-end">
+                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % line['subtotal']"/>
+                </td>
+            </tr>
+        </template>
+
+        <template id="report_jewelry_repair_billing_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="batch">
+                    <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                        <div class="page">
+                            <t t-set="currency" t-value="batch.currency_id"/>
+
+                            <!-- Header -->
+                            <div class="mb-3">
+                                <div style="white-space:nowrap;">
+                                    <span class="h4">Billing Act</span>
+                                    <span class="ms-2">No. <span t-field="batch.name"/></span>
+                                </div>
+                                <div class="text-muted" style="font-size:0.85em;">
+                                    Period: <span t-field="batch.date_from"/> — <span t-field="batch.date_to"/>
+                                </div>
+                            </div>
+
+                            <!-- Customer -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <strong>Customer:</strong>
+                                    <span class="ms-2"><span t-field="batch.partner_id"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Orders table: opens the document, so it may split freely -->
+                            <t t-set="orders" t-value="batch.order_ids.sorted(lambda o: (o.delivery_date or o.create_date, o.id))"/>
+                            <t t-set="split" t-value="len(orders) &gt; 6"/>
+                            <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th colspan="5" style="background:#fff; border:0; padding:10px 0 4px 0; font-size:1.45em; font-weight:600; text-align:left;">Orders</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:20%">Order No.</th>
+                                        <th>Item</th>
+                                        <th class="text-end" style="width:8%">Qty</th>
+                                        <th style="width:18%">Delivery Date</th>
+                                        <th class="text-end" style="width:18%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <t t-if="split">
+                                    <tbody style="page-break-inside:avoid;">
+                                        <t t-set="rows" t-value="orders[:3]"/>
+                                        <t t-call="jewelry_repair_billing.report_billing_order_rows"/>
+                                    </tbody>
+                                    <tbody style="border-top:0;">
+                                        <t t-set="rows" t-value="orders[3:-3]"/>
+                                        <t t-call="jewelry_repair_billing.report_billing_order_rows"/>
+                                    </tbody>
+                                </t>
+                                <tbody t-att-style="'page-break-inside:avoid;' + (' border-top:0;' if split else '')">
+                                    <t t-set="rows" t-value="orders[-3:] if split else orders"/>
+                                    <t t-call="jewelry_repair_billing.report_billing_order_rows"/>
+                                    <tr class="fw-bold border-top">
+                                        <td colspan="2" class="text-end">Orders Total:</td>
+                                        <td class="text-end"><span t-esc="sum(orders.mapped('quantity'))"/></td>
+                                        <td/>
+                                        <td class="text-end">
+                                            <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % batch.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- Services summary -->
+                            <t t-set="services" t-value="batch._get_billing_service_summary()"/>
+                            <t t-if="services">
+                                <t t-set="split" t-value="len(services) &gt; 6"/>
+                                <div class="mt-4" style="page-break-inside:avoid;">
+                                    <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th colspan="3" style="background:#fff; border:0; padding:10px 0 4px 0; font-size:1.45em; font-weight:600; text-align:left;">Services</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Service</th>
+                                                <th class="text-end" style="width:15%">Qty</th>
+                                                <th class="text-end" style="width:20%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <t t-if="split">
+                                            <tbody style="page-break-inside:avoid;">
+                                                <t t-set="rows" t-value="services[:3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_service_rows"/>
+                                            </tbody>
+                                            <tbody style="border-top:0;">
+                                                <t t-set="rows" t-value="services[3:-3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_service_rows"/>
+                                            </tbody>
+                                        </t>
+                                        <tbody t-att-style="'page-break-inside:avoid;' + (' border-top:0;' if split else '')">
+                                            <t t-set="rows" t-value="services[-3:] if split else services"/>
+                                            <t t-call="jewelry_repair_billing.report_billing_service_rows"/>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="2" class="text-end">Services Total:</td>
+                                                <td class="text-end">
+                                                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in services)"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                            <!-- Materials summary -->
+                            <t t-set="materials" t-value="batch._get_billing_material_summary()"/>
+                            <t t-if="materials">
+                                <t t-set="split" t-value="len(materials) &gt; 6"/>
+                                <div class="mt-4" style="page-break-inside:avoid;">
+                                    <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th colspan="5" style="background:#fff; border:0; padding:10px 0 4px 0; font-size:1.45em; font-weight:600; text-align:left;">Materials</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Material</th>
+                                                <th>Alloy</th>
+                                                <th class="text-end" style="width:12%">Qty</th>
+                                                <th class="text-end" style="width:13%">Weight</th>
+                                                <th class="text-end" style="width:18%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <t t-if="split">
+                                            <tbody style="page-break-inside:avoid;">
+                                                <t t-set="rows" t-value="materials[:3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_material_rows"/>
+                                            </tbody>
+                                            <tbody style="border-top:0;">
+                                                <t t-set="rows" t-value="materials[3:-3]"/>
+                                                <t t-call="jewelry_repair_billing.report_billing_material_rows"/>
+                                            </tbody>
+                                        </t>
+                                        <tbody t-att-style="'page-break-inside:avoid;' + (' border-top:0;' if split else '')">
+                                            <t t-set="rows" t-value="materials[-3:] if split else materials"/>
+                                            <t t-call="jewelry_repair_billing.report_billing_material_rows"/>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="4" class="text-end">Materials Total:</td>
+                                                <td class="text-end">
+                                                    <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in materials)"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </t>
+
+                            <!-- Grand total -->
+                            <div style="width:100%; margin-top:16px; font-size:0.7em; page-break-inside:avoid;">
+                                <table style="float:right; border-top:2px solid #000;">
+                                    <tr>
+                                        <td style="font-weight:700; padding:4px 12px 4px 0; white-space:nowrap;">TOTAL DUE:</td>
+                                        <td style="font-weight:700; padding:4px 0; white-space:nowrap; text-align:right;">
+                                            <span t-esc="currency.symbol"/>&#160;<span t-esc="'%.2f' % batch.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style="clear:both;"/>
+                            </div>
+
+                            <!-- Notes -->
+                            <div t-if="batch.notes" class="mt-3" style="font-size:0.7em; page-break-inside:avoid;">
+                                <strong>Notes:</strong>
+                                <div t-field="batch.notes"/>
+                            </div>
+
+                            <!-- Signatures -->
+                            <div class="row mt-4" style="font-size:0.7em; page-break-inside:avoid;">
+                                <div class="col-5">
+                                    <p class="mb-1">Issued by: ____________________</p>
+                                    <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                                </div>
+                                <div class="col-2"/>
+                                <div class="col-5">
+                                    <p class="mb-1">Received by: ____________________</p>
+                                    <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

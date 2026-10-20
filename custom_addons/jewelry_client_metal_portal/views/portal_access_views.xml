@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+
+        <record id="view_jewelry_portal_access_list_metal" model="ir.ui.view">
+            <field name="name">jewelry.portal.access.list.metal</field>
+            <field name="model">jewelry.portal.access</field>
+            <field name="inherit_id" ref="jewelry_repair_portal.view_jewelry_portal_access_list"/>
+            <field name="arch" type="xml">
+                <field name="show_delivery_weights" position="after">
+                    <field name="show_metal_account"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_jewelry_portal_access_form_metal" model="ir.ui.view">
+            <field name="name">jewelry.portal.access.form.metal</field>
+            <field name="model">jewelry.portal.access</field>
+            <field name="inherit_id" ref="jewelry_repair_portal.view_jewelry_portal_access_form"/>
+            <field name="arch" type="xml">
+                <field name="show_delivery_weights" position="after">
+                    <field name="show_metal_account"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

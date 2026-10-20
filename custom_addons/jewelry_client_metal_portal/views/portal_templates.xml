@@ -1,0 +1,160 @@
+<odoo>
+    <data>
+
+        <!-- Metal Account tab on the orders page -->
+        <template id="portal_my_repairs_metal"
+                  inherit_id="jewelry_repair_portal.portal_my_repairs"
+                  name="Metal Account Tab">
+
+            <xpath expr="//ul[hasclass('nav-tabs')]" position="inside">
+                <li class="nav-item" t-if="show_metal_account">
+                    <a t-attf-class="nav-link #{'active' if tab == 'metal' else ''}"
+                       href="/my/repairs?tab=metal">Metal Account</a>
+                </li>
+            </xpath>
+
+            <!-- Slots into the tab chain of jewelry_repair_portal, before its empty state -->
+            <xpath expr="//t[@t-elif='not orders']" position="before">
+                <t t-elif="tab == 'metal'">
+                    <t t-call="jewelry_client_metal_portal.portal_metal_statement"/>
+                </t>
+            </xpath>
+
+            <!-- Amount net of the metal debited at billing -->
+            <xpath expr="//tbody/tr/td[3]" position="replace">
+                <td class="text-end">
+                    <t t-esc="'%.2f' % effective_amounts.get(order.id, order.amount_total)"/>
+                    <t t-esc="order.currency_id.symbol"/>
+                </td>
+            </xpath>
+        </template>
+
+        <!-- Metal payment breakdown in the order totals -->
+        <template id="portal_repair_detail_metal"
+                  inherit_id="jewelry_repair_portal.portal_repair_detail"
+                  name="Metal Payment on Order Detail">
+
+            <xpath expr="//t[@t-if='amount_full != amount_to_pay']" position="after">
+                <t t-if="metal_reduction">
+                    <div class="d-flex gap-2">
+                        <span class="text-muted">Order amount:</span>
+                        <span>
+                            <t t-esc="'%.2f' % amount_before_metal"/>
+                            <t t-esc="order.currency_id.symbol"/>
+                        </span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <span class="text-muted">Paid with metal:</span>
+                        <span class="text-success">
+                            − <t t-esc="'%.2f' % metal_reduction"/>
+                            <t t-esc="order.currency_id.symbol"/>
+                        </span>
+                    </div>
+                </t>
+            </xpath>
+
+            <xpath expr="//t[@t-if='amount_full != amount_to_pay']" position="attributes">
+                <attribute name="t-if">amount_full != amount_before_metal</attribute>
+            </xpath>
+        </template>
+
+        <!-- Statement, one block per client metal account -->
+        <template id="portal_metal_statement" name="Client Metal Statement">
+            <t t-if="not metal_sections">
+                <div class="alert alert-info">No metal account found.</div>
+            </t>
+            <t t-foreach="metal_sections" t-as="section">
+                <t t-set="account" t-value="section['account']"/>
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+                        <span class="fw-semibold">
+                            <t t-esc="account.partner_id.name"/> — <t t-esc="account.metal_id.name"/>
+                        </span>
+                        <span>
+                            <span class="text-muted me-2">Balance, g fine:</span>
+                            <strong t-attf-class="h5 mb-0 #{'text-danger' if account.balance_fine &lt; 0 else 'text-success'}">
+                                <t t-esc="'%.4f' % account.balance_fine"/>
+                            </strong>
+                        </span>
+                    </div>
+
+                    <t t-if="not section['rows']">
+                        <div class="card-body">
+                            <div class="alert alert-info mb-0">No transactions yet.</div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="table-responsive">
+                            <table class="table table-sm mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Operation</th>
+                                        <th class="text-end">Change (g)</th>
+                                        <th class="text-end">Balance (g)</th>
+                                        <th class="text-end">Alloy Weight (g)</th>
+                                        <th class="text-end">Fine (g)</th>
+                                        <th class="text-end">To Metal (g)</th>
+                                        <th class="text-end">To Services (g)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="section['rows']" t-as="row">
+                                        <t t-set="transaction" t-value="row['transaction']"/>
+                                        <t t-set="detail" t-value="row['detail']"/>
+                                        <td>
+                                            <t t-esc="transaction.transaction_date.strftime('%d.%m.%Y')"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="row['type_label']"/>
+                                            <t t-if="detail.get('order')">
+                                                <a t-attf-href="/my/repairs/#{detail['order'].id}" class="ms-1">
+                                                    <t t-esc="detail['order'].name"/>
+                                                </a>
+                                            </t>
+                                        </td>
+                                        <td t-attf-class="text-end #{'text-danger' if transaction.weight_fine &lt; 0 else 'text-success'}">
+                                            <t t-esc="'%+.4f' % transaction.weight_fine"/>
+                                        </td>
+                                        <td class="text-end fw-semibold">
+                                            <t t-esc="'%.4f' % row['balance']"/>
+                                        </td>
+                                        <td class="text-end text-muted">
+                                            <div t-foreach="detail.get('alloy_weights') or []" t-as="part">
+                                                <t t-esc="'%.3f' % part['weight']"/>
+                                                <t t-esc="part['alloy']"/>
+                                            </div>
+                                        </td>
+                                        <td class="text-end text-muted">
+                                            <t t-if="detail.get('pricing_fine')">
+                                                <t t-esc="'%.4f' % detail['pricing_fine']"/>
+                                            </t>
+                                        </td>
+                                        <td class="text-end">
+                                            <t t-if="detail.get('metal_fine')">
+                                                <t t-esc="'%.4f' % detail['metal_fine']"/>
+                                            </t>
+                                        </td>
+                                        <td class="text-end">
+                                            <t t-if="detail.get('service_fine')">
+                                                <t t-esc="'%.4f' % detail['service_fine']"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+
+                    <t t-if="section['pager']">
+                        <t t-set="pager" t-value="section['pager']"/>
+                        <div class="o_portal_pager text-center py-2">
+                            <t t-call="portal.pager"/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

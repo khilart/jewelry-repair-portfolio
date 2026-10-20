@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web.KanbanView" t-inherit-mode="extension">
+        <xpath expr="//SearchBar" position="after">
+            <div
+                t-if="isRepairPlanningBoard"
+                class="d-inline-flex align-items-center gap-2 justify-content-end"
+                style="margin-left: auto;"
+            >
+                <t t-if="planningPanelVisible">
+                    <span class="fw-semibold text-nowrap">Planning Date</span>
+                    <input
+                        type="date"
+                        class="form-control"
+                        style="width: 10rem; text-align: right;"
+                        t-att-value="planningDateValue"
+                        t-on-change="onPlanningDateChange"
+                    />
+                    <button
+                        t-if="planningDateValue"
+                        type="button"
+                        class="btn btn-secondary"
+                        t-on-click="clearPlanningDate"
+                    >
+                        Clear
+                    </button>
+                </t>
+                <button type="button" class="btn btn-sm btn-light" t-on-click="togglePlanningPanel">
+                    <t t-if="planningPanelVisible">▾</t>
+                    <t t-else="">▸</t>
+                </button>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.KanbanView" t-inherit-mode="extension">
+        <xpath expr="//t[@t-set-slot='control-panel-additional-actions']/CogMenu" position="after">
+            <button
+                t-if="isRepairWorkOperationsBoard"
+                type="button"
+                class="btn btn-sm btn-light"
+                t-on-click="toggleSearchPanel"
+                title="Toggle sidebar"
+            >
+                <t t-if="searchPanelVisible">◂</t>
+                <t t-else="">▸</t>
+            </button>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.KanbanHeader" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'o_kanban_header_title')]" position="after">
+            <div
+                t-if="repairColumnWorkloadDisplay"
+                class="o_jewelry_repair_kanban_workload text-muted small px-1 pb-1"
+            >
+                <span>Total: </span>
+                <span t-esc="repairColumnWorkloadDisplay"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

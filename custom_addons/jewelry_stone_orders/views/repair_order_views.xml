@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+
+        <record id="view_jewelry_repair_order_form_stone_orders" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.form.stone.orders</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_open_stone_orders" type="object"
+                        class="oe_stat_button" icon="fa-diamond"
+                        invisible="not stone_order_count">
+                        <field name="stone_order_count" widget="statinfo"
+                            string="Stone Orders" />
+                    </button>
+                </xpath>
+                <!-- Ordering stones belongs with the stones, not in the header next to
+                     the order's own workflow buttons. -->
+                <xpath expr="//button[@name='action_generate_setting_services']"
+                       position="after">
+                    <button name="action_order_stones" type="object" string="Order Stones"
+                        icon="fa-diamond"
+                        class="btn-secondary"
+                        invisible="state not in ('draft', 'in_progress') or not gem_line_ids" />
+                </xpath>
+                <xpath expr="//field[@name='external_doc_number']" position="after">
+                    <field name="last_stone_order_state" readonly="1"
+                        invisible="not stone_order_count" />
+                    <field name="stone_order_incomplete" invisible="1" />
+                    <div class="text-warning" colspan="2"
+                        invisible="not stone_order_incomplete">
+                        A stone order shipped short of what was requested.
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

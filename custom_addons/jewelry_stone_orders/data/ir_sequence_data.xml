@@ -1,0 +1,19 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_jewelry_stone_order" model="ir.sequence">
+            <field name="name">Jewelry Stone Order</field>
+            <field name="code">jewelry.stone.order</field>
+            <field name="prefix">GO%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_jewelry_stone_return" model="ir.sequence">
+            <field name="name">Jewelry Stone Return</field>
+            <field name="code">jewelry.stone.return</field>
+            <field name="prefix">GR%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

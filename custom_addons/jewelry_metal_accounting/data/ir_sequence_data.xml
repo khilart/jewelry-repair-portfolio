@@ -1,0 +1,18 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_jewelry_metal_document" model="ir.sequence">
+            <field name="name">Jewelry Metal Document</field>
+            <field name="code">jewelry.metal.document</field>
+            <field name="prefix">MD/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_jewelry_metal_loss" model="ir.sequence">
+            <field name="name">Jewelry Metal Loss</field>
+            <field name="code">jewelry.metal.loss</field>
+            <field name="prefix">ML/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,65 @@
+# Russian translation for jewelry_telegram_notify
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: jewelry_telegram_notify
+msgid "Bot Token"
+msgstr "Токен бота"
+
+#. module: jewelry_telegram_notify
+msgid "Telegram Chat ID"
+msgstr "Telegram Chat ID"
+
+#. module: jewelry_telegram_notify
+msgid "Deadline Notification Sent"
+msgstr "Уведомление о дедлайне отправлено"
+
+#. module: jewelry_telegram_notify
+msgid "Last Overdue Notification Date"
+msgstr "Дата последнего уведомления о просрочке"
+
+#. module: jewelry_telegram_notify
+msgid "New operation assigned to master"
+msgstr "Новая операция назначена мастеру"
+
+#. module: jewelry_telegram_notify
+msgid "Order deadline approaching"
+msgstr "Дедлайн заказа приближается"
+
+#. module: jewelry_telegram_notify
+msgid "Order overdue"
+msgstr "Заказ просрочен"
+
+#. module: jewelry_telegram_notify
+msgid "Order moved to Ready"
+msgstr "Заказ перешёл в статус Ready"
+
+#. module: jewelry_telegram_notify
+msgid "Order ready for delivery"
+msgstr "Заказ готов к выдаче"
+
+#. module: jewelry_telegram_notify
+msgid "Deadline threshold (hours)"
+msgstr "Порог дедлайна (часов)"
+
+#. module: jewelry_telegram_notify
+msgid "Telegram Test"
+msgstr "Тест Telegram"
+
+#. module: jewelry_telegram_notify
+msgid "Test message sent successfully!"
+msgstr "Тестовое сообщение отправлено успешно!"
+
+#. module: jewelry_telegram_notify
+msgid "Failed to send test message."
+msgstr "Не удалось отправить тестовое сообщение."
+
+#. module: jewelry_telegram_notify
+msgid "Bot token is not configured."
+msgstr "Токен бота не задан."
+
+#. module: jewelry_telegram_notify
+msgid "No Telegram Chat ID set on your user profile."
+msgstr "Telegram Chat ID не задан в профиле пользователя."

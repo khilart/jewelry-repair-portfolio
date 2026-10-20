@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <menuitem
+            id="menu_jewelry_model_3d_library"
+            name="3D Library"
+            parent="jewelry_repair_base.menu_jewelry_repair_catalogs"
+            action="action_jewelry_model_3d"
+            sequence="50"
+            groups="jewelry_repair_base.group_jewelry_repair_manager"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,454 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_client_metal_accounts
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-05 00:00+0000\n"
+"PO-Revision-Date: 2026-05-05 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model,name:jewelry_client_metal_accounts.model_jewelry_client_metal_account
+msgid "Client Metal Account"
+msgstr "Металл-счёт клиента"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model,name:jewelry_client_metal_accounts.model_jewelry_client_metal_transaction
+msgid "Client Metal Transaction"
+msgstr "Проводка металл-счёта"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_account__partner_id
+msgid "Client"
+msgstr "Клиент"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_account__metal_id
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__metal_id
+msgid "Metal"
+msgstr "Металл"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_account__balance_fine
+msgid "Balance (fine g)"
+msgstr "Остаток (чистые г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__transaction_type
+msgid "Type"
+msgstr "Тип"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__transaction_date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__alloy_id
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__weight_alloy
+msgid "Alloy Weight (g)"
+msgstr "Вес сплава (г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__purity
+msgid "Purity"
+msgstr "Проба"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__weight_fine
+msgid "Fine Weight (g)"
+msgstr "Чистый металл (г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__rate_datetime
+msgid "Rate Date"
+msgstr "Дата котировки"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__rate_price_per_gram
+msgid "Rate (per g fine)"
+msgstr "Котировка (за г чистого)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__money_equivalent
+msgid "Money Equivalent"
+msgstr "Денежный эквивалент"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__source_ref
+msgid "Source Reference"
+msgstr "Источник"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_transaction__notes
+msgid "Notes"
+msgstr "Примечания"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_material_line__client_metal_account_id
+msgid "Client Metal Account"
+msgstr "Металл-счёт клиента"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_material_line__client_metal_weight
+msgid "Client Metal (g)"
+msgstr "Металл клиента (г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_material_line__client_pricing_weight
+msgid "Client Pricing (g)"
+msgstr "База счёта (г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_material_line__invoice_pricing_weight
+msgid "Invoice Pricing (g)"
+msgstr "База инвойса (г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_metal_alloy__show_in_client_balance
+msgid "Show in Client Balance"
+msgstr "Показывать в балансе клиента"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_batch__client_metal_account_id
+msgid "Client Metal Account"
+msgstr "Металл-счёт клиента"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_line__total_pricing_fine
+msgid "Metal (fine g)"
+msgstr "Металл (чистые г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_line__client_metal_debit_fine
+msgid "Debit from Account (fine g)"
+msgstr "Списать с аккаунта (чистые г)"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_line__total_metal_invoice_amount
+msgid "Metal Invoice Amount"
+msgstr "Сумма металла в счёте"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_line__metal_amount_reduction
+msgid "Metal Reduction"
+msgstr "Зачёт металла"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_line__effective_amount_total
+msgid "Effective Total"
+msgstr "Итого к оплате"
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/billing_ext.py:0
+#, python-format
+msgid "Select a client metal account before confirming: one or more billing lines have a metal debit."
+msgstr "Выберите металл-счёт клиента перед подтверждением: в одной или нескольких строках указано списание металла."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/billing_ext.py:0
+#, python-format
+msgid "Metal debit cannot be negative."
+msgstr "Списание металла не может быть отрицательным."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/billing_ext.py:0
+#, python-format
+msgid "Metal debit (%.4fg) exceeds total metal in order (%.4fg)."
+msgstr "Списание металла (%.4fг) превышает итого металла в заказе (%.4fг)."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/billing_ext.py:0
+#, python-format
+msgid "Billing batch: %s"
+msgstr "Биллинг-пакет: %s"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.ui.menu,name:jewelry_client_metal_accounts.menu_client_metal_accounts
+msgid "Client Metal Accounts"
+msgstr "Металл-счета клиентов"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.ui.menu,name:jewelry_client_metal_accounts.menu_client_metal_transactions
+msgid "Metal Transactions"
+msgstr "Проводки металла"
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "A client metal account is required when client metal weight is set."
+msgstr "При указании металла клиента необходимо выбрать металл-счёт."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "Client metal weight cannot be negative."
+msgstr "Вес металла клиента не может быть отрицательным."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "Client metal weight cannot exceed the line weight."
+msgstr "Вес металла клиента не может превышать вес строки."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "Fine weight must be negative for debit and return transactions."
+msgstr "Чистый металл должен быть отрицательным для списаний и возвратов."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "Fine weight must be positive for deposit transactions."
+msgstr "Чистый металл должен быть положительным для пополнений."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "Transaction is already cancelled."
+msgstr "Проводка уже отменена."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "Transaction is already posted."
+msgstr "Проводка уже проведена."
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/client_metal_account.py:0
+#, python-format
+msgid "A client metal account for this client and metal already exists in this company."
+msgstr "Металл-счёт для этого клиента и металла уже существует в данной компании."
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__transaction_type__deposit_metal
+msgid "Metal Deposit"
+msgstr "Приём металла"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__transaction_type__deposit_cash
+msgid "Cash Deposit"
+msgstr "Пополнение деньгами"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__transaction_type__debit_repair
+msgid "Repair Debit"
+msgstr "Списание на ремонт"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__transaction_type__credit_return
+msgid "Metal Return"
+msgstr "Возврат металла"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__transaction_type__adjustment
+msgid "Adjustment"
+msgstr "Корректировка"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__state__posted
+msgid "Posted"
+msgstr "Проведена"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_transaction__state__cancelled
+msgid "Cancelled"
+msgstr "Отменена"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model,name:jewelry_client_metal_accounts.model_jewelry_client_metal_receipt
+msgid "Client Metal Receipt"
+msgstr "Приёмная квитанция металла клиента"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model,name:jewelry_client_metal_accounts.model_jewelry_client_metal_receipt_line
+msgid "Client Metal Receipt Line"
+msgstr "Строка квитанции металла клиента"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.ui.menu,name:jewelry_client_metal_accounts.menu_client_metal_receipts
+#: model:ir.actions.act_window,name:jewelry_client_metal_accounts.action_client_metal_receipt
+msgid "Client Metal Receipts"
+msgstr "Квитанции металла клиентов"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_receipt__operation_type
+msgid "Type"
+msgstr "Тип"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__operation_type__deposit_metal
+msgid "Metal Deposit"
+msgstr "Приём металла"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__operation_type__deposit_cash
+msgid "Cash Deposit"
+msgstr "Пополнение деньгами"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__operation_type__credit_return
+msgid "Metal Return"
+msgstr "Возврат металла"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__operation_type__adjustment
+msgid "Adjustment"
+msgstr "Корректировка"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__state__posted
+msgid "Posted"
+msgstr "Проведена"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields.selection,name:jewelry_client_metal_accounts.selection__jewelry_client_metal_receipt__state__cancelled
+msgid "Cancelled"
+msgstr "Отменена"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_receipt__storage_id
+msgid "Storage"
+msgstr "Хранилище"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_receipt__operation_date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_receipt__metal_document_id
+msgid "Metal Document"
+msgstr "Документ движения металла"
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Add at least one line before confirming."
+msgstr "Добавьте хотя бы одну строку перед подтверждением."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Storage is required for metal deposit and return operations."
+msgstr "Для операций приёма и возврата металла необходимо выбрать хранилище."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Money equivalent is required for cash deposit lines."
+msgstr "Для строк пополнения деньгами необходимо указать денежный эквивалент."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Alloy is required on each line."
+msgstr "Необходимо указать сплав в каждой строке."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Alloy weight cannot be zero."
+msgstr "Вес сплава не может быть равен нулю."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Fine weight cannot be zero."
+msgstr "Чистый вес не может быть равен нулю."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Only draft receipts can be confirmed."
+msgstr "Подтвердить можно только квитанции в статусе черновика."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Receipt is already cancelled."
+msgstr "Квитанция уже отменена."
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/metal_receipt.py:0
+msgid "Only cancelled receipts can be reset to draft."
+msgstr "Вернуть в черновик можно только отменённые квитанции."
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_repair_billing_line__total_debit_fine_max
+msgid "Max Debit (fine g)"
+msgstr "Макс. списание (чист. г)"
+
+#. module: jewelry_client_metal_accounts
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_accounts.view_billing_batch_form_client_metal
+msgid "Cover Metal for Selected"
+msgstr "Покрыть металл по выбранным"
+
+#. module: jewelry_client_metal_accounts
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_accounts.view_billing_batch_form_client_metal
+msgid "Cover Full for Selected"
+msgstr "Покрыть всё по выбранным"
+
+#. module: jewelry_client_metal_accounts
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_accounts.view_billing_batch_form_client_metal
+msgid "Metal"
+msgstr "Металл"
+
+#. module: jewelry_client_metal_accounts
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_accounts.view_billing_batch_form_client_metal
+msgid "Full"
+msgstr "Всё"
+
+#. module: jewelry_client_metal_accounts
+#: code:addons/jewelry_client_metal_accounts/models/billing_ext.py:0
+msgid "Metal debit (%.4f fine g) exceeds the maximum allowed (%.4f fine g)."
+msgstr "Списание металла (%.4f чист. г) превышает допустимый максимум (%.4f чист. г)."
+
+#. module: jewelry_client_metal_accounts
+#: model:ir.model.fields,field_description:jewelry_client_metal_accounts.field_jewelry_client_metal_receipt__account_balance_fine
+msgid "Account Balance (fine g)"
+msgstr "Баланс счёта (чист. г)"
+
+#. module: jewelry_client_metal_accounts
+#. odoo-python
+#: code:addons/jewelry_client_metal_accounts/models/billing_ext.py:0
+#, python-format
+msgid ""
+"The metal debit exceeds the order total for the following orders. Correct the debit before confirming:\n"
+"%s"
+msgstr ""
+"Зачёт металла превышает сумму заказа по следующим заказам. Исправьте зачёт перед подтверждением:\n"
+"%s"
+
+#. module: jewelry_client_metal_accounts
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_accounts.report_jewelry_repair_order_card_document_metal
+msgid "Order amount"
+msgstr "Сумма заказа"
+
+#. module: jewelry_client_metal_accounts
+#: model_terms:ir.ui.view,arch_db:jewelry_client_metal_accounts.report_jewelry_repair_order_card_document_metal
+msgid "Paid with metal"
+msgstr "Оплачено металлом"

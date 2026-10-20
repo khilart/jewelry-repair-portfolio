@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_jewelry_repair_order_form_telegram" model="ir.ui.view">
+        <field name="name">jewelry.repair.order.form.telegram</field>
+        <field name="model">jewelry.repair.order</field>
+        <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='additional_info']//group[2]" position="after">
+                <group string="Telegram Notifications">
+                    <field name="deadline_notified"/>
+                    <field name="morning_digest_sent_date"/>
+                    <field name="overdue_notified_date"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

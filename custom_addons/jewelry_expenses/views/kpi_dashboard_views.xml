@@ -1,0 +1,63 @@
+<odoo>
+    <record id="view_jewelry_repair_kpi_dashboard_form_expenses" model="ir.ui.view">
+        <field name="name">jewelry.repair.kpi.dashboard.form.expenses</field>
+        <field name="model">jewelry.repair.kpi.dashboard</field>
+        <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <!-- Expenses breakdown -->
+                <div class="row g-3 mt-4">
+                    <div class="col-12">
+                        <div class="fw-semibold text-dark mb-2 fs-5">Expenses</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="fw-semibold text-dark mb-2">
+                            <label for="expense_month_ids" />
+                        </div>
+                        <field name="expense_month_ids" readonly="1">
+                            <tree>
+                                <field name="account_name" />
+                                <field name="amount" widget="monetary" sum="Total" />
+                                <field name="currency_id" column_invisible="1" />
+                            </tree>
+                        </field>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="fw-semibold text-dark mb-2">
+                            <label for="expense_prev_ids" />
+                        </div>
+                        <field name="expense_prev_ids" readonly="1">
+                            <tree>
+                                <field name="account_name" />
+                                <field name="amount" widget="monetary" sum="Total" />
+                                <field name="currency_id" column_invisible="1" />
+                            </tree>
+                        </field>
+                    </div>
+                </div>
+                <!-- Net Profit -->
+                <div class="row g-3 mt-2 mb-3">
+                    <div class="col-12 col-sm-6">
+                        <div class="border rounded-3 w-100 p-4 h-100">
+                            <div class="h3 fw-bold mb-1">
+                                <field name="profit_current" widget="monetary" nolabel="1"
+                                    class="text-success" invisible="profit_current &lt; 0" />
+                                <field name="profit_current" widget="monetary" nolabel="1"
+                                    class="text-danger" invisible="profit_current &gt;= 0" />
+                            </div>
+                            <label for="profit_current" class="text-dark fw-semibold mb-0" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <div class="border rounded-3 w-100 p-4 h-100">
+                            <div class="h3 fw-bold mb-1 text-muted">
+                                <field name="profit_prev" widget="monetary" nolabel="1" />
+                            </div>
+                            <label for="profit_prev" class="text-dark fw-semibold mb-0" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

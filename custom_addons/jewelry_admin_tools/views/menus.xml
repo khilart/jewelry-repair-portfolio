@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_jewelry_admin_tools_root"
+              name="Admin Tools"
+              sequence="100"
+              groups="base.group_system"/>
+
+    <menuitem id="menu_jewelry_bulk_processor"
+              name="Bulk Data Processor"
+              parent="menu_jewelry_admin_tools_root"
+              action="action_jewelry_bulk_processor"
+              sequence="10"/>
+
+</odoo>

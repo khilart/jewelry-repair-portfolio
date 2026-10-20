@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_jewelry_expense_entry" model="ir.sequence">
+            <field name="name">Jewelry Workshop Expense</field>
+            <field name="code">jewelry.expense.entry</field>
+            <field name="prefix">EXP%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

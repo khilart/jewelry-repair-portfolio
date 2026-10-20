@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_cash_bank_statement" model="ir.actions.report">
+        <field name="name">Cash &amp; Bank Statement</field>
+        <field name="model">jewelry.cash.bank.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jewelry_repair_billing.report_cash_bank_statement_document</field>
+        <field name="report_file">jewelry_repair_billing.report_cash_bank_statement_document</field>
+        <field name="print_report_name">'Cash &amp; Bank %s — %s' % (object.date_from, object.date_to)</field>
+    </record>
+
+    <template id="report_cash_bank_statement_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="statement">
+                <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                    <t t-set="money" t-value="{'widget': 'monetary', 'display_currency': statement.currency_id}"/>
+
+                    <div style="margin-top: 16px; margin-bottom: 20px;">
+                        <div style="font-size: 16px; font-weight: 700; color: #2f2b25;">
+                            Cash &amp; Bank Statement
+                        </div>
+                        <div style="font-size: 12px; color: #7a746a; margin-top: 4px;">
+                            Period:
+                            <t t-esc="statement.date_from.strftime('%d.%m.%Y')"/>
+                            —
+                            <t t-esc="statement.date_to.strftime('%d.%m.%Y')"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-sm table-bordered" style="font-size: 11px; width: 100%;">
+                        <thead>
+                            <tr style="background: #f5f0ea;">
+                                <th style="width: 52%;">Item</th>
+                                <th class="text-end" style="width: 16%;">In</th>
+                                <th class="text-end" style="width: 16%;">Out</th>
+                                <th class="text-end" style="width: 16%;">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="statement.account_line_ids" t-as="account_line">
+                                <tr style="background: #faf7f3;">
+                                    <td colspan="4" style="font-weight: 600; padding: 6px 8px; color: #2f2b25;">
+                                        <t t-esc="account_line.account_id.display_name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Opening balance</td>
+                                    <td/>
+                                    <td/>
+                                    <td class="text-end">
+                                        <span t-out="account_line.opening_balance" t-options="money"/>
+                                    </td>
+                                </tr>
+                                <tr t-foreach="statement.line_ids.filtered(lambda l: l.account_id == account_line.account_id)"
+                                    t-as="line">
+                                    <td style="padding-left: 16px;"><t t-esc="line.name"/></td>
+                                    <td class="text-end">
+                                        <span t-if="line.inflow" t-out="line.inflow" t-options="money"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-if="line.outflow" t-out="line.outflow" t-options="money"/>
+                                    </td>
+                                    <td/>
+                                </tr>
+                                <tr style="font-weight: 600;">
+                                    <td>Closing balance</td>
+                                    <td class="text-end">
+                                        <span t-out="account_line.inflow" t-options="money"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-out="account_line.outflow" t-options="money"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-out="account_line.closing_balance" t-options="money"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot t-if="len(statement.account_line_ids) &gt; 1">
+                            <tr style="background: #f5f0ea; font-weight: 700;">
+                                <td>Total</td>
+                                <td class="text-end">
+                                    <span t-out="sum(statement.account_line_ids.mapped('inflow'))" t-options="money"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-out="sum(statement.account_line_ids.mapped('outflow'))" t-options="money"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-out="sum(statement.account_line_ids.mapped('closing_balance'))" t-options="money"/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

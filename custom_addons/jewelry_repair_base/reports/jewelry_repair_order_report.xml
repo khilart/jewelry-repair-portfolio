@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_jewelry_a4" model="report.paperformat">
+        <field name="name">Jewelry A4</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">10</field>
+        <field name="dpi">70</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+    </record>
+
+    <record id="action_report_jewelry_repair_order" model="ir.actions.report">
+        <field name="name">Repair Order</field>
+        <field name="model">jewelry.repair.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jewelry_repair_base.report_jewelry_repair_order_document</field>
+        <field name="report_file">jewelry_repair_base.report_jewelry_repair_order_document</field>
+        <field name="binding_model_id" ref="model_jewelry_repair_order"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Заказ на ремонт - %s' % (object.name or '')</field>
+        <field name="paperformat_id" ref="paperformat_jewelry_a4"/>
+    </record>
+
+    <template id="report_jewelry_repair_order_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="order">
+                <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                    <t t-set="label_order" t-value="order.with_context(lang='ru_RU')"/>
+                    <t t-set="label_service_lines" t-value="order.service_line_ids.with_context(lang='ru_RU')"/>
+                    <t t-set="label_operations" t-value="order.order_operation_ids.with_context(lang='ru_RU')"/>
+                    <div class="page">
+
+                        <!-- Header -->
+                        <div class="mb-3">
+                            <div class="d-flex align-items-start justify-content-between">
+                                <div>
+                                    <div style="white-space:nowrap;">
+                                        <span class="h4">Repair Order</span>
+                                        <span class="ms-2"><span t-field="order.name"/></span>
+                                    </div>
+                                    <div class="text-muted" style="font-size:0.85em;">
+                                        <span t-esc="label_order._fields['received_date'].get_description(label_order.env)['string']"/>:
+                                        <span t-if="order.received_date" t-field="order.received_date" t-options='{"widget": "datetime", "format": "dd.MM.yyyy HH:mm"}'/>
+                                    </div>
+                                </div>
+                                <div t-if="order.item_image" class="text-end">
+                                    <img
+                                        t-att-src="image_data_uri(order.item_image)"
+                                        alt="Item Photo"
+                                        style="max-width: 80px; max-height: 80px; border: 1px solid #cfcfcf; border-radius: 4px;"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Details -->
+                        <div class="row mb-3" style="font-size:0.85em;">
+                            <div class="col-6">
+                                <div><strong t-esc="label_order._fields['partner_id'].get_description(label_order.env)['string']"/>: <span t-field="order.partner_id"/></div>
+                                <div><strong t-esc="label_order._fields['deadline_date'].get_description(label_order.env)['string']"/>:
+                                    <span t-if="order.deadline_date" t-field="order.deadline_date" t-options='{"widget": "datetime", "format": "dd.MM.yyyy HH:mm"}'/>
+                                </div>
+                                <div><strong t-esc="label_order._fields['item_type_id'].get_description(label_order.env)['string']"/>: <span t-field="order.item_type_id"/></div>
+                                <div><strong t-esc="label_order._fields['quantity'].get_description(label_order.env)['string']"/>: <span t-field="order.quantity"/></div>
+                            </div>
+                            <div class="col-6">
+                                <div t-if="order.alloy_id"><strong t-esc="label_order._fields['alloy_id'].get_description(label_order.env)['string']"/>: <span t-field="order.alloy_id"/></div>
+                                <div t-if="order.metal_id"><strong t-esc="label_order._fields['metal_id'].get_description(label_order.env)['string']"/>: <span t-field="order.metal_id"/></div>
+                                <div t-if="order.received_weight"><strong t-esc="label_order._fields['received_weight'].get_description(label_order.env)['string']"/>: <span t-field="order.received_weight"/> g</div>
+                                <div t-if="order.new_product_manufacturing"><strong t-esc="label_order._fields['new_product_manufacturing'].get_description(label_order.env)['string']"/>: Yes</div>
+                                <div><strong t-esc="label_order._fields['state'].get_description(label_order.env)['string']"/>: <span t-field="order.state"/></div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div t-if="order.description" class="mb-3" style="font-size:0.85em;">
+                            <strong t-esc="label_order._fields['description'].get_description(label_order.env)['string']"/>:
+                            <div t-field="order.description"/>
+                        </div>
+
+                        <!-- Services -->
+                        <h5 class="mt-3 mb-2" style="font-size:1rem;">Services</h5>
+                        <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                            <thead class="table-light">
+                                <tr>
+                                    <th t-esc="label_service_lines._fields['product_id'].get_description(label_service_lines.env)['string']"/>
+                                    <th t-esc="label_service_lines._fields['name'].get_description(label_service_lines.env)['string']"/>
+                                    <th class="text-end" style="width:10%"
+                                        t-esc="label_service_lines._fields['total_quantity'].get_description(label_service_lines.env)['string']"/>
+                                    <th class="text-end" style="width:18%"
+                                        t-esc="label_service_lines._fields['price_unit'].get_description(label_service_lines.env)['string']"/>
+                                    <th class="text-end" style="width:18%"
+                                        t-esc="label_service_lines._fields['subtotal'].get_description(label_service_lines.env)['string']"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="order.service_line_ids.sorted(key=lambda l: (l.sequence, l.id))" t-as="line">
+                                    <td><span t-field="line.product_id"/></td>
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-end"><span t-field="line.total_quantity"/></td>
+                                    <td class="text-end"><span t-field="line.price_unit"/></td>
+                                    <td class="text-end"><span t-field="line.subtotal"/></td>
+                                </tr>
+                                <tr t-if="not order.service_line_ids">
+                                    <td colspan="5" class="text-muted">No services added.</td>
+                                </tr>
+                            </tbody>
+                            <tfoot t-if="order.service_line_ids">
+                                <tr class="fw-bold border-top">
+                                    <td colspan="4" class="text-end">Total:</td>
+                                    <td class="text-end"><span t-field="order.amount_total"/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Operations -->
+                        <h5 class="mt-3 mb-2" style="font-size:1rem;">Operations</h5>
+                        <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width:5%" t-esc="label_operations._fields['sequence'].get_description(label_operations.env)['string']"/>
+                                    <th t-esc="label_operations._fields['operation_id'].get_description(label_operations.env)['string']"/>
+                                    <th t-esc="label_operations._fields['executor_id'].get_description(label_operations.env)['string']"/>
+                                    <th style="width:18%" t-esc="label_operations._fields['planned_date'].get_description(label_operations.env)['string']"/>
+                                    <th style="width:14%" t-esc="label_operations._fields['state'].get_description(label_operations.env)['string']"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="order.order_operation_ids.sorted(key=lambda op: (op.sequence, op.id))" t-as="op">
+                                    <td><span t-field="op.sequence"/></td>
+                                    <td><span t-field="op.operation_id"/></td>
+                                    <td><span t-field="op.executor_id"/></td>
+                                    <td><span t-field="op.planned_date"/></td>
+                                    <td><span t-field="op.state"/></td>
+                                </tr>
+                                <tr t-if="not order.order_operation_ids">
+                                    <td colspan="5" class="text-muted">Operations have not been generated yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Notes -->
+                        <div t-if="order.notes" class="mt-3" style="font-size:0.7em;">
+                            <strong t-esc="label_order._fields['notes'].get_description(label_order.env)['string']"/>:
+                            <div t-field="order.notes"/>
+                        </div>
+
+                        <!-- Signatures -->
+                        <div class="row mt-4" style="font-size:0.7em;">
+                            <div class="col-5">
+                                <p class="mb-1">Issued by: ____________________</p>
+                                <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                            </div>
+                            <div class="col-2"/>
+                            <div class="col-5">
+                                <p class="mb-1">Received by: ____________________</p>
+                                <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

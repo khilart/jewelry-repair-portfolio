@@ -1,0 +1,222 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_admin_tools
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-16 00:00+0000\n"
+"PO-Revision-Date: 2026-06-16 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_admin_tools
+#: model:ir.model,name:jewelry_admin_tools.model_jewelry_bulk_processor
+msgid "Bulk Data Processor"
+msgstr "Групповая обработка данных"
+
+#. module: jewelry_admin_tools
+#: model:ir.model,name:jewelry_admin_tools.model_jewelry_bulk_operation_line
+msgid "Bulk Operation Line"
+msgstr "Строка операции"
+
+#. module: jewelry_admin_tools
+#: model:ir.model,name:jewelry_admin_tools.model_jewelry_bulk_preview_line
+msgid "Bulk Preview Line"
+msgstr "Строка предпросмотра"
+
+#. module: jewelry_admin_tools
+#: model:ir.actions.act_window,name:jewelry_admin_tools.action_jewelry_bulk_processor
+#: model:ir.ui.menu,name:jewelry_admin_tools.menu_jewelry_bulk_processor
+msgid "Bulk Data Processor"
+msgstr "Групповой обработчик данных"
+
+#. module: jewelry_admin_tools
+#: model:ir.ui.menu,name:jewelry_admin_tools.menu_jewelry_admin_tools_root
+msgid "Admin Tools"
+msgstr "Инструменты администратора"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Run AI"
+msgstr "Запустить AI"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Select All"
+msgstr "Выбрать все"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Deselect All"
+msgstr "Снять выделение"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Apply to Database"
+msgstr "Применить к базе данных"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Re-preview"
+msgstr "Обновить предпросмотр"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Write selected changes to the database?"
+msgstr "Записать выбранные изменения в базу данных?"
+
+#. module: jewelry_admin_tools
+#: model_terms:ir.ui.view,arch_db:jewelry_admin_tools.view_jewelry_bulk_processor_form
+msgid "Operations"
+msgstr "Операции"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_processor__model_id
+msgid "Model"
+msgstr "Модель"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_processor__domain
+msgid "Filter"
+msgstr "Фильтр"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__field_id
+msgid "Field"
+msgstr "Поле"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__operation_type
+msgid "Operation"
+msgstr "Операция"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_operation_line__operation_type__ai_translate
+msgid "AI Translate"
+msgstr "Перевести через AI"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_operation_line__operation_type__ai_transform
+msgid "AI Transform"
+msgstr "Преобразовать через AI"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__ai_rule
+msgid "Rule"
+msgstr "Правило"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_operation_line__operation_type__set_value
+msgid "Set Value"
+msgstr "Установить значение"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_operation_line__operation_type__clear
+msgid "Clear"
+msgstr "Очистить"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__ai_source_lang_id
+msgid "Source Language"
+msgstr "Исходный язык"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__ai_target_lang_ids
+msgid "Target Languages"
+msgstr "Целевые языки"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__ai_context
+msgid "AI Context"
+msgstr "Контекст для AI"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_operation_line__set_value
+msgid "Value"
+msgstr "Значение"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_preview_line__res_name
+msgid "Record"
+msgstr "Запись"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_preview_line__lang_id
+msgid "Language"
+msgstr "Язык"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_preview_line__current_value
+msgid "Current"
+msgstr "Текущее"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_preview_line__new_value
+msgid "New Value"
+msgstr "Новое значение"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields,field_description:jewelry_admin_tools.field_jewelry_bulk_preview_line__selected
+msgid "Apply"
+msgstr "Применить"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_processor__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_processor__state__previewed
+msgid "Previewed"
+msgstr "Предпросмотр"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_processor__state__ai_done
+msgid "AI Done"
+msgstr "AI выполнен"
+
+#. module: jewelry_admin_tools
+#: model:ir.model.fields.selection,name:jewelry_admin_tools.selection__jewelry_bulk_processor__state__applied
+msgid "Applied"
+msgstr "Применено"
+
+#. module: jewelry_admin_tools
+#: code:addons/jewelry_admin_tools/models/bulk_processor.py:0
+msgid "Add at least one operation."
+msgstr "Добавьте хотя бы одну операцию."
+
+#. module: jewelry_admin_tools
+#: code:addons/jewelry_admin_tools/models/bulk_processor.py:0
+msgid "No records match the filter."
+msgstr "Ни одна запись не соответствует фильтру."
+
+#. module: jewelry_admin_tools
+#: code:addons/jewelry_admin_tools/models/bulk_processor.py:0
+msgid "No AI translation lines selected."
+msgstr "Не выбрано ни одной строки для перевода."
+
+#. module: jewelry_admin_tools
+#: code:addons/jewelry_admin_tools/models/bulk_processor.py:0
+msgid "Anthropic API key not set. Configure 'anthropic.api_key' in Settings → Technical → System Parameters."
+msgstr "API-ключ Anthropic не настроен. Укажите 'anthropic.api_key' в Настройки → Технические → Системные параметры."
+
+#. module: jewelry_admin_tools
+#: code:addons/jewelry_admin_tools/models/bulk_processor.py:0
+msgid "The 'anthropic' Python package is not installed."
+msgstr "Python-пакет 'anthropic' не установлен."
+
+#. module: jewelry_admin_tools
+#: code:addons/jewelry_admin_tools/models/bulk_processor.py:0
+msgid "AI returned an invalid response. Try again."
+msgstr "AI вернул некорректный ответ. Попробуйте ещё раз."

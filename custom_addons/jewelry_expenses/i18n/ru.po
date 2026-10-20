@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_expenses
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260324\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-14 11:58+0000\n"
+"PO-Revision-Date: 2026-06-14 11:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "<span class=\"o_stat_text\">Journal Entry</span>"
+msgstr "<span class=\"o_stat_text\">Проводка</span>"
+
+#. module: jewelry_expenses
+#. odoo-python
+#: code:addons/jewelry_expenses/models/expense_entry.py:0
+#, python-format
+msgid ""
+"An expense that already has a journal entry cannot be deleted — it would "
+"orphan that entry. Use Cancel instead."
+msgstr ""
+"Расход, у которого уже есть проводка, нельзя удалить — проводка останется "
+"без документа. Используйте Cancel."
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__amount
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__amount
+msgid "Amount"
+msgstr "Сумма"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_category_form
+msgid "<span class=\"o_stat_text\">Balance</span>"
+msgstr "<span class=\"o_stat_text\">Баланс</span>"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_category_list
+msgid "Balance"
+msgstr "Баланс"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,help:jewelry_expenses.field_jewelry_expense_entry__payment_journal_id
+msgid "Cash or bank account the money is paid from."
+msgstr "Касса или банковский счёт, с которого оплачивается."
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_category_list
+msgid "Credit"
+msgstr "Кредит"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__account_id
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__account_name
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_list
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "Category"
+msgstr "Статья расхода"
+
+#. module: jewelry_expenses
+#: model:ir.ui.menu,name:jewelry_expenses.menu_jewelry_expenses_config
+msgid "Configuration"
+msgstr "Настройка"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__create_uid
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__create_date
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__currency_id
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__dashboard_id
+msgid "Dashboard"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__dashboard_prev_id
+msgid "Dashboard Prev"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_category_list
+msgid "Debit"
+msgstr "Дебет"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__display_name
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields.selection,name:jewelry_expenses.selection__jewelry_expense_entry__state__draft
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "Expense"
+msgstr "Расход"
+
+#. module: jewelry_expenses
+#: model:ir.actions.act_window,name:jewelry_expenses.action_jewelry_expense_categories
+#: model:ir.ui.menu,name:jewelry_expenses.menu_jewelry_expense_categories
+msgid "Expense Categories"
+msgstr "Статьи расходов"
+
+#. module: jewelry_expenses
+#. odoo-python
+#: code:addons/jewelry_expenses/models/account_account_ext.py:0
+#, python-format
+msgid "Expense category code must look like EXPxxx (e.g. EXP520)."
+msgstr "Код статьи расхода должен быть в формате EXPxxx (например, EXP520)."
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,help:jewelry_expenses.field_jewelry_expense_entry__account_id
+msgid "Expense category. Defines the expense account the amount is booked to."
+msgstr "Статья расхода. Определяет счёт расхода, на который относится сумма."
+
+#. module: jewelry_expenses
+#: model:ir.actions.server,name:jewelry_expenses.action_jewelry_expense_entry
+#: model:ir.ui.menu,name:jewelry_expenses.menu_jewelry_expense_entry
+#: model:ir.ui.menu,name:jewelry_expenses.menu_jewelry_expenses_root
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_list
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_repair_kpi_dashboard_form_expenses
+msgid "Expenses"
+msgstr "Расходы"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_dashboard__expense_prev_ids
+msgid "Expenses Last Month"
+msgstr "Расходы за прошлый месяц"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_dashboard__expense_month_ids
+msgid "Expenses This Month"
+msgstr "Расходы за текущий месяц"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "Group By"
+msgstr "Группировать по"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__id
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__id
+msgid "ID"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model,name:jewelry_expenses.model_jewelry_repair_kpi_dashboard
+msgid "Jewelry Repair KPI Dashboard"
+msgstr "Финансовый дашборд"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__move_id
+msgid "Journal Entry"
+msgstr "Бухгалтерская проводка"
+
+#. module: jewelry_expenses
+#: model:ir.model,name:jewelry_expenses.model_jewelry_repair_kpi_expense_line
+msgid "KPI Dashboard Expense Line"
+msgstr "Строка расходов KPI-дашборда"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__write_uid
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__write_date
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_expense_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "Month"
+msgstr "Месяц"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_dashboard__profit_prev
+msgid "Net Profit Last Month"
+msgstr "Чистая прибыль за прошлый месяц"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_dashboard__profit_current
+msgid "Net Profit This Month"
+msgstr "Чистая прибыль за текущий месяц"
+
+#. module: jewelry_expenses
+#. odoo-python
+#: code:addons/jewelry_expenses/models/expense_entry.py:0
+#: code:addons/jewelry_expenses/models/expense_entry.py:0
+#: code:addons/jewelry_expenses/models/expense_entry.py:0
+#, python-format
+msgid "New"
+msgstr "Новый"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__notes
+msgid "Note"
+msgstr "Заметка"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "Note (optional)"
+msgstr "Заметка (необязательно)"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__name
+msgid "Number"
+msgstr "Номер"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__payment_journal_id
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_list
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "Paid From"
+msgstr "Оплачено из"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "Post"
+msgstr "Провести"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields.selection,name:jewelry_expenses.selection__jewelry_expense_entry__state__posted
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "Posted"
+msgstr "Проведён"
+
+#. module: jewelry_expenses
+#. odoo-python
+#: code:addons/jewelry_expenses/models/expense_entry.py:0
+#, python-format
+msgid "Set a default account on the '%s' journal before posting expenses."
+msgstr "Задайте счёт по умолчанию для журнала «%s» перед проведением расходов."
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__state
+msgid "State"
+msgstr ""
+
+#. module: jewelry_expenses
+#. odoo-python
+#: code:addons/jewelry_expenses/models/expense_entry.py:0
+#, python-format
+msgid "The expense amount must be greater than zero."
+msgstr "Сумма расхода должна быть больше нуля."
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_search
+msgid "This Month"
+msgstr "Текущий месяц"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "This will cancel the expense and its journal entry. Continue?"
+msgstr "Это отменит расход и его проводку. Продолжить?"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_list
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_repair_kpi_dashboard_form_expenses
+msgid "Total"
+msgstr ""
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_dashboard__expense_total_prev
+msgid "Total Expenses Last Month"
+msgstr "Итого расходы за прошлый месяц"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_repair_kpi_dashboard__expense_total_current
+msgid "Total Expenses This Month"
+msgstr "Итого расходы за текущий месяц"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields,field_description:jewelry_expenses.field_jewelry_expense_entry__partner_id
+msgid "Vendor / Recipient"
+msgstr "Поставщик / Получатель"
+
+#. module: jewelry_expenses
+#: model:ir.actions.act_window,name:jewelry_expenses.action_jewelry_expense_vendor_bills
+#: model:ir.ui.menu,name:jewelry_expenses.menu_jewelry_expense_vendor_bills
+msgid "Vendor Bills"
+msgstr "Счета поставщиков"
+
+#. module: jewelry_expenses
+#: model:ir.model,name:jewelry_expenses.model_jewelry_expense_entry
+msgid "Workshop Expense"
+msgstr "Расход мастерской"
+
+#. module: jewelry_expenses
+#: model:ir.model.fields.selection,name:jewelry_expenses.selection__jewelry_expense_entry__state__cancelled
+msgid "Cancelled"
+msgstr "Отменён"
+
+#. module: jewelry_expenses
+#: model_terms:ir.ui.view,arch_db:jewelry_expenses.view_jewelry_expense_entry_form
+msgid "Reset to Draft"
+msgstr "В черновик"

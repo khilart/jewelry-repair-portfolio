@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="module_category_jewelry_repair" model="ir.module.category">
+            <field name="name">Jewelry Repair</field>
+            <field name="sequence">35</field>
+        </record>
+
+        <record id="group_jewelry_repair_master" model="res.groups">
+            <field name="name">Jewelry Repair / Master</field>
+            <field name="category_id" ref="jewelry_repair_base.module_category_jewelry_repair"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_jewelry_repair_receptionist" model="res.groups">
+            <field name="name">Jewelry Repair / Receptionist</field>
+            <field name="category_id" ref="jewelry_repair_base.module_category_jewelry_repair"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_jewelry_repair_manager" model="res.groups">
+            <field name="name">Jewelry Repair / Manager</field>
+            <field name="category_id" ref="jewelry_repair_base.module_category_jewelry_repair"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_jewelry_repair_manage_any_operation" model="res.groups">
+            <field name="name">Jewelry Repair / Manages Any Operation</field>
+            <field name="category_id" ref="jewelry_repair_base.module_category_jewelry_repair"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_jewelry_repair_director" model="res.groups">
+            <field name="name">Jewelry Repair / Observer (read-only)</field>
+            <field name="category_id" ref="jewelry_repair_base.module_category_jewelry_repair"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

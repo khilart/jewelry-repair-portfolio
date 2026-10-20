@@ -1,0 +1,325 @@
+
+/* Bold large font for weight fields and order total in repair order form */
+.o_form_view [name="received_weight"],
+.o_form_view [name="received_weight"] input,
+.o_form_view [name="delivered_weight"],
+.o_form_view [name="delivered_weight"] input,
+.o_form_view [name="metal_delivered_weight"],
+.o_form_view [name="gem_weight_total_g"] {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.o_form_view [name="amount_total"],
+.o_form_view [name="amount_total"] span {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+/* Limit image column size in list views */
+.o_list_view th[data-name="item_image"],
+.o_list_view td[name="item_image"] {
+    width: 72px;
+    min-width: 72px;
+    max-width: 240px;
+}
+
+.o_list_view td[name="item_image"] .o_field_image img {
+    width: 100%;
+    height: auto;
+    max-width: 240px;
+    border-radius: 4px;
+}
+
+/* Center the form sheet on wide screens (Odoo left-aligns it by default) */
+.o_form_sheet_bg {
+    margin-left: auto;
+}
+
+/* Desktop header: fields + photo as flex columns (avoids Safari float/grid drop) */
+.jr_order_header_flex {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.jr_order_header_flex > .jr_order_header_fields {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.jr_order_photo_desktop {
+    flex: 0 0 320px;
+    width: 320px;
+    margin-bottom: 12px;
+    text-align: right;
+}
+
+.jr_order_photo_upload {
+    flex: 0 0 320px;
+    width: 320px;
+    margin-bottom: 12px;
+}
+
+.jr_order_photo_desktop .o_field_image,
+.jr_order_photo_mobile .o_field_image {
+    display: inline-block;
+}
+
+.jr_order_photo_desktop .o_field_image img,
+.jr_order_photo_desktop .o_field_image canvas,
+.jr_order_photo_desktop .o_field_image .img,
+.jr_order_photo_mobile .o_field_image img,
+.jr_order_photo_mobile .o_field_image canvas,
+.jr_order_photo_mobile .o_field_image .img {
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.jr_order_photo_desktop .o_field_image img,
+.jr_order_photo_desktop .o_field_image canvas,
+.jr_order_photo_desktop .o_field_image .img {
+    width: 320px !important;
+    height: 360px !important;
+    max-width: 320px !important;
+}
+
+.jr_order_photo_mobile {
+    display: none;
+    margin-bottom: 16px;
+    text-align: center;
+    clear: both;
+    width: 100%;
+}
+
+.jr_order_photo_mobile .jr_order_item_image,
+.jr_order_photo_mobile .jr_order_photo_mobile_button {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.jr_order_photo_mobile .jr_order_photo_mobile_button {
+    clear: both;
+    margin-top: 8px;
+}
+
+.jr_order_photo_desktop .jr_order_photo_desktop_button {
+    text-align: right;
+}
+
+.jr_order_photo_mobile .o_field_image img,
+.jr_order_photo_mobile .o_field_image canvas,
+.jr_order_photo_mobile .o_field_image .img {
+    width: min(100%, 420px) !important;
+    height: min(70vw, 420px) !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 767.98px) {
+    .jr_order_header_flex {
+        flex-direction: column;
+    }
+
+    .jr_order_photo_desktop {
+        display: none !important;
+        flex: 0 0 auto;
+        width: 0 !important;
+        margin: 0 !important;
+    }
+
+    .jr_order_photo_upload {
+        flex: 0 0 auto;
+        width: 100%;
+        margin: 0 0 16px 0;
+        order: -1;
+    }
+
+    .jr_order_photo_mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        float: none !important;
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+
+    .jr_order_photo_mobile + .o_group,
+    .jr_order_photo_mobile + .group,
+    .jr_order_photo_mobile + div.o_group {
+        clear: both;
+    }
+
+    .jr_order_photo_mobile .jr_order_item_image,
+    .jr_order_photo_mobile .jr_order_photo_mobile_button {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.o_search_panel.jr_search_panel_hidden {
+    display: none !important;
+}
+
+.jr_operation_task_deadline {
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+    color: #2f2b25;
+}
+
+.jr_operation_task_sheet {
+    background: #fff;
+}
+
+.jr_operation_task_layout {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.jr_operation_task_media,
+.jr_operation_task_card,
+.jr_operation_task_meta_card {
+    background: #fff;
+    border: 1px solid #e6e1d9;
+    border-radius: 14px;
+}
+
+.jr_operation_task_media {
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.jr_operation_task_image {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.jr_operation_task_image img,
+.jr_operation_task_image canvas {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 300px !important;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.jr_operation_task_order_ref {
+    margin-top: 10px;
+}
+
+.jr_operation_task_content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.jr_operation_task_header {
+    padding-top: 4px;
+}
+
+.jr_operation_task_title {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.15;
+    font-weight: 700;
+    color: #2f2b25;
+}
+
+.jr_operation_task_meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.jr_operation_task_meta_card,
+.jr_operation_task_card {
+    padding: 12px 14px;
+}
+
+.jr_operation_task_card_title {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2f2b25;
+}
+
+.jr_operation_task_label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #7a746a;
+    font-weight: 600;
+}
+
+.jr_operation_task_value {
+    font-size: 1rem;
+    line-height: 1.35;
+    color: #2f2b25;
+    font-weight: 500;
+}
+
+.jr_operation_task_meta_card {
+    min-width: 0;
+}
+
+.jr_operation_task_meta_card .jr_operation_task_value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jr_operation_task_info_row + .jr_operation_task_info_row {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee8df;
+}
+
+.jr_operation_task_card .o_input,
+.jr_operation_task_card textarea {
+    min-height: 80px;
+}
+
+.jr_operation_task_card .o_field_one2many {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.jr_kanban_op_card {
+    border-left: 3px solid #adb5bd;
+    border-radius: 4px;
+}
+
+.jr_kanban_op_state_pending {
+    border-left-color: #adb5bd;
+}
+
+.jr_kanban_op_state_ready {
+    border-left-color: #198754;
+}
+
+.jr_kanban_op_state_accepted,
+.jr_kanban_op_state_in_progress {
+    border-left-color: #0d6efd;
+}
+
+.jr_kpi_card_services {
+    background-color: #daeeff !important;
+    border-color: #b3d6f0 !important;
+}
+
+.jr_kpi_card_materials {
+    background-color: #fff9d6 !important;
+    border-color: #e8d97a !important;
+}

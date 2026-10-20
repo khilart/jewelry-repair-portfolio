@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_jewelry_repair_order_invoice" model="ir.actions.report">
+        <field name="name">Item Invoice</field>
+        <field name="model">jewelry.repair.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">jewelry_repair_base.report_jewelry_repair_order_invoice_document</field>
+        <field name="report_file">jewelry_repair_base.report_jewelry_repair_order_invoice_document</field>
+        <field name="binding_model_id" ref="model_jewelry_repair_order"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Invoice - %s' % (object.name or '')</field>
+        <field name="paperformat_id" ref="paperformat_jewelry_a4"/>
+    </record>
+
+    <template id="report_jewelry_repair_order_invoice_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="order">
+                <t t-set="company" t-value="env.company"/>
+                <t t-set="due_date"
+                   t-value="order.received_date and (order.received_date + datetime.timedelta(days=company.invoice_payment_term_days or 30))"/>
+                <t t-set="unit_price"
+                   t-value="(order.amount_total / order.quantity) if order.quantity else order.amount_total"/>
+                <div t-att-class="'article o_standard_font o_company_%s_layout' % company.id">
+                <div class="page" style="font-size:0.85em;">
+
+                    <table class="table-borderless w-100 mb-3" style="border-bottom:1px solid #dee2e6;">
+                        <tr>
+                            <td style="vertical-align:top; padding:0 0 6px 0;">
+                                <div class="h5 mb-1"><span t-field="company.name"/></div>
+                                <div t-if="company.street">
+                                    <span t-field="company.street"/><t t-if="company.street2">, <span t-field="company.street2"/></t>
+                                </div>
+                                <div t-if="company.city or company.zip or company.country_id">
+                                    <span t-if="company.city" t-field="company.city"/><t t-if="company.state_id">, <span t-field="company.state_id.name"/></t>
+                                    <t t-if="company.zip"> <span t-field="company.zip"/></t>
+                                    <t t-if="company.country_id"> <span t-field="company.country_id.name"/></t>
+                                </div>
+                                <div t-if="company.phone"><span t-field="company.phone"/></div>
+                                <div t-if="company.email"><span t-field="company.email"/></div>
+                            </td>
+                            <td class="text-end" style="vertical-align:top; width:35%; padding:0 0 6px 0;">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                     style="max-height:120px; max-width:100%;"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h3 class="mb-3">INVOICE</h3>
+
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="text-muted" style="font-size:0.85em;">TO:</div>
+                            <div><span t-field="order.partner_id.name"/></div>
+                            <div t-if="order.partner_id.street or order.partner_id.city"
+                                 t-field="order.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                        </div>
+                        <div class="col-6">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="text-muted">INVOICE #</td>
+                                    <td class="text-end"><span t-field="order.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">DATE</td>
+                                    <td class="text-end"><span t-field="order.received_date"
+                                                                t-options='{"widget": "date"}'/></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-muted">PAYMENT DUE</td>
+                                    <td class="text-end">
+                                        <span t-esc="due_date and due_date.strftime('%m/%d/%Y') or ''"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div t-if="order.notes" class="mb-3">
+                        <div class="text-muted" style="font-size:0.8em;">COMMENTS OR SPECIAL INSTRUCTIONS:</div>
+                        <div t-field="order.notes"/>
+                    </div>
+
+                    <table class="table table-sm o_main_table mt-4" style="font-size:0.8em;">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Product ID</th>
+                                <th>SKU</th>
+                                <th>Description</th>
+                                <th class="text-end">Qty</th>
+                                <th class="text-end">Weight, g</th>
+                                <th class="text-end">Unit Price</th>
+                                <th class="text-end">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><span t-field="order.item_type_id"/></td>
+                                <td><span t-field="order.name"/></td>
+                                <td>
+                                    <div t-if="order.alloy_id">
+                                        <span t-field="order.alloy_id"/>
+                                        <t t-if="order.metal_delivered_weight"> · <span t-field="order.metal_delivered_weight"/> g</t>
+                                    </div>
+                                    <t t-foreach="order.gem_line_ids" t-as="gem">
+                                        <div>
+                                            <span t-field="gem.gem_type_id"/>
+                                            <t t-if="gem.cut_shape"> <span t-field="gem.cut_shape"/></t>
+                                            <span> · </span><span t-field="gem.weight_ct"/> ct
+                                        </div>
+                                    </t>
+                                </td>
+                                <td class="text-end"><span t-field="order.quantity"/></td>
+                                <td class="text-end"><span t-field="order.delivered_weight"/></td>
+                                <td class="text-end">
+                                    <span t-esc="'%.2f %s' % (unit_price, order.currency_id.symbol or order.currency_id.name)"/>
+                                </td>
+                                <td class="text-end"><span t-field="order.amount_total"/></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="fw-bold border-top">
+                                <td colspan="7" class="text-end">Total</td>
+                                <td class="text-end"><span t-field="order.amount_total"/></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="text-center mt-4" style="font-size:0.85em;">
+                        <div t-if="company.invoice_contact_id">
+                            If you have any questions concerning this invoice, contact:
+                            <span t-field="company.invoice_contact_id.name"/>
+                            <t t-if="company.invoice_contact_id.phone"> <span t-field="company.invoice_contact_id.phone"/></t>
+                            <t t-if="company.invoice_contact_id.email"> or Email <span t-field="company.invoice_contact_id.email"/></t>
+                        </div>
+                        <div class="fw-bold mt-1">THANK YOU FOR YOUR BUSINESS!</div>
+                    </div>
+
+                    <div class="mt-4 text-center" style="font-size:0.75em;">
+                        <img t-if="company.invoice_payment_qr" t-att-src="image_data_uri(company.invoice_payment_qr)"
+                             style="max-height:220px;"/>
+                        <div t-if="company.invoice_contact_id.email" class="mt-1">
+                            <span t-field="company.invoice_contact_id.email"/>
+                        </div>
+                        <div t-foreach="company.partner_id.bank_ids" t-as="bank" class="text-muted mt-1">
+                            <span t-field="bank.bank_id.name"/>: <span t-field="bank.acc_number"/>
+                            <t t-if="bank.bank_id.bic"> · SWIFT: <span t-field="bank.bank_id.bic"/></t>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="footer o_standard_font">
+                    <div class="text-end text-muted" style="font-size:10px;">
+                        <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

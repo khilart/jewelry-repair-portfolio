@@ -1,0 +1,13 @@
+<odoo>
+    <record id="rule_account_account_expense_category_write" model="ir.rule">
+        <field name="name">Expense categories: restrict write/create to EXP accounts</field>
+        <field name="model_id" ref="account.model_account_account" />
+        <field name="domain_force">[('account_type', '=', 'expense'), ('code', '=like', 'EXP%')]</field>
+        <field name="groups" eval="[(4, ref('jewelry_repair_base.group_jewelry_repair_manager')),
+                                     (4, ref('jewelry_repair_base.group_jewelry_repair_manage_any_operation'))]" />
+        <field name="perm_read">0</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">0</field>
+    </record>
+</odoo>

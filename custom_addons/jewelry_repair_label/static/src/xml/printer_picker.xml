@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="jewelry_repair_label.PrinterPicker">
+        <div class="mt8">
+            <div t-if="!supported" class="text-muted">
+                This browser cannot talk to the printer. Chrome or Edge is needed,
+                and the page must be served over https.
+            </div>
+            <t t-else="">
+                <div t-if="state.selected" class="text-success mb-2">
+                    A printer is selected in this browser.
+                </div>
+                <div t-else="" class="text-muted mb-2">
+                    No printer selected in this browser yet.
+                </div>
+                <button class="btn btn-secondary btn-sm" t-on-click="onPick">
+                    Select Printer
+                </button>
+                <button t-if="state.selected" class="btn btn-link btn-sm"
+                        t-on-click="onForget">Forget</button>
+                <div t-if="state.message" class="text-muted mt8">
+                    <t t-esc="state.message"/>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>

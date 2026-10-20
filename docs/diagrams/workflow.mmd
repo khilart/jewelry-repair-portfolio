@@ -1,0 +1,15 @@
+flowchart TD
+    A[Create Repair Order] --> B[Add Service Lines]
+    B --> C[Generate Order Operations]
+    C --> D[Execute Operations]
+    D --> E{All Operations Done?}
+    E -- No --> D
+    E -- Yes --> F[Mark Order Ready]
+    F --> G[Create Delivery Document]
+    G --> H[Confirm Delivery]
+    H --> I[Order Becomes Delivered]
+    I --> J[Create Billing Batch]
+    J --> K[Load Delivered Orders By Period]
+    K --> L[Confirm Billing Batch]
+    L --> M[Create Invoice]
+    M --> N[Open / Validate Invoice]

@@ -1,0 +1,141 @@
+<odoo>
+    <data>
+
+        <!-- 3D Model list -->
+        <record id="view_jewelry_model_3d_tree" model="ir.ui.view">
+            <field name="name">jewelry.model.3d.tree</field>
+            <field name="model">jewelry.model.3d</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="category_id"/>
+                    <field name="volume_cm3"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 3D Model form -->
+        <record id="view_jewelry_model_3d_form" model="ir.ui.view">
+            <field name="name">jewelry.model.3d.form</field>
+            <field name="model">jewelry.model.3d</field>
+            <field name="arch" type="xml">
+                <form string="3D Model">
+                    <sheet>
+                        <div class="o_3d_avatar_wrap">
+                            <field name="preview_image" widget="image"/>
+                            <div class="o_3d_avatar_btn mt-1 d-flex flex-column gap-1">
+                                <button
+                                    name="action_parse_stl"
+                                    type="object"
+                                    string="Parse STL"
+                                    class="btn-secondary btn-sm w-100"
+                                    invisible="not stl_file"
+                                />
+                                <button
+                                    name="action_view_3d"
+                                    type="object"
+                                    string="View 3D"
+                                    class="btn-primary btn-sm w-100"
+                                    invisible="not stl_file"
+                                />
+                            </div>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="Model name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="category_id"/>
+                            </group>
+                            <group>
+                                <field name="stl_file" filename="stl_filename" widget="binary"/>
+                                <field name="stl_filename" invisible="1"/>
+                                <field name="volume_cm3"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" placeholder="Internal notes"/>
+                        </group>
+                        <notebook>
+                            <page string="Stone Seats" name="stone_seats">
+                                <field name="stone_seat_ids">
+                                    <tree editable="bottom">
+                                        <field name="diameter_mm"/>
+                                        <field name="count"/>
+                                        <field name="standard_size_id"/>
+                                        <field name="gem_type_id"/>
+                                        <field name="cut_shape"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Services" name="services">
+                                <field name="service_template_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="product_id"/>
+                                        <field name="quantity"/>
+                                        <field name="price_unit"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Materials" name="materials">
+                                <field name="material_template_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="alloy_id"/>
+                                        <field name="weight_auto" readonly="1" string="Est. Weight (g)"/>
+                                        <field name="price_est" readonly="1" string="Est. Price"/>
+                                        <field name="weight" string="Weight to Copy (g)"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_jewelry_model_3d" model="ir.actions.act_window">
+            <field name="name">3D Model Library</field>
+            <field name="res_model">jewelry.model.3d</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Repair order form extension -->
+        <record id="view_jewelry_repair_order_form_3d" model="ir.ui.view">
+            <field name="name">jewelry.repair.order.form.3d</field>
+            <field name="model">jewelry.repair.order</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_repair_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[1]" position="before">
+                    <button
+                        name="action_load_from_model"
+                        type="object"
+                        string="Load from Model"
+                        invisible="not model_3d_id or state != 'draft'"
+                    />
+                </xpath>
+                <xpath expr="//field[@name='new_product_manufacturing']" position="after">
+                    <field name="model_3d_id" invisible="not new_product_manufacturing"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Alloy form extension — add density field -->
+        <record id="view_jewelry_metal_alloy_form_density" model="ir.ui.view">
+            <field name="name">jewelry.metal.alloy.form.density</field>
+            <field name="model">jewelry.metal.alloy</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_metal_alloy_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='purity']" position="after">
+                    <field name="density"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

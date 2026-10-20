@@ -1,0 +1,82 @@
+erDiagram
+    REPAIR_ORDER {
+        int id
+        string name
+        int partner_id
+        int item_type_id
+        int quantity
+        date deadline_date
+        string state
+    }
+
+    ITEM_TYPE {
+        int id
+        string name
+    }
+
+    SERVICE_PRODUCT {
+        int id
+        string name
+        bool repair_service_ok
+        int repair_operation_id
+    }
+
+    SERVICE_LINE {
+        int id
+        int order_id
+        int product_id
+        int operation_id
+        float quantity
+        float price_unit
+        float subtotal
+    }
+
+    OPERATION_CATALOG {
+        int id
+        string name
+        int sequence
+        float duration_days
+        int default_user_id
+    }
+
+    ORDER_OPERATION {
+        int id
+        int order_id
+        int operation_id
+        int assigned_user_id
+        string state
+    }
+
+    DELIVERY {
+        int id
+        string name
+        int partner_id
+        date delivery_date
+        string state
+    }
+
+    BILLING_BATCH {
+        int id
+        string name
+        int partner_id
+        date date_from
+        date date_to
+        string state
+    }
+
+    INVOICE {
+        int id
+        string name
+        int partner_id
+        date invoice_date
+    }
+
+    ITEM_TYPE ||--o{ REPAIR_ORDER : classifies
+    REPAIR_ORDER ||--o{ SERVICE_LINE : contains
+    SERVICE_PRODUCT ||--o{ SERVICE_LINE : selected_in
+    OPERATION_CATALOG ||--o{ SERVICE_LINE : default_or_manual
+    REPAIR_ORDER ||--o{ ORDER_OPERATION : generates
+    OPERATION_CATALOG ||--o{ ORDER_OPERATION : instantiates
+    DELIVERY }o--o{ REPAIR_ORDER : delivers
+    BILLING_BATCH }o--o{ REPAIR_ORDER : bills
+    BILLING_BATCH ||--o| INVOICE : creates

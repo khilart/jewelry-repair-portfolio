@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_jewelry_bulk_processor_form" model="ir.ui.view">
+        <field name="name">jewelry.bulk.processor.form</field>
+        <field name="model">jewelry.bulk.processor</field>
+        <field name="arch" type="xml">
+            <form string="Bulk Data Processor">
+                <header>
+                    <button name="action_preview" string="Preview" type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_run_ai" string="Run AI" type="object"
+                            class="btn-primary"
+                            invisible="state not in ('previewed', 'ai_done')"/>
+                    <button name="action_select_all" string="Select All" type="object"
+                            invisible="state not in ('previewed', 'ai_done')"/>
+                    <button name="action_deselect_all" string="Deselect All" type="object"
+                            invisible="state not in ('previewed', 'ai_done')"/>
+                    <button name="action_apply" string="Apply to Database" type="object"
+                            class="btn-primary"
+                            confirm="Write selected changes to the database?"
+                            invisible="state not in ('previewed', 'ai_done')"/>
+                    <button name="action_preview" string="Re-preview" type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,previewed,ai_done,applied"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_id"/>
+                            <field name="model_name" invisible="1"/>
+                            <field name="domain" widget="domain"
+                                   options="{'model': 'model_name'}"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Operations" name="operations">
+                            <field name="operation_line_ids">
+                                <tree editable="bottom">
+                                    <field name="field_id"/>
+                                    <field name="operation_type"/>
+                                    <field name="set_value"
+                                           optional="hide"
+                                           invisible="operation_type != 'set_value'"/>
+                                    <field name="ai_source_lang_id"
+                                           invisible="operation_type != 'ai_translate'"/>
+                                    <field name="ai_target_lang_ids"
+                                           widget="many2many_tags"
+                                           optional="hide"
+                                           invisible="operation_type != 'ai_translate'"/>
+                                    <field name="ai_rule"
+                                           optional="hide"
+                                           invisible="operation_type != 'ai_transform'"/>
+                                    <field name="ai_context"
+                                           optional="hide"
+                                           invisible="operation_type not in ('ai_translate', 'ai_transform')"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Preview" name="preview"
+                              invisible="state == 'draft'">
+                            <field name="preview_line_ids">
+                                <tree editable="bottom"
+                                      decoration-muted="not selected"
+                                      decoration-success="selected and new_value"
+                                      decoration-warning="selected and not new_value">
+                                    <field name="selected" string="✓"/>
+                                    <field name="res_name" string="Record" readonly="1"/>
+                                    <field name="lang_id" string="Language" readonly="1"
+                                           optional="show"/>
+                                    <field name="field_id" string="Field" readonly="1"
+                                           optional="hide"/>
+                                    <field name="operation_type" string="Operation" readonly="1"
+                                           optional="hide"/>
+                                    <field name="current_value" string="Current" readonly="1"/>
+                                    <field name="new_value" string="New Value"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_jewelry_bulk_processor" model="ir.actions.act_window">
+        <field name="name">Bulk Data Processor</field>
+        <field name="res_model">jewelry.bulk.processor</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,96 @@
+<odoo>
+    <data>
+
+        <!-- High priority number keeps this list from becoming the default one
+             for account.move.line screens without an explicit view. -->
+        <record id="view_jewelry_cash_movement_tree" model="ir.ui.view">
+            <field name="name">jewelry.cash.movement.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Movements" create="0" edit="0" delete="0" default_order="date desc, id desc">
+                    <field name="date"/>
+                    <field name="move_id" string="Entry"/>
+                    <field name="account_id" optional="hide"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="name" string="Description"/>
+                    <field name="counterpart_account_id"/>
+                    <field name="company_currency_id" column_invisible="1"/>
+                    <field name="debit" string="In" sum="Total In"/>
+                    <field name="credit" string="Out" sum="Total Out"/>
+                    <field name="running_balance" string="Balance"/>
+                    <button name="action_open_business_doc" type="object" icon="fa-external-link"
+                            title="Open Entry" class="btn-link"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_jewelry_cash_bank_statement_form" model="ir.ui.view">
+            <field name="name">jewelry.cash.bank.statement.form</field>
+            <field name="model">jewelry.cash.bank.statement</field>
+            <field name="arch" type="xml">
+                <form string="Cash &amp; Bank Statement">
+                    <header>
+                        <button name="action_build_statement" type="object" string="Build Statement"
+                                class="btn-primary"/>
+                        <button name="action_print_statement" type="object" string="Print PDF"
+                                class="btn-secondary" invisible="not account_line_ids"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="period_preset"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <separator string="Balances"/>
+                        <field name="account_line_ids">
+                            <tree create="0" edit="0" delete="0">
+                                <field name="currency_id" column_invisible="1"/>
+                                <field name="account_id"/>
+                                <field name="opening_balance" sum="Total Opening"/>
+                                <field name="inflow" sum="Total In"/>
+                                <field name="outflow" sum="Total Out"/>
+                                <field name="closing_balance" sum="Total Closing"/>
+                                <button name="action_view_moves" type="object" icon="fa-list"
+                                        title="Movements" class="btn-link"/>
+                            </tree>
+                        </field>
+                        <separator string="Breakdown"/>
+                        <field name="line_ids">
+                            <tree create="0" edit="0" delete="0">
+                                <field name="currency_id" column_invisible="1"/>
+                                <field name="account_id"/>
+                                <field name="name"/>
+                                <field name="inflow" sum="Total In"/>
+                                <field name="outflow" sum="Total Out"/>
+                                <field name="entry_count"/>
+                                <button name="action_view_moves" type="object" icon="fa-list"
+                                        title="Movements" class="btn-link"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_jewelry_cash_bank_statement_server" model="ir.actions.server">
+            <field name="name">Cash &amp; Bank Statement</field>
+            <field name="model_id" ref="model_jewelry_cash_bank_statement"/>
+            <field name="state">code</field>
+            <field name="code">action = env["jewelry.cash.bank.statement"].action_open_statement()</field>
+        </record>
+
+        <menuitem
+            id="menu_jewelry_cash_bank_statement"
+            name="Cash &amp; Bank Statement"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            action="action_jewelry_cash_bank_statement_server"
+            sequence="39"
+            groups="jewelry_repair_base.group_jewelry_repair_manager,jewelry_repair_base.group_jewelry_repair_director,base.group_system"
+        />
+
+    </data>
+</odoo>

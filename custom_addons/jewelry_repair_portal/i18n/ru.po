@@ -1,0 +1,425 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_repair_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-21 00:00+0000\n"
+"PO-Revision-Date: 2026-05-21 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_repair_portal
+#. odoo-python
+#: code:addons/jewelry_repair_portal/controllers/portal.py:0
+#, python-format
+msgid "This repair order does not exist or you don't have access to it."
+msgstr "Этот заказ не существует или у вас нет доступа к нему."
+
+#. module: jewelry_repair_portal
+#: model:ir.model,name:jewelry_repair_portal.model_jewelry_portal_access
+msgid "Jewelry Portal Client Access"
+msgstr "Доступ клиентов к порталу"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__user_id
+msgid "Portal User"
+msgstr "Пользователь портала"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__partner_id
+msgid "Client"
+msgstr "Клиент"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__show_operations
+msgid "Show Operations"
+msgstr "Показывать операции"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__collapse_new_product_services
+msgid "Collapse New Product Services"
+msgstr "Свернуть услуги нового изделия"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__show_uninvoiced_gems
+msgid "Show Uninvoiced Gems"
+msgstr "Показывать невыставленные камни"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__show_delivery_weights
+msgid "Show Delivery Weights"
+msgstr "Показывать веса при выдаче"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,help:jewelry_repair_portal.field_jewelry_portal_access__show_delivery_weights
+msgid "If enabled, the client will see item, metal and gem weights measured at delivery on the order detail page."
+msgstr "Если включено, клиент будет видеть вес изделия, металла и камней при выдаче на странице заказа."
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Item weight"
+msgstr "Вес изделия"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Metal weight"
+msgstr "Вес металла"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Gem weight"
+msgstr "Вес камней"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.view_jewelry_portal_access_list
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.view_jewelry_portal_access_form
+#: model:ir.actions.act_window,name:jewelry_repair_portal.action_jewelry_portal_access
+msgid "Portal Client Access"
+msgstr "Доступ клиентов к порталу"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.menu,name:jewelry_repair_portal.menu_jewelry_portal_access
+msgid "Portal Access"
+msgstr "Доступ к порталу"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.constraint,message:jewelry_repair_portal.constraint_jewelry_portal_access_unique_user_partner
+msgid "This client is already granted to this portal user."
+msgstr "Этот клиент уже добавлен для данного пользователя портала."
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_home_repair
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Orders"
+msgstr "Заказы"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Active"
+msgstr "Активные"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "To Pay"
+msgstr "К оплате"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Paid"
+msgstr "Оплачено"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Outstanding balance:"
+msgstr "Задолженность:"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Advance (credit):"
+msgstr "Аванс (кредит):"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "To pay:"
+msgstr "К оплате:"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "No repair orders found."
+msgstr "Заказы не найдены."
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Item"
+msgstr "Изделие"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Status"
+msgstr "Статус"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Amount"
+msgstr "Сумма"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Payment"
+msgstr "Оплата"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Deadline"
+msgstr "Срок"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Order #"
+msgstr "Номер заказа"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Ext. Doc #"
+msgstr "Внешний №"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Item type"
+msgstr "Тип изделия"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Description"
+msgstr "Описание"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Quantity"
+msgstr "Количество"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Services"
+msgstr "Услуги"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Service"
+msgstr "Услуга"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Qty"
+msgstr "Кол-во"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Price"
+msgstr "Цена"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Total:"
+msgstr "Итого:"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "New product manufacturing"
+msgstr "Изготовление нового изделия"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Materials"
+msgstr "Материалы"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Weight (g)"
+msgstr "Вес (г)"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Price/g"
+msgstr "Цена/г"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Gems"
+msgstr "Камни"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Gem Type"
+msgstr "Вид камня"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Certificate"
+msgstr "Сертификат"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Weight (ct)"
+msgstr "Вес (кт)"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "(not billed)"
+msgstr "(не выставлен)"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Full product cost:"
+msgstr "Полная стоимость изделия:"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Laboratory"
+msgstr "Лаборатория"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Origin"
+msgstr "Происхождение"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Shape &amp; Cut"
+msgstr "Форма и огранка"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Carat Weight"
+msgstr "Вес в каратах"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Color"
+msgstr "Цвет"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Clarity"
+msgstr "Чистота"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Cut"
+msgstr "Огранка"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Polish"
+msgstr "Полировка"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Symmetry"
+msgstr "Симметрия"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Fluorescence"
+msgstr "Флуоресценция"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Comments"
+msgstr "Комментарии"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Close"
+msgstr "Закрыть"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Production Stage"
+msgstr "Этапы производства"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "Stage"
+msgstr "Этап"
+
+#. module: jewelry_repair_portal
+#: model:ir.ui.view,arch_db:jewelry_repair_portal.portal_repair_detail
+msgid "← Back to orders"
+msgstr "← Назад к заказам"
+
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_breadcrumbs_statement
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "Statement"
+msgstr "Ведомость"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "Document"
+msgstr "Документ"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "Operation"
+msgstr "Операция"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "Debit"
+msgstr "Дебет"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "Credit"
+msgstr "Кредит"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "Balance"
+msgstr "Сальдо"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "No entries yet."
+msgstr "Пока нет ни одной записи."
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "No statement is available for your account."
+msgstr "Для вашей учётной записи ведомость недоступна."
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,field_description:jewelry_repair_portal.field_jewelry_portal_access__show_payment_statement
+msgid "Show Payment Statement"
+msgstr "Показывать денежную ведомость"
+
+#. module: jewelry_repair_portal
+#: model:ir.model.fields,help:jewelry_repair_portal.field_jewelry_portal_access__show_payment_statement
+msgid ""
+"If enabled, the client will see a money statement: delivered orders as "
+"debit, payments as credit, and the balance after each row."
+msgstr "Если включено, клиент видит денежную ведомость: выданные заказы в дебете, оплаты в кредите и сальдо после каждой строки."
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "<span class=\"text-muted me-2\">Advance:</span>"
+msgstr "<span class=\"text-muted me-2\">Аванс:</span>"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_statement_body
+msgid "<span class=\"text-muted me-2\">To pay:</span>"
+msgstr "<span class=\"text-muted me-2\">К оплате:</span>"
+
+#. module: jewelry_repair_portal
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_portal.portal_my_repairs
+msgid "Finished"
+msgstr "Завершённые"

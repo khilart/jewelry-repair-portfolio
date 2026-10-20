@@ -1,0 +1,2643 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_repair_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260305\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-25 19:01+0000\n"
+"PO-Revision-Date: 2026-03-25 19:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "%s d"
+msgstr "%s д"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "%s h"
+msgstr "%s ч"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "%s m"
+msgstr "%s м"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban_planned
+msgid "<strong>Accepted:</strong>"
+msgstr "<strong>Принято:</strong>"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban_planned
+msgid "<strong>ETA:</strong>"
+msgstr "<strong>План:</strong>"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban_planned
+msgid "<strong>Next:</strong>"
+msgstr "<strong>Следующая:</strong>"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban_planned
+msgid "<strong>Planned:</strong>"
+msgstr "<strong>Плановая дата:</strong>"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban_planned
+msgid "<strong>State:</strong>"
+msgstr "<strong>Статус:</strong>"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+msgid "Accept"
+msgstr "Принять"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_tree
+msgid "Accept Item"
+msgstr "Принять изделие"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Accept Ready Item"
+msgstr "Принять готовое изделие"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__state__accepted
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Accepted"
+msgstr "Принято"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__accepted_at
+msgid "Accepted At"
+msgstr "Принято в"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__accepted_by_user_id
+msgid "Accepted By"
+msgstr "Принял"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__active
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__active
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__active
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__active
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__active
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Additional Info"
+msgstr "Дополнительно"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "All operations must be completed before manager acceptance."
+msgstr "Все операции должны быть завершены до принятия изделия менеджером."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid ""
+"All order operations must be completed before marking the order as ready."
+msgstr "Все операции по заказу должны быть завершены перед переводом заказа в статус готовности."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_product__repair_service_ok
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_service_ok
+msgid ""
+"Allows this product to be selected as a commercial service in jewelry repair"
+" orders."
+msgstr "Позволяет выбирать этот продукт как коммерческую услугу в заказах на ювелирный ремонт."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__alloy_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Alloy"
+msgstr "Сплав"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+msgid "Assign"
+msgstr "Назначить"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_tree
+msgid "Assign To Me"
+msgstr "Назначить мне"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__assigned_user_id
+msgid "Assigned To"
+msgstr "Назначено"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Assignee"
+msgstr "Исполнитель"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Assigned"
+msgstr "Назначен"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Auto Assign Operations"
+msgstr "Автоназначить операции"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_product__repair_service_ok
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_service_ok
+msgid "Available for Repair Services"
+msgstr "Доступно для услуг ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__board_priority
+msgid "Board Priority"
+msgstr "Приоритет доски"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__state__cancel
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__state__cancel
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_catalogs
+msgid "Catalogs"
+msgstr "Справочники"
+
+#. module: jewelry_repair_base
+#. odoo-javascript
+#: code:addons/jewelry_repair_base/static/src/xml/kanban_header_patch.xml:0
+#, python-format
+msgid "Clear"
+msgstr "Очистить"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__code
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__code
+msgid "Code"
+msgstr "Код"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__create_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__create_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__current_holder_user_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_search
+msgid "Current Holder"
+msgstr "Текущий держатель"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__current_holder_role
+msgid "Current Holder Role"
+msgstr "Роль текущего держателя"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__current_location_type
+msgid "Current Location"
+msgstr "Текущее местоположение"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_custody_report
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_custody_report
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_pivot
+msgid "Custody Report"
+msgstr "Отчет по нахождению изделий"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__partner_id
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_holder_role__customer
+msgid "Customer"
+msgstr "Клиент"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_operation__duration_unit__days
+msgid "Days"
+msgstr "Дни"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__deadline_date
+msgid "Deadline"
+msgstr "Срок"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Deadline:"
+msgstr "Срок:"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__deadline_warning
+msgid "Deadline Warning"
+msgstr "Предупреждение по сроку"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__default_user_id
+msgid "Default Assignee"
+msgstr "Исполнитель по умолчанию"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__default_executor_id
+msgid "Default Executor"
+msgstr "Плановый исполнитель по умолчанию"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_product__repair_operation_id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_operation_id
+msgid "Default Repair Operation"
+msgstr "Операция ремонта по умолчанию"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_product__repair_operation_id
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_operation_id
+msgid ""
+"Default production operation used when this service product is added to a "
+"repair order."
+msgstr "Операция производства по умолчанию, которая используется при добавлении этой услуги в заказ на ремонт."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_location_type__delivered
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__state__delivered
+msgid "Delivered"
+msgstr "Выдано"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__delivered_weight
+msgid "Delivered Weight"
+msgstr "Вес при выдаче"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Describe the item and requested work"
+msgstr "Опишите изделие и требуемые работы"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__name
+msgid "Description"
+msgstr "Описание"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__display_name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__state__done
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_tree
+msgid "Done"
+msgstr "Выполнено"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__done_at
+msgid "Done At"
+msgstr "Выполнено в"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__duration_unit
+msgid "Duration Unit"
+msgstr "Единица длительности"
+
+#. module: jewelry_repair_base
+#: model:ir.model.constraint,message:jewelry_repair_base.constraint_jewelry_repair_executor_executor_user_unique
+msgid "Each user can only be linked to one operation executor."
+msgstr "Каждый пользователь может быть связан только с одним исполнителем операций."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__earliest_ready_date
+msgid "Earliest Possible At"
+msgstr "Минимально готово к"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__duration_value
+msgid "Estimated Duration"
+msgstr "Плановая длительность"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__duration_days
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__estimated_duration_days
+msgid "Estimated Duration (Days)"
+msgstr "Плановая длительность (дни)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__duration_minutes
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__estimated_duration_minutes
+msgid "Estimated Duration (Minutes)"
+msgstr "Плановая длительность (минуты)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__estimated_duration_display
+msgid "Estimated Work Time"
+msgstr "Расчетное время работ"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__notes
+msgid "Execution Notes"
+msgstr "Примечания к исполнению"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+msgid "Execution notes for the team"
+msgstr "Примечания по выполнению для команды"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__total_duration_display
+msgid "Expected Work Time"
+msgstr "Ожидаемое время работ"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__fine_weight_delivered
+msgid "Fine Weight Delivered"
+msgstr "Чистый вес при выдаче"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__fine_weight_received
+msgid "Fine Weight Received"
+msgstr "Чистый вес при приемке"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_metal_alloy__purity
+msgid "Fine metal coefficient, for example 0.585, 0.750, 0.999."
+msgstr "Коэффициент чистого металла, например 0.585, 0.750, 0.999."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__planned_scope__future
+msgid "Future"
+msgstr "Будущее"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Generate Operations"
+msgstr "Сформировать операции"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_search
+msgid "Group By"
+msgstr "Группировать по"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_operation__duration_unit__hours
+msgid "Hours"
+msgstr "Часы"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_search
+msgid "In Custody"
+msgstr "На хранении"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__state__in_progress
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__state__in_progress
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "In Progress"
+msgstr "В работе"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_location_type__in_work
+msgid "In Work"
+msgstr "В работе"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_operation__duration_value
+msgid ""
+"Informational minimum duration used to estimate the earliest possible "
+"completion date."
+msgstr "Информационная минимальная длительность, используемая для оценки самой ранней возможной даты готовности."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__notes
+msgid "Internal Notes"
+msgstr "Внутренние заметки"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Internal notes for the team"
+msgstr "Внутренние заметки для команды"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__description
+msgid "Item Description"
+msgstr "Описание изделия"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__item_image_128
+msgid "Item Photo Thumbnail"
+msgstr "Миниатюра фото изделия"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__item_type_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_item_type_form
+msgid "Item Type"
+msgstr "Тип изделия"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_item_type
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_item_types
+msgid "Item Types"
+msgstr "Типы изделий"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_metal
+msgid "Jewelry Metal"
+msgstr "Ювелирный металл"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_metal_alloy
+msgid "Jewelry Metal Alloy"
+msgstr "Сплав ювелирного металла"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_root
+msgid "Jewelry Production"
+msgstr "Ювелирный ремонт"
+
+#. module: jewelry_repair_base
+#: model:ir.module.category,name:jewelry_repair_base.module_category_jewelry_repair
+msgid "Jewelry Repair"
+msgstr "Ювелирный ремонт"
+
+#. module: jewelry_repair_base
+#: model:res.groups,name:jewelry_repair_base.group_jewelry_repair_manager
+msgid "Jewelry Repair / Manager"
+msgstr "Ювелирный ремонт / Руководитель"
+
+#. module: jewelry_repair_base
+#: model:res.groups,name:jewelry_repair_base.group_jewelry_repair_master
+msgid "Jewelry Repair / Master"
+msgstr "Ювелирный ремонт / Мастер"
+
+#. module: jewelry_repair_base
+#: model:res.groups,name:jewelry_repair_base.group_jewelry_repair_director
+msgid "Jewelry Repair / Observer (read-only)"
+msgstr "Ювелирный ремонт / Наблюдатель (только чтение)"
+
+#. module: jewelry_repair_base
+#: model:res.groups,name:jewelry_repair_base.group_jewelry_repair_receptionist
+msgid "Jewelry Repair / Receptionist"
+msgstr "Ювелирный ремонт / Приемщик"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_executor
+msgid "Jewelry Repair Executor"
+msgstr "Исполнитель операций"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_item_type
+msgid "Jewelry Repair Item Type"
+msgstr "Тип изделия ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_operation
+msgid "Jewelry Repair Operation"
+msgstr "Операция ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_order
+msgid "Jewelry Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_order_operation
+msgid "Jewelry Repair Order Operation"
+msgstr "Операция заказа на ремонт"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_service_line
+msgid "Jewelry Repair Service Line"
+msgstr "Строка услуги ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__last_move_at
+msgid "Last Move At"
+msgstr "Последнее перемещение"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__write_uid
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление: автор"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__write_date
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__write_date
+msgid "Last Updated on"
+msgstr "Последнее обновление"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__user_id
+msgid "Linked User"
+msgstr "Связанный пользователь"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_search
+msgid "Location"
+msgstr "Локация"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_holder_role__manager
+msgid "Manager"
+msgstr "Руководитель"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+msgid "Mark Ready"
+msgstr "Отметить готовым"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_holder_role__master
+msgid "Master"
+msgstr "Мастер"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__metal_id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__metal_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_metal_form
+msgid "Metal"
+msgstr "Металл"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_metal_alloy_form
+msgid "Metal Alloy"
+msgstr "Сплав металла"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_metal_alloy
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_metal_alloy
+msgid "Metal Alloys"
+msgstr "Сплавы металлов"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_metal
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_metal
+msgid "Metals"
+msgstr "Металлы"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_operation__duration_unit__minutes
+msgid "Minutes"
+msgstr "Минуты"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_my_order_operation
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_my_operations
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "My Operations"
+msgstr "Мои операции"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal__name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_item_type__name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__name
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__name
+msgid "Name"
+msgstr "Название"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "New"
+msgstr "Новый"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__new_product_manufacturing
+msgid "New Product Manufacturing"
+msgstr "Изготовление нового изделия"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__next_order_operation_id
+msgid "Next Operation"
+msgstr "Следующая операция"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__planned_scope__no_date
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "No Planned Date"
+msgstr "Без плановой даты"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid ""
+"No repair operations were generated. Add services with linked operations "
+"before starting the order."
+msgstr "Операции ремонта не были сформированы. Добавьте услуги с привязанными операциями перед запуском заказа."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "Only a manager can accept a ready item from production."
+msgstr "Только руководитель может принять готовое изделие из производства."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "Only accepted operations can be started."
+msgstr "Начать можно только принятые операции."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "Only accepted or in-progress operations can be completed."
+msgstr "Завершить можно только принятые или выполняемые операции."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "Only ready operations can be accepted."
+msgstr "Принять можно только готовые к началу операции."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "Only ready orders can be accepted by the manager."
+msgstr "Руководитель может принять только готовые заказы."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid "Only the assigned user can accept this item."
+msgstr "Принять изделие может только назначенный пользователь."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__operation_id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__operation_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_operation_form
+msgid "Operation"
+msgstr "Операция"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_executor_form
+msgid "Operation Executor"
+msgstr "Исполнитель операций"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_executor
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_executors
+msgid "Operation Executors"
+msgstr "Исполнители операций"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__operation_sequence
+msgid "Operation Sequence (Legacy Alias)"
+msgstr "Последовательность операции (устаревший псевдоним)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__operation_type
+msgid "Operation Type (Legacy Alias)"
+msgstr "Тип операции (устаревший псевдоним)"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_operation
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_operations
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#, python-format
+msgid "Operations"
+msgstr "Операции"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__operation_ids
+msgid "Operations (Legacy Alias)"
+msgstr "Операции (устаревший псевдоним)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__operation_catalog_count
+msgid "Operations Catalog"
+msgstr "Справочник операций"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_service_line__operation_id
+msgid "Optional production operation generated from this service line."
+msgstr "Необязательная производственная операция, создаваемая из этой строки услуги."
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Order"
+msgstr "Заказ"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__name
+msgid "Order Number"
+msgstr "Номер заказа"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__order_operation_ids
+#, python-format
+msgid "Order Operations"
+msgstr "Операции заказа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__amount_total
+msgid "Order Total"
+msgstr "Сумма заказа"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_order
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_orders
+msgid "Orders"
+msgstr "Заказы на ремонт"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__planned_scope__overdue
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Overdue"
+msgstr "Просрочено"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__state__pending
+msgid "Pending"
+msgstr "Ожидание"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__planned_date
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Planned Date"
+msgstr "Плановая дата"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__executor_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Planned Executor"
+msgstr "Плановый исполнитель"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_order_operation
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_work_operations
+msgid "Planned Operations"
+msgstr "Планируемые операции"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__planned_scope
+msgid "Planning"
+msgstr "Планирование"
+
+#. module: jewelry_repair_base
+#. odoo-javascript
+#: code:addons/jewelry_repair_base/static/src/xml/kanban_header_patch.xml:0
+#, python-format
+msgid "Planning Date"
+msgstr "Дата планирования"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__manager_user_ids
+msgid "Planning Managers"
+msgstr "Руководители планирования"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_executor__sequence
+msgid "Planning Sequence"
+msgstr "Последовательность планирования"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_product_template
+msgid "Product"
+msgstr "Продукт"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_alloy__purity
+msgid "Purity"
+msgstr "Коэффициент чистоты"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__quantity
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__quantity
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Quantity"
+msgstr "Количество"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__state__ready
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__state__ready
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Ready"
+msgstr "Ожидает приёмки"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__ready_accepted_at
+msgid "Ready Accepted At"
+msgstr "Готовое принято в"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__ready_accepted_by_manager
+msgid "Ready Accepted By Manager"
+msgstr "Готовое принято руководителем"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_location_type__ready_for_delivery
+msgid "Ready For Delivery"
+msgstr "Готово к выдаче"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__received_date
+msgid "Received At"
+msgstr "Принято в"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Received At:"
+msgstr "Принято:"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__received_weight
+msgid "Received Weight"
+msgstr "Вес при приемке"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Received Weight:"
+msgstr "Вес при приемке:"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_location_type__reception
+msgid "Reception"
+msgstr "Приемка"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order__current_holder_role__receptionist
+msgid "Receptionist"
+msgstr "Приемщик"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__order_id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__order_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+msgid "Repair Order Operation"
+msgstr "Операция заказа на ремонт"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.report,name:jewelry_repair_base.action_report_jewelry_repair_order
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_service_products
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__service_product_count
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_service_products
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_service_product_tree
+#, python-format
+msgid "Repair Service Products"
+msgstr "Услуги ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_service_product_tree
+msgid "Price"
+msgstr "Цена"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Repair Services"
+msgstr "Услуги ремонта"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Seq"
+msgstr "П/п"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/models.py:0
+#, python-format
+msgid ""
+"Requested deadline is earlier than the estimated minimum completion time: %s"
+msgstr "Указанный срок раньше расчетного минимального времени готовности: %s"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_executor__manager_user_ids
+msgid "Reserved for future planning restrictions by manager or workshop lead."
+msgstr "Зарезервировано для будущих ограничений планирования со стороны руководителя или начальника участка."
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+msgid "Reset To Pending"
+msgstr "Вернуть в ожидание"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Reset to Draft"
+msgstr "Вернуть в черновик"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_operation__sequence
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__sequence
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__sequence
+msgid "Sequence"
+msgstr "Последовательность"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__product_id
+msgid "Service Product"
+msgstr "Услуга"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__service_line_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Services"
+msgstr "Услуги"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Service"
+msgstr "Услуга"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__service_line_ids
+msgid "Source Services"
+msgstr "Исходные услуги"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_tree
+msgid "Start"
+msgstr "Старт"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__started_at
+msgid "Started At"
+msgstr "Начато в"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__state
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "State"
+msgstr "Статус"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__state
+msgid "Status"
+msgstr "Статус"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Status:"
+msgstr "Статус:"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__subtotal
+msgid "Subtotal"
+msgstr "Сумма"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_operation__duration_minutes
+msgid ""
+"Technical normalized value in working minutes used for date estimation."
+msgstr "Техническое нормализованное значение в рабочих минутах, используемое для расчета дат."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_operation__duration_days
+msgid "Technical normalized value used for date estimation."
+msgstr "Техническое нормализованное значение, используемое для расчета дат."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__planned_scope__today
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Today"
+msgstr "Сегодня"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_order_operation__planned_scope__tomorrow
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_search
+msgid "Tomorrow"
+msgstr "Завтра"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__total_duration_minutes
+msgid "Total Work Minutes"
+msgstr "Всего рабочих минут"
+
+#. module: jewelry_repair_base
+#. odoo-javascript
+#: code:addons/jewelry_repair_base/static/src/xml/kanban_header_patch.xml:0
+#, python-format
+msgid "Total:"
+msgstr "Итого:"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__price_unit
+msgid "Unit Price"
+msgstr "Цена"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__weight_delta
+msgid "Weight Delta"
+msgstr "Изменение веса"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Print"
+msgstr "Печать"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Customer:"
+msgstr "Клиент:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Item Type:"
+msgstr "Тип изделия:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Quantity:"
+msgstr "Количество:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "New Product Manufacturing:"
+msgstr "Изготовление нового изделия:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Yes"
+msgstr "Да"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Alloy:"
+msgstr "Сплав:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Metal:"
+msgstr "Металл:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Delivered Weight:"
+msgstr "Вес при выдаче:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Weight Delta:"
+msgstr "Изменение веса:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Fine Weight Received:"
+msgstr "Чистый вес при приемке:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Fine Weight Delivered:"
+msgstr "Чистый вес при выдаче:"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "No services added."
+msgstr "Услуги не добавлены."
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Planned"
+msgstr "План"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Qty"
+msgstr "Кол-во"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_document
+msgid "Operations have not been generated yet."
+msgstr "Операции ещё не сформированы."
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_order_operation_master
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__work_operation_count
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_work_operations_master
+msgid "Work Operations"
+msgstr "Рабочие операции"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Work Ops"
+msgstr "Раб. операции"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_material_ok
+msgid "Available for Repair Materials"
+msgstr "Доступно для материалов ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_material_requires_weight
+msgid "Weight Required for Repair Materials"
+msgstr "Для материалов ремонта обязателен вес"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_material_default_invoice
+msgid "Invoice by Default in Repairs"
+msgstr "Включать в счет по умолчанию"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_material_default_consume
+msgid "Consume from Stock by Default"
+msgstr "Списывать со склада по умолчанию"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_material_return_loss_percent
+msgid "Returnable Loss Percent"
+msgstr "Процент возвратных потерь"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_product_template__repair_material_nonreturn_loss_percent
+msgid "Non-returnable Loss Percent"
+msgstr "Процент безвозвратных потерь"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_material_line
+msgid "Jewelry Repair Material Line"
+msgstr "Строка материала ремонта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__material_line_ids
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__material_line_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_operation_form_kanban
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Materials"
+msgstr "Материалы"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__product_id
+msgid "Material"
+msgstr "Материал"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__order_operation_id
+msgid "Order Operation"
+msgstr "Операция заказа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__uom_id
+msgid "Unit of Measure"
+msgstr "Единица измерения"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__weight
+msgid "Weight"
+msgstr "Вес"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__weight_loss
+msgid "Loss Weight"
+msgstr "Вес потерь"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__include_in_invoice
+msgid "Include in Invoice"
+msgstr "Включать в счет"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__consume_from_stock
+msgid "Consume from Stock"
+msgstr "Списывать со склада"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_material_ok
+msgid "Allows this product to be selected as a material or spare part in jewelry repair orders."
+msgstr "Позволяет выбирать этот продукт как материал или запчасть в заказах на ремонт."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_material_requires_weight
+msgid "Requires weight to be entered when this product is used as a repair material."
+msgstr "Требует указывать вес, когда этот продукт используется как материал ремонта."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_material_default_invoice
+msgid "Pre-fills the repair material line to include this product in the client invoice."
+msgstr "Автоматически включает этот продукт в счет клиенту при добавлении в строку материала."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_material_default_consume
+msgid "Pre-fills the repair material line to consume this product from stock."
+msgstr "Автоматически отмечает этот продукт для списания со склада при добавлении в строку материала."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_material_return_loss_percent
+msgid "Default percentage of returnable metal losses used for repair material pricing."
+msgstr "Процент возвратных потерь металла по умолчанию, который используется в расчете стоимости материала."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_product_template__repair_material_nonreturn_loss_percent
+msgid "Default percentage of non-returnable metal losses stored on the repair material product."
+msgstr "Процент безвозвратных потерь металла по умолчанию, который хранится в карточке материала."
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "The selected operation must belong to the same repair order."
+msgstr "Выбранная операция должна принадлежать тому же заказу ремонта."
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Weight is required for the selected repair material."
+msgstr "Для выбранного материала ремонта необходимо указать вес."
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_metal_rate
+msgid "Jewelry Metal Rate"
+msgstr "Котировка металла"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_metal_rate
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_metal_rate_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_metal_rate_tree
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_metal_rate
+msgid "Metal Rates"
+msgstr "Котировки металлов"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__metal_rate_at
+msgid "Metal Rate At"
+msgstr "Дата котировки металла"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__rate_datetime
+msgid "Rate Datetime"
+msgstr "Дата котировки"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__rate_price_per_gram
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_rate__price_per_gram
+msgid "Price per Gram"
+msgstr "Цена за грамм"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_metal_rate__effective_at
+msgid "Effective At"
+msgstr "Действует с"
+
+#. module: jewelry_repair_base
+#: model:res.groups,name:jewelry_repair_base.group_jewelry_repair_manage_any_operation
+msgid "Jewelry Repair / Manages Any Operation"
+msgstr "Ювелирный ремонт / Управляет любыми операциями"
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Set a metal rate datetime on the order or material line before pricing metallic materials."
+msgstr "Укажите дату котировки в заказе или строке материала перед расчетом цены металлического материала."
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "No metal rate was found for the selected alloy and rate datetime."
+msgstr "Для выбранного сплава и даты котировки не найдена подходящая котировка металла."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order_operation__order_deadline_display
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Deadline"
+msgstr "Дедлайн"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__next_holder_user_id
+msgid "Next Holder"
+msgstr "Следующий держатель"
+
+#. module: jewelry_repair_base
+msgid "Size"
+msgstr "Размер"
+
+#. module: jewelry_repair_base
+msgid "EU Size"
+msgstr "Размер EU"
+
+#. module: jewelry_repair_base
+msgid "RU Size"
+msgstr "Размер RU"
+
+#. module: jewelry_repair_base
+msgid "Sizes"
+msgstr "Размеры"
+
+#. module: jewelry_repair_base
+msgid "Load Standard Ring Sizes"
+msgstr "Загрузить стандартные размеры колец"
+
+#. module: jewelry_repair_base
+msgid "Display"
+msgstr "Отображение"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Gem Type"
+msgstr "Вид камня"
+
+#. module: jewelry_repair_base
+msgid "Gem Types"
+msgstr "Виды камней"
+
+#. module: jewelry_repair_base
+msgid "Cut Shape"
+msgstr "Форма огранки"
+
+#. module: jewelry_repair_base
+msgid "Round"
+msgstr "Круглая"
+
+#. module: jewelry_repair_base
+msgid "Oval"
+msgstr "Овал"
+
+#. module: jewelry_repair_base
+msgid "Princess"
+msgstr "Принцесса"
+
+#. module: jewelry_repair_base
+msgid "Cushion"
+msgstr "Кушон"
+
+#. module: jewelry_repair_base
+msgid "Emerald"
+msgstr "Изумруд"
+
+#. module: jewelry_repair_base
+msgid "Pear"
+msgstr "Груша"
+
+#. module: jewelry_repair_base
+msgid "Marquise"
+msgstr "Маркиз"
+
+#. module: jewelry_repair_base
+msgid "Heart"
+msgstr "Сердце"
+
+#. module: jewelry_repair_base
+msgid "Asscher"
+msgstr "Ашер"
+
+#. module: jewelry_repair_base
+msgid "Trapezoid"
+msgstr "Трапеция"
+
+#. module: jewelry_repair_base
+msgid "Standard Size"
+msgstr "Стандартный размер"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Weight (ct)"
+msgstr "Вес (кар)"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Weight (g)"
+msgstr "Вес (г)"
+
+#. module: jewelry_repair_base
+msgid "Total (g)"
+msgstr "Итого (г)"
+
+#. module: jewelry_repair_base
+msgid "Bill to Client"
+msgstr "В счёт клиенту"
+
+#. module: jewelry_repair_base
+msgid "Stones"
+msgstr "Камни"
+
+#. module: jewelry_repair_base
+msgid "Total Gem Weight (g)"
+msgstr "Общий вес камней (г)"
+
+#. module: jewelry_repair_base
+msgid "Load Standard Round Brilliant Sizes"
+msgstr "Загрузить стандартные размеры круглых бриллиантов"
+
+#. module: jewelry_repair_base
+msgid "Setting Rules"
+msgstr "Правила закрепки"
+
+#. module: jewelry_repair_base
+msgid "Generate Setting Services"
+msgstr "Сформировать услуги закрепки"
+
+#. module: jewelry_repair_base
+msgid "No stones added to the order."
+msgstr "В заказе нет камней."
+
+#. module: jewelry_repair_base
+msgid "No setting rule found for: %s.\nPlease configure setting rules on the gem type."
+msgstr "Не найдено правило закрепки для: %s.\nНастройте правила закрепки в карточке типа камня."
+
+#. module: jewelry_repair_base
+msgid "%s is not filled in. Please weigh the item and enter the value before proceeding."
+msgstr "%s не заполнен. Взвесьте изделие и введите значение перед продолжением."
+
+#. module: jewelry_repair_base
+msgid "Received Weight"
+msgstr "Вес при приёмке"
+
+#. module: jewelry_repair_base
+msgid "Delivered Weight"
+msgstr "Вес при выдаче"
+
+#. module: jewelry_repair_base
+msgid "Recoverable Loss %"
+msgstr "% возвратных потерь"
+
+#. module: jewelry_repair_base
+msgid "Irrecoverable Loss %"
+msgstr "% безвозвратных потерь"
+
+#. module: jewelry_repair_base
+msgid "Metal Loss Coefficients"
+msgstr "Коэффициенты потерь металла"
+
+#. module: jewelry_repair_base
+msgid "Metal Was Added"
+msgstr "Добавлен металл"
+
+#. module: jewelry_repair_base
+msgid "Metal Calculated"
+msgstr "Металл рассчитан"
+
+#. module: jewelry_repair_base
+msgid "Default Material Product"
+msgstr "Материал по умолчанию"
+
+#. module: jewelry_repair_base
+msgid "Effective Material Product"
+msgstr "Действующий материал"
+
+#. module: jewelry_repair_base
+msgid "Auto-Calculated"
+msgstr "Авторасчёт"
+
+#. module: jewelry_repair_base
+msgid "Received + Gems (g)"
+msgstr "Приёмка + камни (г)"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_kpi_dashboard
+#: model:ir.actions.server,name:jewelry_repair_base.action_jewelry_repair_kpi_dashboard
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_kpi_dashboard
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Financial Dashboard"
+msgstr "Финансовый дашборд"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__revenue_month
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Revenue This Month"
+msgstr "Выручка за этот месяц"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__revenue_prev_month
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Revenue Last Month"
+msgstr "Выручка за прошлый месяц"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__revenue_month_count
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Delivered This Month"
+msgstr "Выдано в этом месяце"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__revenue_prev_month_count
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Delivered Last Month"
+msgstr "Выдано в прошлом месяце"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__in_progress_amount
+msgid "In Progress Amount"
+msgstr "Сумма в работе"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__in_progress_count
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "In Progress"
+msgstr "В работе"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__ready_amount
+msgid "Ready for Delivery Amount"
+msgstr "Сумма готовых к выдаче"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__ready_count
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Ready for Delivery"
+msgstr "Готово к выдаче"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__waiting_amount
+msgid "Waiting Amount"
+msgstr "Сумма в ожидании"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__waiting_count
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "Waiting"
+msgstr "В ожидании"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_kpi_dashboard_form
+msgid "orders"
+msgstr "заказов"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_workload
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_repair_workload
+msgid "Master Workload"
+msgstr "Загрузка мастеров"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_repair_overdue
+#: model:ir.actions.server,name:jewelry_repair_base.action_jewelry_repair_overdue_orders_server
+msgid "Overdue Orders"
+msgstr "Просроченные заказы"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_force_ready_wizard
+msgid "Force Ready Wizard"
+msgstr "Принудительное завершение"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_force_ready_wizard__pending_count
+msgid "Uncompleted Operations"
+msgstr "Незавершённые операции"
+
+#. module: jewelry_repair_base
+msgid "Mark All Done"
+msgstr "Завершить все"
+
+#. module: jewelry_repair_base
+msgid "There are %s uncompleted operation(s). Do you want to mark them all as done and set the order as ready?"
+msgstr "Есть %s незавершённых операций. Завершить все и перевести заказ в статус Ready?"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_weight_discrepancy_wizard
+msgid "Confirm Weight Discrepancy on Acceptance"
+msgstr "Подтверждение расхождения веса при приёмке"
+
+#. module: jewelry_repair_base
+msgid "Weight Discrepancy"
+msgstr "Расхождение веса"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "Metal balance differs by %(diff).1f%% — in %(in).3f g (received + workshop metal) vs out %(out).3f g (delivered metal + returned), exceeding the %(limit).0f%% limit."
+msgstr "Баланс металла расходится на %(diff).1f%% — приход %(in).3f г (принято + металл мастерской) против расход %(out).3f г (выдано металла + возвращено), что превышает допустимые %(limit).0f%%."
+
+#. module: jewelry_repair_base
+msgid "Do you want to accept the item anyway?"
+msgstr "Принять изделие несмотря на это?"
+
+#. module: jewelry_repair_base
+msgid "Accept Anyway"
+msgstr "Всё равно принять"
+
+#. module: jewelry_repair_base
+msgid "%s is not filled in. Please weigh the item and enter the value before proceeding."
+msgstr "%s не заполнен. Взвесьте изделие и введите значение перед продолжением."
+
+#. module: jewelry_repair_base
+msgid "An item type named \"%s\" already exists. To create a duplicate, use \"Create and edit...\""
+msgstr "Тип изделия \"%s\" уже существует. Чтобы создать дубль, используйте \"Создать и редактировать...\""
+
+#. module: jewelry_repair_base
+msgid "An alloy named \"%s\" already exists. To create a duplicate, use \"Create and edit...\""
+msgstr "Сплав \"%s\" уже существует. Чтобы создать дубль, используйте \"Создать и редактировать...\""
+
+#. module: jewelry_repair_base
+msgid "An operation named \"%s\" already exists. To create a duplicate, use \"Create and edit...\""
+msgstr "Операция \"%s\" уже существует. Чтобы создать дубль, используйте \"Создать и редактировать...\""
+
+#. module: jewelry_repair_base
+msgid "Weight Tracking Mode"
+msgstr "Режим учёта весов"
+
+#. module: jewelry_repair_base
+msgid "Disabled"
+msgstr "Отключён"
+
+#. module: jewelry_repair_base
+msgid "New Products Only"
+msgstr "Только новые изделия"
+
+#. module: jewelry_repair_base
+msgid "All Orders"
+msgstr "Все заказы"
+
+#. module: jewelry_repair_base
+msgid "Controls whether masters are asked to weigh items before operations and whether metal loss by area is calculated."
+msgstr "Управляет тем, запрашивается ли у мастеров вес изделия перед операцией и рассчитываются ли потери металла по участкам."
+
+#. module: jewelry_repair_base
+#. module: jewelry_repair_base
+msgid "Metal Delivered Weight"
+msgstr "Вес сданного металла"
+
+#. module: jewelry_repair_base
+msgid "Metal Loss by Area"
+msgstr "Потери металла по участкам"
+
+#. module: jewelry_repair_base
+msgid "Gem Pricing Type"
+msgstr "Тип ценообразования для камней"
+
+#. module: jewelry_repair_base
+msgid "Fixed Price"
+msgstr "Фиксированная цена"
+
+#. module: jewelry_repair_base
+msgid "Price per Carat"
+msgstr "Цена за карат"
+
+#. module: jewelry_repair_base
+msgid "Weight Entry By"
+msgstr "Вес вводит"
+
+#. module: jewelry_repair_base
+msgid "Master (wizard on Accept Item)"
+msgstr "Мастер (визард при принятии изделия)"
+
+#. module: jewelry_repair_base
+msgid "Manager (editable in order table)"
+msgstr "Руководитель (в таблице операций заказа)"
+
+#. module: jewelry_repair_base
+msgid "Planned Executor"
+msgstr "Плановый исполнитель"
+
+#. module: jewelry_repair_base
+msgid "Qty / Item"
+msgstr "Кол-во / шт."
+
+#. module: jewelry_repair_base
+msgid "Total Qty"
+msgstr "Всего услуг"
+
+#. module: jewelry_repair_base
+msgid "Batch Qty"
+msgstr "Партия"
+
+#. module: jewelry_repair_base
+msgid "External Document Number"
+msgstr "Номер документа в другой системе учёта"
+
+#. module: jewelry_repair_base
+msgid "External Reference"
+msgstr "Внешний документ"
+
+#. module: jewelry_repair_base
+msgid "Client / Detail"
+msgstr "Клиент / Детализация"
+
+#. module: jewelry_repair_base
+msgid "Qty / Weight"
+msgstr "Кол-во / Вес"
+
+#. module: jewelry_repair_base
+msgid "KPI Dashboard Client Service Detail"
+msgstr "Детализация услуг клиента (Дашборд)"
+
+#. module: jewelry_repair_base
+msgid "KPI Dashboard Client Material Detail"
+msgstr "Детализация материалов клиента (Дашборд)"
+
+#. module: jewelry_repair_base
+msgid "Return to Storage"
+msgstr "Вернуть на склад"
+
+#. module: jewelry_repair_base
+msgid "Return Storage"
+msgstr "Склад возврата"
+
+#. module: jewelry_repair_base
+msgid "Write-Off Storage"
+msgstr "Склад списания"
+
+#. module: jewelry_repair_base
+msgid "Sync Metal Documents"
+msgstr "Синхронизировать документы металла"
+
+#. module: jewelry_repair_base
+msgid "Fill in Return Storage for all lines marked as 'Return to Storage'."
+msgstr "Укажите склад возврата для всех строк с отметкой «Вернуть на склад»."
+
+#. module: jewelry_repair_base
+#, python-format
+msgid "Set a write-off storage for the following material lines: %s"
+msgstr "Укажите склад списания для следующих строк материалов: %s"
+
+#. module: jewelry_repair_base
+#, python-format
+msgid "%d material line(s) are consumed from stock but neither billed to the client nor returned to storage."
+msgstr "%d строк(а) материалов списывается со склада, но не выставлена в счёт клиенту и не возвращается на склад."
+
+#. module: jewelry_repair_base
+#, python-format
+msgid "Auto-created from repair order %s"
+msgstr "Создан автоматически из заказа %s"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_area_loss__loss_percent
+msgid "Loss %"
+msgstr "Потери %"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__total_metal_loss_percent
+msgid "Total Metal Loss %"
+msgstr "Общие потери металла %"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_area_loss__order_received_date
+msgid "Order Date"
+msgstr "Дата заказа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_area_loss__order_partner_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Client"
+msgstr "Клиент"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_order_area_loss_analysis
+msgid "Area Loss Analysis"
+msgstr "Анализ потерь по зонам"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.menu,name:jewelry_metal_accounting.menu_jewelry_order_area_loss_analysis
+msgid "Area Loss Analysis"
+msgstr "Анализ потерь по зонам"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_gem_line__price_per_ct
+msgid "Price/ct"
+msgstr "Цена/кт"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_gem_line__price_unit
+msgid "Price/pc"
+msgstr "Цена/шт"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_type__parse_keywords
+msgid "Certificate Keywords"
+msgstr "Ключевые слова сертификата"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_gem_type__parse_keywords
+msgid "Comma-separated keywords to match against certificate description during auto-parse (e.g. diamond, бриллиант)"
+msgstr "Ключевые слова через запятую для сопоставления с описанием в сертификате при автоматическом распознавании (напр. diamond, бриллиант)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_type__product_id
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_gem_line__product_id
+msgid "Invoice Product"
+msgstr "Продукт для счёта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_type__product_id
+msgid "Default Invoice Product"
+msgstr "Продукт для счёта по умолчанию"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__paid_month
+msgid "Paid This Month"
+msgstr "Оплачено в этом месяце"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_dashboard__paid_prev_month
+msgid "Paid Last Month"
+msgstr "Оплачено в прошлом месяце"
+
+# Gem Certificate
+#. module: jewelry_repair_base
+#: model:ir.actions.act_window,name:jewelry_repair_base.action_jewelry_gem_certificate
+#: model:ir.ui.menu,name:jewelry_repair_base.menu_jewelry_gem_certificate
+msgid "Certificates"
+msgstr "Сертификаты"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_gem_certificate
+msgid "Gem Certificate"
+msgstr "Сертификат камня"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__name
+msgid "Report Number"
+msgstr "Номер отчёта"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__lab
+msgid "Laboratory"
+msgstr "Лаборатория"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__lab_other
+msgid "Lab Name"
+msgstr "Название лаборатории"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__cert_date
+msgid "Date"
+msgstr "Дата"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__description
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Description"
+msgstr "Описание"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__origin
+msgid "Origin"
+msgstr "Происхождение"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_gem_certificate__origin__natural
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_gem_line__origin__natural
+msgid "Natural"
+msgstr "Натуральный"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_gem_certificate__origin__lab_grown
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_gem_line__origin__lab_grown
+msgid "Laboratory Grown"
+msgstr "Выращенный"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__shape_cut
+msgid "Shape & Cut"
+msgstr "Форма и огранка"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__dim_1
+msgid "Dim 1 (mm)"
+msgstr "Размер 1 (мм)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__dim_2
+msgid "Dim 2 (mm)"
+msgstr "Размер 2 (мм)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__depth
+msgid "Depth (mm)"
+msgstr "Глубина (мм)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__carat_weight
+msgid "Carat Weight"
+msgstr "Вес в каратах"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__color_grade
+msgid "Color Grade"
+msgstr "Цвет"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__clarity_grade
+msgid "Clarity Grade"
+msgstr "Чистота"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__cut_grade
+msgid "Cut Grade"
+msgstr "Огранка"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__polish
+msgid "Polish"
+msgstr "Полировка"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__symmetry
+msgid "Symmetry"
+msgstr "Симметрия"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__fluorescence
+msgid "Fluorescence"
+msgstr "Флуоресценция"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,fluorescence:0
+msgid "None"
+msgstr "Нет"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,fluorescence:0
+msgid "Faint"
+msgstr "Слабая"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,fluorescence:0
+msgid "Medium"
+msgstr "Средняя"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,fluorescence:0
+msgid "Strong"
+msgstr "Сильная"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,fluorescence:0
+msgid "Very Strong"
+msgstr "Очень сильная"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,cut_grade:0
+#: selection:jewelry.gem.certificate,polish:0
+#: selection:jewelry.gem.certificate,symmetry:0
+msgid "Excellent"
+msgstr "Отличная"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,cut_grade:0
+#: selection:jewelry.gem.certificate,polish:0
+#: selection:jewelry.gem.certificate,symmetry:0
+msgid "Very Good"
+msgstr "Очень хорошая"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,cut_grade:0
+#: selection:jewelry.gem.certificate,polish:0
+#: selection:jewelry.gem.certificate,symmetry:0
+msgid "Good"
+msgstr "Хорошая"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,cut_grade:0
+#: selection:jewelry.gem.certificate,polish:0
+#: selection:jewelry.gem.certificate,symmetry:0
+msgid "Fair"
+msgstr "Удовлетворительная"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,cut_grade:0
+#: selection:jewelry.gem.certificate,polish:0
+#: selection:jewelry.gem.certificate,symmetry:0
+msgid "Poor"
+msgstr "Слабая"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__lab_grown_type
+msgid "Growth Type"
+msgstr "Тип синтеза"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,lab_grown_type:0
+msgid "CVD"
+msgstr "CVD"
+
+#. module: jewelry_repair_base
+#: selection:jewelry.gem.certificate,lab_grown_type:0
+msgid "HPHT"
+msgstr "HPHT"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__type_classification
+msgid "Type Classification"
+msgstr "Классификация типа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__comments
+msgid "Comments"
+msgstr "Комментарии"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__cert_image
+msgid "Certificate Image"
+msgstr "Фото сертификата"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_gem_certificate__gem_line_ids
+msgid "Used in Orders"
+msgstr "Используется в заказах"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_gem_line__certificate_id
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Certificate"
+msgstr "Сертификат"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_gem_certificate_form
+msgid "Parse from Image"
+msgstr "Заполнить из фото"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_gem_certificate_form
+msgid "Certificate Image"
+msgstr "Фото сертификата"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_gem_certificate_form
+msgid "Used in Orders"
+msgstr "Используется в заказах"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_gem_certificate_form
+msgid "Grading Results"
+msgstr "Результаты грейдинга"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_gem_certificate_form
+msgid "Additional"
+msgstr "Дополнительно"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__certificate_numbers
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_search
+msgid "Certificate No."
+msgstr "Номер сертификата"
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Please upload a certificate image first."
+msgstr "Сначала загрузите фото сертификата."
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "The 'anthropic' Python package is not installed. Please install it on the server."
+msgstr "Пакет 'anthropic' не установлен на сервере. Обратитесь к администратору."
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Anthropic API key is not configured. Set 'anthropic.api_key' in Settings → Technical → System Parameters."
+msgstr "API-ключ Anthropic не настроен. Установите 'anthropic.api_key' в Настройки → Технические → Системные параметры."
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Failed to parse API response: %s"
+msgstr "Не удалось разобрать ответ API: %s"
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Success"
+msgstr "Успешно"
+
+#. module: jewelry_repair_base
+#: code:addons/jewelry_repair_base/models/models.py:0
+msgid "Certificate data extracted successfully."
+msgstr "Данные сертификата успешно извлечены."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__outsource_cost
+msgid "Outsource Cost"
+msgstr "Затраты на аутсорс"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__base_price
+msgid "Base Price"
+msgstr "Базовая цена"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_service_line__base_price
+msgid ""
+"What the service costs the workshop, per unit. Captured when the service is "
+"picked and left untouched when the manager negotiates the selling price."
+msgstr ""
+"Во что услуга обходится мастерской, за единицу. Снимается при выборе услуги "
+"и не меняется, когда менеджер правит цену продажи."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__base_amount
+msgid "Base Amount"
+msgstr "База, сумма"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_service_line__base_amount
+msgid "Outsource cost when it is set, otherwise base price times total quantity."
+msgstr ""
+"Затраты на аутсорс, если они указаны, иначе базовая цена умноженная на общее "
+"количество."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_service_line__margin
+msgid "Margin"
+msgstr "Маржа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_service_line__margin
+msgid "Revenue minus base amount. Negative when the service is sold below its base."
+msgstr ""
+"Выручка минус база. Отрицательная, если услуга продана ниже базовой цены."
+
+#. module: jewelry_repair_base
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_service_line_costs_tree
+msgid "Total Base"
+msgstr "Итого база"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_service_line_costs_tree
+msgid "Total Margin"
+msgstr "Итого маржа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_kpi_service_line__outsource_cost
+msgid "Outsource Cost"
+msgstr "Затраты на аутсорс"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Costs"
+msgstr "Затраты"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Total Outsource Cost"
+msgstr "Итого аутсорс"
+
+#. module: jewelry_repair_base
+#: model:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Total Outsource"
+msgstr "Итого аутсорс"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_material_line__rate_manual
+msgid "Manual Metal Price"
+msgstr "Цена металла вручную"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_material_line__rate_manual
+msgid ""
+"Set when the price per gram was entered manually instead of taken from the "
+"metal rate."
+msgstr ""
+"Устанавливается, когда цена за грамм введена вручную, а не взята из "
+"котировки металла."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_client_loss__returned_weight
+msgid "Return (g)"
+msgstr "Возврат (г)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_client_loss__added_weight
+msgid "Added (g)"
+msgstr "Добавлено (г)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_client_loss__loss_sign
+msgid "Loss Sign"
+msgstr "Знак потерь"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_order_client_loss__loss_sign__loss
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_order_client_loss_search
+msgid "Loss"
+msgstr "Потеря"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_order_client_loss__loss_sign__gain
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_order_client_loss_search
+msgid "Negative Loss"
+msgstr "Отрицательная потеря"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_order_client_loss__loss_sign__zero
+msgid "No Loss"
+msgstr "Без потерь"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_order_client_loss__loss_sign__invalid
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_order_client_loss_search
+msgid "Invalid Data"
+msgstr "Некорректные данные"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_order_client_loss__invoiced_weight
+msgid "Invoiced (g)"
+msgstr "В счёте (г)"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_order_client_loss__invoiced_weight
+msgid ""
+"Metal billed to the client, from stock or not. Shown for reference only: it "
+"is sold metal, so it is not part of the loss balance."
+msgstr ""
+"Металл, выставленный клиенту в счёт, независимо от списания со склада. "
+"Выводится справочно: это проданный металл, в баланс потерь он не входит."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "Directors have read-only access. Contact a manager to make changes."
+msgstr ""
+"У руководителя доступ только на чтение. Для внесения изменений обратитесь к "
+"менеджеру."
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "<strong>Unlocked for editing.</strong>"
+msgstr "<strong>Открыт для правки.</strong>"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid ""
+"Delivered repair orders are read-only. Use \"Unlock for Editing\" to correct"
+" them."
+msgstr ""
+"Выданные заказы на ремонт доступны только для чтения. Для исправления "
+"используйте «Открыть для правки»."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_amendment_wizard__document_summary
+msgid "Documents To Cancel"
+msgstr "Документы к отмене"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "Only a manager can unlock a delivered order for editing."
+msgstr "Открыть выданный заказ для правки может только менеджер."
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "Only delivered repair orders need to be unlocked for editing."
+msgstr "Открывать для правки нужно только выданные заказы."
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_amendment_wizard_form
+msgid "The following documents will be cancelled, in this order:"
+msgstr "Будут отменены следующие документы, в этом порядке:"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "The order is already unlocked for editing."
+msgstr "Заказ уже открыт для правки."
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_amendment_wizard_form
+msgid ""
+"This order is not billed yet, so no\n"
+"                            document will be cancelled."
+msgstr "Заказ ещё не отбиллован, отменять нечего."
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_amendment_wizard
+msgid "Unlock Delivered Order For Editing"
+msgstr "Открытие выданного заказа для правки"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__amendment_reason
+msgid "Unlock Reason"
+msgstr "Причина открытия"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_amendment_wizard_form
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+#, python-format
+msgid "Unlock for Editing"
+msgstr "Открыть для правки"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__amendment_at
+msgid "Unlocked At"
+msgstr "Открыт для правки, дата"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__amendment_user_id
+msgid "Unlocked By"
+msgstr "Открыл для правки"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__amendment_open
+msgid "Unlocked For Editing"
+msgstr "Открыт для правки"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_amendment_wizard_form
+msgid "Why does this delivered order need to be changed?"
+msgstr "Почему нужно изменить выданный заказ?"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid ""
+"Cancelled because repair order %(order)s was unlocked for editing. Reason: "
+"%(reason)s"
+msgstr ""
+"Отменён, так как заказ %(order)s был открыт для правки. Причина: %(reason)s"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "Cancelled documents: %s"
+msgstr "Отменены документы: %s"
+
+#. module: jewelry_repair_base
+#. odoo-python
+#: code:addons/jewelry_repair_base/models/order.py:0
+#, python-format
+msgid "Unlocked for editing. Reason: %s"
+msgstr "Открыт для правки. Причина: %s"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_amendment_wizard__payment_warning
+msgid "Payment Warning"
+msgstr "Предупреждение об оплате"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "(not billed)"
+msgstr "(не выставлен)"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Amount"
+msgstr "Сумма"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Ext. Doc #"
+msgstr "Внешний №"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Full product cost"
+msgstr "Полная стоимость изделия"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Gem weight"
+msgstr "Вес камней"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Gems"
+msgstr "Камни"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Item type"
+msgstr "Тип изделия"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Item weight"
+msgstr "Вес изделия"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Metal weight"
+msgstr "Вес металла"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Price"
+msgstr "Цена"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Price/g"
+msgstr "Цена/г"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "To pay"
+msgstr "К оплате"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "Total"
+msgstr "Итого"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "ct"
+msgstr "кар"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "ct)"
+msgstr "кар)"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.report,name:jewelry_repair_base.action_report_jewelry_repair_order_card
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Order Card"
+msgstr "Карточка заказа"
+
+#. module: jewelry_repair_base
+#: model:ir.actions.report,print_report_name:jewelry_repair_base.action_report_jewelry_repair_order_card
+msgid "'Order Card - %s' % (object.name or '')"
+msgstr "'Карточка заказа - %s' % (object.name or '')"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.report_jewelry_repair_order_card_document
+msgid "<span class=\"text-muted\" style=\"font-size:0.85em;\">Alloy</span>"
+msgstr "<span class=\"text-muted\" style=\"font-size:0.85em;\">Сплав</span>"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,help:jewelry_repair_base.field_jewelry_repair_gem_line__origin
+msgid ""
+"Natural or laboratory grown. Kept on the line because melee carries no "
+"certificate, and the certificate is the only place the origin used to live."
+msgstr ""
+"Натуральный или выращенный. Хранится на строке, потому что у мелочи нет "
+"сертификата, а раньше происхождение жило только в сертификате."
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_photo__kind__intake
+msgid "At Intake"
+msgstr "При приёмке"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_photo__caption
+msgid "Caption"
+msgstr "Подпись"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields.selection,name:jewelry_repair_base.selection__jewelry_repair_photo__kind__finished
+msgid "Finished Work"
+msgstr "Готовая работа"
+
+#. module: jewelry_repair_base
+#: model:ir.model,name:jewelry_repair_base.model_jewelry_repair_photo
+msgid "Jewelry Repair Order Photo"
+msgstr "Фотография заказа"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_photo__kind
+msgid "Kind"
+msgstr "Тип"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_photo__image
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_list
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_photo_form
+msgid "Photo"
+msgstr "Фотография"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__photo_count
+msgid "Photo Count"
+msgstr "Количество фото"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_order__photo_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_order_form
+msgid "Photos"
+msgstr "Фотографии"
+
+#. module: jewelry_repair_base
+#: model:ir.model.fields,field_description:jewelry_repair_base.field_jewelry_repair_photo__image_256
+msgid "Thumbnail"
+msgstr "Миниатюра"
+
+#. module: jewelry_repair_base
+#: model_terms:ir.ui.view,arch_db:jewelry_repair_base.view_jewelry_repair_photo_form
+msgid "What is on the photo"
+msgstr "Что на снимке"

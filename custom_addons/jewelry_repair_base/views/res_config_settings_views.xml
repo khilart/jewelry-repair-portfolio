@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_jewelry" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.jewelry.repair</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <div class="app_settings_block"
+                         data-string="Jewelry Repair"
+                         data-key="jewelry_repair_base"
+                         groups="jewelry_repair_base.group_jewelry_repair_manager">
+                        <h2>Jewelry Repair</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Weight Tracking Mode</span>
+                                    <div class="text-muted">
+                                        Controls whether masters are asked to weigh items before operations
+                                        and whether metal loss by area is calculated.
+                                    </div>
+                                    <div class="content-group mt8">
+                                        <field name="weight_tracking_mode" widget="radio"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                 invisible="weight_tracking_mode == 'disabled'">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Weight Entry By</span>
+                                    <div class="text-muted">
+                                        Who enters the weight before each operation.
+                                    </div>
+                                    <div class="content-group mt8">
+                                        <field name="weight_entry_by" widget="radio"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

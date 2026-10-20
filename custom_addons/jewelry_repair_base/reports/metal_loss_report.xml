@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ── By Operation Type ─────────────────────────────────────── -->
+        <template id="report_metal_loss_by_operation_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="wizard">
+                    <t t-call="web.basic_layout">
+                        <t t-set="grouped" t-value="wizard._get_grouped_by_operation()"/>
+                        <div class="page" style="font-size: 12px;">
+                            <h4 style="margin-bottom: 4px;">Metal Loss Report — By Operation</h4>
+                            <div class="text-muted" style="font-size: 11px; margin-bottom: 16px;">
+                                Period: <t t-esc="str(wizard.date_from)"/> — <t t-esc="str(wizard.date_to)"/>
+                            </div>
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Operation</th>
+                                        <th class="text-end">Orders</th>
+                                        <th class="text-end">Total Loss (g)</th>
+                                        <th class="text-end">Avg Loss (g)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="grouped" t-as="row">
+                                        <t t-set="op_name" t-value="row[0]"/>
+                                        <t t-set="data" t-value="row[1]"/>
+                                        <tr t-att-style="'background:#fff3cd;' if data['is_gem_block'] else ''">
+                                            <td><t t-esc="op_name"/></td>
+                                            <td class="text-end"><t t-esc="data['count']"/></td>
+                                            <td class="text-end">
+                                                <t t-if="data['is_gem_block']">
+                                                    +<t t-esc="'%.3f' % data['gem_weight']"/> (gems)
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-esc="'%.3f' % data['loss']"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-end">
+                                                <t t-if="not data['is_gem_block'] and data['count']">
+                                                    <t t-esc="'%.3f' % (data['loss'] / data['count'])"/>
+                                                </t>
+                                                <t t-else="">—</t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                                <tfoot>
+                                    <tr style="font-weight:bold;">
+                                        <td>Total metal loss</td>
+                                        <td></td>
+                                        <td class="text-end">
+                                            <t t-esc="'%.3f' % sum(d['loss'] for _, d in grouped if not d['is_gem_block'])"/> g
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="report_metal_loss_by_operation" model="ir.actions.report">
+            <field name="name">Metal Loss — By Operation</field>
+            <field name="model">jewelry.metal.loss.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_base.report_metal_loss_by_operation_template</field>
+            <field name="report_file">jewelry_repair_base.report_metal_loss_by_operation_template</field>
+            <field name="paperformat_id" ref="base.paperformat_euro"/>
+        </record>
+
+        <!-- ── By Executor ───────────────────────────────────────────── -->
+        <template id="report_metal_loss_by_executor_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="wizard">
+                    <t t-call="web.basic_layout">
+                        <t t-set="grouped" t-value="wizard._get_grouped_by_executor()"/>
+                        <div class="page" style="font-size: 12px;">
+                            <h4 style="margin-bottom: 4px;">Metal Loss Report — By Executor</h4>
+                            <div class="text-muted" style="font-size: 11px; margin-bottom: 16px;">
+                                Period: <t t-esc="str(wizard.date_from)"/> — <t t-esc="str(wizard.date_to)"/>
+                            </div>
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Executor</th>
+                                        <th class="text-end">Operations</th>
+                                        <th class="text-end">Total Loss (g)</th>
+                                        <th class="text-end">Avg Loss (g)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="grouped" t-as="row">
+                                        <t t-set="executor_name" t-value="row[0]"/>
+                                        <t t-set="data" t-value="row[1]"/>
+                                        <tr>
+                                            <td><t t-esc="executor_name"/></td>
+                                            <td class="text-end"><t t-esc="data['count']"/></td>
+                                            <td class="text-end"><t t-esc="'%.3f' % data['loss']"/></td>
+                                            <td class="text-end">
+                                                <t t-if="data['count']">
+                                                    <t t-esc="'%.3f' % (data['loss'] / data['count'])"/>
+                                                </t>
+                                                <t t-else="">—</t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                                <tfoot>
+                                    <tr style="font-weight:bold;">
+                                        <td>Total metal loss</td>
+                                        <td></td>
+                                        <td class="text-end">
+                                            <t t-esc="'%.3f' % sum(d['loss'] for _, d in grouped)"/> g
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="report_metal_loss_by_executor" model="ir.actions.report">
+            <field name="name">Metal Loss — By Executor</field>
+            <field name="model">jewelry.metal.loss.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_base.report_metal_loss_by_executor_template</field>
+            <field name="report_file">jewelry_repair_base.report_metal_loss_by_executor_template</field>
+            <field name="paperformat_id" ref="base.paperformat_euro"/>
+        </record>
+
+    </data>
+</odoo>

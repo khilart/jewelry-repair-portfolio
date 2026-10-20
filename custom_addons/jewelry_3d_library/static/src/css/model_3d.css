@@ -1,0 +1,14 @@
+.o_3d_avatar_wrap {
+    float: right;
+    width: 92px;
+    margin-left: 16px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.o_3d_avatar_wrap .o_field_image img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+}

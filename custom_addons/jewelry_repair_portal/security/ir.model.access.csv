@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jewelry_portal_access_manager,jewelry.portal.access manager,model_jewelry_portal_access,jewelry_repair_base.group_jewelry_repair_manager,1,1,1,1
+access_jewelry_portal_access_director,jewelry.portal.access director,model_jewelry_portal_access,jewelry_repair_base.group_jewelry_repair_director,1,0,0,0
+access_jewelry_portal_access_portal,jewelry.portal.access portal,model_jewelry_portal_access,base.group_portal,1,0,0,0
+access_jewelry_repair_order_portal,jewelry.repair.order portal,jewelry_repair_base.model_jewelry_repair_order,base.group_portal,1,0,0,0
+access_jewelry_repair_service_line_portal,jewelry.repair.service.line portal,jewelry_repair_base.model_jewelry_repair_service_line,base.group_portal,1,0,0,0
+access_jewelry_repair_material_line_portal,jewelry.repair.material.line portal,jewelry_repair_base.model_jewelry_repair_material_line,base.group_portal,1,0,0,0
+access_jewelry_repair_order_operation_portal,jewelry.repair.order.operation portal,jewelry_repair_base.model_jewelry_repair_order_operation,base.group_portal,1,0,0,0
+access_jewelry_metal_alloy_portal,jewelry.metal.alloy portal,jewelry_repair_base.model_jewelry_metal_alloy,base.group_portal,1,0,0,0

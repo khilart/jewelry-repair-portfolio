@@ -1,0 +1,333 @@
+<odoo>
+    <data>
+
+        <record id="paperformat_kpi_dashboard" model="report.paperformat">
+            <field name="name">KPI Dashboard A4</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="dpi">70</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+        </record>
+
+        <record id="action_report_kpi_dashboard" model="ir.actions.report">
+            <field name="name">Financial Dashboard</field>
+            <field name="model">jewelry.repair.kpi.dashboard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_base.report_kpi_dashboard_document</field>
+            <field name="report_file">jewelry_repair_base.report_kpi_dashboard_document</field>
+            <field name="print_report_name">'Financial Dashboard'</field>
+            <field name="paperformat_id" ref="paperformat_kpi_dashboard"/>
+        </record>
+
+        <template id="report_kpi_dashboard_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                        <div class="page" style="font-size:0.75em;">
+
+                            <div class="mb-3">
+                                <span class="h5 fw-bold">Financial Dashboard</span>
+                                <span class="ms-3 text-muted" style="font-size:0.9em;">
+                                    Generated: <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y %H:%M')"/>
+                                </span>
+                            </div>
+
+                            <!-- Pipeline -->
+                            <h6 class="text-uppercase text-muted fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.05em;">Pipeline</h6>
+                            <table class="table table-sm table-bordered mb-4">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Status</th>
+                                        <th class="text-end" style="width:12%">Orders</th>
+                                        <th class="text-end" style="width:25%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Waiting</td>
+                                        <td class="text-end"><t t-esc="doc.waiting_count"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.waiting_amount"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>In Progress</td>
+                                        <td class="text-end"><t t-esc="doc.in_progress_count"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.in_progress_amount"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ready for Delivery</td>
+                                        <td class="text-end"><t t-esc="doc.ready_count"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.ready_amount"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- Revenue summary -->
+                            <h6 class="text-uppercase text-muted fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.05em;">Revenue</h6>
+                            <table class="table table-sm table-bordered mb-4">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Period</th>
+                                        <th class="text-end" style="width:10%">Orders</th>
+                                        <th class="text-end" style="width:22%">Services</th>
+                                        <th class="text-end" style="width:22%">Materials</th>
+                                        <th class="text-end" style="width:22%">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>This Month</td>
+                                        <td class="text-end"><t t-esc="doc.revenue_month_count"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.revenue_month_services"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.revenue_month_materials"/></td>
+                                        <td class="text-end fw-bold"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.revenue_month"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Month</td>
+                                        <td class="text-end"><t t-esc="doc.revenue_prev_month_count"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.revenue_prev_month_services"/></td>
+                                        <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.revenue_prev_month_materials"/></td>
+                                        <td class="text-end fw-bold"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % doc.revenue_prev_month"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- This Month Breakdown -->
+                            <h6 class="text-uppercase text-muted fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.05em;">This Month — Breakdown</h6>
+                            <div class="row mb-3">
+                                <div class="col-6" style="padding-right:8px;">
+                                    <p class="mb-1 fw-semibold">Services</p>
+                                    <table class="table table-sm table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Service</th>
+                                                <th class="text-end" style="width:12%">Qty</th>
+                                                <th class="text-end" style="width:12%">Orders</th>
+                                                <th class="text-end" style="width:25%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="doc.service_month_ids" t-as="line">
+                                                <td><t t-esc="line.service_name"/></td>
+                                                <td class="text-end"><t t-esc="'%.2f' % line.quantity"/></td>
+                                                <td class="text-end"><t t-esc="line.order_count"/></td>
+                                                <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % line.amount"/></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="3" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sum(doc.service_month_ids.mapped('amount'))"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="col-6" style="padding-left:8px;">
+                                    <p class="mb-1 fw-semibold">Materials</p>
+                                    <table class="table table-sm table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Alloy</th>
+                                                <th class="text-end" style="width:23%">Weight</th>
+                                                <th class="text-end" style="width:12%">Orders</th>
+                                                <th class="text-end" style="width:25%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="doc.material_month_ids" t-as="line">
+                                                <td><t t-esc="line.alloy_name"/></td>
+                                                <td class="text-end"><t t-esc="'%.3f' % line.quantity"/></td>
+                                                <td class="text-end"><t t-esc="line.order_count"/></td>
+                                                <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % line.amount"/></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="3" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sum(doc.material_month_ids.mapped('amount'))"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <p class="mb-1 fw-semibold">Clients</p>
+                            <table class="table table-sm table-bordered mb-4">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Client / Detail</th>
+                                        <th class="text-end" style="width:15%">Qty / Weight</th>
+                                        <th class="text-end" style="width:10%">Orders</th>
+                                        <th class="text-end" style="width:25%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.client_month_ids" t-as="line">
+                                        <tr class="table-light fw-bold">
+                                            <td colspan="2"><t t-esc="line.partner_name"/></td>
+                                            <td class="text-end"><t t-esc="line.order_count"/></td>
+                                            <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % line.amount"/></td>
+                                        </tr>
+                                        <t t-if="line.service_ids">
+                                            <tr>
+                                                <td colspan="4" class="text-muted ps-3" style="font-size:0.82em; padding-top:1px; padding-bottom:1px;">Services</td>
+                                            </tr>
+                                            <tr t-foreach="line.service_ids" t-as="sl">
+                                                <td class="ps-4" style="font-size:0.9em;"><t t-esc="sl.service_name"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="'%.2f' % sl.quantity"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="sl.order_count"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sl.amount"/></td>
+                                            </tr>
+                                        </t>
+                                        <t t-if="line.material_ids">
+                                            <tr>
+                                                <td colspan="4" class="text-muted ps-3" style="font-size:0.82em; padding-top:1px; padding-bottom:1px;">Materials</td>
+                                            </tr>
+                                            <tr t-foreach="line.material_ids" t-as="ml">
+                                                <td class="ps-4" style="font-size:0.9em;"><t t-esc="ml.alloy_name"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="'%.3f' % ml.quantity"/> g</td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="ml.order_count"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % ml.amount"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="fw-bold border-top">
+                                        <td colspan="3" class="text-end">Total:</td>
+                                        <td class="text-end">
+                                            <t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sum(doc.client_month_ids.mapped('amount'))"/>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <!-- Last Month Breakdown -->
+                            <h6 class="text-uppercase text-muted fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.05em;">Last Month — Breakdown</h6>
+                            <div class="row mb-3">
+                                <div class="col-6" style="padding-right:8px;">
+                                    <p class="mb-1 fw-semibold">Services</p>
+                                    <table class="table table-sm table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Service</th>
+                                                <th class="text-end" style="width:12%">Qty</th>
+                                                <th class="text-end" style="width:12%">Orders</th>
+                                                <th class="text-end" style="width:25%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="doc.service_prev_ids" t-as="line">
+                                                <td><t t-esc="line.service_name"/></td>
+                                                <td class="text-end"><t t-esc="'%.2f' % line.quantity"/></td>
+                                                <td class="text-end"><t t-esc="line.order_count"/></td>
+                                                <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % line.amount"/></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="3" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sum(doc.service_prev_ids.mapped('amount'))"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="col-6" style="padding-left:8px;">
+                                    <p class="mb-1 fw-semibold">Materials</p>
+                                    <table class="table table-sm table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Alloy</th>
+                                                <th class="text-end" style="width:23%">Weight</th>
+                                                <th class="text-end" style="width:12%">Orders</th>
+                                                <th class="text-end" style="width:25%">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="doc.material_prev_ids" t-as="line">
+                                                <td><t t-esc="line.alloy_name"/></td>
+                                                <td class="text-end"><t t-esc="'%.3f' % line.quantity"/></td>
+                                                <td class="text-end"><t t-esc="line.order_count"/></td>
+                                                <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % line.amount"/></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold border-top">
+                                                <td colspan="3" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sum(doc.material_prev_ids.mapped('amount'))"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <p class="mb-1 fw-semibold">Clients</p>
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Client / Detail</th>
+                                        <th class="text-end" style="width:15%">Qty / Weight</th>
+                                        <th class="text-end" style="width:10%">Orders</th>
+                                        <th class="text-end" style="width:25%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.client_prev_ids" t-as="line">
+                                        <tr class="table-light fw-bold">
+                                            <td colspan="2"><t t-esc="line.partner_name"/></td>
+                                            <td class="text-end"><t t-esc="line.order_count"/></td>
+                                            <td class="text-end"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % line.amount"/></td>
+                                        </tr>
+                                        <t t-if="line.service_ids">
+                                            <tr>
+                                                <td colspan="4" class="text-muted ps-3" style="font-size:0.82em; padding-top:1px; padding-bottom:1px;">Services</td>
+                                            </tr>
+                                            <tr t-foreach="line.service_ids" t-as="sl">
+                                                <td class="ps-4" style="font-size:0.9em;"><t t-esc="sl.service_name"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="'%.2f' % sl.quantity"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="sl.order_count"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sl.amount"/></td>
+                                            </tr>
+                                        </t>
+                                        <t t-if="line.material_ids">
+                                            <tr>
+                                                <td colspan="4" class="text-muted ps-3" style="font-size:0.82em; padding-top:1px; padding-bottom:1px;">Materials</td>
+                                            </tr>
+                                            <tr t-foreach="line.material_ids" t-as="ml">
+                                                <td class="ps-4" style="font-size:0.9em;"><t t-esc="ml.alloy_name"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="'%.3f' % ml.quantity"/> g</td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="ml.order_count"/></td>
+                                                <td class="text-end" style="font-size:0.9em;"><t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % ml.amount"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="fw-bold border-top">
+                                        <td colspan="3" class="text-end">Total:</td>
+                                        <td class="text-end">
+                                            <t t-esc="doc.currency_id.symbol"/>&#160;<t t-esc="'%.2f' % sum(doc.client_prev_ids.mapped('amount'))"/>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

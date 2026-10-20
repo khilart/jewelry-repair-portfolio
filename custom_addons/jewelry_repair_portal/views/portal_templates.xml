@@ -1,0 +1,663 @@
+<odoo>
+    <data>
+
+        <!-- Add repair orders entry to /my/home (first position) -->
+        <template id="portal_my_home_repair" inherit_id="portal.portal_my_home" name="Orders">
+            <xpath expr="//div[@id='portal_common_category']/t[@t-if='False']" position="after">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="icon" t-value="'/jewelry_repair_portal/static/src/img/diamond.svg'"/>
+                    <t t-set="title">Orders</t>
+                    <t t-set="url">/my/repairs</t>
+                    <t t-set="count" t-value="repair_count"/>
+                    <t t-set="placeholder_count">repair_count</t>
+                </t>
+            </xpath>
+        </template>
+
+        <!-- Add breadcrumb item for repair pages -->
+        <template id="portal_breadcrumbs_repair" inherit_id="portal.portal_breadcrumbs" name="Orders Breadcrumb">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+                <li t-if="page_name == 'repair'" class="breadcrumb-item">
+                    <a href="/my/repairs">Orders</a>
+                </li>
+            </xpath>
+        </template>
+
+        <!-- List page -->
+        <template id="portal_my_repairs" name="My Orders">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Orders</t>
+                </t>
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <a t-attf-class="nav-link #{'active' if tab == 'active' else ''}"
+                           href="/my/repairs?tab=active">Active</a>
+                    </li>
+                    <!-- The statement covers both of these, so it replaces them -->
+                    <li class="nav-item" t-if="not show_payment_statement">
+                        <a t-attf-class="nav-link #{'active' if tab == 'to_pay' else ''}"
+                           href="/my/repairs?tab=to_pay">To Pay</a>
+                    </li>
+                    <li class="nav-item" t-if="not show_payment_statement">
+                        <a t-attf-class="nav-link #{'active' if tab == 'paid' else ''}"
+                           href="/my/repairs?tab=paid">Paid</a>
+                    </li>
+                    <li class="nav-item" t-if="show_payment_statement">
+                        <a t-attf-class="nav-link #{'active' if tab == 'statement' else ''}"
+                           href="/my/repairs?tab=statement">Finished</a>
+                    </li>
+                </ul>
+
+                <!-- Outstanding total for To Pay tab -->
+                <t t-if="tab == 'to_pay' and (total_outstanding or advance_amount)">
+                    <div class="card mb-3">
+                        <div class="card-body py-2">
+                            <div class="d-flex justify-content-between align-items-center py-1">
+                                <span class="text-muted">Outstanding balance:</span>
+                                <span>
+                                    <t t-esc="'%.2f' % total_outstanding"/>
+                                    <t t-if="orders" t-esc="orders[0].currency_id.symbol"/>
+                                </span>
+                            </div>
+                            <t t-if="advance_amount">
+                                <div class="d-flex justify-content-between align-items-center py-1">
+                                    <span class="text-muted">Advance (credit):</span>
+                                    <span class="text-success">
+                                        − <t t-esc="'%.2f' % advance_amount"/>
+                                        <t t-if="orders" t-esc="orders[0].currency_id.symbol"/>
+                                    </span>
+                                </div>
+                                <hr class="my-1"/>
+                            </t>
+                            <div class="d-flex justify-content-between align-items-center py-1">
+                                <span class="fw-semibold">To pay:</span>
+                                <strong t-attf-class="h5 mb-0 #{'text-danger' if net_to_pay > 0 else 'text-success'}">
+                                    <t t-esc="'%.2f' % net_to_pay"/>
+                                    <t t-if="orders" t-esc="orders[0].currency_id.symbol"/>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                <t t-if="tab == 'statement'">
+                    <t t-call="jewelry_repair_portal.portal_statement_body"/>
+                </t>
+                <t t-elif="not orders">
+                    <div class="alert alert-info">No repair orders found.</div>
+                </t>
+                <t t-else="">
+                    <div class="table-responsive">
+                        <table class="table table-hover o_portal_my_doc_table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Amount</th>
+                                    <t t-if="tab in ('to_pay', 'paid')"><th>Payment</th></t>
+                                    <th>Deadline</th>
+                                    <th>Order #</th>
+                                    <th>Ext. Doc #</th>
+                                    <th>Client</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="orders" t-as="order">
+                                    <td><t t-esc="order.item_type_id.name"/></td>
+                                    <td>
+                                        <span t-attf-class="badge #{
+                                            'bg-secondary' if order.state == 'draft' else
+                                            'bg-primary' if order.state == 'in_progress' else
+                                            'bg-success' if order.state == 'ready' else
+                                            'bg-dark' if order.state == 'delivered' else
+                                            'bg-danger'
+                                        }">
+                                            <t t-esc="dict(order._fields['state'].selection).get(order.state)"/>
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <t t-esc="'%.2f' % order.amount_total"/>
+                                        <t t-esc="order.currency_id.symbol"/>
+                                    </td>
+                                    <t t-if="tab in ('to_pay', 'paid')">
+                                        <td>
+                                            <span t-attf-class="badge #{
+                                                'bg-secondary' if order.payment_status == 'unbilled' else
+                                                'bg-danger' if order.payment_status == 'unpaid' else
+                                                'bg-warning text-dark' if order.payment_status == 'partial' else
+                                                'bg-success'
+                                            }">
+                                                <t t-esc="dict(order._fields['payment_status'].selection).get(order.payment_status)"/>
+                                            </span>
+                                        </td>
+                                    </t>
+                                    <td>
+                                        <t t-if="order.deadline_date">
+                                            <t t-esc="order.deadline_date.strftime('%d.%m.%Y')"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <a t-attf-href="/my/repairs/#{order.id}">
+                                            <t t-esc="order.name"/>
+                                        </a>
+                                    </td>
+                                    <td><t t-esc="order.external_doc_number"/></td>
+                                    <td><t t-esc="order.partner_id.name"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div t-if="pager" class="o_portal_pager text-center">
+                        <t t-call="portal.pager"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <!-- Detail page -->
+        <template id="portal_repair_detail" name="Repair Order Detail">
+            <t t-call="portal.portal_layout">
+                <t t-set="o_portal_fullwidth_alert" t-value="False"/>
+
+                <div class="row mt-3">
+                    <div class="col-12 col-md-8 offset-md-2">
+
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">
+                                    <t t-esc="order.name"/>
+                                </h5>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="fw-bold h5 mb-0">
+                                        <t t-esc="'%.2f' % order.amount_total"/>
+                                        <t t-esc="order.currency_id.symbol"/>
+                                    </span>
+                                    <span t-attf-class="badge #{
+                                        'bg-secondary' if order.state == 'draft' else
+                                        'bg-primary' if order.state == 'in_progress' else
+                                        'bg-success' if order.state == 'ready' else
+                                        'bg-dark' if order.state == 'delivered' else
+                                        'bg-danger'
+                                    }">
+                                        <t t-esc="dict(order._fields['state'].selection).get(order.state)"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <!-- Photo -->
+                                <t t-if="order.item_image">
+                                    <div class="text-center mb-4">
+                                        <img t-attf-src="/web/image/jewelry.repair.order/#{order.id}/item_image"
+                                             class="img-fluid rounded"
+                                             style="max-height:280px;"
+                                             alt="Item photo"/>
+                                    </div>
+                                </t>
+
+                                <!-- Main fields -->
+                                <dl class="row mb-0">
+                                    <dt class="col-5 col-sm-4">Client</dt>
+                                    <dd class="col-7 col-sm-8"><t t-esc="order.partner_id.name"/></dd>
+
+                                    <dt class="col-5 col-sm-4">Item type</dt>
+                                    <dd class="col-7 col-sm-8"><t t-esc="order.item_type_id.name"/></dd>
+
+                                    <t t-if="order.description">
+                                        <dt class="col-5 col-sm-4">Description</dt>
+                                        <dd class="col-7 col-sm-8"><t t-esc="order.description"/></dd>
+                                    </t>
+
+                                    <dt class="col-5 col-sm-4">Quantity</dt>
+                                    <dd class="col-7 col-sm-8"><t t-esc="order.quantity"/></dd>
+
+                                    <t t-if="order.deadline_date">
+                                        <dt class="col-5 col-sm-4">Deadline</dt>
+                                        <dd class="col-7 col-sm-8">
+                                            <t t-esc="order.deadline_date.strftime('%d.%m.%Y')"/>
+                                        </dd>
+                                    </t>
+
+                                    <t t-if="order.external_doc_number">
+                                        <dt class="col-5 col-sm-4">Ext. Doc #</dt>
+                                        <dd class="col-7 col-sm-8"><t t-esc="order.external_doc_number"/></dd>
+                                    </t>
+                                </dl>
+
+                                <!-- Delivery weights -->
+                                <t t-if="show_delivery_weights and order.delivered_weight">
+                                    <t t-if="order.alloy_id">
+                                        <div class="text-center border-top pt-3 mt-3">
+                                            <span class="text-muted small">Alloy</span>
+                                            <span class="fw-bold ms-2"><t t-esc="order.alloy_id.display_name"/></span>
+                                        </div>
+                                    </t>
+                                    <div t-attf-class="row text-center pt-3 #{'' if order.alloy_id else 'border-top mt-3'}">
+                                        <div class="col-4">
+                                            <div class="text-muted small">Item weight</div>
+                                            <div class="fw-bold"><t t-esc="'%.3f' % order.delivered_weight"/> g</div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="text-muted small">Metal weight</div>
+                                            <div class="fw-bold"><t t-esc="'%.3f' % order.metal_delivered_weight"/> g</div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="text-muted small">Gem weight</div>
+                                            <div class="fw-bold"><t t-esc="'%.3f' % order.gem_weight_total_g"/> g</div>
+                                            <div class="text-muted small"><t t-esc="'%.2f' % (order.gem_weight_total_g / 0.2)"/> ct</div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+
+                        <!-- Services -->
+                        <t t-if="order.service_line_ids">
+                            <div class="card mb-4">
+                                <div class="card-header fw-semibold">Services</div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Service</th>
+                                                <th class="text-end">Qty</th>
+                                                <th class="text-end">Price</th>
+                                                <th class="text-end">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-if="collapse_new_product_services and order.new_product_manufacturing">
+                                                <tr>
+                                                    <td>New product manufacturing</td>
+                                                    <td class="text-end"><t t-esc="order.quantity"/></td>
+                                                    <td class="text-end">—</td>
+                                                    <td class="text-end">
+                                                        <t t-esc="'%.2f' % sum(order.service_line_ids.mapped('subtotal'))"/>
+                                                        <t t-esc="order.currency_id.symbol"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <t t-else="">
+                                                <tr t-foreach="order.service_line_ids" t-as="line">
+                                                    <td><t t-esc="line.product_id.name"/></td>
+                                                    <td class="text-end"><t t-esc="'%.2f' % line.quantity"/></td>
+                                                    <td class="text-end"><t t-esc="'%.2f' % line.price_unit"/> <t t-esc="order.currency_id.symbol"/></td>
+                                                    <td class="text-end"><t t-esc="'%.2f' % line.subtotal"/> <t t-esc="order.currency_id.symbol"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold">
+                                                <td colspan="3" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="'%.2f' % sum(order.service_line_ids.mapped('subtotal'))"/>
+                                                    <t t-esc="order.currency_id.symbol"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+
+                        <!-- Materials (invoice lines only) -->
+                        <t t-set="invoice_materials" t-value="order.material_line_ids.filtered(lambda l: l.include_in_invoice)"/>
+                        <t t-if="invoice_materials">
+                            <div class="card mb-4">
+                                <div class="card-header fw-semibold">Materials</div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Alloy</th>
+                                                <th class="text-end">Weight (g)</th>
+                                                <th class="text-end">Price/g</th>
+                                                <th class="text-end">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="invoice_materials" t-as="line">
+                                                <td><t t-esc="line.alloy_id.display_name if line.alloy_id else line.product_id.name"/></td>
+                                                <td class="text-end"><t t-esc="'%.3f' % (line.weight + line.weight_loss)"/></td>
+                                                <td class="text-end"><t t-esc="'%.2f' % (line.rate_price_per_gram * (line.alloy_id.purity if line.alloy_id else 1.0))"/> <t t-esc="order.currency_id.symbol"/></td>
+                                                <td class="text-end"><t t-esc="'%.2f' % line.subtotal"/> <t t-esc="order.currency_id.symbol"/></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold">
+                                                <td colspan="3" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="'%.2f' % sum(invoice_materials.mapped('subtotal'))"/>
+                                                    <t t-esc="order.currency_id.symbol"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+
+                        <!-- Gems -->
+                        <t t-if="gems_to_show">
+                            <div class="card mb-4">
+                                <div class="card-header fw-semibold">Gems</div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Gem Type</th>
+                                                <th>Certificate</th>
+                                                <th class="text-end">Qty</th>
+                                                <th class="text-end">Weight (ct)</th>
+                                                <th class="text-end">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="gems_to_show" t-as="gem">
+                                                <td>
+                                                    <t t-esc="gem.gem_type_id.name"/>
+                                                    <t t-if="not gem.include_in_invoice">
+                                                        <span class="text-muted small ms-1">(not billed)</span>
+                                                    </t>
+                                                </td>
+                                                <td>
+                                                    <t t-if="gem.certificate_id">
+                                                        <a href="#" data-bs-toggle="modal"
+                                                           t-attf-data-bs-target="#certModal-#{gem.certificate_id.id}">
+                                                            <t t-esc="gem.certificate_id.name"/>
+                                                        </a>
+                                                    </t>
+                                                    <t t-else="">—</t>
+                                                </td>
+                                                <td class="text-end"><t t-esc="gem.quantity"/></td>
+                                                <td class="text-end"><t t-esc="'%.4f' % gem.total_weight_ct"/></td>
+                                                <td class="text-end">
+                                                    <t t-esc="'%.2f' % gem.subtotal"/>
+                                                    <t t-esc="order.currency_id.symbol"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="fw-bold">
+                                                <td colspan="4" class="text-end">Total:</td>
+                                                <td class="text-end">
+                                                    <t t-esc="'%.2f' % sum(gems_to_show.mapped('subtotal'))"/>
+                                                    <t t-esc="order.currency_id.symbol"/>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+
+                        <!-- Order totals -->
+                        <div class="d-flex justify-content-end flex-column align-items-end mb-4 pe-1 gap-1">
+                            <t t-if="amount_full != amount_to_pay">
+                                <div class="d-flex gap-2">
+                                    <span class="text-muted">Full product cost:</span>
+                                    <span>
+                                        <t t-esc="'%.2f' % amount_full"/>
+                                        <t t-esc="order.currency_id.symbol"/>
+                                    </span>
+                                </div>
+                            </t>
+                            <div class="d-flex gap-2 align-items-baseline">
+                                <span class="text-muted">To pay:</span>
+                                <span class="fw-bold h5 mb-0">
+                                    <t t-esc="'%.2f' % amount_to_pay"/>
+                                    <t t-esc="order.currency_id.symbol"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Certificate modals -->
+                        <t t-foreach="cert_modals" t-as="cert">
+                            <div class="modal fade" t-attf-id="certModal-#{cert.id}"
+                                 tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Certificate <t t-esc="cert.name"/>
+                                            </h5>
+                                            <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close"/>
+                                        </div>
+                                        <div class="modal-body">
+                                            <dl class="row mb-0">
+                                                <t t-if="cert.lab or cert.lab_other">
+                                                    <dt class="col-5">Laboratory</dt>
+                                                    <dd class="col-7">
+                                                        <t t-if="cert.lab == 'other'">
+                                                            <t t-esc="cert.lab_other"/>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <t t-esc="dict(cert._fields['lab'].selection).get(cert.lab, cert.lab)"/>
+                                                        </t>
+                                                    </dd>
+                                                </t>
+                                                <t t-if="cert.cert_date">
+                                                    <dt class="col-5">Date</dt>
+                                                    <dd class="col-7"><t t-esc="cert.cert_date.strftime('%d.%m.%Y')"/></dd>
+                                                </t>
+                                                <t t-if="cert.gem_type_id">
+                                                    <dt class="col-5">Gem Type</dt>
+                                                    <dd class="col-7"><t t-esc="cert.gem_type_id.name"/></dd>
+                                                </t>
+                                                <t t-if="cert.description">
+                                                    <dt class="col-5">Description</dt>
+                                                    <dd class="col-7"><t t-esc="cert.description"/></dd>
+                                                </t>
+                                                <t t-if="cert.origin">
+                                                    <dt class="col-5">Origin</dt>
+                                                    <dd class="col-7">
+                                                        <t t-esc="dict(cert._fields['origin'].selection).get(cert.origin, cert.origin)"/>
+                                                    </dd>
+                                                </t>
+                                                <t t-if="cert.shape_cut">
+                                                    <dt class="col-5">Shape &amp; Cut</dt>
+                                                    <dd class="col-7"><t t-esc="cert.shape_cut"/></dd>
+                                                </t>
+                                                <t t-if="cert.carat_weight">
+                                                    <dt class="col-5">Carat Weight</dt>
+                                                    <dd class="col-7"><t t-esc="'%.4f' % cert.carat_weight"/> ct</dd>
+                                                </t>
+                                                <t t-if="cert.color_grade">
+                                                    <dt class="col-5">Color</dt>
+                                                    <dd class="col-7"><t t-esc="cert.color_grade"/></dd>
+                                                </t>
+                                                <t t-if="cert.clarity_grade">
+                                                    <dt class="col-5">Clarity</dt>
+                                                    <dd class="col-7"><t t-esc="cert.clarity_grade"/></dd>
+                                                </t>
+                                                <t t-if="cert.cut_grade">
+                                                    <dt class="col-5">Cut</dt>
+                                                    <dd class="col-7">
+                                                        <t t-esc="dict(cert._fields['cut_grade'].selection).get(cert.cut_grade, cert.cut_grade)"/>
+                                                    </dd>
+                                                </t>
+                                                <t t-if="cert.polish">
+                                                    <dt class="col-5">Polish</dt>
+                                                    <dd class="col-7">
+                                                        <t t-esc="dict(cert._fields['polish'].selection).get(cert.polish, cert.polish)"/>
+                                                    </dd>
+                                                </t>
+                                                <t t-if="cert.symmetry">
+                                                    <dt class="col-5">Symmetry</dt>
+                                                    <dd class="col-7">
+                                                        <t t-esc="dict(cert._fields['symmetry'].selection).get(cert.symmetry, cert.symmetry)"/>
+                                                    </dd>
+                                                </t>
+                                                <t t-if="cert.fluorescence">
+                                                    <dt class="col-5">Fluorescence</dt>
+                                                    <dd class="col-7">
+                                                        <t t-esc="dict(cert._fields['fluorescence'].selection).get(cert.fluorescence, cert.fluorescence)"/>
+                                                    </dd>
+                                                </t>
+                                                <t t-if="cert.comments">
+                                                    <dt class="col-5">Comments</dt>
+                                                    <dd class="col-7"><t t-esc="cert.comments"/></dd>
+                                                </t>
+                                            </dl>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+
+                        <!-- Operations route (shown only if enabled for this client) -->
+                        <t t-if="show_operations and area_groups">
+                            <div class="card mb-4">
+                                <div class="card-header fw-semibold">Production Stage</div>
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Stage</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="area_groups" t-as="grp">
+                                                <td class="text-muted"><t t-esc="grp_index + 1"/></td>
+                                                <td><t t-esc="grp['name']"/></td>
+                                                <td>
+                                                    <span t-attf-class="badge #{
+                                                        'bg-secondary' if grp['state'] == 'pending' else
+                                                        'bg-info text-dark' if grp['state'] == 'ready' else
+                                                        'bg-warning text-dark' if grp['state'] == 'accepted' else
+                                                        'bg-primary' if grp['state'] == 'in_progress' else
+                                                        'bg-success' if grp['state'] == 'done' else
+                                                        'bg-danger'
+                                                    }">
+                                                        <t t-esc="grp['state'].replace('_', ' ').title()"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+
+                        <div class="text-center mb-4">
+                            <a href="/my/repairs" class="btn btn-outline-secondary">
+                                &#8592; Back to orders
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Money statement: orders debit, payments credit, balance per row -->
+        <template id="portal_statement_body" name="Statement">
+                <t t-if="not statement_sections">
+                    <div class="alert alert-info">No statement is available for your account.</div>
+                </t>
+
+                <t t-foreach="statement_sections" t-as="section">
+                    <div class="card mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+                            <span class="fw-semibold">
+                                <t t-esc="section['partner'].name"/>
+                            </span>
+                            <span>
+                                <t t-if="section['balance'] &lt; 0">
+                                    <span class="text-muted me-2">Advance:</span>
+                                    <strong class="h5 mb-0 text-success">
+                                        <t t-esc="'%.2f' % -section['balance']"/>
+                                        <t t-esc="currency.symbol"/>
+                                    </strong>
+                                </t>
+                                <t t-else="">
+                                    <span class="text-muted me-2">To pay:</span>
+                                    <strong class="h5 mb-0">
+                                        <t t-esc="'%.2f' % section['balance']"/>
+                                        <t t-esc="currency.symbol"/>
+                                    </strong>
+                                </t>
+                            </span>
+                        </div>
+
+                        <t t-if="not section['rows']">
+                            <div class="card-body">
+                                <div class="alert alert-info mb-0">No entries yet.</div>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Document</th>
+                                            <th class="text-nowrap">Ext. Doc #</th>
+                                            <th>Operation</th>
+                                            <th class="text-end">Debit</th>
+                                            <th class="text-end">Credit</th>
+                                            <th class="text-end">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="section['rows']" t-as="row">
+                                            <td><t t-esc="row['date'].strftime('%d.%m.%Y')"/></td>
+                                            <td>
+                                                <t t-if="row['order']">
+                                                    <a t-attf-href="/my/repairs/#{row['order'].id}">
+                                                        <t t-esc="row['reference']"/>
+                                                    </a>
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-esc="row['reference']"/>
+                                                </t>
+                                            </td>
+                                            <td>
+                                                <t t-if="row['order']">
+                                                    <t t-esc="row['order'].external_doc_number"/>
+                                                </t>
+                                            </td>
+                                            <td><t t-esc="row['label']"/></td>
+                                            <td class="text-end">
+                                                <t t-if="row['debit']">
+                                                    <t t-esc="'%.2f' % row['debit']"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-end text-success">
+                                                <t t-if="row['credit']">
+                                                    <t t-esc="'%.2f' % row['credit']"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-end fw-semibold">
+                                                <t t-esc="'%.2f' % row['balance']"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+
+                        <t t-if="section['pager']">
+                            <t t-set="pager" t-value="section['pager']"/>
+                            <div class="o_portal_pager text-center py-2">
+                                <t t-call="portal.pager"/>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+        </template>
+
+    </data>
+</odoo>

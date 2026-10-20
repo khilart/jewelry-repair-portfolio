@@ -1,0 +1,356 @@
+<odoo>
+    <data>
+        <record id="paperformat_jewelry_delivery" model="report.paperformat">
+            <field name="name">Jewelry Delivery A4</field>
+            <field name="default" eval="False"/>
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">15</field>
+            <field name="margin_right">10</field>
+            <field name="dpi">70</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+        </record>
+
+        <record id="action_report_jewelry_repair_delivery" model="ir.actions.report">
+            <field name="name">Repair Delivery</field>
+            <field name="model">jewelry.repair.delivery</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_delivery.report_jewelry_repair_delivery_document</field>
+            <field name="report_file">jewelry_repair_delivery.report_jewelry_repair_delivery_document</field>
+            <field name="binding_model_id" ref="model_jewelry_repair_delivery"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'Выдача заказов - %s' % (object.name or '')</field>
+            <field name="paperformat_id" ref="paperformat_jewelry_delivery"/>
+        </record>
+
+        <record id="action_server_delivery_report_en" model="ir.actions.server">
+            <field name="name">Repair Delivery (English)</field>
+            <field name="model_id" ref="model_jewelry_repair_delivery"/>
+            <field name="binding_model_id" ref="model_jewelry_repair_delivery"/>
+            <field name="binding_type">report</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_print_delivery_en()</field>
+        </record>
+
+        <record id="action_report_jewelry_repair_delivery_grouped" model="ir.actions.report">
+            <field name="name">Repair Delivery (Grouped)</field>
+            <field name="model">jewelry.repair.delivery</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">jewelry_repair_delivery.report_jewelry_repair_delivery_document_grouped</field>
+            <field name="report_file">jewelry_repair_delivery.report_jewelry_repair_delivery_document_grouped</field>
+            <field name="print_report_name">'Выдача заказов (сводно) - %s' % (object.name or '')</field>
+            <field name="paperformat_id" ref="paperformat_jewelry_delivery"/>
+        </record>
+
+        <template id="report_jewelry_repair_delivery_document_grouped">
+            <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="delivery">
+                    <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                        <div class="page">
+
+                            <!-- Header -->
+                            <div class="mb-3">
+                                <div style="white-space:nowrap;">
+                                    <span class="h4">Repair Delivery Act</span>
+                                    <span class="ms-2">No. <span t-field="delivery.name"/></span>
+                                    <span class="ms-2 text-muted">dated <span t-field="delivery.delivery_date"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <strong>Customer:</strong>
+                                    <span class="ms-2"><span t-field="delivery.partner_id"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Orders table -->
+                            <h5 class="mt-3 mb-2" style="font-size:1rem;">Orders</h5>
+                            <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width:20%">Order No.</th>
+                                        <th>Item</th>
+                                        <th style="width:15%">Deadline</th>
+                                        <th class="text-end" style="width:15%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="delivery._get_report_orders()" t-as="order">
+                                        <td><span t-field="order.name"/></td>
+                                        <td><span t-field="order.item_type_id"/></td>
+                                        <td><span t-field="order.deadline_date" t-options='{"widget": "date"}'/></td>
+                                        <td class="text-end"><span t-field="order.amount_total"/></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="fw-bold border-top">
+                                        <td colspan="3" class="text-end">Orders Total:</td>
+                                        <td class="text-end"><span t-field="delivery.selected_amount_total"/></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <!-- Services summary (grouped) -->
+                            <t t-set="services" t-value="delivery._get_delivery_service_summary_grouped()"/>
+                            <t t-if="services">
+                                <h5 class="mt-4 mb-2" style="font-size:1rem;">Services</h5>
+                                <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Service</th>
+                                            <th class="text-end" style="width:15%">Qty</th>
+                                            <th class="text-end" style="width:20%">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="services" t-as="line">
+                                            <td><span t-esc="line['name']"/></td>
+                                            <td class="text-end"><span t-esc="'%.2f' % line['quantity']"/></td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % line['subtotal']"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="fw-bold border-top">
+                                            <td colspan="2" class="text-end">Services Total:</td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in services)"/>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </t>
+
+                            <!-- Materials summary -->
+                            <t t-set="materials" t-value="delivery._get_delivery_material_summary()"/>
+                            <t t-if="materials">
+                                <h5 class="mt-4 mb-2" style="font-size:1rem;">Materials</h5>
+                                <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Material</th>
+                                            <th>Alloy</th>
+                                            <th class="text-end" style="width:12%">Qty</th>
+                                            <th class="text-end" style="width:13%">Weight, g</th>
+                                            <th class="text-end" style="width:18%">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="materials" t-as="line">
+                                            <td><span t-esc="line['name']"/></td>
+                                            <td><span t-esc="line['alloy_name']"/></td>
+                                            <td class="text-end"><span t-esc="'%.2f' % line['quantity']"/></td>
+                                            <td class="text-end"><span t-esc="'%.3f' % line['weight']"/></td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % line['subtotal']"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="fw-bold border-top">
+                                            <td colspan="4" class="text-end">Materials Total:</td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in materials)"/>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </t>
+
+                            <!-- Grand total -->
+                            <div style="width:100%; margin-top:16px; font-size:0.7em;">
+                                <table style="float:right; border-top:2px solid #000;">
+                                    <tr>
+                                        <td style="font-weight:700; padding:4px 12px 4px 0; white-space:nowrap;">TOTAL DUE:</td>
+                                        <td style="font-weight:700; padding:4px 0; white-space:nowrap; text-align:right;"><span t-field="delivery.selected_amount_total"/></td>
+                                    </tr>
+                                </table>
+                                <div style="clear:both;"/>
+                            </div>
+
+                            <!-- Notes -->
+                            <div t-if="delivery.notes" class="mt-3" style="font-size:0.7em;">
+                                <strong>Notes:</strong>
+                                <div t-field="delivery.notes"/>
+                            </div>
+
+                            <!-- Signatures -->
+                            <div class="row mt-4" style="font-size:0.7em;">
+                                <div class="col-5">
+                                    <p class="mb-1">Issued by: ____________________</p>
+                                    <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                                </div>
+                                <div class="col-2"/>
+                                <div class="col-5">
+                                    <p class="mb-1">Received by: ____________________</p>
+                                    <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+            </t>
+            </t>
+        </template>
+
+        <template id="report_jewelry_repair_delivery_document">
+            <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="delivery">
+                    <t t-call="jewelry_repair_base.jewelry_layout_minimalist">
+                        <div class="page">
+
+                            <!-- Header -->
+                            <div class="mb-3">
+                                <div style="white-space:nowrap;">
+                                    <span class="h4">Repair Delivery Act</span>
+                                    <span class="ms-2">No. <span t-field="delivery.name"/></span>
+                                    <span class="ms-2 text-muted">dated <span t-field="delivery.delivery_date"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <strong>Customer:</strong>
+                                    <span class="ms-2"><span t-field="delivery.partner_id"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Orders table -->
+                            <h5 class="mt-3 mb-2" style="font-size:1rem;">Orders</h5>
+                            <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width:20%">Order No.</th>
+                                        <th>Item</th>
+                                        <th style="width:15%">Deadline</th>
+                                        <th class="text-end" style="width:15%">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="delivery._get_report_orders()" t-as="order">
+                                        <td><span t-field="order.name"/></td>
+                                        <td><span t-field="order.item_type_id"/></td>
+                                        <td><span t-field="order.deadline_date" t-options='{"widget": "date"}'/></td>
+                                        <td class="text-end"><span t-field="order.amount_total"/></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="fw-bold border-top">
+                                        <td colspan="3" class="text-end">Orders Total:</td>
+                                        <td class="text-end"><span t-field="delivery.selected_amount_total"/></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <!-- Services summary -->
+                            <t t-set="services" t-value="delivery._get_delivery_service_summary()"/>
+                            <t t-if="services">
+                                <h5 class="mt-4 mb-2" style="font-size:1rem;">Services</h5>
+                                <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Service</th>
+                                            <th class="text-end" style="width:15%">Qty</th>
+                                            <th class="text-end" style="width:20%">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="services" t-as="line">
+                                            <td><span t-esc="line['name']"/></td>
+                                            <td class="text-end"><span t-esc="'%.2f' % line['quantity']"/></td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % line['subtotal']"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="fw-bold border-top">
+                                            <td colspan="2" class="text-end">Services Total:</td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in services)"/>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </t>
+
+                            <!-- Materials summary -->
+                            <t t-set="materials" t-value="delivery._get_delivery_material_summary()"/>
+                            <t t-if="materials">
+                                <h5 class="mt-4 mb-2" style="font-size:1rem;">Materials</h5>
+                                <table class="table table-sm o_main_table" style="font-size:0.7em;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Material</th>
+                                            <th>Alloy</th>
+                                            <th class="text-end" style="width:12%">Qty</th>
+                                            <th class="text-end" style="width:13%">Weight, g</th>
+                                            <th class="text-end" style="width:18%">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="materials" t-as="line">
+                                            <td><span t-esc="line['name']"/></td>
+                                            <td><span t-esc="line['alloy_name']"/></td>
+                                            <td class="text-end"><span t-esc="'%.2f' % line['quantity']"/></td>
+                                            <td class="text-end"><span t-esc="'%.3f' % line['weight']"/></td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % line['subtotal']"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="fw-bold border-top">
+                                            <td colspan="4" class="text-end">Materials Total:</td>
+                                            <td class="text-end">
+                                                <span t-esc="delivery.currency_id.symbol"/>&#160;<span t-esc="'%.2f' % sum(l['subtotal'] for l in materials)"/>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </t>
+
+                            <!-- Grand total -->
+                            <div style="width:100%; margin-top:16px; font-size:0.7em;">
+                                <table style="float:right; border-top:2px solid #000;">
+                                    <tr>
+                                        <td style="font-weight:700; padding:4px 12px 4px 0; white-space:nowrap;">TOTAL DUE:</td>
+                                        <td style="font-weight:700; padding:4px 0; white-space:nowrap; text-align:right;"><span t-field="delivery.selected_amount_total"/></td>
+                                    </tr>
+                                </table>
+                                <div style="clear:both;"/>
+                            </div>
+
+                            <!-- Notes -->
+                            <div t-if="delivery.notes" class="mt-3" style="font-size:0.7em;">
+                                <strong>Notes:</strong>
+                                <div t-field="delivery.notes"/>
+                            </div>
+
+                            <!-- Signatures -->
+                            <div class="row mt-4" style="font-size:0.7em;">
+                                <div class="col-5">
+                                    <p class="mb-1">Issued by: ____________________</p>
+                                    <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                                </div>
+                                <div class="col-2"/>
+                                <div class="col-5">
+                                    <p class="mb-1">Received by: ____________________</p>
+                                    <p class="text-muted" style="font-size:0.85em;">signature / name</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+            </t>
+            </t>
+        </template>
+    </data>
+</odoo>

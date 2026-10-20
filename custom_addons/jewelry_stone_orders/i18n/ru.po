@@ -1,0 +1,1186 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* jewelry_stone_orders
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0-20260324\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-24 19:29+0000\n"
+"PO-Revision-Date: 2026-09-24 19:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "%(action)s is not available for %(name)s in state %(state)s."
+msgstr "Действие «%(action)s» недоступно для %(name)s в состоянии «%(state)s»."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "%(qty)s pc, %(ct).4f ct"
+msgstr "%(qty)s шт, %(ct).4f ct"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#, python-format
+msgid "%s is already posted."
+msgstr "%s уже проведён."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid ""
+"%s is confirmed — the requested stones cannot be changed. Take it back to "
+"draft, or cancel it and make a new one."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "A stock stone order cannot point at a repair order."
+msgstr "Складской заказ камней не может ссылаться на заказ ремонта."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "A stock stone order has no repair order to transfer into."
+msgstr "У складского заказа камней нет заказа ремонта, куда переносить."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "A stone order for a repair order needs the repair order."
+msgstr "Для заказа камней под ремонт нужно указать заказ ремонта."
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_repair_order_form_stone_orders
+msgid "A stone order shipped short of what was requested."
+msgstr "По заказу камней отгружено меньше запрошенного."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__action
+msgid "Action"
+msgstr "Действие"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_needaction
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__asscher
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__asscher
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__asscher
+msgid "Asscher"
+msgstr "Ашер"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__trapezoid
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__trapezoid
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__trapezoid
+msgid "Trapezoid"
+msgstr "Трапеция"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_attachment_count
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_return_form
+msgid "Back to Draft"
+msgstr "Вернуть в черновик"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Back to draft"
+msgstr "Возврат в черновик"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__disposal__broken
+msgid "Broken"
+msgstr "Бой"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_reject_wizard_form
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_transfer_wizard_form
+#, python-format
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__cancelled
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__cancelled
+msgid "Cancelled"
+msgstr "Отменён"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Certificate %s covers a single stone, so the quantity has to be 1."
+msgstr "Сертификат %s относится к одному камню — количество должно быть 1."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__certificate_ref
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__certificate_ref
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__certificate_ref
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__certificate_ref
+msgid "Certificate No."
+msgstr "Номер сертификата"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__broken_charge_to
+msgid "Charged To"
+msgstr "На кого списано"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__broken_charge_to__client
+msgid "Client"
+msgstr "Клиент"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__subtotal
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Client Amount"
+msgstr "Сумма клиенту"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__price_unit
+msgid "Client Price/pc"
+msgstr "Цена клиенту за шт"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__supplier_amount
+msgid "Client amount less our commission."
+msgstr "Сумма клиенту за вычетом нашей комиссии."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__commission_pct
+msgid "Commission %"
+msgstr "Комиссия, %"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__company_id
+msgid "Company"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+#, python-format
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__confirmed
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__confirmed
+msgid "Confirmed"
+msgstr "Подтверждён"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_res_partner
+msgid "Contact"
+msgstr "Контакты"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__create_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__create_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__currency_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__currency_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__cushion
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__cushion
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__cushion
+msgid "Cushion"
+msgstr "Кушон"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__cut_shape
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__cut_shape
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__cut_shape
+msgid "Cut Shape"
+msgstr "Форма огранки"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__description
+msgid "Description"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__detail
+msgid "Detail"
+msgstr "Детали"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__display_name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__disposal
+msgid "Disposal"
+msgstr "Выбытие"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_return__state__done
+msgid "Done"
+msgstr "Проведён"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__draft
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__draft
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_return__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__amount_supplier
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__supplier_amount
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_on_hand_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_tree
+msgid "Due to Supplier"
+msgstr "К оплате поставщику"
+
+#. module: jewelry_stone_orders
+#: model:ir.actions.act_window,name:jewelry_stone_orders.action_jewelry_stones_payable
+#: model:ir.ui.menu,name:jewelry_stone_orders.menu_jewelry_stones_payable
+msgid "Due to Suppliers"
+msgstr "Долг поставщикам"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__emerald
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__emerald
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__emerald
+msgid "Emerald"
+msgstr "Изумрудная"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Everything requested has arrived."
+msgstr "Всё запрошенное получено."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__fetched_at
+msgid "Fetched by Supplier"
+msgstr "Забран поставщиком"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_follower_ids
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_partner_ids
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__purpose__repair
+msgid "For Repair Order"
+msgstr "Под заказ ремонта"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__purpose__stock
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "For Stock"
+msgstr "На склад"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_repair_gem_line__stone_order_line_id
+msgid "From Stone Order"
+msgstr "Из заказа камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__gem_type_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__gem_type_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__gem_type_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__gem_type_id
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_on_hand_search
+msgid "Gem Type"
+msgstr "Тип камня"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_on_hand_search
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Group By"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__has_message
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__heart
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__heart
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__heart
+msgid "Heart"
+msgstr "Сердце"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__id
+msgid "ID"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__message_needaction
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_return__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__message_has_error
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__message_has_sms_error
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_return__message_has_error
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_return__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__in_progress
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__in_progress
+msgid "In Progress"
+msgstr "В обработке"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_return_form
+msgid "Internal notes"
+msgstr "Внутренние заметки"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_is_follower
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_repair_order
+msgid "Jewelry Repair Order"
+msgstr "Заказ на ремонт"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_order
+msgid "Jewelry Stone Order"
+msgstr "Заказ камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_order_line_mixin
+msgid "Jewelry Stone Order Line Mixin"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_order_request_line
+msgid "Jewelry Stone Order Request Line"
+msgstr "Строка запроса камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_order_shipped_line
+msgid "Jewelry Stone Order Shipped Line"
+msgstr "Строка отгрузки камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_return
+msgid "Jewelry Stone Return"
+msgstr "Возврат камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_return_line
+msgid "Jewelry Stone Return Line"
+msgstr "Строка возврата камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__origin__lab_grown
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__origin__lab_grown
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__origin__lab_grown
+msgid "Laboratory Grown"
+msgstr "Выращенный"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__last_change_at
+msgid "Last Change"
+msgstr "Последнее изменение"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_repair_order__last_stone_order_state
+msgid "Last Stone Order"
+msgstr "Последний заказ камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__write_uid
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__write_date
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_transfer_wizard_line__action__skip
+msgid "Left alone"
+msgstr "Не тронем"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Mark as shipped"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__marquise
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__marquise
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__marquise
+msgid "Marquise"
+msgstr "Маркиз"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_has_error
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_ids
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__origin__natural
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__origin__natural
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__origin__natural
+msgid "Natural"
+msgstr "Натуральный"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.actions.act_window,help:jewelry_stone_orders.action_jewelry_stones_on_hand
+msgid "No stones on hand"
+msgstr "Камней в наличии нет"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__notes
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__notes
+msgid "Notes"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Nothing to request: the document has no stones."
+msgstr "Нечего запрашивать: в документе нет камней."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#, python-format
+msgid "Nothing to return."
+msgstr "Нечего возвращать."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_needaction_counter
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_has_error_counter
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__message_needaction_counter
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_return__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__message_has_error_counter
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_return__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Open"
+msgstr "Открытые"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__request_line_id
+msgid "Optional: the warehouse may ship something that was never requested."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__order_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__order_id
+msgid "Order"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/repair_order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_repair_order_form_stone_orders
+#, python-format
+msgid "Order Stones"
+msgstr "Заказать камни"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__origin
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__origin
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__origin
+msgid "Origin"
+msgstr "Происхождение"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__waybill
+msgid "Our Waybill"
+msgstr "Наша накладная"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__commission_pct
+msgid ""
+"Our share of the price the supplier quotes to the client. Snapshot taken "
+"when the document is created: terms change, past deliveries must not."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_res_partner__stone_commission_pct
+#: model:ir.model.fields,help:jewelry_stone_orders.field_res_users__stone_commission_pct
+msgid ""
+"Our share of the price this supplier quotes to the client. Copied into a new"
+" stone order and frozen there."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__oval
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__oval
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__oval
+msgid "Oval"
+msgstr "Овал"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__stones_payable__yes
+msgid "Paid to Supplier"
+msgstr "Камни оплачиваем"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Payable"
+msgstr "Оплачиваемые"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__pear
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__pear
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__pear
+msgid "Pear"
+msgstr "Груша"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_return_form
+msgid "Post"
+msgstr "Провести"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__line_ids
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__princess
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__princess
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__princess
+msgid "Princess"
+msgstr "Принцесса"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__purpose
+msgid "Purpose"
+msgstr "Назначение"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__quantity
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__quantity
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__quantity
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__quantity
+msgid "Qty"
+msgstr "Кол-во"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__radiant
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__radiant
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__radiant
+msgid "Radiant"
+msgstr "Радиант"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_reject_wizard__comment
+msgid "Reason"
+msgstr "Причина"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Receive"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__received
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__received
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Received"
+msgstr "Получен"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__shipped_line_id
+msgid "Received Stone"
+msgstr "Полученный камень"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__name
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__name
+msgid "Reference"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_reject_wizard_form
+#, python-format
+msgid "Reject"
+msgstr "Отклонить"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_reject_wizard_form
+#, python-format
+msgid "Reject Stone Order"
+msgstr "Отклонить заказ камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_order_reject_wizard
+msgid "Reject a Stone Order"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__rejected
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__rejected
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Rejected"
+msgstr "Отклонён"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Rejected by the supplier: %s"
+msgstr "Отклонено поставщиком: %s"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__repair_order_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard__repair_order_id
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Repair Order"
+msgstr "Заказ ремонта"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_repair_gem_line
+msgid "Repair Order Gem Line"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Request the Remainder"
+msgstr "Запросить остаток"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Request the remainder"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__request_line_ids
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Requested"
+msgstr "Запрошено"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__request_line_id
+msgid "Requested Line"
+msgstr "Строка запроса"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__return_id
+msgid "Return"
+msgstr "Возврат"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__return_date
+msgid "Return Date"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__amount_total
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_return_tree
+msgid "Returned Amount"
+msgstr "Сумма возврата"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__disposal__returned
+msgid "Returned to Supplier"
+msgstr "Возвращён поставщику"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__return_ids
+#: model:ir.ui.menu,name:jewelry_stone_orders.menu_jewelry_stone_returns
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Returns"
+msgstr "Возвраты"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_line_mixin__cut_shape__round
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_request_line__cut_shape__round
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__cut_shape__round
+msgid "Round"
+msgstr "Круг"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__message_has_sms_error
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Say who carries the broken stone."
+msgstr "Укажите, на кого списан разбитый камень."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Say why the stones cannot be supplied."
+msgstr "Укажите, почему камни не могут быть поставлены."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__shipped_line_ids
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_repair_order__last_stone_order_state__shipped
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__state__shipped
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Shipped"
+msgstr "Отгружен"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__shipped_complete
+msgid "Shipped in Full"
+msgstr "Отгружено полностью"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Shipped short of what was requested — check before accepting."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__standard_size_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__standard_size_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__standard_size_id
+msgid "Size"
+msgstr "Размер"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__state
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__state
+msgid "State"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Status"
+msgstr "Статус"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Stone"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_res_partner__stone_commission_pct
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_res_users__stone_commission_pct
+msgid "Stone Commission %"
+msgstr "Комиссия по камням, %"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__order_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__order_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__order_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__stone_order_id
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_on_hand_search
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Stone Order"
+msgstr "Заказ камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_repair_order__stone_order_count
+msgid "Stone Order Count"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_repair_order__stone_order_incomplete
+msgid "Stone Order Incomplete"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/repair_order.py:0
+#: model:ir.actions.act_window,name:jewelry_stone_orders.action_jewelry_stone_order
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_repair_order__stone_order_ids
+#: model:ir.ui.menu,name:jewelry_stone_orders.menu_jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_repair_order_form_stone_orders
+#, python-format
+msgid "Stone Orders"
+msgstr "Заказы камней"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_return_form
+msgid "Stone Return"
+msgstr "Возврат камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.actions.act_window,name:jewelry_stone_orders.action_jewelry_stone_return
+msgid "Stone Returns"
+msgstr "Возвраты камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_res_partner__is_stone_supplier
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_res_users__is_stone_supplier
+msgid "Stone Supplier"
+msgstr "Поставщик камней"
+
+#. module: jewelry_stone_orders
+#: model:ir.ui.menu,name:jewelry_stone_orders.menu_jewelry_stone_orders_section
+msgid "Stones"
+msgstr "Камни"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__stones_payable
+msgid "Stones Payable"
+msgstr "Оплата камней"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Stones Received"
+msgstr "Камни получены"
+
+#. module: jewelry_stone_orders
+#: model:ir.actions.act_window,name:jewelry_stone_orders.action_jewelry_stones_on_hand
+#: model:ir.ui.menu,name:jewelry_stone_orders.menu_jewelry_stones_on_hand
+msgid "Stones on Hand"
+msgstr "Камни в наличии"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#, python-format
+msgid "Stones returned by %(name)s, waybill %(waybill)s."
+msgstr "Камни возвращены документом %(name)s, накладная %(waybill)s."
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.actions.act_window,help:jewelry_stone_orders.action_jewelry_stones_on_hand
+msgid "Stones that arrived and have not been used, returned or broken."
+msgstr "Камни, которые получены и ещё не использованы, не возвращены и не разбиты."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__supplier_id
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__supplier_id
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__broken_charge_to__supplier
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_search
+msgid "Supplier"
+msgstr "Поставщик"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order__stones_payable__no
+msgid "Supplier Order — Not Paid"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__supplier_waybill
+msgid "Supplier Waybill"
+msgstr "Накладная поставщика"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Take into work"
+msgstr "Взятие в работу"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Taken Into Work"
+msgstr "Взят в работу"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "The size belongs to a different gem type."
+msgstr "Размер относится к другому типу камня."
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_return.py:0
+#, python-format
+msgid "The stone does not belong to the stone order being returned."
+msgstr "Камень не относится к возвращаемому заказу камней."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__total_weight_ct
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Total (ct)"
+msgstr "Итого (ct)"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_on_hand_tree
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Total Qty"
+msgstr "Итого кол-во"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_transfer_wizard_form
+msgid "Transfer"
+msgstr "Перенести"
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_form
+msgid "Transfer Into the Order"
+msgstr "Перенести в заказ"
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_transfer_wizard_line
+msgid "Transfer Preview Line"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model,name:jewelry_stone_orders.model_jewelry_stone_transfer_wizard
+msgid "Transfer Received Stones Into the Repair Order"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_transfer_wizard_form
+msgid "Transfer Stones"
+msgstr "Перенос камней"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Transfer Stones Into the Order"
+msgstr "Перенос камней в заказ"
+
+#. module: jewelry_stone_orders
+#. odoo-python
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#: code:addons/jewelry_stone_orders/models/stone_order.py:0
+#, python-format
+msgid "Transfer the stones once they are received."
+msgstr "Переносить камни можно после их получения."
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__last_change_at
+msgid ""
+"Watermark the supplier polls on. Not write_date: editing a line leaves the "
+"parent untouched when written directly rather than through the form."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order__website_message_ids
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__website_message_ids
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_return__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_line_mixin__weight_ct
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_request_line__weight_ct
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__weight_ct
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_return_line__weight_ct
+msgid "Weight/pc (ct)"
+msgstr "Вес за шт (ct)"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__price_unit
+msgid "What the supplier quotes to the end client."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__fetched_at
+msgid ""
+"When the supplier first read this document. Empty on a confirmed document "
+"means the request never reached them."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_repair_gem_line__stone_order_line_id
+msgid ""
+"Where this stone came from. Makes the transfer repeatable instead of "
+"duplicating, and shows the origin of every stone in the order."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order__stones_payable
+msgid ""
+"Whether we owe the supplier for these stones. Filled in from the repair "
+"order customer when the document is created, then left to the manager."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,help:jewelry_stone_orders.field_jewelry_stone_order_shipped_line__broken_charge_to
+msgid ""
+"Who carries a broken stone. No rule — the manager decides case by case."
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model_terms:ir.ui.view,arch_db:jewelry_stone_orders.view_jewelry_stone_order_reject_wizard_form
+msgid "Why the stones cannot be supplied"
+msgstr "Почему камни не могут быть поставлены"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_transfer_wizard_line__action__create
+msgid "Will be added"
+msgstr "Будет добавлено"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_transfer_wizard_line__action__update
+msgid "Will be updated"
+msgstr "Будет обновлено"
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields,field_description:jewelry_stone_orders.field_jewelry_stone_transfer_wizard_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: jewelry_stone_orders
+#: model:ir.model.fields.selection,name:jewelry_stone_orders.selection__jewelry_stone_order_shipped_line__broken_charge_to__workshop
+msgid "Workshop"
+msgstr "Мастерская"

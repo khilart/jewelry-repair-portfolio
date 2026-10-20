@@ -1,0 +1,245 @@
+<odoo>
+    <data>
+
+        <!-- ========== jewelry.client.metal.account ========== -->
+
+        <record id="view_client_metal_account_list" model="ir.ui.view">
+            <field name="name">jewelry.client.metal.account.list</field>
+            <field name="model">jewelry.client.metal.account</field>
+            <field name="arch" type="xml">
+                <tree string="Client Metal Accounts">
+                    <field name="partner_id"/>
+                    <field name="metal_id"/>
+                    <field name="balance_fine" string="Balance (fine g)" digits="[16,4]" sum="Total (fine g)"/>
+                    <field name="balance_18k" string="18k (g)" optional="show" digits="[16,2]" sum="Total 18k"/>
+                    <field name="balance_14k" string="14k (g)" optional="show" digits="[16,2]" sum="Total 14k"/>
+                    <field name="balance_9k"  string="9k (g)"  optional="show" digits="[16,2]" sum="Total 9k"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_client_metal_account_form" model="ir.ui.view">
+            <field name="name">jewelry.client.metal.account.form</field>
+            <field name="model">jewelry.client.metal.account</field>
+            <field name="arch" type="xml">
+                <form string="Client Metal Account">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="partner_id"/>
+                            <h1>
+                                <field name="partner_id" readonly="id"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="metal_id" readonly="id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group>
+                                <field name="balance_fine" string="Balance (fine g)" widget="float" digits="[16,4]"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Transactions" name="transactions">
+                                <field name="transaction_ids" nolabel="1" readonly="1">
+                                    <tree string="Transactions" default_order="transaction_date desc" create="0" delete="0">
+                                        <field name="transaction_date"/>
+                                        <field name="transaction_type"/>
+                                        <field name="alloy_id"/>
+                                        <field name="weight_alloy" string="Alloy (g)" digits="[16,3]"/>
+                                        <field name="purity" optional="hide"/>
+                                        <field name="weight_fine" string="Fine (g)" digits="[16,4]"/>
+                                        <field name="state"/>
+                                        <field name="source_ref" optional="show"/>
+                                        <field name="notes" optional="hide"/>
+                                        <field name="receipt_id" column_invisible="1"/>
+                                        <field name="source_res_id" column_invisible="1"/>
+                                        <button name="action_open_source" type="object"
+                                            icon="fa-external-link" title="Open Source Document"
+                                            class="btn-link"
+                                            invisible="not receipt_id and not source_res_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_client_metal_account_search" model="ir.ui.view">
+            <field name="name">jewelry.client.metal.account.search</field>
+            <field name="model">jewelry.client.metal.account</field>
+            <field name="arch" type="xml">
+                <search string="Client Metal Accounts">
+                    <field name="partner_id"/>
+                    <field name="metal_id"/>
+                    <filter string="Positive Balance" name="positive_balance"
+                        domain="[('balance_fine', '>', 0)]"/>
+                    <filter string="Zero or Negative" name="zero_balance"
+                        domain="[('balance_fine', '&lt;=', 0)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Client" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Metal" name="group_metal" context="{'group_by': 'metal_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_client_metal_account" model="ir.actions.act_window">
+            <field name="name">Client Metal Accounts</field>
+            <field name="res_model">jewelry.client.metal.account</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_client_metal_account_search"/>
+        </record>
+
+
+        <!-- ========== jewelry.client.metal.transaction ========== -->
+
+        <record id="view_client_metal_transaction_list" model="ir.ui.view">
+            <field name="name">jewelry.client.metal.transaction.list</field>
+            <field name="model">jewelry.client.metal.transaction</field>
+            <field name="arch" type="xml">
+                <tree string="Client Metal Transactions" default_order="transaction_date desc">
+                    <field name="name"/>
+                    <field name="transaction_date"/>
+                    <field name="partner_id"/>
+                    <field name="metal_id"/>
+                    <field name="transaction_type"/>
+                    <field name="alloy_id" optional="show"/>
+                    <field name="weight_alloy" string="Alloy (g)" digits="[16,3]" optional="show"/>
+                    <field name="weight_fine" string="Fine (g)" digits="[16,4]"/>
+                    <field name="state"/>
+                    <field name="source_ref" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_client_metal_transaction_form" model="ir.ui.view">
+            <field name="name">jewelry.client.metal.transaction.form</field>
+            <field name="model">jewelry.client.metal.transaction</field>
+            <field name="arch" type="xml">
+                <form string="Client Metal Transaction">
+                    <header>
+                        <button name="action_cancel" string="Cancel"
+                            type="object" class="btn-danger"
+                            invisible="state != 'posted'"
+                            confirm="Cancel this transaction? The account balance will be updated."/>
+                        <button name="action_repost" string="Repost"
+                            type="object" class="btn-secondary"
+                            invisible="state != 'cancelled'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="account_id"/>
+                                <field name="transaction_type"/>
+                                <field name="transaction_date"/>
+                                <field name="alloy_id"
+                                    invisible="transaction_type == 'deposit_cash'"/>
+                                <field name="weight_alloy"
+                                    invisible="transaction_type == 'deposit_cash'"/>
+                                <field name="purity"
+                                    invisible="transaction_type == 'deposit_cash'"/>
+                            </group>
+                            <group>
+                                <field name="weight_fine"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="rate_datetime"
+                                    invisible="transaction_type not in ('deposit_metal', 'deposit_cash')"/>
+                                <field name="rate_price_per_gram"
+                                    invisible="transaction_type not in ('deposit_metal', 'deposit_cash')"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"/>
+                                <field name="money_equivalent"
+                                    invisible="transaction_type != 'deposit_cash'"
+                                    widget="monetary"
+                                    options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+                        <group string="Source">
+                            <field name="source_ref"/>
+                            <field name="source_model" optional="show"/>
+                            <field name="source_res_id" optional="show"/>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_client_metal_transaction_search" model="ir.ui.view">
+            <field name="name">jewelry.client.metal.transaction.search</field>
+            <field name="model">jewelry.client.metal.transaction</field>
+            <field name="arch" type="xml">
+                <search string="Client Metal Transactions">
+                    <field name="partner_id"/>
+                    <field name="metal_id"/>
+                    <field name="transaction_type"/>
+                    <field name="source_ref"/>
+                    <filter string="Posted" name="posted" domain="[('state', '=', 'posted')]"/>
+                    <filter string="Cancelled" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <separator/>
+                    <filter string="Metal Deposit" name="deposit_metal"
+                        domain="[('transaction_type', '=', 'deposit_metal')]"/>
+                    <filter string="Cash Deposit" name="deposit_cash"
+                        domain="[('transaction_type', '=', 'deposit_cash')]"/>
+                    <filter string="Repair Debit" name="debit_repair"
+                        domain="[('transaction_type', '=', 'debit_repair')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Client" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                        <filter string="Metal" name="group_metal" context="{'group_by': 'metal_id'}"/>
+                        <filter string="Type" name="group_type" context="{'group_by': 'transaction_type'}"/>
+                        <filter string="Month" name="group_month" context="{'group_by': 'transaction_date:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_client_metal_transaction" model="ir.actions.act_window">
+            <field name="name">Metal Transactions</field>
+            <field name="res_model">jewelry.client.metal.transaction</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_client_metal_transaction_search"/>
+        </record>
+
+
+        <!-- ========== jewelry.metal.alloy extension ========== -->
+
+        <record id="view_jewelry_metal_alloy_form_client_balance" model="ir.ui.view">
+            <field name="name">jewelry.metal.alloy.form.client.balance</field>
+            <field name="model">jewelry.metal.alloy</field>
+            <field name="inherit_id" ref="jewelry_repair_base.view_jewelry_metal_alloy_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group" position="inside">
+                    <field name="show_in_client_balance"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- ========== Menu entries ========== -->
+
+        <menuitem
+            id="menu_client_metal_accounts"
+            name="Client Metal Accounts"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            sequence="50"
+            action="action_client_metal_account"/>
+
+        <menuitem
+            id="menu_client_metal_transactions"
+            name="Metal Transactions"
+            parent="jewelry_repair_delivery.menu_jewelry_repair_payments"
+            sequence="51"
+            action="action_client_metal_transaction"/>
+
+    </data>
+</odoo>
